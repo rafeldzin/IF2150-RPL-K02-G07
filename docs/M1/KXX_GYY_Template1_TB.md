@@ -32,10 +32,17 @@ Dipersiapkan oleh:
 # BAB 1: Analisis Permasalahan
 
 ## 1.1 Latar Belakang Masalah
-Tuliskan deskripsi permasalahan yang kalian pilih secara naratif dan spesifik. Tambahkan keterkaitan permasalahan tersebut dengan Tujuan Pembangunan Berkelanjutan (SDGs) yang telah disepakati. Dukung argumen kalian dengan data yang kredibel, serta jelaskan urgensi mengapa masalah ini perlu dan layak untuk segera diselesaikan.
+Usaha Mikro, Kecil, dan Menengah (UMKM) yang berada pada sektor kuliner menjadi salah satu penggerak utama dalam perekonomian di Indonesia dan dapat berkontribusi langsung terhadap SDG yang ke-8 yaitu "Decent Work and Economic Growth". Yang menjadi masalah adalah banyak pedagang UMKM kuliner menjalani usaha tanpa menghitung biaya produksi yang jelas. Padahal harga bahan baku itu fluktuatif dan bisa berubah dalam hitungan minggu, hari, ataupun kondisi pasar. Salah satu contohnya adalah data CNBC Indonesia yang menunjukkan harga bawang merah naik dari Rp 39.124/kg menjadi Rp 45.329/kg pada 2024 ke 2025. Banyak pedagang yang menetapkan harga jual sementara biaya produksi terus meningkat, yang lama-lama dapat menyebabkan kerugian produk tanpa disadari. Apalagi jika pedagang menjual banyak produk, terkadang pemilik usaha tidak mengetahui produk mana yang beneran untung dan rugi. Masalah ini perlu diselesaikan karena dapat berdampak langsung pada keberlangsungan usahanya. Oleh karena itu, diperlukan suatu alat pemantauan bagi para pelaku usaha yang terus menjalani kondisi rugi pada beberapa produk tanpa disadari.
 
 ## 1.2 Analisis Kondisi Saat Ini
-Lakukan analisis terhadap proses yang berjalan saat ini di dunia nyata, baik itu sistem lama ataupun solusi yang sudah ada. Soroti kesenjangan atau celah dari kondisi tersebut yang nantinya akan diselesaikan oleh perangkat lunak kalian.
+Kondisi yang terjadi sekarang menunjukkan bahwa para pedagang UMKM kuliner masih menentukan harga dan memantau keuntungan atau kerugian dengan cara manual. Harga jual ditentukan di awal berdasarkan perkiraan kasar harga biaya bahan baku saat itu tanpa ada evaluasi dan perhitungan mendalam. Pencatatan harga bahan baku juga tidak terdokumentasi dengan baik, bahkan pedagang biasanya hanya mengandalkan ingatan saja sehingga menjadi susah untuk mengecek biaya produksi secara berkala. Perhitungan HPP per produk juga biasanya tidak pernah dilakukan secara terpisah karena pedagang langsung membeli bahan baku untuk semua produk sekaligus. Perhitungan untung atau rugi baru dilakukan di akhir periode dan tidak menganalisis margin per produk.
+
+Dari permasalahan ini, terdapat alasan yang menjadi dasar pengembangan proyek perangkat lunak ini, yang dapat dirincikan menjadi:
+
+1. Belum ada sistem yang menghubungkan perubahan harga bahan baku langsung ke perhitungan biaya produksi tiap produk
+2. Belum ada mekanisme yang memperingatkan kalau suatu produk sudah mulai masuk ke fase kerugian akibat kenaikan harga
+
+Perangkat lunak inilah yang akan dikembangkan untuk menutupi permasalahan di atas.
 
 ---
 
