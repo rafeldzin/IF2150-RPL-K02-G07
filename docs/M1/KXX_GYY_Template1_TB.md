@@ -72,9 +72,11 @@ Definisikan apa yang ingin dicapai oleh pengguna saat menggunakan sistem ini dal
 
 | ID | Aktor | Kebutuhan / Aktivitas | Tujuan / Nilai |
 | :--- | :--- | :--- | :--- |
-| US-01 | *Kasir* |  *Memindai barcode barang* | *Proses pembayaran berjalan cepat dan akurat* |
-| US-02 | *[Nama Aktor]* | *[Kebutuhan pengguna]* | *[Tujuan yang dicapai pengguna]* |
-| ... | ... | ... | ... |
+| US-01 | *Penjual* |  *Menentukan Takaran Bahan dan Harga Jual* | *Mengetahui apabila harga jual yang ditetapkan bersifat untung/rugi berdasarkan harga standar bahan baku* |
+| US-02 | *Penjual* | *Notifikasi Kerugian* | *Memberitahu pengguna bahwa harga yang ditetapkan tidak lagi menguntungkan* |
+| US-03 | *Penjual* | *Data Perubahan Harga Bahan* | *Mengetahui tren perubahan harga yang terjadi pada bahan baku*  |
+| US-04 | *Penjual* | *...* | *...*  |
+| US-05 | *Penjual* | *...* | *...*  |
 
 ## 3.3 Model Proses Bisnis
 Buatlah *Activity Diagram* atau *Swimlane Diagram* yang menunjukkan alur kerja proses bisnis dari sistem solusi. Diagram ini harus memvisualisasikan bagaimana alur operasional di dunia nyata berjalan lebih efisien dengan adanya interaksi antara aktor (yang didefinisikan pada poin 3.1) dan sistem perangkat lunak. Perhatikan notasi yang digunakan dalam pembuatannya.
