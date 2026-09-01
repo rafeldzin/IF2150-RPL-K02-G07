@@ -72,19 +72,17 @@ Definisikan apa yang ingin dicapai oleh pengguna saat menggunakan sistem ini dal
 
 | ID | Aktor | Kebutuhan / Aktivitas | Tujuan / Nilai |
 | :--- | :--- | :--- | :--- |
-| US-01 | *Penjual* |  *Menentukan Takaran Bahan dan Harga Jual* | *Mengetahui apabila harga jual yang ditetapkan bersifat untung/rugi berdasarkan harga standar bahan baku* |
-| US-02 | *Penjual* | *Notifikasi Kerugian* | *Memberitahu pengguna bahwa harga yang ditetapkan tidak lagi menguntungkan* |
-| US-03 | *Penjual* | *Data Perubahan Harga Bahan* | *Mengetahui tren perubahan harga yang terjadi pada bahan baku*  |
-| US-04 | *Penjual* | *...* | *...*  |
-| US-05 | *Penjual* | *...* | *...*  |
+| US-01 | *Pemilik Usaha* |  *Penginputan Takaran Bahan dan Harga Jual* | *Mengetahui apabila harga jual yang ditetapkan bersifat untung/rugi berdasarkan harga standar bahan baku* |
+| US-02 | *Pemilik Usaha* | *Notifikasi Kerugian* | *Memberitahu pengguna apabila harga yang ditetapkan tidak lagi menguntungkan* |
+| US-03 | *Pemilik Usaha* | *Data Perubahan Harga Bahan* | *Mengetahui tren perubahan harga yang terjadi pada bahan baku pada rentang waktu tertentu*  |
 
 ## 3.3 Deskripsi Aktivitas
 Buatlah daftar seluruh aktivitas yang terdapat dalam sistem solusi, lengkap dengan ID dan penjelasan. Telusuri hubungan aktivitas tersebut dengan *user story* yang sudah dituliskan sebelumnya. Bisa dibuat dalam bentuk tabel.
 | ID | Aktivitas | Penjelasan | ID User Story |
 | :--- | :--- | :--- | :--- |
-| A01 | *Melakukan Pemesanan* | *Pelanggan memulai proses dengan memesan produk.* | *US-01* |
-| A02 | *Memproses Pesanan* | *Sistem memproses dan menyiapkan detail sesuai dengan pesanan.* | *US-02*|
-| ... | ... | ... | ... |
+| A01 | *Penginputan Takaran Bahan dan Harga Jual* | *Pengguna memasuki jumlah masing-masing bahan yang digunakan untuk pembuatan produk dan kemudian menentukan harga jual produk tersebut. Sistem kemudian akan menentukan apabila harga jual yang ditetapkan menguntungkan berdasarkan jumlah bahan baku dan harga standarnya.* | *US-01* |
+| A02 | *Notifikasi Kerugian* | *Setelah menginput harga jual dan terverifikasi menguntungkan, sistem akan membiarkan harga tersebut digunakan oleh pengguna hingga di mana harga tersebut tidak lagi menguntungkan akibat adanya perubahan harga bahan baku.* | *US-02*|
+| A03 | *Data Perubahan Harga Bahan* | *Dengan adanya fluktuasi harga bahan baku dalam jangka waktu yang konsisten, pengguna dapat mengakses data historis perubahan tersebut pada rentang waktu yang telah ditentukan.* | *US-03* |
 
 ## 3.4 Model Proses Bisnis
 Buatlah *Activity Diagram* atau *Swimlane Diagram* yang menunjukkan alur kerja proses bisnis dari sistem solusi. Diagram ini harus memvisualisasikan bagaimana alur operasional di dunia nyata berjalan lebih efisien dengan adanya interaksi antara aktor (yang didefinisikan pada poin 3.1) dan sistem perangkat lunak. Perhatikan notasi yang digunakan dalam pembuatannya.
