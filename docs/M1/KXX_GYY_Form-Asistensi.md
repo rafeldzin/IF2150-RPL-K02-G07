@@ -4,23 +4,23 @@
 
 | Informasi | Keterangan |
 | --- | --- |
-| **Hari** | *\[Hari\]* |
-| **Tanggal** | *\[DD/MM/YYYY\]* |
-| **Kelas** | *\[Kelas\]* |
-| **Nomor Kelompok** | *\[Nomor Kelompok\]*  |
-| **Nama Kelompok** | *\[Nama Kelompok\]*  |
+| **Hari** | *Selasa* |
+| **Tanggal** | *01/09/2026* |
+| **Kelas** | *K02* |
+| **Nomor Kelompok** | *07*  |
+| **Nama Kelompok** | *RaPeL*  |
 | **Nama Perangkat Lunak** | *\[Nama P/L\]*  |
 | **Dokumen** | *\[Nama Dokumen yang diasistensikan\]*  |
 
 ### Anggota Kelompok
 
 | NIM | Nama |
-| --- | --- |
-| *\[NIM 1\]* | *\[Nama Anggota 1\]* |
-| *\[NIM 2\]* | *\[Nama Anggota 2\]* |
-| *\[NIM 3\]* | *\[Nama Anggota 3\]* |
-| *\[NIM 4\]* | *\[Nama Anggota 4\]* |
-| *\[NIM 5\]* | *\[Nama Anggota 5\]* |
+|---|---|
+| *13525002* | *Ahmad Boutros Fathir* |
+| *13525020* | *Klio Lysander* |
+| *13525047* | *Muhammad Fakhriyan Rizki M.* |
+| *13525053* | *Kevin Sie* |
+| *13525062* | *Rafel Dzinun Muhammad* |
 
 ### Catatan
 
