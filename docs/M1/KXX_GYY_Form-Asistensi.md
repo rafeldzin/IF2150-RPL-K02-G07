@@ -38,9 +38,7 @@
 ## Dokumentasi
 
 <!-- ![](./assets/foto-asistensi.jpg) -->
-<p align="center">
-  <img src="./assets/foto-asistensi.png" width="100%">
-</p>
+![Gambar 1. Dokumentasi kegiatan asistensi.](./assets/foto-asistensi.png)
 
 <p align="center">
   <i>Gambar 1. Dokumentasi kegiatan asistensi.</i>
