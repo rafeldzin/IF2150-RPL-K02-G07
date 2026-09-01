@@ -1,4 +1,4 @@
-<img width="1917" height="1080" alt="foto asistensi" src="https://github.com/user-attachments/assets/d22e5d04-09c2-4f85-ac58-37a48098261d" />
+
 # Form Asistensi
 
 ## Tugas Besar IF2150 - Rekayasa Perangkat Lunak
@@ -38,8 +38,7 @@
 
 ## Dokumentasi
 
-<!-- ![](./assets/foto-asistensi.jpg) -->
-![Gambar 1. Dokumentasi kegiatan asistensi.](./assets/foto-asistensi.png)
+<img width="1917" height="1080" alt="foto asistensi" src="https://github.com/user-attachments/assets/d22e5d04-09c2-4f85-ac58-37a48098261d" />
 
 <p align="center">
   <i>Gambar 1. Dokumentasi kegiatan asistensi.</i>
