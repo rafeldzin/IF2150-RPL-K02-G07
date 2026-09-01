@@ -32,7 +32,7 @@ Dipersiapkan oleh:
 # BAB 1: Analisis Permasalahan
 
 ## 1.1 Latar Belakang Masalah
-Usaha Mikro, Kecil, dan Menengah (UMKM) yang berada pada sektor kuliner menjadi salah satu penggerak utama dalam perekonomian di Indonesia dan dapat berkontribusi langsung terhadap SDG yang ke-8 yaitu "Decent Work and Economic Growth". Yang menjadi masalah adalah banyak pedagang UMKM kuliner menjalani usaha tanpa menghitung biaya produksi yang jelas. Padahal harga bahan baku itu fluktuatif dan bisa berubah dalam hitungan minggu, hari, ataupun kondisi pasar. Salah satu contohnya adalah data CNBC Indonesia yang menunjukkan harga bawang merah naik dari Rp 39.124/kg menjadi Rp 45.329/kg pada 2024 ke 2025. Banyak pedagang yang menetapkan harga jual sementara biaya produksi terus meningkat, yang lama-lama dapat menyebabkan kerugian produk tanpa disadari. Apalagi jika pedagang menjual banyak produk, terkadang pemilik usaha tidak mengetahui produk mana yang beneran untung dan rugi. Masalah ini perlu diselesaikan karena dapat berdampak langsung pada keberlangsungan usahanya. Oleh karena itu, diperlukan suatu alat pemantauan bagi para pelaku usaha yang terus menjalani kondisi rugi pada beberapa produk tanpa disadari.
+Usaha Mikro, Kecil, dan Menengah (UMKM) yang berada pada sektor kuliner menjadi salah satu penggerak utama dalam perekonomian di Indonesia dan dapat berkontribusi langsung terhadap SDG yang ke-8 yaitu "Decent Work and Economic Growth". Yang menjadi masalah adalah banyak pedagang UMKM kuliner menjalani usaha tanpa menghitung biaya produksi yang jelas. Padahal harga bahan baku itu fluktuatif dan bisa berubah dalam hitungan minggu, hari, ataupun kondisi pasar. Salah satu contohnya adalah data CNBC Indonesia yang menunjukkan harga bawang merah sempat melonjak cukup tinggi dari harga Rp 34.600/kg di akhir Oktober 2024 menjadi Rp 42.450/kg pada akhir November 2024. Banyak pedagang yang menetapkan harga jual sementara biaya produksi terus meningkat, yang lama-lama dapat menyebabkan kerugian produk tanpa disadari. Apalagi jika pedagang menjual banyak produk, terkadang pemilik usaha tidak mengetahui produk mana yang beneran untung dan rugi. Masalah ini perlu diselesaikan karena dapat berdampak langsung pada keberlangsungan usahanya. Oleh karena itu, diperlukan suatu alat pemantauan bagi para pelaku usaha yang terus menjalani kondisi rugi pada beberapa produk tanpa disadari.
 
 ## 1.2 Analisis Kondisi Saat Ini
 Kondisi yang terjadi sekarang menunjukkan bahwa para pedagang UMKM kuliner masih menentukan harga dan memantau keuntungan atau kerugian dengan cara manual. Harga jual ditentukan di awal berdasarkan perkiraan kasar harga biaya bahan baku saat itu tanpa ada evaluasi dan perhitungan mendalam. Pencatatan harga bahan baku juga tidak terdokumentasi dengan baik, bahkan pedagang biasanya hanya mengandalkan ingatan saja sehingga menjadi susah untuk mengecek biaya produksi secara berkala. Perhitungan HPP per produk juga biasanya tidak pernah dilakukan secara terpisah karena pedagang langsung membeli bahan baku untuk semua produk sekaligus. Perhitungan untung atau rugi baru dilakukan di akhir periode dan tidak menganalisis margin per produk.
@@ -49,11 +49,18 @@ Perangkat lunak inilah yang akan dikembangkan untuk menutupi permasalahan di ata
 # BAB 2: Analisis Solusi
 
 ## 2.1 Deskripsi Perangkat Lunak
-Abstraksikan solusi perangkat lunak yang diusulkan dari sudut pandang pengguna. Jelaskan target platform yang akan digunakan (misalnya: desktop application) beserta alasan pemilihannya. Deskripsikan juga nilai unik (inovasi inti) dari perangkat lunak kalian dan apa yang membedakannya dari solusi yang sudah ada.
+Perangkat lunak yang kami usulkan adalah aplikasi manajemen Harga Pokok Penjualan (HPP) dberbasis mobile yang dirancang untuk pelaku UMKM. Solusi ini berfokus pada pemantauan keuntungan produk secara berkelanjutan yang disesuaikan dengan perubahan harga bahan baku di pasar. Nilai unik dan inovasi inti dari aplikasi ini terletak pada otomatisasi analisis margin keuntungan. Pengguna dapat menginput daftar bahan baku beserta takaran spesifik untuk tiap porsi menu, lalu menetapkan harga jualnya. Sistem akan secara otomatis mengalkulasi margin keuntungan atau kerugian berdasarkan perbandingan dengan harga standar bahan baku. Sebagai bentuk pencegahan, aplikasi ini memiliki fitur Notifikasi Kerugian yang akan langsung memberikan peringatan apabila perubahan harga pasar menyebabkan suatu menu masuk ke fase rugi. Aplikasi juga menyediakan fitur grafik perubahan harga dari bahan baku, di mana pengguna dapat memantau tren pergerakan harga dari bahan baku yang relevan dengan usaha mereka. Selain itu, sistem dirancang untuk fleksibel dengan menyediakan opsi penyesuaian harga khusus untuk penjualan via platform makanan online (GoFood, GrabFood, atau ShopeeFood), sehingga pengguna dapat melihat proyeksi keuntungan setelah dipotong komisi aplikasi.
 
 ## 2.2 Asumsi dan Batasan
-Definisikan secara tegas asumsi (baik teknis maupun dari sisi pengguna) yang menjadi dasar pengembangan. Tuliskan batasan seperti regulasi/hukum, keterbatasan sumber daya, dan ruang lingkup solusi.
+Asumsi :
 
+1. Pemilik UMKM memiliki smartphone dan koneksi internet yang memadai untuk menggunakan aplikasi.
+2. Pemilik usaha memiliki takaran baku yang pasti untuk setiap produk yang dijual, sehingga kalkulasi biaya bahan dapat dimodelkan secara akurat oleh sistem.
+3. Pengguna memiliki literasi digital dasar untuk melakukan input angka dan rutin memperbarui data harga beli bahan baku yang mereka temui di pasar.
+
+Batasan :
+
+1. 
 ---
 
 # BAB 3: Spesifikasi Kebutuhan dan Proses Bisnis
@@ -63,8 +70,8 @@ Buatlah daftar seluruh aktor (pengguna) yang akan berinteraksi langsung dengan s
 
 | Aktor | Deskripsi |
 | :--- | :--- |
-| *Kasir* | *Pengguna ini bertindak sebagai pihak yang bertanggung jawab untuk memproses transaksi harian dan melayani pembayaran pelanggan. Karakteristik dari pengguna ini adalah mengutamakan kecepatan dan keakuratan saat bertransaksi.* |
-| ... | ... |
+| *Pemilik Usaha* | *Orang yang menjalankan usaha kuliner. dapat menginput kebutuhan bahan baku, memantau kerugian, dan melihat tren harga* |
+| *karyawan/staff operational* | *bertugas menginput data dan update harga beli* |
 
 
 ## 3.2 Kebutuhan Pengguna Awal
@@ -98,4 +105,4 @@ Buatlah *Activity Diagram* atau *Swimlane Diagram* yang menunjukkan alur kerja p
 <br>
 
 # Referensi
-- Diagram UML: https://www.drawio.com/, https://staruml.io/
+- Diagram UML: https://www.drawio.com/, https://staruml.io/, https://www.cnbcindonesia.com/research/20241201162945-128-592495/harga-bawang-merah-bikin-menangis-inflasi-kembali-ganas
