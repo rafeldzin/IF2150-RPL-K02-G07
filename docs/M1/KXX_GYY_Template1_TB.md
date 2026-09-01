@@ -49,11 +49,18 @@ Perangkat lunak inilah yang akan dikembangkan untuk menutupi permasalahan di ata
 # BAB 2: Analisis Solusi
 
 ## 2.1 Deskripsi Perangkat Lunak
-Abstraksikan solusi perangkat lunak yang diusulkan dari sudut pandang pengguna. Jelaskan target platform yang akan digunakan (misalnya: desktop application) beserta alasan pemilihannya. Deskripsikan juga nilai unik (inovasi inti) dari perangkat lunak kalian dan apa yang membedakannya dari solusi yang sudah ada.
+Perangkat lunak yang kami usulkan adalah aplikasi manajemen Harga Pokok Penjualan (HPP) dberbasis mobile yang dirancang untuk pelaku UMKM. Solusi ini berfokus pada pemantauan keuntungan produk secara berkelanjutan yang disesuaikan dengan perubahan harga bahan baku di pasar. Nilai unik dan inovasi inti dari aplikasi ini terletak pada otomatisasi analisis margin keuntungan. Pengguna dapat menginput daftar bahan baku beserta takaran spesifik untuk tiap porsi menu, lalu menetapkan harga jualnya. Sistem akan secara otomatis mengalkulasi margin keuntungan atau kerugian berdasarkan perbandingan dengan harga standar bahan baku. Sebagai bentuk pencegahan, aplikasi ini memiliki fitur Notifikasi Kerugian yang akan langsung memberikan peringatan apabila perubahan harga pasar menyebabkan suatu menu masuk ke fase rugi. Aplikasi juga menyediakan fitur grafik perubahan harga dari bahan baku, di mana pengguna dapat memantau tren pergerakan harga dari bahan baku yang relevan dengan usaha mereka. Selain itu, sistem dirancang untuk fleksibel dengan menyediakan opsi penyesuaian harga khusus untuk penjualan via platform makanan online (GoFood, GrabFood, atau ShopeeFood), sehingga pengguna dapat melihat proyeksi keuntungan setelah dipotong komisi aplikasi.
 
 ## 2.2 Asumsi dan Batasan
-Definisikan secara tegas asumsi (baik teknis maupun dari sisi pengguna) yang menjadi dasar pengembangan. Tuliskan batasan seperti regulasi/hukum, keterbatasan sumber daya, dan ruang lingkup solusi.
+Asumsi :
 
+1. Pemilik UMKM memiliki smartphone dan koneksi internet yang memadai untuk menggunakan aplikasi.
+2. Pemilik usaha memiliki takaran baku yang pasti untuk setiap produk yang dijual, sehingga kalkulasi biaya bahan dapat dimodelkan secara akurat oleh sistem.
+3. Pengguna memiliki literasi digital dasar untuk melakukan input angka dan rutin memperbarui data harga beli bahan baku yang mereka temui di pasar.
+
+Batasan :
+
+1. 
 ---
 
 # BAB 3: Spesifikasi Kebutuhan dan Proses Bisnis
