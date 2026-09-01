@@ -10,7 +10,7 @@
 | **Nomor Kelompok** | *07*  |
 | **Nama Kelompok** | *RaPeL*  |
 | **Nama Perangkat Lunak** | *\[Nama P/L\]*  |
-| **Dokumen** | *\[Nama Dokumen yang diasistensikan\]*  |
+| **Dokumen** | *Topic Brainstorming*  |
 
 ### Anggota Kelompok
 
@@ -26,11 +26,12 @@
 
 | Catatan |
 | --- |
-| 1. *\[Berikan catatan hasil asistensi\]*  |
-| 2. ... |
-| 3. ... |
-| 4. ... |
-
+| 1. Scopenya dibatasin lebih kecil seperti dalam 1 kota aja  |
+| 2. Cantumin referensi terkait link link webnya buat latar belakang |
+| 3. Asumsi dan batasan lebih diperinci |
+| 4. Tambahkan alasan pemilihan mobile  |
+| 5. Yang penting dapat diimplementasikan |
+| 6. Nama perangkat lunak dibebaskan  |
 **Notes for this section:**  
 *Catatan dapat dituliskan dalam bentuk paragraf atau poin-poin, disesuaikan saja.* 
 
@@ -38,7 +39,7 @@
 
 <!-- ![](./assets/foto-asistensi.jpg) -->
 <p align="center">
-  <img src="./assets/foto-asistensi.jpg" width="100%">
+  <img src="./assets/foto-asistensi.png" width="100%">
 </p>
 
 <p align="center">
