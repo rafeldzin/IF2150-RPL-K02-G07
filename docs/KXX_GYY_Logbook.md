@@ -4,20 +4,20 @@
 
 | Informasi | Keterangan |
 |---|---|
-| Kelas | *[Kelas]* |
-| Nomor Kelompok | *[Nomor Kelompok]* |
-| Nama Kelompok | *[Nama Kelompok]* |
+| Kelas | K02 |
+| Nomor Kelompok | G07 |
+| Nama Kelompok | RaPeL |
 | Nama Perangkat Lunak | *[Nama P/L]* |
 
 **Anggota Kelompok:**
 
 | NIM | Nama |
 |---|---|
-| *[NIM 1]* | *[Nama Anggota 1]* |
-| *[NIM 2]* | *[Nama Anggota 2]* |
-| *[NIM 3]* | *[Nama Anggota 3]* |
-| *[NIM 4]* | *[Nama Anggota 4]* |
-| *[NIM 5]* | *[Nama Anggota 5]* |
+| 13525062 | Rafel Dzinun Muhammad |
+| 13525053 | Kevin Sie |
+| 13525002 | Ahmad Boutros Fathir |
+| 13525047 | Muhammad Fakhriyan Rizki M. |
+| 13525020 | Klio Lysander |
 
 ---
 

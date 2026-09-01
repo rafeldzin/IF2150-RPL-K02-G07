@@ -70,8 +70,8 @@ Buatlah daftar seluruh aktor (pengguna) yang akan berinteraksi langsung dengan s
 
 | Aktor | Deskripsi |
 | :--- | :--- |
-| *Kasir* | *Pengguna ini bertindak sebagai pihak yang bertanggung jawab untuk memproses transaksi harian dan melayani pembayaran pelanggan. Karakteristik dari pengguna ini adalah mengutamakan kecepatan dan keakuratan saat bertransaksi.* |
-| ... | ... |
+| *Pemilik Usaha* | *Orang yang menjalankan usaha kuliner. dapat menginput kebutuhan bahan baku, memantau kerugian, dan melihat tren harga* |
+| *karyawan/staff operational* | *bertugas menginput data dan update harga beli* |
 
 
 ## 3.2 Kebutuhan Pengguna Awal
