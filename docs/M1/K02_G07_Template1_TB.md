@@ -49,18 +49,31 @@ Perangkat lunak inilah yang akan dikembangkan untuk menutupi permasalahan di ata
 # BAB 2: Analisis Solusi
 
 ## 2.1 Deskripsi Perangkat Lunak
-Perangkat lunak yang kami usulkan adalah aplikasi manajemen Harga Pokok Penjualan (HPP) dberbasis mobile yang dirancang untuk pelaku UMKM. Solusi ini berfokus pada pemantauan keuntungan produk secara berkelanjutan yang disesuaikan dengan perubahan harga bahan baku di pasar. Nilai unik dan inovasi inti dari aplikasi ini terletak pada otomatisasi analisis margin keuntungan. Pengguna dapat menginput daftar bahan baku beserta takaran spesifik untuk tiap porsi menu, lalu menetapkan harga jualnya. Sistem akan secara otomatis mengalkulasi margin keuntungan atau kerugian berdasarkan perbandingan dengan harga standar bahan baku. Sebagai bentuk pencegahan, aplikasi ini memiliki fitur Notifikasi Kerugian yang akan langsung memberikan peringatan apabila perubahan harga pasar menyebabkan suatu menu masuk ke fase rugi. Aplikasi juga menyediakan fitur grafik perubahan harga dari bahan baku, di mana pengguna dapat memantau tren pergerakan harga dari bahan baku yang relevan dengan usaha mereka. Selain itu, sistem dirancang untuk fleksibel dengan menyediakan opsi penyesuaian harga khusus untuk penjualan via platform makanan online (GoFood, GrabFood, atau ShopeeFood), sehingga pengguna dapat melihat proyeksi keuntungan setelah dipotong komisi aplikasi.
+Perangkat lunak yang kami usulkan adalah aplikasi manajemen Harga Pokok Penjualan (HPP) berbasis mobile yang dirancang untuk pelaku UMKM. Solusi ini berfokus pada pemantauan keuntungan produk secara berkelanjutan yang disesuaikan dengan perubahan harga bahan baku di pasar. Pemilihan perangkat mobile dikarenakan mobilitas operasional pelaku UMKM, sehingga pembaruan harga dan pencatatan biaya akan lebih praktis diakses langsung melalui smartphone, bahkan saat mereka sedang di pasar sekalipun. Nilai unik dan inovasi inti dari aplikasi ini terletak pada otomatisasi analisis margin keuntungan. Pengguna dapat menginput daftar bahan baku beserta takaran spesifik untuk tiap porsi menu, lalu menetapkan harga jualnya. Sistem akan secara otomatis mengalkulasi margin keuntungan atau kerugian berdasarkan perbandingan dengan harga standar bahan baku. Sebagai bentuk pencegahan, aplikasi ini memiliki fitur Notifikasi Kerugian yang akan langsung memberikan peringatan apabila perubahan harga pasar menyebabkan suatu menu masuk ke fase rugi. Aplikasi juga menyediakan fitur grafik perubahan harga dari bahan baku, di mana pengguna dapat memantau tren pergerakan harga dari bahan baku yang relevan dengan usaha mereka. Selain itu, sistem dirancang untuk fleksibel dengan menyediakan opsi penyesuaian harga khusus untuk penjualan via platform makanan online (GoFood, GrabFood, atau ShopeeFood), sehingga pengguna dapat melihat proyeksi keuntungan setelah dipotong komisi aplikasi.
 
 ## 2.2 Asumsi dan Batasan
-Asumsi :
+Asumsi Pengguna :
 
-1. Pemilik UMKM memiliki smartphone dan koneksi internet yang memadai untuk menggunakan aplikasi.
+1. Pemilik UMKM memiliki smartphone yang memadai untuk menggunakan aplikasi.
 2. Pemilik usaha memiliki takaran baku yang pasti untuk setiap produk yang dijual, sehingga kalkulasi biaya bahan dapat dimodelkan secara akurat oleh sistem.
 3. Pengguna memiliki literasi digital dasar untuk melakukan input angka dan rutin memperbarui data harga beli bahan baku yang mereka temui di pasar.
 
-Batasan :
+Asumsi Teknis :
 
-1. 
+1. Terdapat koneksi internet yang memadai pada perangkat pengguna.
+
+Batasan Hukum :
+
+1. Aplikasi  mengumpulkan data profil usaha UMKM dan takaran resep pengguna, sehingga pengembangan harus sesuai dengan UU Nomor 27 tahun 2022 tentang perlindungan data pribadi. 
+
+Batasan Sumber Daya :
+
+1. Pengujian aplikasi terbatas pada smartphone pribadi milik anggota kelompok
+
+Batasan Ruang Lingkup Solusi :
+
+1. Perhitungan batas untung/rugi difokuskan murni pada biaya variabel (bahan baku operasional). Aplikasi tidak mencatat fixed cost (biaya sewa tempat, listrik, atau gaji pegawai).
+2. Perangkat lunak murni berfungsi sebagai alat pemantauan HPP dan peringatan kerugian, bukan yang memproses transaksi dengan pembeli atau mencetak struk.
 ---
 
 # BAB 3: Spesifikasi Kebutuhan dan Proses Bisnis
