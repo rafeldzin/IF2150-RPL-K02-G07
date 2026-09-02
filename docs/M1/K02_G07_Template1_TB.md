@@ -79,7 +79,6 @@ Batasan Ruang Lingkup Solusi :
 # BAB 3: Spesifikasi Kebutuhan dan Proses Bisnis
 
 ## 3.1 Identifikasi Aktor
-Buatlah daftar seluruh aktor (pengguna) yang akan berinteraksi langsung dengan sistem solusi yang kalian kembangkan. Berikan penjelasan singkat mengenai peran dan karakteristik dari masing-masing aktor tersebut.
 
 | Aktor | Deskripsi |
 | :--- | :--- |
@@ -88,7 +87,6 @@ Buatlah daftar seluruh aktor (pengguna) yang akan berinteraksi langsung dengan s
 
 
 ## 3.2 Kebutuhan Pengguna Awal
-Definisikan apa yang ingin dicapai oleh pengguna saat menggunakan sistem ini dalam format *User Story* (Sebagai [Aktor], saya ingin [Aktivitas/Kebutuhan], sehingga [Tujuan/Nilai]). Pastikan kalian berfokus pada "apa yang ingin dilakukan pengguna".
 
 | ID | Aktor | Kebutuhan / Aktivitas | Tujuan / Nilai |
 | :--- | :--- | :--- | :--- |
@@ -97,7 +95,6 @@ Definisikan apa yang ingin dicapai oleh pengguna saat menggunakan sistem ini dal
 | US-03 | *Pemilik Usaha* | *Data Perubahan Harga Bahan* | *Mengetahui tren perubahan harga yang terjadi pada bahan baku pada rentang waktu tertentu*  |
 
 ## 3.3 Deskripsi Aktivitas
-Buatlah daftar seluruh aktivitas yang terdapat dalam sistem solusi, lengkap dengan ID dan penjelasan. Telusuri hubungan aktivitas tersebut dengan *user story* yang sudah dituliskan sebelumnya. Bisa dibuat dalam bentuk tabel.
 | ID | Aktivitas | Penjelasan | ID User Story |
 | :--- | :--- | :--- | :--- |
 | A01 | *Penginputan Takaran Bahan dan Harga Jual* | *Pengguna memasuki jumlah masing-masing bahan yang digunakan untuk pembuatan produk dan kemudian menentukan harga jual produk tersebut. Sistem kemudian akan menentukan apabila harga jual yang ditetapkan menguntungkan berdasarkan jumlah bahan baku dan harga standarnya.* | *US-01* |
@@ -105,7 +102,6 @@ Buatlah daftar seluruh aktivitas yang terdapat dalam sistem solusi, lengkap deng
 | A03 | *Data Perubahan Harga Bahan* | *Dengan adanya fluktuasi harga bahan baku dalam jangka waktu yang konsisten, pengguna dapat mengakses data historis perubahan tersebut pada rentang waktu yang telah ditentukan.* | *US-03* |
 
 ## 3.4 Model Proses Bisnis
-Buatlah *Activity Diagram* atau *Swimlane Diagram* yang menunjukkan alur kerja proses bisnis dari sistem solusi. Diagram ini harus memvisualisasikan bagaimana alur operasional di dunia nyata berjalan lebih efisien dengan adanya interaksi antara aktor (yang didefinisikan pada poin 3.1) dan sistem perangkat lunak. Perhatikan notasi yang digunakan dalam pembuatannya.
 <br>
 
 <p align="center">
