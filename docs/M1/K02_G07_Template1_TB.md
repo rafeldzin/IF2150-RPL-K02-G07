@@ -49,7 +49,7 @@ Perangkat lunak inilah yang akan dikembangkan untuk menutupi permasalahan di ata
 # BAB 2: Analisis Solusi
 
 ## 2.1 Deskripsi Perangkat Lunak
-Perangkat lunak yang kami usulkan adalah aplikasi manajemen Harga Pokok Penjualan (HPP) berbasis mobile yang dirancang untuk pelaku UMKM. Solusi ini berfokus pada pemantauan keuntungan produk secara berkelanjutan yang disesuaikan dengan perubahan harga bahan baku di pasar. Pemilihan perangkat mobile dikarenakan mobilitas operasional pelaku UMKM, sehingga pembaruan harga dan pencatatan biaya akan lebih praktis diakses langsung melalui smartphone, bahkan saat mereka sedang di pasar sekalipun. Nilai unik dan inovasi inti dari aplikasi ini terletak pada otomatisasi analisis margin keuntungan. Pengguna dapat menginput daftar bahan baku beserta takaran spesifik untuk tiap porsi menu, lalu menetapkan harga jualnya. Sistem akan secara otomatis mengalkulasi margin keuntungan atau kerugian berdasarkan perbandingan dengan harga standar bahan baku. Sebagai bentuk pencegahan, aplikasi ini memiliki fitur Notifikasi Kerugian yang akan langsung memberikan peringatan apabila perubahan harga pasar menyebabkan suatu menu masuk ke fase rugi. Aplikasi juga menyediakan fitur grafik perubahan harga dari bahan baku, di mana pengguna dapat memantau tren pergerakan harga dari bahan baku yang relevan dengan usaha mereka. Selain itu, sistem dirancang untuk fleksibel dengan menyediakan opsi penyesuaian harga khusus untuk penjualan via platform makanan online (GoFood, GrabFood, atau ShopeeFood), sehingga pengguna dapat melihat proyeksi keuntungan setelah dipotong komisi aplikasi.
+Perangkat lunak yang kami usulkan adalah aplikasi manajemen Harga Pokok Penjualan (HPP) berbasis mobile yang dirancang untuk pelaku UMKM. Solusi ini berfokus pada pemantauan keuntungan produk secara berkelanjutan yang disesuaikan dengan perubahan harga bahan baku di pasar. Pemilihan perangkat mobile dikarenakan mobilitas operasional pelaku UMKM, sehingga pembaruan harga dan pencatatan biaya akan lebih praktis diakses langsung melalui smartphone, bahkan saat mereka sedang di pasar sekalipun. Nilai unik dan inovasi inti dari aplikasi ini terletak pada otomatisasi analisis margin keuntungan. Pengguna dapat menginput daftar bahan baku beserta takaran spesifik untuk tiap porsi menu, lalu menetapkan harga jualnya. Sistem akan secara otomatis mengalkulasi margin keuntungan atau kerugian berdasarkan perbandingan dengan harga standar bahan baku. Sebagai bentuk pencegahan, aplikasi ini memiliki fitur Notifikasi Kerugian yang akan langsung memberikan peringatan apabila perubahan harga pasar menyebabkan suatu menu masuk ke fase rugi. Aplikasi juga menyediakan fitur grafik perubahan harga dari bahan baku, di mana pengguna dapat memantau tren pergerakan harga dari bahan baku yang relevan dengan usaha mereka. Selain itu, sistem dirancang untuk fleksibel dengan menyediakan opsi penyesuaian harga khusus untuk penjualan via platform makanan online (GoFood, GrabFood, atau ShopeeFood). Sistem tidak terintegrasi langsung dengan platform tersebut, perhitungan komisi aplikasi murni diinput secara manual oleh pengguna sebagai parameter tambahan untuk melihat proyeksi keuntungan akhir.
 
 ## 2.2 Asumsi dan Batasan
 Asumsi Pengguna :
@@ -68,12 +68,13 @@ Batasan Hukum :
 
 Batasan Sumber Daya :
 
-1. Pengujian aplikasi terbatas pada smartphone pribadi milik anggota kelompok
+1. Pengujian dan pengembangan aplikasi terbatas pada lingkungan localhost menggunakan dummy data, serta diuji pada smartphone pribadi milik anggota kelompok.
 
 Batasan Ruang Lingkup Solusi :
 
 1. Perhitungan batas untung/rugi difokuskan murni pada biaya variabel (bahan baku operasional). Aplikasi tidak mencatat fixed cost (biaya sewa tempat, listrik, atau gaji pegawai).
 2. Perangkat lunak murni berfungsi sebagai alat pemantauan HPP dan peringatan kerugian, bukan yang memproses transaksi dengan pembeli atau mencetak struk.
+3. Sistem tidak memiliki integrasi API dengan platform pihak ketiga manapun.
 ---
 
 # BAB 3: Spesifikasi Kebutuhan dan Proses Bisnis
