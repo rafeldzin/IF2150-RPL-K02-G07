@@ -7,7 +7,7 @@
 | Kelas | K02 |
 | Nomor Kelompok | G07 |
 | Nama Kelompok | RaPeL |
-| Nama Perangkat Lunak | *[Nama P/L]* |
+| Nama Perangkat Lunak | *Pross* |
 
 **Anggota Kelompok:**
 

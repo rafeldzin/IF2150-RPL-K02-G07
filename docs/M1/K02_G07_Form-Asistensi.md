@@ -10,7 +10,7 @@
 | **Kelas** | *K02* |
 | **Nomor Kelompok** | *07*  |
 | **Nama Kelompok** | *RaPeL*  |
-| **Nama Perangkat Lunak** | *\[Nama P/L\]*  |
+| **Nama Perangkat Lunak** | *Pross*  |
 | **Dokumen** | *Topic Brainstorming*  |
 
 ### Anggota Kelompok
@@ -33,8 +33,6 @@
 | 4. Tambahkan alasan pemilihan mobile  |
 | 5. Yang penting dapat diimplementasikan |
 | 6. Nama perangkat lunak dibebaskan  |
-**Notes for this section:**  
-*Catatan dapat dituliskan dalam bentuk paragraf atau poin-poin, disesuaikan saja.* 
 
 ## Dokumentasi
 
