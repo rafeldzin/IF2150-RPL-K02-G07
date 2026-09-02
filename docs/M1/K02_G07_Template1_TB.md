@@ -83,7 +83,7 @@ Batasan Ruang Lingkup Solusi :
 | Aktor | Deskripsi |
 | :--- | :--- |
 | *Pemilik Usaha* | *Orang yang menjalankan usaha kuliner. dapat menginput kebutuhan bahan baku, memantau kerugian, dan melihat tren harga* |
-| *karyawan/staff operational* | *bertugas menginput data dan update harga beli* |
+
 
 
 ## 3.2 Kebutuhan Pengguna Awal
