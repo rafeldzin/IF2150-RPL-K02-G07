@@ -105,7 +105,7 @@ Batasan Ruang Lingkup Solusi :
 <br>
 
 <p align="center">
-<img alt="Contoh Activity Diagram" src="./assets/diagram/diagram-act-software.png" width="70%">
+<img alt="Contoh Activity Diagram" src="./assets/diagram/diagram-act-software-fix.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 1. Diagram Activity Penggunaan Perangkat Lunak</i>
