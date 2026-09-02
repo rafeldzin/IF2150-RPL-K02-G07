@@ -109,13 +109,14 @@ Buatlah *Activity Diagram* atau *Swimlane Diagram* yang menunjukkan alur kerja p
 <br>
 
 <p align="center">
-<img alt="Contoh Activity Diagram" src="./assets/diagram/diagram-act-1.avif" width="70%">
+<img alt="Contoh Activity Diagram" src="./assets/diagram/diagram-act-software.png" width="70%">
 </p>
 <p align="center">
-<i>Gambar 1. Contoh Activity Diagram</i>
+<i>Gambar 1. Diagram Activity Penggunaan Perangkat Lunak</i>
 </p>
 
 <br>
 
 # Referensi
-- Diagram UML: https://www.drawio.com/, https://staruml.io/, https://www.cnbcindonesia.com/research/20241201162945-128-592495/harga-bawang-merah-bikin-menangis-inflasi-kembali-ganas
+- Diagram UML: https://www.drawio.com/, https://staruml.io/ 
+- Berita: https://www.cnbcindonesia.com/research/20241201162945-128-592495/harga-bawang-merah-bikin-menangis-inflasi-kembali-ganas
