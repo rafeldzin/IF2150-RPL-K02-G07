@@ -7,24 +7,24 @@ REQUIREMENT GATHERING
 </h1>
 <br>
 
-## *Nama Perangkat Lunak*
+## *Pross*
 
-### Untuk: *[Nama Asisten]*
+### Untuk: *Stefani Angeline Oroh*
 
 Dipersiapkan oleh:
 
 | Informasi | Keterangan |
 | --- | --- |
-| Kelas | *\[Kelas\]* |
-| Kelompok | *\[Nomor Kelompok\]* |
+| Kelas | *K02* |
+| Kelompok | *G07* |
 
 | NIM | Nama |
 | --- | --- |
-| *\[NIM 1\]* | *\[Nama Anggota 1\]* |
-| *\[NIM 2\]* | *\[Nama Anggota 2\]* |
-| *\[NIM 3\]* | *\[Nama Anggota 3\]* |
-| *\[NIM 4\]* | *\[Nama Anggota 4\]* |
-| *\[NIM 5\]* | *\[Nama Anggota 5\]* |
+| *13525002* | *Ahmad Boutros Fathir* |
+| *13525020* | *Klio Lysander* |
+| *13525047* | *Muhammad Fakhriyan Rizki M.* |
+| *13525053* | *Kevin Sie* |
+| *13525062* | *Rafel Dzinun Muhammad* |
 
 ---
 
@@ -54,7 +54,7 @@ Buatlah daftar seluruh aktor (pengguna) yang akan berinteraksi langsung dengan s
 
 | Aktor | Deskripsi |
 | :--- | :--- |
-| *Kasir* | *Pengguna ini bertindak sebagai pihak yang bertanggung jawab untuk memproses transaksi harian dan melayani pembayaran pelanggan. Karakteristik dari pengguna ini adalah mengutamakan kecepatan dan keakuratan saat bertransaksi.* |
+| *Pemilik Usaha* | *Pengguna ini bertindak sebagai pihak utama yang menginput informasi terkait takaran bahan dan harga jual. Karakteristik dari pengguna ini adalah mengutamakan data yang update dan valid, serta sistem yang sederhana.* |
 | ... | ... |
 
 ---
