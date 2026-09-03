@@ -63,23 +63,19 @@ Buatlah daftar seluruh aktor (pengguna) yang akan berinteraksi langsung dengan s
 
 ## 2.1 Kebutuhan Pengguna Awal
 
-Definisikan apa yang ingin dicapai oleh pengguna saat menggunakan sistem ini dalam format *User Story* (Sebagai [Aktor], saya ingin [Aktivitas/Kebutuhan], sehingga [Tujuan/Nilai]). Pastikan kalian berfokus pada "apa yang ingin dilakukan pengguna".
-
 | ID | Aktor | Kebutuhan / Aktivitas | Tujuan / Nilai |
 | :--- | :--- | :--- | :--- |
-| US-01 | *Kasir* | *Memindai barcode barang* | *Proses pembayaran berjalan cepat dan akurat* |
-| US-02 | *[Nama Aktor]* | *[Kebutuhan pengguna]* | *[Tujuan yang dicapai pengguna]* |
-| ... | ... | ... | ... |
+| US-01 | *Pemilik Usaha* |  *Penginputan Takaran Bahan dan Harga Jual* | *Mengetahui apabila harga jual yang ditetapkan bersifat untung/rugi berdasarkan harga standar bahan baku* |
+| US-02 | *Pemilik Usaha* | *Notifikasi Kerugian* | *Memberitahu pengguna apabila harga yang ditetapkan tidak lagi menguntungkan* |
+| US-03 | *Pemilik Usaha* | *Data Perubahan Harga Bahan* | *Mengetahui tren perubahan harga yang terjadi pada bahan baku pada rentang waktu tertentu*  |
 
 ## 2.2 Deskripsi Aktivitas
 
-Buatlah daftar seluruh aktivitas yang terdapat dalam sistem solusi, lengkap dengan ID dan penjelasan. Telusuri hubungan aktivitas tersebut dengan *user story* yang sudah dituliskan sebelumnya. Bisa dibuat dalam bentuk tabel.
-
 | ID | Aktivitas | Penjelasan | ID User Story |
 | :--- | :--- | :--- | :--- |
-| A01 | *Melakukan Pembayaran* | *Pelanggan melakukan pembayaran secara digital.* | *US-01* |
-| A02 | *Menerima Pembayaran* | *Toko menerima pembayaran secara real-time.* | *US-02* |
-| ... | ... | ... | ... |
+| A01 | *Penginputan Takaran Bahan dan Harga Jual* | *Pengguna memasuki jumlah masing-masing bahan yang digunakan untuk pembuatan produk dan kemudian menentukan harga jual produk tersebut. Sistem kemudian akan menentukan apabila harga jual yang ditetapkan menguntungkan berdasarkan jumlah bahan baku dan harga standarnya.* | *US-01* |
+| A02 | *Notifikasi Kerugian* | *Setelah menginput harga jual dan terverifikasi menguntungkan, sistem akan membiarkan harga tersebut digunakan oleh pengguna hingga di mana harga tersebut tidak lagi menguntungkan akibat adanya perubahan harga bahan baku.* | *US-02*|
+| A03 | *Data Perubahan Harga Bahan* | *Dengan adanya fluktuasi harga bahan baku dalam jangka waktu yang konsisten, pengguna dapat mengakses data historis perubahan tersebut pada rentang waktu yang telah ditentukan.* | *US-03* |
 
 ## 2.3 Pemetaan Kebutuhan
 
