@@ -4,32 +4,32 @@
 
 | Informasi | Keterangan |
 | --- | --- |
-| **Hari** | *\[Hari\]* |
-| **Tanggal** | *\[DD/MM/YYYY\]* |
-| **Kelas** | *\[Kelas\]* |
-| **Nomor Kelompok** | *\[Nomor Kelompok\]*  |
-| **Nama Kelompok** | *\[Nama Kelompok\]*  |
-| **Nama Perangkat Lunak** | *\[Nama P/L\]*  |
-| **Dokumen** | *\[Nama Dokumen yang diasistensikan\]*  |
+| **Hari** | *Senin* |
+| **Tanggal** | *07/09/2026* |
+| **Kelas** | *K02* |
+| **Nomor Kelompok** | *07*  |
+| **Nama Kelompok** | *RaPeL*  |
+| **Nama Perangkat Lunak** | *Pross*  |
+| **Dokumen** | *REQUIREMENT GATHERING*  |
 
 ### Anggota Kelompok
 
 | NIM | Nama |
-| --- | --- |
-| *\[NIM 1\]* | *\[Nama Anggota 1\]* |
-| *\[NIM 2\]* | *\[Nama Anggota 2\]* |
-| *\[NIM 3\]* | *\[Nama Anggota 3\]* |
-| *\[NIM 4\]* | *\[Nama Anggota 4\]* |
-| *\[NIM 5\]* | *\[Nama Anggota 5\]* |
+|---|---|
+| *13525002* | *Ahmad Boutros Fathir* |
+| *13525020* | *Klio Lysander* |
+| *13525047* | *Muhammad Fakhriyan Rizki M.* |
+| *13525053* | *Kevin Sie* |
+| *13525062* | *Rafel Dzinun Muhammad* |
 
 ### Catatan
 
 | Catatan |
 | --- |
-| 1. *\[Berikan catatan hasil asistensi\]*  |
-| 2. ... |
-| 3. ... |
-| 4. ... |
+| 1. Aktivitas dibuat lebih spesifik  |
+| 2. 1.1 dash dihapus dan typo dibenerin udah aman |
+| 3. Aktivitasnya ditambah dan keterangannya diperbanyak |
+| 4. Segera kerjakan yang belum dan kalo bisa tambah fitur |
 
 **Notes for this section:**  
 *Catatan dapat dituliskan dalam bentuk paragraf atau poin-poin, disesuaikan saja.* 
