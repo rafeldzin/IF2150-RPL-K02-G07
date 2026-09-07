@@ -89,12 +89,15 @@ Lengkapi juga dengan penjelasannya dan apakah keperluan tersebut perlu didukung 
 
 | ID Kebutuhan | ID Aktivitas | Jenis Kebutuhan | Deskripsi Kebutuhan | P/L |
 | :--- | :--- | :--- | :--- | :--- |
-| *R01* | *A01* | *User* | *Pengguna dapat memilih metode pembayaran dan melakukan pembayaran secara digital.* | *Ya* |
-| *R02* | *A01* | *Business* | *Transaksi digital sesuai dengan ketentuan UU ITE yang berlaku.* | *Tidak* |
-| *R03* | *A01* | *System* | *Sistem harus mengintegrasikan API Payment Gateway dengan prinsip ACID (Atomicity, Consistency, Isolation, Durability), jika terjadi kegagalan jaringan saat saldo terpotong, sistem harus secara otomatis membatalkan transaksi atau meneruskan dana (reliable).* | *Ya* |
-| *R04* | *A01* | *System* | *Kata sandi (password) atau PIN pengguna saat otorisasi pembayaran harus di-hash menggunakan algoritma SHA-256 dan tidak disimpan dalam bentuk plain-text.* | *Ya* |
-| *R05* | *A02* | *Business* | *Toko harus memiliki rekening bank aktif dan valid untuk menerima pencairan dana dari sistem.* | *Tidak* |
-| ... | ... | ... | ... | ... |
+| *R01* | *A01* | *User* | *Pengguna dapat menginput list barang atau bahan yang diperlukan untuk bisnis UMKM-nya serta menginput harga jual dari barang yang akan dijual.* | *Ya* |
+| *R02* | *A01* | *User* | *Pengguna harus menginput bagaimana penjualan barang akan dilakukan (online/offline).* | *Ya* |
+| *R03* | *A01* | *Bussiness* | *Sistem perlu menjaga privasi dari bisnis pengguna dengan tidak membocorkan data dari akun yang digunakan pengguna serta bahan-bahan yang diperlukan pengguna untuk membuat barang pada UMKM-nya.* | *Tidak* |
+| *R04* | *A01* | *System* | *Sistem harus menghitung total modal yang diperlukan UMKM untuk membuat serta menjual barang.* | *Ya* |
+| *R05* | *A01* | *System* | *Sistem harus membandingkan total modal yang diperlukan dengan harga penjualan barang yang telah diinput oleh user untuk pengecekan keuntungan dan kerugian UMKM tersebut.* | *Ya* |
+| *R06* | *A02* | *System* | *Sistem memberikan peringatan berupa notifikasi kepada pengguna apabila harga penjualan barang tidak menguntungkan dan memerlukan perubahan harga jual agar UMKM bersifat menguntungkan.* | *Ya* |
+| *R07* | *A03* | *User* | *Pengguna dapat menginput ulang harga penjualan barang agar menguntungkan bagi bisnisnya.* | *Ya* |
+| *R08* | *A03* | *System* | *Sistem perlu mengubah harga penjualan barang setelah ditetapkan ulang oleh pengguna dan membandingkan ulang harga penjualan barang dengan harga bahan baku.* | *Ya* |
+
 
 ## 2.4 Kebutuhan Fungsional (KF)
 
