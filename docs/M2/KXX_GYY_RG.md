@@ -24,6 +24,7 @@ Dipersiapkan oleh:
 | *13525020* | *Klio Lysander* |
 | *13525047* | *Muhammad Fakhriyan Rizki M.* |
 | *13525053* | *Kevin Sie* |
+| *13525056* | *Mochammad Nuha Al Ghifari* |
 | *13525062* | *Rafel Dzinun Muhammad* |
 
 ---
@@ -54,7 +55,7 @@ Buatlah daftar seluruh aktor (pengguna) yang akan berinteraksi langsung dengan s
 
 | Aktor | Deskripsi |
 | :--- | :--- |
-| *Pemilik Usaha* | *Pengguna ini bertindak sebagai pihak utama yang menginput informasi terkait takaran bahan dan harga jual. Karakteristik dari pengguna ini adalah mengutamakan data yang update dan valid, serta sistem yang sederhana.* |
+| *Pemilik Usaha* | *Pengguna ini bertindak sebagai pihak utama yang menginput informasi terkait takaran bahan dan penetapan harga jual. Pengguna ini juga bertindak sebagai pengobservasi perubahan data historis serta penamaan dari produk-produk yang diinput. Karakteristik dari pengguna ini adalah mengutamakan data yang update dan valid, serta sistem yang sederhana.* |
 | ... | ... |
 
 ---
@@ -62,20 +63,41 @@ Buatlah daftar seluruh aktor (pengguna) yang akan berinteraksi langsung dengan s
 # BAB 2: Deskripsi Kebutuhan Perangkat Lunak
 
 ## 2.1 Kebutuhan Pengguna Awal
-
+Sebagai [Aktor], saya ingin [Aktivitas/Kebutuhan], sehingga [Tujuan/Nilai]
 | ID | Aktor | Kebutuhan / Aktivitas | Tujuan / Nilai |
 | :--- | :--- | :--- | :--- |
-| US-01 | *Pemilik Usaha* |  *Penginputan Takaran Bahan dan Harga Jual* | *Mengetahui apabila harga jual yang ditetapkan bersifat untung/rugi berdasarkan harga standar bahan baku* |
-| US-02 | *Pemilik Usaha* | *Notifikasi Kerugian* | *Memberitahu pengguna apabila harga yang ditetapkan tidak lagi menguntungkan* |
-| US-03 | *Pemilik Usaha* | *Data Perubahan Harga Bahan* | *Mengetahui tren perubahan harga yang terjadi pada bahan baku pada rentang waktu tertentu*  |
+| US-01 | *Pemilik Usaha* |  *Merigstrasi sebuah akun baru* | *Input dan data yang dimasukkan tersimpan* |
+| US-02 | *Pemilik Usaha* | *Masuk (login) ke akun yang telah dibuat* | *Dapat mengakses kembali data yang bersangkutan dengan akunnya* |
+| US-03 | *Pemilik Usaha* | *Menginput bahan baku dan takaran dari sebuah produk* | *Sistem dapat melakukan kalkulasi dari bahan baku tersebut berdasarkan harga standar* |
+| US-04 | *Pemilik Usaha* |  *Menginput harga jual dari sebuah produk* | *Sistem dapat melakukan perbandingan harga antara harga yang ditetapkan user dengan harga standar* |
+| US-05 | *Pemilik Usaha* | *Membandingkan harga yang telah ditetapkan dengan harga standar* | *Dapat mengetahui perbedaan keuntungan/kerugian antara harga yang ditetapkan terhadap harga standar* |
+| US-06 | *Pemilik Usaha* | *Mengetahui margin keuntungan/kerugian* | *Dapat melakukan penyesuaian baik untuk meningkatkan margin keuntungan ataupun ketika mengalami kerugian* |
+| US-07 | *Pemilik Usaha* |  *Memberi nama/label pada produk* | *Mempermudah proses pengeditan takaran bahan baku maupun penetapan harga dari suatu produk* |
+| US-08 | *Pemilik Usaha* |  *Melihat list produk yang telah diinput* | *Mempermudah pencarian suatu produk untuk dilakukan perubahan* |
+| US-09 | *Pemilik Usaha* | *Menyimpan data historis perubahan harga produk* | *Dapat dimanfaatkan sebagai database harga suatu produk* |
+| US-10 | *Pemilik Usaha* | *Melihat grafik tren perubahan harga* | *Mempermudah dalam menganalisis perubahan harga* |
+| US-11 | *Pemilik Usaha* |  *Menerima notifikasi kerugian suatu produk* | *Dapat melakukan penyesuaian terhadap harga yang telah ditetapkan agar tidak mengalami kerugian* |
+
 
 ## 2.2 Deskripsi Aktivitas
 
 | ID | Aktivitas | Penjelasan | ID User Story |
 | :--- | :--- | :--- | :--- |
-| A01 | *Penginputan Takaran Bahan dan Harga Jual* | *Pengguna memasuki jumlah masing-masing bahan yang digunakan untuk pembuatan produk dan kemudian menentukan harga jual produk tersebut. Sistem kemudian akan menentukan apabila harga jual yang ditetapkan menguntungkan berdasarkan jumlah bahan baku dan harga standarnya.* | *US-01* |
-| A02 | *Notifikasi Kerugian* | *Setelah menginput harga jual dan terverifikasi menguntungkan, sistem akan membiarkan harga tersebut digunakan oleh pengguna hingga di mana harga tersebut tidak lagi menguntungkan akibat adanya perubahan harga bahan baku.* | *US-02*|
-| A03 | *Data Perubahan Harga Bahan* | *Dengan adanya fluktuasi harga bahan baku dalam jangka waktu yang konsisten, pengguna dapat mengakses data historis perubahan tersebut pada rentang waktu yang telah ditentukan.* | *US-03* |
+| A01 | *Merigstrasi akun baru* | *User membuat akun baru melalui proses autentikasi.* | *US-01* |
+| A02 | *Melogin ke akun* | *User masuk ke akun yang telah teregistrasi.* | *US-02*|
+| A03 | *Menginput takaran bahan baku* | *User menentukan takaran berupa jumlah dari setiap bahan baku yang diperlukan dalam pembuatan suatu produk.* | *US-03* |
+| A04 | *Mengkonfirmasi inputan takaran bahan baku* | *Setelah menginput semua bahan baku yang diperlukan, user akan melakukan konfirmasi terakhir terkait input tersebut.* | *US-03* |
+| A05 | *Menetapkan harga jual* | *User menetapkan harga jual yang diinginkan berdasarkan bahan baku yang digunakan.* | *US-04*|
+| A06 | *Menghitung harga standar* | *Setelah menentukan semua bahan baku, sistem akan melakukan perhitungan harga produk berdasarkan harga standar bahan baku.* | *US-03* |
+| A07 | *Membandingkan harga yang ditetapkan dengan harga jual* | *Setelah terdapat value dari kedua harga, akan dilakukan perbandingan* | *US-05* |
+| A08 | *Menentukan margin keuntungan/kerugian* | *Sistem akan menentukan apabila perbandingan itu menghasilkan keuntungan/kerugian, beserta besar marginnya.* | *US-06*|
+| A09 | *Menyesuaikan harga yang ditetapkan ke margin yang diinginkan* | *Harga yang pertama kali ditetapkan belum tentu memberi output margin yang diinginkan, sehingga memungkinkan bagi pengguna untuk melakukan perubahan pada harga.* | *US-04* |
+| A10 | *Memberi label pada produk* | *Setelah harga dan bahan baku produk ditetapkan, produk perlu diberi suatu nama agar mempermudah dalam mencari dan melakukan perubahan pada produk.* | *US-07* |
+| A11 | *Melihat list produk yang telah dibuat* | *Adanya label untuk tiap produk memungkinkan user untuk mencari suatu produk dengan lebih mudah* | *US-08* |
+| A12 | *Memfilter list produk berdasarkan tag* | *Setiap produk dapat diberi suatu tag yang dapat dimanfaatkan untuk memfilter list.* | *US-08*|
+| A13 | *Menyimpan data historis produk* | *Sistem akan terus menyimpan data historis terkait harga standar suatu produk.* | *US-09* |
+| A14 | *Melihat grafik tren perubahan* | *Data historis yang disimpan sistem dapat dilihat dalam bentuk grafik untuk membantu user menganalisis perubahan harga.* | *US-10*|
+| A15 | *Menerima notifikasi kerugian* | *User akan menerima notifikasi apabila salah satu produk yang dibuat mengalami kerugian akibat perubahan harga.* | *US-11* |
 
 ## 2.3 Pemetaan Kebutuhan
 
