@@ -18,11 +18,13 @@
 | 13525002 | Ahmad Boutros Fathir |
 | 13525047 | Muhammad Fakhriyan Rizki M. |
 | 13525020 | Klio Lysander |
+| 13525056 | Muhammad Nuha Alghifari |
 
 ---
 
 ### Daftar Isi
 * [Milestone 1](#milestone-1)
+* [Milestone 2](#milestone-2)
 
 ---
 
@@ -36,4 +38,16 @@
 | *01-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Membuat diagram untuk Bab 3.4* | *1,5* | *Done* | *-* | 
 | *01-09-2026* | *Kevin Sie* | *Membuat dokumen untuk Bab 3.2 dan 3.3* | *1,5* | *Done* | *-* | 
 | *01-09-2026* | *Rafel Dzinun Muhammad* | *Membuat dokumen untuk Bab 3.1* | *1* | *Done* | *-* | 
+| | | | | | | |
+
+### Milestone 2
+**Periode:** [26-08-2026] - [02-09-2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+| *01-09-2026* | *Ahmad Boutros Fathir* | *Membuat Deskripsi Umum Sistem* | *1* | *Done* | *-* | 
+| *09-09-2026* | *Klio Lysander* | *Membuat bab 2.4 Kebutuhan Fungsional* | *1* | *Done* | *menunggu pemetaan kebutuhan untuk penyesuaian* | 
+| *01-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Membuat diagram untuk Bab 3.4* | *1,5* | *Done* | *-* | 
+| *01-09-2026* | *Kevin Sie* | *Membuat dokumen untuk Bab 3.2 dan 3.3* | *1,5* | *Done* | *-* | 
+| *09-09-2026* | *Rafel Dzinun Muhammad* | *Membuat bab 2.5 Kebutuhan Non-Fungsional* | *1,5* | *Done* | *menunggu pemetaan kebutuhan untuk penyesuaian* | 
 | | | | | | | |
