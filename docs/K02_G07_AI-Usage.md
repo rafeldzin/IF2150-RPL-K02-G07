@@ -23,6 +23,7 @@
 
 ### Daftar Isi
 * [Milestone 1](#milestone-1)
+* [Milestone 2](#milestone-2)
 
 ---
 
@@ -32,6 +33,12 @@
 | Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
 | :--- | :--- | :--- | :--- |
 | *Claude* | *Mencari Brainstorming Ide Masalah* | *"Apa contoh masalah yang berkaitan dengan SDG 8?"* | *AI menyarankan tentang masalah UMKM dan kami menyetejuinya serta mengerucutkan masalah menjadi lebih inti.* |
+| | | | | |
+
+### Milestone 2
+| Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
+| :--- | :--- | :--- | :--- |
+| *ChatGPT* | *Brainstorming  Fitur Tambahan* | *"Apa fitur lain yang dapat ditambahkan pada perangkat lunak?"* | *(Belum ketemu fitur yang cocok/tertarik untuk diimplementasiin).* |
 | | | | | |
 
 ---
