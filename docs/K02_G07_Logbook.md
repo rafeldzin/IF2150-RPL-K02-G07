@@ -47,7 +47,7 @@
 | :--- | :--- | :--- | :--- | :--- | :--- | 
 | *01-09-2026* | *Ahmad Boutros Fathir* | *Membuat Deskripsi Umum Sistem* | *1* | *Done* | *-* | 
 | *09-09-2026* | *Klio Lysander* | *Membuat bab 2.4 Kebutuhan Fungsional* | *1* | *Done* | *menunggu pemetaan kebutuhan untuk penyesuaian* | 
-| *01-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Membuat diagram untuk Bab 3.4* | *1,5* | *Done* | *-* | 
-| *01-09-2026* | *Kevin Sie* | *Membuat dokumen untuk Bab 3.2 dan 3.3* | *1,5* | *Done* | *-* | 
+| *01-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Membuat bab 2.3 Pemetaan Kebutuhan* | *2* | *Done* | *-* | 
+| *01-09-2026* | *Kevin Sie* | *Membuat dokumen bab 1.2 Deskripsi Pengguna Perangkat Lunak, serta merevisi isi dari bab 2.1 Kebutuhan Pengguna Awal dan 2.2 Deskripsi Aktivitas* | *2* | *In Progress* | *Masih ada kemungkinan nambahin fitur lain* | 
 | *09-09-2026* | *Rafel Dzinun Muhammad* | *Membuat bab 2.5 Kebutuhan Non-Fungsional* | *1,5* | *Done* | *menunggu pemetaan kebutuhan untuk penyesuaian* | 
 | | | | | | | |
