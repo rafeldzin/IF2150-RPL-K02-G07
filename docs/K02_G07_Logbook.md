@@ -25,6 +25,7 @@
 ### Daftar Isi
 * [Milestone 1](#milestone-1)
 * [Milestone 2](#milestone-2)
+* [Milestone 3](#milestone-3)
 
 ---
 
@@ -41,7 +42,7 @@
 | | | | | | | |
 
 ### Milestone 2
-**Periode:** [26-08-2026] - [02-09-2026]
+**Periode:** [03-09-2026] - [09-09-2026]
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
@@ -50,4 +51,17 @@
 | *01-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Membuat bab 2.3 Pemetaan Kebutuhan* | *2* | *Done* | *-* | 
 | *01-09-2026* | *Kevin Sie* | *Membuat dokumen bab 1.2 Deskripsi Pengguna Perangkat Lunak, serta merevisi isi dari bab 2.1 Kebutuhan Pengguna Awal dan 2.2 Deskripsi Aktivitas* | *2* | *In Progress* | *Masih ada kemungkinan nambahin fitur lain* | 
 | *09-09-2026* | *Rafel Dzinun Muhammad* | *Membuat bab 2.5 Kebutuhan Non-Fungsional* | *1,5* | *Done* | *menunggu pemetaan kebutuhan untuk penyesuaian* | 
+| | | | | | | |
+
+### Milestone 3
+**Periode:** [10-09-2026] - [16-09-2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+| *13-09-2026* | *Ahmad Boutros Fathir* | *Membuat Bab 3.4* | *1* | *Done* | *-* | 
+| *12-09-2026* | *Klio Lysander* | *Membuat Bab 1, Bab 2, Bab 3 (3.1 dan 3.2)* | *1,5* | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Membuat Bab 3.3* | *2* | *Done* | *-* | 
+| *13-09-2026* | *Kevin Sie* | *Membuat dokumen 3.4 * | *2* | *In Progress* | *-* | 
+| *13-09-2026* | *Rafel Dzinun Muhammad* | *Membuat dokumen 3.4* | *1,5* | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Nuha Alghifari* | *Membuat dokumen 3.4* | *1,5* | *Done* | *-* | 
 | | | | | | | |

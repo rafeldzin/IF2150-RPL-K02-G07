@@ -17,6 +17,7 @@
 | *13525020* | *Klio Lysander* |
 | *13525047* | *Muhammad Fakhriyan Rizki M.* |
 | *13525053* | *Kevin Sie* |
+| *13525056* | Muhammad Nuha Alghifari |
 | *13525062* | *Rafel Dzinun Muhammad* |
 
 ---
@@ -52,4 +53,5 @@ Kami yang bertanda tangan di bawah ini menyatakan bahwa seluruh log penggunaan A
 | <img src="./assets/ttd-anggota2.png" width="100"> | **[13525020 - Klio Lysander]** |
 | <img src="./assets/ttd-anggota3.png" width="100"> | **[13525047 - Muhammad Fakhriyan Rizki M.]** |
 | <img src="./assets/ttd-anggota4.png" width="100"> | **[13525053 - Kevin Sie]** |
+| <img src="./assets/ttd-anggota6.png" width="100"> | **[13525056 - Muhammad Nuha Alghifari]** |
 | <img src="./assets/ttd-anggota5.png" width="100"> | **[13525062 - Rafel Dzinun Muhammad]** |
