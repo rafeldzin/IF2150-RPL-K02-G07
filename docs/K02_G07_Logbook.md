@@ -58,10 +58,10 @@
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
-| *13-09-2026* | *Ahmad Boutros Fathir* | *Membuat Bab 3.4* | *1* | *Done* | *-* | 
+| *13-09-2026* | *Ahmad Boutros Fathir* | *Membuat Bab 3.4.8 - 3.4.10* | *1* | *Done* | *-* | 
 | *12-09-2026* | *Klio Lysander* | *Membuat Bab 1, Bab 2, Bab 3 (3.1 dan 3.2)* | *1,5* | *Done* | *-* | 
 | *13-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Membuat Bab 3.3* | *2* | *Done* | *-* | 
-| *13-09-2026* | *Kevin Sie* | *Membuat dokumen 3.4 * | *2* | *In Progress* | *-* | 
-| *13-09-2026* | *Rafel Dzinun Muhammad* | *Membuat dokumen 3.4* | *1,5* | *Done* | *-* | 
+| *15-09-2026* | *Kevin Sie* | *Membuat dokumen 3.4.1 - 3.4.4 * | *2* | *Done* | *-* | 
+| *15-09-2026* | *Rafel Dzinun Muhammad* | *Membuat dokumen 3.4.5 - 3.4.7* | *1* | *Done* | *-* | 
 | *13-09-2026* | *Muhammad Nuha Alghifari* | *Membuat dokumen 3.4* | *1,5* | *Done* | *-* | 
 | | | | | | | |
