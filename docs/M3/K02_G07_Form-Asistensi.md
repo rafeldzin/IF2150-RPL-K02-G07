@@ -1,35 +1,36 @@
+
 # Form Asistensi
 
 ## Tugas Besar IF2150 - Rekayasa Perangkat Lunak
 
 | Informasi | Keterangan |
 | --- | --- |
-| **Hari** | *\[Hari\]* |
-| **Tanggal** | *\[DD/MM/YYYY\]* |
-| **Kelas** | *\[Kelas\]* |
-| **Nomor Kelompok** | *\[Nomor Kelompok\]*  |
-| **Nama Kelompok** | *\[Nama Kelompok\]*  |
-| **Nama Perangkat Lunak** | *\[Nama P/L\]*  |
-| **Dokumen** | *\[Nama Dokumen yang diasistensikan\]*  |
+| **Hari** | *Selasa* |
+| **Tanggal** | *15/09/2026* |
+| **Kelas** | *K02* |
+| **Nomor Kelompok** | *07*  |
+| **Nama Kelompok** | *RaPeL*  |
+| **Nama Perangkat Lunak** | *Pross*  |
+| **Dokumen** | *Use Case*  |
 
 ### Anggota Kelompok
 
 | NIM | Nama |
-| --- | --- |
-| *\[NIM 1\]* | *\[Nama Anggota 1\]* |
-| *\[NIM 2\]* | *\[Nama Anggota 2\]* |
-| *\[NIM 3\]* | *\[Nama Anggota 3\]* |
-| *\[NIM 4\]* | *\[Nama Anggota 4\]* |
-| *\[NIM 5\]* | *\[Nama Anggota 5\]* |
+|---|---|
+| *13525002* | *Ahmad Boutros Fathir* |
+| *13525020* | *Klio Lysander* |
+| *13525047* | *Muhammad Fakhriyan Rizki M.* |
+| *13525053* | *Kevin Sie* |
+| *13525062* | *Rafel Dzinun Muhammad* |
 
 ### Catatan
 
 | Catatan |
 | --- |
-| 1. *\[Berikan catatan hasil asistensi\]*  |
-| 2. ... |
-| 3. ... |
-| 4. ... |
+| 1. uc03 diganti melihat  |
+| 2. uc01 dipecah jadi 2 |
+| 3. tambah usecase buat login |
+| 4. skenario alternatif ditulis ulang dari awal dan ngehasilin output yg berbeda |
 
 **Notes for this section:**  
 *Catatan dapat dituliskan dalam bentuk paragraf atau poin-poin, disesuaikan saja.* 
@@ -38,7 +39,7 @@
 
 <!-- ![](./assets/foto-asistensi.jpg) -->
 <p align="center">
-  <img src="./assets/foto-asistensi.jpg" width="100%">
+  <img width="1917" height="1105" alt="messageImage_1788789760281" src="https://github.com/user-attachments/assets/d5c3e3d8-22d6-45ee-9f12-d50f71ce7494" />
 </p>
 
 <p align="center">
