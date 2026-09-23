@@ -49,6 +49,12 @@
 | *ChatGPT* | *Brainstorming  Skenario Alternatif Use Case* | *"Apa skenario-skenario lain yang dapat terjadi untuk Use Case ...?"* | *AI memberikan beberapa contoh alternatif, tetapi kami tidak mengambil semua dengan pertimbangan proses pengaplikasiannya nanti.* |
 | | | | | |
 
+### Milestone 4
+| Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
+| :--- | :--- | :--- | :--- |
+| *Claude* | *Brainstorming terkait Diagram Class sesuai dengan Use Case* | *"Apakah implementasi dari gambar yang telah kami buat sudah benar?, jika belum benar jelaskan mengapa alur yang belum sesuai dengan use case kami"* | *AI memberikan penjelasan terkait notasi-notasi diagram class dan digunakan pada diagram mana saja seharusnya.* |
+| | | | | |
+
 ---
 ### Pernyataan Integritas dan Persetujuan
 
