@@ -65,3 +65,16 @@
 | *15-09-2026* | *Rafel Dzinun Muhammad* | *Membuat dokumen 3.4.5 - 3.4.7* | *1* | *Done* | *-* | 
 | *13-09-2026* | *Muhammad Nuha Alghifari* | *Membuat dokumen 3.4* | *1,5* | *Done* | *-* | 
 | | | | | | | |
+
+### Milestone 4
+**Periode:** [16-09-2026] - [23-09-2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+| *13-09-2026* | *Ahmad Boutros Fathir* | *Membuat Bab 4.2.8 - 4.2.9* | *2* | *Done* | *-* | 
+| *12-09-2026* | *Klio Lysander* | *Melengkapi Bab 1, 2, 3, 4.1, 5* | *1,5* | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Membuat Bab 4.2.1 - 4.2.2 dan melengkapi Bab 4.1* | *2* | *Done* | *-* | 
+| *15-09-2026* | *Kevin Sie* | *Membuat dokumen 4.2.2 - 4.2.3* | *2* | *Done* | *-* | 
+| *15-09-2026* | *Rafel Dzinun Muhammad* | *Membuat dokumen 4.2.6 - 4.2.7 dan 4.3* | *2* | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Nuha Alghifari* | *Membuat dokumen 4.2.3* | *1,5* | *Done* | *-* | 
+| | | | | | | |
