@@ -99,9 +99,8 @@ Perangkat lunak Pross merupakan aplikasi mobile manajemen Harga Pokok Penjualan 
 </p>
 
 ## 2.2 Deskripsi Umum Perangkat Lunak
-Diisi dengan deskripsi umum perangkat lunak untuk mendukung proses bisnis yang telah diuraikan pada sub-bab sebelumnya. Uraian harus menunjukkan lingkup perangkat lunak, mencakup keterkaitan perangkat lunak dengan sistem lain di luar (misalnya *Payment Gateway* atau layanan pihak ketiga lain yang dipakai).
+Pross merupakan aplikasi mobile yang berdiri sendiri tanpa adanya integrasi secara langsung dengan pihak ketiga manapun. Seluruh proses pengelolaan bahan baku, perhitungan HPP, dan pemantauan margin keuntungan dilakukan sepenuhnya dalam sistem Pross berdasarkan data yang diinput oleh pengguna. Dengan demikian, seluruh input yang diterima system berasal dari interaksi langsung pemilik usahan dengan aplikasi dan seluruh proses yang ada akan dilakukan secara internal oleh sistem tanpa adanya ketergantungan dengan sistem ekternal
 
-*Contoh narasi:* "*[Nama P/L]* merupakan aplikasi *[deskripsi singkat]* yang berinteraksi dengan *Payment Gateway (dummy)* untuk memproses otorisasi pembayaran. Sistem menerima input dari *Pelanggan* melalui antarmuka aplikasi dan mengirimkan permintaan transaksi ke *Payment Gateway* setiap kali pelanggan melakukan checkout."
 
 ## 2.3 Pengguna dan Kebutuhan Pengguna Perangkat Lunak
 
