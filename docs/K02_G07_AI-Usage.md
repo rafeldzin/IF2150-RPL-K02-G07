@@ -26,6 +26,8 @@
 * [Milestone 1](#milestone-1)
 * [Milestone 2](#milestone-2)
 * [Milestone 3](#milestone-3)
+* [Milestone 4](#milestone-4)
+* [Milestone 5](#milestone-5)
 
 ---
 
@@ -53,6 +55,12 @@
 | Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
 | :--- | :--- | :--- | :--- |
 | *Claude* | *Brainstorming terkait Diagram Class sesuai dengan Use Case* | *"Apakah implementasi dari gambar yang telah kami buat sudah benar?, jika belum benar jelaskan mengapa alur yang belum sesuai dengan use case kami"* | *AI memberikan penjelasan terkait notasi-notasi diagram class dan digunakan pada diagram mana saja seharusnya.* |
+| | | | | |
+
+### Milestone 5
+| Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
+| :--- | :--- | :--- | :--- |
+| *Claude* | *Validasi Rancangan Diagram Class* | *"Apakah hubungan antar class yang terbentuk pada diagram ini sudah sesuai?"* | *AI memberikan penjelasan terkait bagian-bagian yang kurang tepat pada hubungan antar class.* |
 | | | | | |
 
 ---

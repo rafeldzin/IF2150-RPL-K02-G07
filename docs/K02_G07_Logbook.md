@@ -26,6 +26,8 @@
 * [Milestone 1](#milestone-1)
 * [Milestone 2](#milestone-2)
 * [Milestone 3](#milestone-3)
+* [Milestone 4](#milestone-4)
+* [Milestone 5](#milestone-5)
 
 ---
 
@@ -77,4 +79,18 @@
 | *15-09-2026* | *Kevin Sie* | *Membuat dokumen 4.2.2 - 4.2.3* | *2* | *Done* | *-* | 
 | *15-09-2026* | *Rafel Dzinun Muhammad* | *Membuat dokumen 4.2.6 - 4.2.7 dan 4.3* | *2* | *Done* | *-* | 
 | *13-09-2026* | *Muhammad Nuha Alghifari* | *Membuat dokumen 4.2.3* | *1,5* | *Done* | *-* | 
+| | | | | | | |
+
+
+### Milestone 5
+**Periode:** [24-09-2026] - [30-09-2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+| *13-09-2026* | *Ahmad Boutros Fathir* | *Melengkapi M2 dan M4* | *2* | *Done* | *-* | 
+| *12-09-2026* | *Klio Lysander* | *Melengkapi M2 dan M5* | *2 | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Melengkapi dan Menambahkan M3 dan M4* | *2* | *Done* | *-* | 
+| *15-09-2026* | *Kevin Sie* | *Melengkapi M2 dan M4* | *2* | *Done* | *-* | 
+| *15-09-2026* | *Rafel Dzinun Muhammad* | *Melengkapi M2 dan M4* | *2* | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Nuha Alghifari* | *Melengkapi M2 dan M4* | *2* | *Done* | *-* | 
 | | | | | | | |
