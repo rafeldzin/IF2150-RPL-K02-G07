@@ -41,15 +41,14 @@ Dipersiapkan oleh:
 # BAB 1: Pendahuluan
 
 ## 1.1 Tujuan Penulisan Dokumen
-Tuliskan dengan ringkas tujuan dokumen SKPL ini dibuat dan siapa saja yang akan menggunakan dokumen ini.
+
 Dokumen Spesifikasi Kebutuhan Perangkat Lunak ini disusun untuk mendokumentasikan setiap kebutuhan fungsional dan non-fungsional dari perangkat lunak *Pross* secara terstruktur dan sebagai acuan/referensi bagi anggota kelompok dalam proses perancangan dan implementasi sistem. Selain itu, dokumen ini juga berfungsi sebagai verifikasi bagi asisten atau dosen dalam menilai kesesuaian perangkat lunak ini.
 
 ## 1.2 Lingkup Masalah
-Tuliskan dengan ringkas nama aplikasi dan deskripsi singkatnya. Bagian ini maksimal berisi satu paragraf, dapat diringkas dari BAB 1 *Analisis Permasalahan* pada dokumen *Topic Brainstorming*.
+
 Pross merupakan aplikasi berbasis mobile yang berguna untuk manajemen harga pokok penjualan yang ditujukan bagi para pedagang kuliner UMKM. Aplikasi ini membantu pemilik usaha dalam memantau profitabilitas setiap produk secara otomatis berdasarkan perubahan harga bahan baku sehingga dapat mengetahui produk yang menguntungkan ataupun merugi tanpa perlu pencatatan secara manual.
 
 ## 1.3 Definisi, Istilah, dan Singkatan
-Semua definisi dan singkatan yang digunakan dalam dokumen ini beserta penjelasannya.
 
 Tabel 1.3. Definisi Istilah dan Singkatan
 
@@ -64,10 +63,8 @@ Tabel 1.3. Definisi Istilah dan Singkatan
 | *A* | *Singkatan dari Aktor.* |
 | *C* | *Singkatan dari Class* |
 | *Tag* | *Label yang diberikan pengguna pada suatu produk untuk mempermudah dalam pencarian.* |
-| *...* | *...* |
 
 ## 1.4 Aturan Penomoran
-Tuliskan aturan penomoran (ID) yang digunakan dalam dokumen ini. Gunakan pola ID yang **sama** dengan yang sudah dipakai pada dokumen-dokumen sebelumnya, jangan membuat pola baru di dokumen ini.
 
 Tabel 1.4. Aturan Penomoran
 
@@ -78,22 +75,19 @@ Tabel 1.4. Aturan Penomoran
 | *Aktor* | *AXX* | |
 | *Use Case* | *UCXX* | |
 | *Kelas* | *CXX* | |
-| *...* | *...* |
 
 ## 1.5 Referensi
-Dokumentasi P/L yang dirujuk oleh dokumen ini. Referensi dapat berupa buku, panduan, ataupun dokumentasi lain yang dipakai dalam pengembangan P/L ini.
+
 1. Diagram UML: [https://www.drawio.com/](https://www.drawio.com/), [https://staruml.io/](https://staruml.io/)
 2. CNBC Indonesia, "Harga Bawang Merah Bikin Menangis, Inflasi Kembali Ganas": [https://www.cnbcindonesia.com/research/20241201162945-128-592495/harga-bawang-merah-bikin-menangis-inflasi-kembali-ganas](https://www.cnbcindonesia.com/research/20241201162945-128-592495/harga-bawang-merah-bikin-menangis-inflasi-kembali-ganas)
 
 ## 1.6 Deskripsi Umum Dokumen (Ikhtisar)
-Tuliskan sistematika pembahasan dokumen SKPL ini secara runut (misalnya: BAB 2 membahas deskripsi umum P/L, BAB 3 membahas kebutuhan fungsional dan non-fungsional, dst).
+
 Dokumen ini terdiri dari enam bab. Bab 1 membahas mengenai pendahuluan yang meliputi tujuan penulisan, lingkup masalah, definisi istilah, aturan penomoran, referensi, dan ikhtisar dokumen. Bab 2 membahas mengenai deskripsi umum perangkat lunak Pross yang meliputi gambaran proses bisnis, pengguna, batas, dan lingkungan operasi. Bab 3 membahas kebutuhan fungsional dan non-fungsional secara rinci. Bab 4 membahas pemodelan use case yang mencakup identifikasi aktor, use case dan diagramnya, serta skenario tiap use case. Bab 5 membahas tentang pemodelan kelas yang mencakup identifikasi kelas, diagram kelas per use case, dan diagram kelas keseluruhan. Bab 6 membahas tentang traceability yang menghubungkan kelas, use case, dan kebutuhan fungsional secara menyeluruh.
----
 
 # BAB 2: Deskripsi Perangkat Lunak
 
 ## 2.1 Deskripsi Umum Sistem
-Bagian ini dapat disalin dari BAB 1.1 *Deskripsi Umum Sistem* pada dokumen *Requirement Gathering*, disesuaikan bila ada perubahan alur bisnis. Lengkapi dengan gambaran proses bisnis dalam bentuk *Activity Diagram* (boleh disalin dan diperbarui dari 3.3 *Model Proses Bisnis* pada dokumen *Topic Brainstorming*).
 
 Perangkat lunak Pross merupakan aplikasi mobile manajemen Harga Pokok Penjualan (HPP) yang diperuntukkan khusus untuk pelaku kuliner UMKM yang ada di Bandung. Ekspektasi utama pengguna adalah terdapat sistem pemantauan profitabilitas menu yang praktis tanpa memerlukan sistem pembukuan pembukuan dan perhitungan yang rumit, sehingga mengamankan margin keuntungan ketika perubahan harga bahan baku. Alur kerja sistem dimulai dengan pengguna memasukkan daftar bahan baku, takaran pasti per produk, dan harga jual produk. Secara berkala, pengguna memperbarui data harga beli bahan baku. Sistem kemudian menghitung ulang biaya produksi secara otomatis. Apabila margin keuntungan menipis atau masuk ke fase rugi akibat lonjakan harga pasar, sistem akan langsung memicu push notification sebagai peringatan. Penerapan solusi ini diharapkan dapat menjadi langkah pengamanan pelaku UMKM dalam mengatasi kerugian. Melalui peringatan otomatis dan ketersediaan data tren harga, pemilik usaha dapat merespons perubahan harga pasar seperti menyesuaikan takaran atau mengubah harga jual sehingga terhindar dari kerugian operasional yang berlarut-larut.
 
@@ -110,7 +104,6 @@ Diisi dengan deskripsi umum perangkat lunak untuk mendukung proses bisnis yang t
 *Contoh narasi:* "*[Nama P/L]* merupakan aplikasi *[deskripsi singkat]* yang berinteraksi dengan *Payment Gateway (dummy)* untuk memproses otorisasi pembayaran. Sistem menerima input dari *Pelanggan* melalui antarmuka aplikasi dan mengirimkan permintaan transaksi ke *Payment Gateway* setiap kali pelanggan melakukan checkout."
 
 ## 2.3 Pengguna dan Kebutuhan Pengguna Perangkat Lunak
-Tuliskan seluruh jenis pengguna (*role*/aktor) yang terlibat dalam perangkat lunak (P/L), beserta kebutuhannya secara umum. Bagian ini dapat disalin dari 1.2 *Deskripsi Pengguna Perangkat Lunak* (dokumen Requirement Gathering) atau 3.1 *Identifikasi Aktor* (dokumen Use Case), pastikan sudah konsisten dengan aktor final yang dipakai di BAB 4.
 
 | Pengguna | Kebutuhan |
 | :--- | :--- |
@@ -133,14 +126,12 @@ Spesifikasi *operating system* atau lingkungan yang dibutuhkan P/L untuk beroper
 | *Client* | *Aplikasi mobile* |
 | *DBMS* | *[contoh: PostgreSQL 15]* |
 | *OS* | *Android* |
-| *...* | *...* |
 
 ---
 
 # BAB 3: Deskripsi Kebutuhan Perangkat Lunak
 
 ## 3.1 Kebutuhan Fungsional (KF)
-Salin ulang **seluruh Kebutuhan Fungsional (KF)** versi terbaru dari BAB 2.1 dokumen *Class Diagram* (sudah versi final dan sudah memakai format EARS). Pastikan ID Kebutuhan (kolom "ID Kebutuhan") juga konsisten dengan ID pada tabel Pemetaan Kebutuhan di dokumen *Requirement Gathering*.
 
 Tabel 3.1. Kebutuhan Fungsional
 
@@ -172,7 +163,6 @@ Tabel 3.1. Kebutuhan Fungsional
 | *KF24* | *R34 dan R35* | *Ketika pengguna memilih logout akun, sistem harus mengakhiri sesi aktif pengguna pada perangkat* |
 
 ## 3.2 Kebutuhan Non-Fungsional (KNF)
-Salin ulang Kebutuhan Non-Fungsional dari BAB 2.5 dokumen *Requirement Gathering*, sesuaikan ID Kebutuhan (kolom "ID Kebutuhan") apabila terjadi perubahan penomoran pada BAB 3.1 di atas.
 
 Tabel 3.2. Kebutuhan Non-Fungsional
 
@@ -205,8 +195,6 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 
 ## 2.5 Kebutuhan Non-Fungsional (KNF)
 
-Uraikan dengan ringkas Kebutuhan Non-Fungsional dalam tabel sebagai berikut. Isilah kolom kebutuhan dengan kalimat yang jelas, spesifik, dan terukur (kelak dapat diuji untuk dipenuhi). Kolom ID KNF adalah nomor Kebutuhan Non-Fungsional yang harus ditelusuri pada saat pengujian. Hubungkan ID Kebutuhan Non-Fungsional dengan ID Pemetaan Kebutuhan Umum dari sistem.
-
 | ID KNF | ID Kebutuhan | Parameter | Deskripsi Kebutuhan |
 | :--- | :--- | :--- | :--- |
 | *KNF01* | *R01* | *Response time* | *Ketika pengguna mengirimkan formulir pendaftaran, sistem harus mendaftarkan akun baru ke dalam database dalam waktu kurang dari 3 detik.* |
@@ -226,22 +214,18 @@ Uraikan dengan ringkas Kebutuhan Non-Fungsional dalam tabel sebagai berikut. Isi
 | *KNF15* | *R28 dan R29* | *Ergonomy* | *Sistem harus menyediakan antarmuka pencarian dan penyaringan produk yang dapat diakses dalam tidak lebih dari 2 langkah.* |
 | *KNF16* | *R21 dan R22* | *Response time* | *Jika fitur riwayat harga tersedia, ketika pengguna meminta menampilkan riwayat perubahan harga jual suatu produk, sistem harus menampilkan data tersebut dalam waktu kurang dari 3 detik.* |
 
-<sub>*Silakan pilih parameter yang relevan dengan P/L kalian (Availability, Reliability, Ergonomy, Portability, Memory, Response time, Safety, Security, dsb), tidak perlu semua parameter diisi. Lihat kembali dokumen Requirement Gathering untuk penjelasan tiap parameter.*<sub>
-
 ---
 
 # BAB 4: Pemodelan Use Case
 
 ## 4.1 Identifikasi Aktor
-Salin ulang daftar aktor final dari BAB 3.1 dokumen *Use Case & Scenario Use Case* atau *Class Diagram*. Tambahkan ID Aktor mengikuti Aturan Penomoran pada 1.4.
 
 | ID Aktor | Aktor | Deskripsi |
 | :--- | :--- | :--- |
 | *A01* | *Pemilik Usaha* | *Pengguna utama sistem yang mengelola data setiap produk, memantau keuntungan/kerugian, menerima notifikasi kerugian, dan melihat tren harga bahan baku untuk pengambilan keputusan bisnis.* |
-| *...* | *...* | *...* |
 
 ## 4.2 Identifikasi Use Case
-Salin ulang daftar Use Case versi terbaru dari BAB 3.2 dokumen *Class Diagram*, pastikan seluruh ID KF yang dirujuk sudah sesuai dengan tabel pada 3.1.
+
 
 | ID UC | Nama Use Case | Deskripsi Singkat | Aktor | ID KF |
 | :--- | :--- | :--- | :--- | :--- |
@@ -259,7 +243,6 @@ Salin ulang daftar Use Case versi terbaru dari BAB 3.2 dokumen *Class Diagram*, 
 | *UC12* | *Keluar dari Akun* | *Pemilik usaha keluar dari akun yang terdapat pada aplikasi.* | *Pemilik Usaha* | *KF24* |
 
 ## 4.3 Use Case Diagram
-Salin ulang Use Case Diagram dari BAB 3.3 dokumen *Use Case & Scenario Use Case* atau *Class Diagram* (gunakan versi paling akhir/terbaru apabila terdapat perubahan).
 
 <p align="center">
 <img alt="Contoh Use Case Diagram" src="./assets/diagram/diagram-uc-rev1.png" width="70%">
@@ -269,7 +252,7 @@ Salin ulang Use Case Diagram dari BAB 3.3 dokumen *Use Case & Scenario Use Case*
 </p>
 
 ## 4.4 Skenario Use Case
-Salin ulang skenario **setiap** use case (skenario normal dan alternatif) dari BAB 3.4 dokumen *Use Case & Scenario Use Case*, sesuaikan dengan daftar UC final pada 4.2. Jika use case melibatkan lebih dari satu aktor manusia yang benar-benar berinteraksi langsung (misalnya *Kasir* yang memverifikasi transaksi setelah *Pelanggan* membayar), tambahkan kolom aksi tersendiri untuk aktor tersebut di samping kolom "Reaksi Perangkat Lunak". Sistem eksternal otomatis seperti *payment gateway* **bukan aktor**, sehingga interaksinya cukup dituliskan sebagai bagian dari "Reaksi Perangkat Lunak", bukan kolom aktor terpisah.
+
 
 ### 4.4.1 Skenario UC01
 
@@ -637,47 +620,300 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C26* | *Profile Controller* | *Mengelola logika untuk memvalidasi dan menyimpan perubahan data akun ke database, serta menangani proses pengakhiran sesi saat pengguna melakukan logout (Controller Class).* | *UC11, UC12* |
 
 ## 5.2 Diagram Kelas per Use Case
-Salin ulang diagram kelas untuk setiap use case dari BAB 4.2 dokumen *Class Diagram*, lengkap dengan tabel atribut dan metode/operasinya.
+
 
 ### 5.2.1 Use Case UC01
 
-**Nama Use Case:** *Memesan Produk*
+**Nama Use Case:** *Mendaftarkan Akun*
 
 <p align="center">
-<img alt="Contoh Class Diagram" src="./assets/diagram/contoh-class-diagram.webp" width="70%">
+<img alt="Class Diagram UC01" src="./assets/diagram/Diagram-Class-UC01.png" width="40%">
 </p>
 <p align="center">
-<i>Gambar 3. Contoh Diagram Kelas Use Case UC01</i>
+<i>Gambar 2. Diagram Kelas Use Case UC01</i>
+</p>
+<br>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, email, password* | *createUser()* |
+| *C05* | *RegistrationPage* | *usernameInput, emailInput, passwordInput,* | *submitForm(), displaySuccess(), displayError()* |
+| *C06* | *AuthController* | *-* | *validateData()* |
+---
+### 4.2.2 Use Case UC02
+
+**Nama Use Case:** *Login dengan akun yang sudah terdaftar*
+
+<p align="center">
+<img alt="Class Diagram UC01" src="./assets/diagram/Diagram-Class-UC02.png" width="70%">
+</p>
+<p align="center">
+<i>Gambar 3. Diagram Kelas Use Case UC01</i>
+</p>
+<br>
+
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, email, password* | *getUsername(), getEmail(), getPassword(), setPassword()* |
+| *C07* | *LoginPage* | *usernameInput, passwordInput,* | *login(), navigateToResetPassword(), displayError()* |
+| *C06* | *AuthController* | *-* | *validateData()* |
+| *C08* | *ResetPasswordPage* | *emailInput, newPasswordInput, confirmNewPassword* | *submitResetRequest(), submitNewPassword(), displayError(), displaySuccess()* |
+| *C09* | *ResetPasswordController* | *-* | *validateData(), resetPassword()* |
+---
+
+
+### 4.2.3 Use Case UC03
+
+**Nama Use Case:** *Menambahkan Data Produk Baru*
+
+<p align="center">
+  <img alt="Class Diagram UC03" src="./assets/diagram/Diagram-Class-UC03.png" width="70%">
+</p>
+<p align="center">
+  <i>Gambar 4. Diagram Kelas Use Case UC03</i>
 </p>
 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
-| *C02* | *Pesanan* | *idPesanan, total, status* | *buatPesanan(), hitungTotal()* |
-| *C03* | *Keranjang* | *daftarItem* | *tambahItem(), checkout()* |
-| *...* | *...* | *...* | *...* |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(), getPassword()* |
+| *C02* | *Produk* | *namaProduk, tag, hargaJual, margin* | *getNamaProduk(), setNamaProduk(), getTag(), setTag(), setHargaJual(), setMargin(), getMargin()* |
+| *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli()* |
+| *C04* | *ResepBahan* | *takaran* | *getTakaran(), setTakaran()* |
+| *C10* | *AddProductPage* | *inputNamaProduk, inputTag, inputTakaran, inputHargaJual* | *showPage(), getInput(), showErrorMessage(), showSuccessMessage()* |
+| *C11* | *MarginController* | *currentProduk, currentResep* | *validasiNamaProduk(), validasiInput(), simpanProdukBaru(), simpanResep()* |
+---
 
-> Lanjutkan pola **5.2.x** untuk setiap use case pada 4.2.
+### 4.2.4 Use Case UC04
+
+**Nama Use Case:** *Melihat Margin Keuntungan Produk*
+
+<p align="center">
+<img alt="Class Diagram UC01" src="./assets/diagram/Diagram-Class-UC04.webp" width="70%">
+</p>
+<p align="center">
+<i>Gambar 5. Diagram Kelas Use Case UC04</i>
+</p>
+<br>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(),  getPassword()* |
+| *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli()* |
+| *C02* | *Produk* | *nama, tag, hargaJual, margin* | *getNama(), setNama(), getTag(), setTag(), setHargaJual(), setMargin(), getMargin()* |
+| *C04* | *ResepBahan* | *takaran* | *getTakaran(), setTakaran()* |
+| *C010* | *AddProductPage* | *namaInput, tagInput, bahanBakuInput, takaranInput, hargaInput* | *showPage(), getInput(), showError(), showMargin()* |
+| *C011* | *MarginController* | *currentPemilik, currentProduk* | *hitungMargin(), simpanProduk()* |
+---
+
+
+### 4.2.5 Use Case UC05
+
+**Nama Use Case:** *Mengelola Harga Jual Produk*
+
+<p align="center">
+<img alt="Class Diagram UC01" src="./assets/diagram/Diagram-Class-UC05.webp" width="70%">
+</p>
+<p align="center">
+<i>Gambar 6. Diagram Kelas Use Case UC05</i>
+</p>
+<br>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(),  getPassword()* |
+| *C02* | *Produk* | *nama, hargaJual, margin* | *getNama(), setNama(), setHargaJual(), setMargin(), getMargin()* |
+| *C20* | *RiwayatHargaJual* | *hargaJualama, waktuPerubahan* | *setHargaJualLama(), setWaktuPerubahan(), getWaktuPerubahan()* |
+| *C12* | *EditProductPage* | *hargaBaruInput* | *showPage(), getInput(), showSuccessMessage(), showErrorMessage()* |
+| *C13* | *PriceController* | *currentPemilik, currentProduk* | *validasiInput(), updateHargaProduk(), catatRiwayat()* |
+---
+
+### 4.2.6 Use Case UC06
+
+**Nama Use Case:** *Menelusuri Daftar Produk*
+
+<p align="center">
+<img src="assets/diagram/Diagram-Class-UC06.png" width="70%">
+</p>
+<p align="center">
+<i>Gambar 7. Diagram Kelas Use Case UC06</i>
+</p>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(), getPassword()* |
+| *C02* | *Produk* | *namaProduk, tag, hargaJual, margin* | *getNamaProduk(), getTag(), getHargaJual(), getMargin()* |
+| *C21* | *SearchProductPage* | *kataKunciPencarian, hasilPencarian* | *showPage(), showResults(), showErrorMessage()* |
+| *C22* | *ProductSearchController* | *currentPemilik, kataKunci* | *searchProduk(), filterByTag()* |
+
+---
+
+### 4.2.7 Use Case UC07
+
+**Nama Use Case:** *Melihat Perubahan Harga Jual*
+
+<p align="center">
+<img src="assets/diagram/Diagram-Class-UC07.png" width="70%">
+</p>
+<p align="center">
+<i>Gambar 8. Diagram Kelas Use Case UC07</i>
+</p>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(), getPassword()* |
+| *C02* | *Produk* | *namaProduk, hargaJualSaatIni* | *getNamaProduk(), getHargaJualSaatIni()* |
+| *C20* | *RiwayatHargaJual* | *hargaLama, hargaBaru, waktuPerubahan* | *getHargaLama(), getHargaBaru(), getWaktuPerubahan()* |
+| *C23* | *PriceHistoryPage* | *produkTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
+| *C24* | *PriceHistoryController* | *currentPemilik, currentProduk* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
+---
+### 4.2.8 Use Case UC08
+
+**Nama Use Case:** *Memantau Tren Harga Bahan Baku*
+
+<p align="center">
+<img src="assets/diagram/Diagram-Class-UC08.png" width="70%">
+</p>
+<p align="center">
+<i>Gambar 9. Diagram Kelas Use Case UC08</i>
+</p>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(), getPassword()* |
+| *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli()* |
+| *C14* | *RiwayatHargaBahanBaku* | *hargaBeliLama, waktuPerubahan* | *getHargaBeliLama(), getWaktuPerubahan()* |
+| *C15* | *TrenBahanBakuPage* | *bahanBakuTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
+| *C16* | *TrendController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
+---
+
+### 4.2.9 Use Case UC09
+
+**Nama Use Case:** *Menerima Notifikasi Kerugian Produk*
+
+<p align="center">
+<img src="assets/diagram/Diagram-CLass-UC09.png" width="70%">
+</p>
+<p align="center">
+<i>Gambar 10. Diagram Kelas Use Case UC09</i>
+</p>
+<br>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername()* |
+| *C02* | *Produk* | *nama, hargaJual, margin, statusPeringatan* | *getMargin(), setStatusPeringatan(), getStatusPeringatan()* |
+| *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *setHargaBeli(), getHargaBeli()* |
+| *C17* | *Notifikasi* | *idNotifikasi, pesanAlert, waktuKirim, isRead* | *getPesanAlert(), markAsRead()* |
+| *C18* | *PushNotificationUI* | *notifikasiAktif* | *tampilkanNotifikasi(), onClickNotification()* |
+| *C19* | *NotificationController* | *currentPemilik, targetProduk* | *cekMarginNegatif(), buatNotifikasiKerugian(), kirimNotifikasi()* |
+---
+
+
+### 4.2.10 Use Case UC10
+
+**Nama Use Case:** *Menerima Notifikasi Perubahan Harga Bahan Baku*
+
+<p align="center">
+<img src="assets/diagram/Diagram-Class-UC10.png" width="70%">
+</p>
+<p align="center">
+<i>Gambar 11. Diagram Kelas Use Case UC10</i>
+</p>
+<br>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername()* |
+| *C02* | *Produk* | *nama, hargaJual, margin, statusPeringatan* | *getMargin(), setStatusPeringatan(), getStatusPeringatan()* |
+| *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *setHargaBeli(), getHargaBeli()* |
+| *C17* | *Notifikasi* | *idNotifikasi, pesanAlert, waktuKirim, isRead* | *getPesanAlert(), markAsRead()* |
+| *C18* | *PushNotificationUI* | *notifikasiAktif* | *tampilkanNotifikasi(), onClickNotification()* |
+| *C19* | *NotificationController* | *currentPemilik, targetProduk* | *cekMarginNegatif(), buatNotifikasiKerugian(), kirimNotifikasi()* |
+---
+
+
+### 4.2.11 Use Case UC11
+
+**Nama Use Case:** *Mengubah Data Akun*
+
+<p align="center">
+<img src="assets/diagram/Diagram-Class-UC11.png" width="70%">
+</p>
+<p align="center">
+<i>Gambar 12. Diagram Kelas Use Case UC11</i>
+</p>
+<br>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername()* |
+| *C25* | *ProfilePage* | *namaUsahaInput, emailInput, noTelpInput, passwordInput* | *showPage(), getProfileInput(), clickLogout(), showSuccessMessage(), showErrorMessage()* |
+| *C26* | *ProfileController* | *currentPemilik* | *validateProfileData(), updateProfileData(), processLogout(), endSession()* |
+---
+
+
+### 4.2.12 Use Case UC12
+
+**Nama Use Case:** *Keluar dari Akun*
+
+<p align="center">
+<img src="assets/diagram/Diagram-Class-UC12.png" width="70%">
+</p>
+<p align="center">
+<i>Gambar 13. Diagram Kelas Use Case UC12</i>
+</p>
+<br>
+
+| ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
+| :--- | :--- | :--- | :--- |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername()* |
+| *C25* | *ProfilePage* | *namaUsahaInput, emailInput, noTelpInput, passwordInput* | *showPage(), getProfileInput(), clickLogout(), showSuccessMessage(), showErrorMessage()* |
+| *C26* | *ProfileController* | *currentPemilik* | *validateProfileData(), updateProfileData(), processLogout(), endSession()* |
+---
 
 ## 5.3 Diagram Kelas Keseluruhan
-Gabungkan seluruh kelas dan hubungan antarkelas dari BAB 4.3 dokumen *Class Diagram* menjadi satu diagram kelas keseluruhan. Pastikan tidak ada kelas yang terduplikasi atau tertinggal.
 
 <p align="center">
-<img alt="Contoh Class Diagram Keseluruhan" src="./assets/diagram/contoh-class-diagram.webp" width="70%">
+<img alt="Class Diagram Keseluruhan" src="./assets/diagram/Diagram-Class-Keseluruhan.png" width="70%">
 </p>
 <p align="center">
-<i>Gambar 4. Contoh Diagram Kelas Keseluruhan</i>
+<i>Gambar 14. Diagram Kelas Keseluruhan</i>
 </p>
+<br>
 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
-| *C01* | *Pelanggan* | *idPelanggan, nama, email* | *lihatRiwayatPesanan()* |
-| *C02* | *Pesanan* | *idPesanan, total, status* | *hitungTotal(), perbaruiStatus()* |
-| *...* | *...* | *...* | *...* |
+| *C01* | *PemilikUsaha* | *namaUsaha, email, noTelp, password* | *createUser(), getNamaUsaha(), setNamaUsaha(), getEmail() setEmail(), getNoTelp(), setNoTelp(), getPassword(), setPassword()* |
+| *C02* | *Produk* | *namaProduk, tag, hargaJual, margin* | *getNamaProduk(), setNamaProduk(), getTag(), setTag(), getHargaJual(), setHargaJual(), setMargin(), getMargin()* |
+| *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli()* |
+| *C04* | *ResepBahan* | *takaran* | *getTakaran(), setTakaran()* |
+| *C05* | *RegistrationPage* | *usernameInput, emailInput, passwordInput* | *submitForm(), displaySuccess(), displayError()* |
+| *C06* | *AuthController* | *-* | *validateData()* |
+| *C07* | *LoginPage* | *usernameInput, passwordInput* | *login(), navigateToResetPassword(), displayError()* |
+| *C08* | *ResetPasswordPage* | *emailInput, newPasswordInput, confirmNewPassword* | *submitResetRequest(), submitNewPassword(), displayError(), displaySuccess()* |
+| *C09* | *ResetPasswordController* | *-* | *validateData(), resetPassword()* |
+| *C10* | *AddProductPage* | *inputNamaProduk, inputTag, inputTakaran, inputHargaJual* | *showPage(), getInput(), showErrorMessage(), showSuccessMessage()* |
+| *C11* | *MarginController* | *currentProduk, currentResep* | *validasiNamaProduk(), validasiInput(), simpanProdukBaru(), simpanResep()* |
+| *C12* | *EditProductPage* | *hargaBaruInput* | *showPage(), getInput(), showSuccessMessage(), showErrorMessage()* |
+| *C13* | *PriceController* | *currentPemilik, currentProduk* | *validasiInput(), updateHargaProduk(), catatRiwayat()* |
+| *C14* | *RiwayatHargaBahanBaku* | *hargaBeliLama, waktuPerubahan* | *getHargaBeliLama(), getWaktuPerubahan()* |
+| *C15* | *TrendBahanBakuPage* | *bahanBakuTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
+| *C16* | *TrendBahanBakuController* | *McurrentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
+| *C17* | *Notifikasi* | *idNotifikasi, pesanAlert, waktuKirim, isRead* | *getPesanAlert(), markAsRead()* |
+| *C18* | *PushNotificationUI* | *notifikasiAktif* | *tampilkanNotifikasi(), onClickNotification()* |
+| *C19* | *NotificationController* | *currentPemilik, targetProduk* | *cekMarginNegatif(), buatNotifikasiKerugian(), kirimNotifikasi()* |
+| *C20* | *RiwayatHargaJual* | *hargaJualama, hargaBaru, waktuPerubahan* |setHargaJualLama(), setWaktuPerubahan(), getHargaLama(), getHargaBaru(), getWaktuPerubahan()|
+| *C21* | *SearchProductPage* | *kataKunciPencarian, hasilPencarian* | showPage(), showResults(), showErrorMessage()|
+| *C22* | *ProductSearchController* | *currentPemilik, kataKunci* | searchProduk(), filterByTag()|
+| *C23* | *RiwayatHargaJualPage* | *produkTerpilih, rentangWaktuFilter* | showPage(), showChart(), showErrorMessage()|
+| *C24* | *RiwayatHargaJualController* | *currentPemilik, currentProduk* | getRiwayatHarga(), filterDataByDate(), generateChartData()|
+| *C25* | *ProfilePage* | *namaUsahaInput, emailInput, noTelpInput, passwordInput* | *showPage(), getProfileInput(), clickLogout(), showSuccessMessage(), showErrorMessage()* |
+| *C26* | *ProfileController* | *currentPemilik* | *validateProfileData(), updateProfileData(), processLogout(), endSession()* |
 
 ---
 
 # BAB 6: Traceability
-Salin ulang tabel Traceability dari BAB 5 dokumen *Class Diagram*, cocokkan setiap Kebutuhan Fungsional, Use Case, dan Kelas yang saling terkait.
 
 | ID Kelas | ID Use Case | ID KF |
 | :--- | :--- | :--- |
