@@ -639,12 +639,12 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C05* | *RegistrationPage* | *usernameInput, emailInput, passwordInput,* | *submitForm(), displaySuccess(), displayError()* |
 | *C06* | *AuthController* | *-* | *validateData()* |
 ---
-### 4.2.2 Use Case UC02
+### 5.2.2 Use Case UC02
 
 **Nama Use Case:** *Login dengan akun yang sudah terdaftar*
 
 <p align="center">
-<img alt="Class Diagram UC01" src="./assets/diagram/Diagram-Class-UC02.png" width="70%">
+<img alt="Class Diagram UC02" src="./assets/diagram/Diagram-Class-UC02.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 3. Diagram Kelas Use Case UC01</i>
@@ -662,7 +662,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 ---
 
 
-### 4.2.3 Use Case UC03
+### 5.2.3 Use Case UC03
 
 **Nama Use Case:** *Menambahkan Data Produk Baru*
 
@@ -683,12 +683,12 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C11* | *MarginController* | *currentProduk, currentResep* | *validasiNamaProduk(), validasiInput(), simpanProdukBaru(), simpanResep()* |
 ---
 
-### 4.2.4 Use Case UC04
+### 5.2.4 Use Case UC04
 
 **Nama Use Case:** *Melihat Margin Keuntungan Produk*
 
 <p align="center">
-<img alt="Class Diagram UC01" src="./assets/diagram/Diagram-Class-UC04.webp" width="70%">
+<img alt="Class Diagram UC04" src="./assets/diagram/Diagram-Class-UC04.webp" width="70%">
 </p>
 <p align="center">
 <i>Gambar 5. Diagram Kelas Use Case UC04</i>
@@ -706,12 +706,12 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 ---
 
 
-### 4.2.5 Use Case UC05
+### 5.2.5 Use Case UC05
 
 **Nama Use Case:** *Mengelola Harga Jual Produk*
 
 <p align="center">
-<img alt="Class Diagram UC01" src="./assets/diagram/Diagram-Class-UC05.webp" width="70%">
+<img alt="Class Diagram UC05" src="./assets/diagram/Diagram-Class-UC05.webp" width="70%">
 </p>
 <p align="center">
 <i>Gambar 6. Diagram Kelas Use Case UC05</i>
@@ -727,7 +727,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C13* | *PriceController* | *currentPemilik, currentProduk* | *validasiInput(), updateHargaProduk(), catatRiwayat()* |
 ---
 
-### 4.2.6 Use Case UC06
+### 5.2.6 Use Case UC06
 
 **Nama Use Case:** *Menelusuri Daftar Produk*
 
@@ -747,7 +747,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 
 ---
 
-### 4.2.7 Use Case UC07
+### 5.2.7 Use Case UC07
 
 **Nama Use Case:** *Melihat Perubahan Harga Jual*
 
@@ -766,7 +766,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C23* | *PriceHistoryPage* | *produkTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
 | *C24* | *PriceHistoryController* | *currentPemilik, currentProduk* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
 ---
-### 4.2.8 Use Case UC08
+### 5.2.8 Use Case UC08
 
 **Nama Use Case:** *Memantau Tren Harga Bahan Baku*
 
@@ -786,12 +786,12 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C16* | *TrendController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
 ---
 
-### 4.2.9 Use Case UC09
+### 5.2.9 Use Case UC09
 
 **Nama Use Case:** *Menerima Notifikasi Kerugian Produk*
 
 <p align="center">
-<img src="assets/diagram/Diagram-CLass-UC09.png" width="70%">
+<img src="assets/diagram/Diagram-Class-UC09.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 10. Diagram Kelas Use Case UC09</i>
@@ -809,7 +809,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 ---
 
 
-### 4.2.10 Use Case UC10
+### 5.2.10 Use Case UC10
 
 **Nama Use Case:** *Menerima Notifikasi Perubahan Harga Bahan Baku*
 
@@ -832,7 +832,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 ---
 
 
-### 4.2.11 Use Case UC11
+### 5.2.11 Use Case UC11
 
 **Nama Use Case:** *Mengubah Data Akun*
 
@@ -852,7 +852,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 ---
 
 
-### 4.2.12 Use Case UC12
+### 5.2.12 Use Case UC12
 
 **Nama Use Case:** *Keluar dari Akun*
 
