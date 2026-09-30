@@ -603,10 +603,10 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C10* | *AddProductPage* | *Antarmuka untuk menerima input data produk dan menampilkan hasil kalkulasi secara real time (Boundary Class).* | *UC03, UC04* |
 | *C11* | *MarginController* | *Menghitung perbedaan harga jual dan harga standar untuk menghasilkan margin yang untung/rugi (Controller Class).* | *UC03, UC04* |
 | *C12* | *EditProductPage* | *Antarmuka untuk meginput data harga jual baru (Boundary Class).* | *UC05* |
-| *C13* | *PriceController* | *Memvalidasi input, baik positif maupun negatif, memproses perubahan, dan menciptakan history (Controller Class).* | *UC05, UC07* |
+| *C13* | *PriceController* | *Memvalidasi input, baik positif maupun negatif, memproses perubahan, dan menciptakan history (Controller Class).* | *UC05* |
 | *C14* | *RiwayatHargaBahanBaku* | *Menyimpan data entitas catatan fluktuasi harga beli bahan baku beserta waktu perubahannya (Entity Class).* | *UC08* |
 | *C15* | *TrenBahanBakuPage* | *Antarmuka yang menampilkan daftar bahan baku, rentang waktu, dan memvisualisasikan grafik tren (Boundary Class).* | *UC08* |
-| *C16* | *TrendController* | *Mengambil data riwayat harga dari database, menerapkan filter waktu, dan mengonversinya menjadi format grafik (Controller Class).* | *UC08* |
+| *C16* | *TrendBahanBakuController* | *Mengambil data riwayat harga dari database, menerapkan filter waktu, dan mengonversinya menjadi format grafik (Controller Class).* | *UC08* |
 | *C17* | *Notifikasi* | *Menyimpan detail pesan peringatan kerugian, waktu dikirim, dan status keterbacaan (Entity Class).* | *UC09, UC10* |
 | *C18* | *PushNotificationUI* | *Antarmuka notifikasi sistem operasi (OS) yang muncul di perangkat pengguna (Boundary Class).* | *UC09, UC10* |
 | *C19* | *NotificationController* | *Mendeteksi hasil margin negatif setelah pembaruan harga, membuat objek notifikasi, dan memicu pengiriman pesan (Controller Class).* | *UC09, UC10* |
@@ -616,7 +616,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C23* | *PriceHistoryPage* | *Antarmuka untuk menampilkan data/grafik historis perubahan harga jual suatu produk (Boundary Class).* | *UC07* |
 | *C24* | *PriceHistoryController* | *Mengambil data riwayat harga dari database dan menyusunnya menjadi format yang dapat ditampilkan (Controller Class).* | *UC07* |
 | *C25* | *ProfilePage* | *Antarmuka untuk menampilkan dan menerima input perubahan data profil (nama usaha, email, password, no telepon), serta menyediakan tombol untuk proses logout (Boundary Class).* | *UC11, UC12* |
-| *C26* | *Profile Controller* | *Mengelola logika untuk memvalidasi dan menyimpan perubahan data akun ke database, serta menangani proses pengakhiran sesi saat pengguna melakukan logout (Controller Class).* | *UC11, UC12* |
+| *C26* | *ProfileController* | *Mengelola logika untuk memvalidasi dan menyimpan perubahan data akun ke database, serta menangani proses pengakhiran sesi saat pengguna melakukan logout (Controller Class).* | *UC11, UC12* |
 
 ## 5.2 Diagram Kelas per Use Case
 
@@ -647,7 +647,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 <img alt="Class Diagram UC02" src="./assets/diagram/Diagram-Class-UC02.png" width="70%">
 </p>
 <p align="center">
-<i>Gambar 3. Diagram Kelas Use Case UC01</i>
+<i>Gambar 3. Diagram Kelas Use Case UC02</i>
 </p>
 <br>
 
@@ -699,10 +699,10 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | :--- | :--- | :--- | :--- |
 | *C01* | *PemilikUsaha* | *username, password* | *getUsername(),  getPassword()* |
 | *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli()* |
-| *C02* | *Produk* | *nama, tag, hargaJual, margin* | *getNama(), setNama(), getTag(), setTag(), setHargaJual(), setMargin(), getMargin()* |
+| *C02* | *Produk* | *namaProduk, tag, hargaJual, margin* | *getNamaProduk(), setNamaProduk(), getTag(), setTag(), setHargaJual(), setMargin(), getMargin()* |
 | *C04* | *ResepBahan* | *takaran* | *getTakaran(), setTakaran()* |
-| *C010* | *AddProductPage* | *namaInput, tagInput, bahanBakuInput, takaranInput, hargaInput* | *showPage(), getInput(), showError(), showMargin()* |
-| *C011* | *MarginController* | *currentPemilik, currentProduk* | *hitungMargin(), simpanProduk()* |
+| *C10* | *AddProductPage* | *inputNamaProduk, inputTag, inputTakaran, inputHargaJual* | *showPage(), getInput(), showErrorMessage(), showSuccessMessage()* |
+| *C11* | *MarginController* | *currentProduk, currentResep* | *validasiNamaProduk(), validasiInput(), simpanProdukBaru(), simpanResep()* |
 ---
 
 
@@ -721,8 +721,8 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
 | *C01* | *PemilikUsaha* | *username, password* | *getUsername(),  getPassword()* |
-| *C02* | *Produk* | *nama, hargaJual, margin* | *getNama(), setNama(), setHargaJual(), setMargin(), getMargin()* |
-| *C20* | *RiwayatHargaJual* | *hargaJualama, waktuPerubahan* | *setHargaJualLama(), setWaktuPerubahan(), getWaktuPerubahan()* |
+| *C02* | *Produk* | *namaProduk, hargaJual, margin* | *getNamaProduk(), setNamaProduk(), setHargaJual(), setMargin(), getMargin()* |
+| *C20* | *RiwayatHargaJual* | *hargaJualLama, waktuPerubahan* | *setHargaJualLama(), setWaktuPerubahan(), getWaktuPerubahan()* |
 | *C12* | *EditProductPage* | *hargaBaruInput* | *showPage(), getInput(), showSuccessMessage(), showErrorMessage()* |
 | *C13* | *PriceController* | *currentPemilik, currentProduk* | *validasiInput(), updateHargaProduk(), catatRiwayat()* |
 ---
@@ -761,8 +761,8 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
 | *C01* | *PemilikUsaha* | *username, password* | *getUsername(), getPassword()* |
-| *C02* | *Produk* | *namaProduk, hargaJualSaatIni* | *getNamaProduk(), getHargaJualSaatIni()* |
-| *C20* | *RiwayatHargaJual* | *hargaLama, hargaBaru, waktuPerubahan* | *getHargaLama(), getHargaBaru(), getWaktuPerubahan()* |
+| *C02* | *Produk* | *namaProduk, hargaJual* | *getNamaProduk(), getHargaJual()* |
+| *C20* | *RiwayatHargaJual* | *hargaJualLama, hargaBaru, waktuPerubahan* | *getHargaJualLama(), getHargaBaru(), getWaktuPerubahan()* |
 | *C23* | *PriceHistoryPage* | *produkTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
 | *C24* | *PriceHistoryController* | *currentPemilik, currentProduk* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
 ---
@@ -783,7 +783,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli()* |
 | *C14* | *RiwayatHargaBahanBaku* | *hargaBeliLama, waktuPerubahan* | *getHargaBeliLama(), getWaktuPerubahan()* |
 | *C15* | *TrenBahanBakuPage* | *bahanBakuTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
-| *C16* | *TrendController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
+| *C16* | *TrendBahanBakuController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
 ---
 
 ### 5.2.9 Use Case UC09
@@ -800,8 +800,8 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
-| *C01* | *PemilikUsaha* | *username, password* | *getUsername()* |
-| *C02* | *Produk* | *nama, hargaJual, margin, statusPeringatan* | *getMargin(), setStatusPeringatan(), getStatusPeringatan()* |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(), getPassword()* |
+| *C02* | *Produk* | *namaProduk, hargaJual, margin* | *getNamaProduk(), setNamaProduk(), setHargaJual(), setMargin(), getMargin()* |
 | *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *setHargaBeli(), getHargaBeli()* |
 | *C17* | *Notifikasi* | *idNotifikasi, pesanAlert, waktuKirim, isRead* | *getPesanAlert(), markAsRead()* |
 | *C18* | *PushNotificationUI* | *notifikasiAktif* | *tampilkanNotifikasi(), onClickNotification()* |
@@ -823,8 +823,8 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
-| *C01* | *PemilikUsaha* | *username, password* | *getUsername()* |
-| *C02* | *Produk* | *nama, hargaJual, margin, statusPeringatan* | *getMargin(), setStatusPeringatan(), getStatusPeringatan()* |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(), getPassword()* |
+| *C02* | *Produk* | *namaProduk, hargaJual, margin* | *getNamaProduk(), setNamaProduk(), setHargaJual(), setMargin(), getMargin()* |
 | *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *setHargaBeli(), getHargaBeli()* |
 | *C17* | *Notifikasi* | *idNotifikasi, pesanAlert, waktuKirim, isRead* | *getPesanAlert(), markAsRead()* |
 | *C18* | *PushNotificationUI* | *notifikasiAktif* | *tampilkanNotifikasi(), onClickNotification()* |
@@ -846,7 +846,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
-| *C01* | *PemilikUsaha* | *username, password* | *getUsername()* |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(), getPassword()* |
 | *C25* | *ProfilePage* | *namaUsahaInput, emailInput, noTelpInput, passwordInput* | *showPage(), getProfileInput(), clickLogout(), showSuccessMessage(), showErrorMessage()* |
 | *C26* | *ProfileController* | *currentPemilik* | *validateProfileData(), updateProfileData(), processLogout(), endSession()* |
 ---
@@ -866,7 +866,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
-| *C01* | *PemilikUsaha* | *username, password* | *getUsername()* |
+| *C01* | *PemilikUsaha* | *username, password* | *getUsername(), getPassword()* |
 | *C25* | *ProfilePage* | *namaUsahaInput, emailInput, noTelpInput, passwordInput* | *showPage(), getProfileInput(), clickLogout(), showSuccessMessage(), showErrorMessage()* |
 | *C26* | *ProfileController* | *currentPemilik* | *validateProfileData(), updateProfileData(), processLogout(), endSession()* |
 ---
@@ -883,9 +883,9 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
-| *C01* | *PemilikUsaha* | *namaUsaha, email, noTelp, password* | *createUser(), getNamaUsaha(), setNamaUsaha(), getEmail() setEmail(), getNoTelp(), setNoTelp(), getPassword(), setPassword()* |
+| *C01* | *PemilikUsaha* | *namaUsaha, email, noTelp, password, username* | *createUser(), getNamaUsaha(), setNamaUsaha(), getEmail() setEmail(), getNoTelp(), setNoTelp(), getPassword(), setPassword(), getUsername()* |
 | *C02* | *Produk* | *namaProduk, tag, hargaJual, margin* | *getNamaProduk(), setNamaProduk(), getTag(), setTag(), getHargaJual(), setHargaJual(), setMargin(), getMargin()* |
-| *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli()* |
+| *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli(), setHargaBeli()* |
 | *C04* | *ResepBahan* | *takaran* | *getTakaran(), setTakaran()* |
 | *C05* | *RegistrationPage* | *usernameInput, emailInput, passwordInput* | *submitForm(), displaySuccess(), displayError()* |
 | *C06* | *AuthController* | *-* | *validateData()* |
@@ -897,16 +897,16 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C12* | *EditProductPage* | *hargaBaruInput* | *showPage(), getInput(), showSuccessMessage(), showErrorMessage()* |
 | *C13* | *PriceController* | *currentPemilik, currentProduk* | *validasiInput(), updateHargaProduk(), catatRiwayat()* |
 | *C14* | *RiwayatHargaBahanBaku* | *hargaBeliLama, waktuPerubahan* | *getHargaBeliLama(), getWaktuPerubahan()* |
-| *C15* | *TrendBahanBakuPage* | *bahanBakuTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
-| *C16* | *TrendBahanBakuController* | *McurrentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
+| *C15* | *TrenBahanBakuPage* | *bahanBakuTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
+| *C16* | *TrendBahanBakuController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
 | *C17* | *Notifikasi* | *idNotifikasi, pesanAlert, waktuKirim, isRead* | *getPesanAlert(), markAsRead()* |
 | *C18* | *PushNotificationUI* | *notifikasiAktif* | *tampilkanNotifikasi(), onClickNotification()* |
 | *C19* | *NotificationController* | *currentPemilik, targetProduk* | *cekMarginNegatif(), buatNotifikasiKerugian(), kirimNotifikasi()* |
-| *C20* | *RiwayatHargaJual* | *hargaJualama, hargaBaru, waktuPerubahan* |setHargaJualLama(), setWaktuPerubahan(), getHargaLama(), getHargaBaru(), getWaktuPerubahan()|
+| *C20* | *RiwayatHargaJual* | *hargaJualLama, hargaBaru, waktuPerubahan* |setHargaJualLama(), setWaktuPerubahan(), getHargaJualLama(), getHargaBaru(), getWaktuPerubahan()|
 | *C21* | *SearchProductPage* | *kataKunciPencarian, hasilPencarian* | showPage(), showResults(), showErrorMessage()|
 | *C22* | *ProductSearchController* | *currentPemilik, kataKunci* | searchProduk(), filterByTag()|
-| *C23* | *RiwayatHargaJualPage* | *produkTerpilih, rentangWaktuFilter* | showPage(), showChart(), showErrorMessage()|
-| *C24* | *RiwayatHargaJualController* | *currentPemilik, currentProduk* | getRiwayatHarga(), filterDataByDate(), generateChartData()|
+| *C23* | *PriceHistoryPage* | *produkTerpilih, rentangWaktuFilter* | showPage(), showChart(), showErrorMessage()|
+| *C24* | *PriceHistoryController* | *currentPemilik, currentProduk* | getRiwayatHarga(), filterDataByDate(), generateChartData()|
 | *C25* | *ProfilePage* | *namaUsahaInput, emailInput, noTelpInput, passwordInput* | *showPage(), getProfileInput(), clickLogout(), showSuccessMessage(), showErrorMessage()* |
 | *C26* | *ProfileController* | *currentPemilik* | *validateProfileData(), updateProfileData(), processLogout(), endSession()* |
 
@@ -917,8 +917,8 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | ID Kelas | ID Use Case | ID KF |
 | :--- | :--- | :--- |
 | *C01* | *UC01, UC02, UC03, UC04, UC05, UC06, UC07, UC08, UC09, UC10, UC11, UC12* | *KF01, KF02, KF03, KF04, KF05, KF06, KF07, KF08, KF09, KF10, KF11, KF12, KF13, KF14, KF15, KF16, KF17, KF18, KF19, KF20, KF21, KF22, KF23, KF24* |
-| *C02* | *UC03, UC04, UC05, UC06, UC07, UC09* | *KF05, KF06, KF07, KF08, KF09, KF10, KF11, KF12, KF13, KF14, KF15, KF16, KF17, KF18, KF21* |
-| *C03* | *UC03, UC04, UC08, UC09* | *KF05, KF06, KF07, KF08, KF09, KF10, KF11, KF12, KF13, KF14, KF19, KF20, KF21* |
+| *C02* | *UC03, UC04, UC05, UC06, UC07, UC09, UC10* | *KF05, KF06, KF07, KF08, KF09, KF10, KF11, KF12, KF13, KF14, KF15, KF16, KF17, KF18, KF21, KF22* |
+| *C03* | *UC03, UC04, UC08, UC09, UC10* | *KF05, KF06, KF07, KF08, KF09, KF10, KF11, KF12, KF13, KF14, KF19, KF20, KF21, KF22* |
 | *C04* | *UC03, UC04* | *KF05, KF06, KF07, KF10, KF11, KF12* |
 | *C05* | *UC01* | *KF01, KF02* |
 | *C06* | *UC01, UC02* | *KF01, KF02, KF03, KF04* |
@@ -928,7 +928,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C10* | *UC03, UC04* | *KF05, KF06, KF07, KF08, KF09, KF10, KF11, KF12, KF13, KF14* |
 | *C11* | *UC03, UC04* | *KF05, KF06, KF07, KF08, KF09, KF10, KF11, KF12, KF13, KF14* |
 | *C12* | *UC05* | *KF08, KF09* |
-| *C13* | *UC05, UC07* | *KF08, KF09, KF17, KF18* |
+| *C13* | *UC05* | *KF08, KF09* |
 | *C14* | *UC08* | *KF19, KF20* |
 | *C15* | *UC08* | *KF19, KF20* |
 | *C16* | *UC08* | *KF19, KF20* |
