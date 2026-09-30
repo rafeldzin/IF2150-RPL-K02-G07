@@ -667,7 +667,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 **Nama Use Case:** *Menambahkan Data Produk Baru*
 
 <p align="center">
-  <img alt="Class Diagram UC03" src="./assets/diagram/Diagram-Class-UC03.png" width="70%">
+  <img alt="Class Diagram UC03" src="./assets/diagram/diagram-class-uc03_rev.png" width="70%">
 </p>
 <p align="center">
   <i>Gambar 4. Diagram Kelas Use Case UC03</i>
@@ -874,7 +874,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 ## 5.3 Diagram Kelas Keseluruhan
 
 <p align="center">
-<img alt="Class Diagram Keseluruhan" src="./assets/diagram/Diagram-Class-Keseluruhan.png" width="70%">
+<img alt="Class Diagram Keseluruhan" src="./assets/diagram/diagram-class-keseluruhan-rev.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 14. Diagram Kelas Keseluruhan</i>
