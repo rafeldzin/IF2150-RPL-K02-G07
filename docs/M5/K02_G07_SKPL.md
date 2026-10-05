@@ -606,7 +606,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C13* | *PriceController* | *Memvalidasi input, baik positif maupun negatif, memproses perubahan, dan menciptakan history (Controller Class).* | *UC05* |
 | *C14* | *RiwayatHargaBahanBaku* | *Menyimpan data entitas catatan fluktuasi harga beli bahan baku beserta waktu perubahannya (Entity Class).* | *UC08* |
 | *C15* | *TrenBahanBakuPage* | *Antarmuka yang menampilkan daftar bahan baku, rentang waktu, dan memvisualisasikan grafik tren (Boundary Class).* | *UC08* |
-| *C16* | *TrendBahanBakuController* | *Mengambil data riwayat harga dari database, menerapkan filter waktu, dan mengonversinya menjadi format grafik (Controller Class).* | *UC08* |
+| *C16* | *TrenBahanBakuController* | *Mengambil data riwayat harga dari database, menerapkan filter waktu, dan mengonversinya menjadi format grafik (Controller Class).* | *UC08* |
 | *C17* | *Notifikasi* | *Menyimpan detail pesan peringatan kerugian, waktu dikirim, dan status keterbacaan (Entity Class).* | *UC09, UC10* |
 | *C18* | *PushNotificationUI* | *Antarmuka notifikasi sistem operasi (OS) yang muncul di perangkat pengguna (Boundary Class).* | *UC09, UC10* |
 | *C19* | *NotificationController* | *Mendeteksi hasil margin negatif setelah pembaruan harga, membuat objek notifikasi, dan memicu pengiriman pesan (Controller Class).* | *UC09, UC10* |
@@ -783,7 +783,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli()* |
 | *C14* | *RiwayatHargaBahanBaku* | *hargaBeliLama, waktuPerubahan* | *getHargaBeliLama(), getWaktuPerubahan()* |
 | *C15* | *TrenBahanBakuPage* | *bahanBakuTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
-| *C16* | *TrendBahanBakuController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
+| *C16* | *TrenBahanBakuController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
 ---
 
 ### 5.2.9 Use Case UC09
@@ -874,7 +874,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 ## 5.3 Diagram Kelas Keseluruhan
 
 <p align="center">
-<img alt="Class Diagram Keseluruhan" src="./assets/diagram/diagram-class-keseluruhan-rev.png" width="100%">
+<img alt="Class Diagram Keseluruhan" src="./assets/diagram/diagram-class-keseluruhan-final.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 14. Diagram Kelas Keseluruhan</i>
@@ -898,7 +898,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C13* | *PriceController* | *currentPemilik, currentProduk* | *validasiInput(), updateHargaProduk(), catatRiwayat()* |
 | *C14* | *RiwayatHargaBahanBaku* | *hargaBeliLama, waktuPerubahan* | *getHargaBeliLama(), getWaktuPerubahan()* |
 | *C15* | *TrenBahanBakuPage* | *bahanBakuTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
-| *C16* | *TrendBahanBakuController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
+| *C16* | *TrenBahanBakuController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
 | *C17* | *Notifikasi* | *idNotifikasi, pesanAlert, waktuKirim, isRead* | *getPesanAlert(), markAsRead()* |
 | *C18* | *PushNotificationUI* | *notifikasiAktif* | *tampilkanNotifikasi(), onClickNotification()* |
 | *C19* | *NotificationController* | *currentPemilik, targetProduk* | *cekMarginNegatif(), buatNotifikasiKerugian(), kirimNotifikasi()* |
