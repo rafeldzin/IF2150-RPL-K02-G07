@@ -73,11 +73,11 @@ Tabel 2.1. Identifikasi Komponen/Modul/Subsistem
 |*LoginPage*| *View*| *Menampilkan form untuk memasuki aplikasi menggunakan akun yang telah dibuat lalu memverifikasinya menuju AuthController, menyediakan opsi untuk mengubah password jika melupakannya.* |
 | *ResetPasswordPage* | *View* | *Menampilkan form untuk reset password lalu diteruskan menuju ResetPasswordController.* | 
 | *HomePage* | *View* | *Menampilkan halaman utama dari aplikasi dengan menunjukan beberapa menu seperti menambahkan product dan searching.* | 
-| *AddProuctPage* | *View* | ** |
-| *EditProductPage* | *View* | ** |
-| *SearchProductPage* | *View* | ** |
-| *PriceHistoryPage* | *View* | ** |
-| *ProfilePage* | *View* | ** |
+| *AddProuctPage* | *View* | *Menampilkan halaman yang berisi form untuk menambahkan product yang nanti akan diteruskan menuju MarginController untuk dihitung Margin penjualannya.* |
+| *EditProductPage* | *View* | *Menampilkan halaman yang berisi detail produk yang dapat pengguna ubah sesuai dengan keinginan lalu akan diteruskan menuju PriceController jika pengguna mengubah nilai harga jual dan disimpan pada RiwayatHargaJual* |
+| *SearchProductPage* | *View* | *Menampilkan halaman setelah pengguna mencari sebuah barang atau mencari berdasarkan tag dan bahan baku.* |
+| *PriceHistoryPage* | *View* | *Menampilkan riwayat harga jual dari sebuah produk.* |
+| *ProfilePage* | *View* | *Menampilkan halaman yang berisi data akun dari pengguna serta tombol "logout" untuk keluar dari akun.* |
 | *AuthController* | *Controller*| **|
 | *ResetPasswordController* | *Controller*| **|
 | *MarginController* | *Controller*| **|
