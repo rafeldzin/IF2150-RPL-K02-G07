@@ -40,7 +40,7 @@ Pemilihan MVC didasarkan karena karakteristik yang akan dibuat pada perangkat lu
 3. Perangkat lunak Pross hanya memiliki satu jenis pengguna sehingga kebutuhan antarmuka dapat relatif seragam.
 
 <p align="center">
-<img alt="Contoh Arsitektur MVC" src="./assets/diagram/contoh-arsitektur-mvc.webp" width="70%">
+<img alt="Contoh Arsitektur MVC" src="./assets/diagram/MVC-diagram.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 1. Contoh Arsitektur MVC</i>
