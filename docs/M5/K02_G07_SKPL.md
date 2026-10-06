@@ -599,10 +599,10 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *C06* | *AuthController* | *Memastikan bahwa input yang dilakukan oleh pemilik usaha pada halaman registrasi dan halaman login sudah sesuai dengan data yang dimiliki oleh perangkat lunak (Controller).* | *UC01, UC02* |
 | *C07* | *LoginPage* | *Antarmuka untuk menerima input data Username/Email dan Password pemilik usaha serta tombol "Login" (Boundary Class).* | *UC02* |
 | *C08* | *ResetPasswordPage* | *Antarmuka untuk menerima input berupa password baru yang dibuat oleh user dan merupakan password yang berbeda dengan password lama (Boundary Class).* | *UC02* |
-| *C09* | *ResetPasswordController* | *Mengatur seluruh keberjalanan dari proses riset password mulai dari input, verifikasi akun, serta memperbarui password user (Controller Class).* | *UC02* |
+| *C09* | *ResetPasswordController* | *Mengatur seluruh keberjalanan dari proses reset password mulai dari input, verifikasi akun, serta memperbarui password user (Controller Class).* | *UC02* |
 | *C10* | *AddProductPage* | *Antarmuka untuk menerima input data produk dan menampilkan hasil kalkulasi secara real time (Boundary Class).* | *UC03, UC04* |
 | *C11* | *MarginController* | *Menghitung perbedaan harga jual dan harga standar untuk menghasilkan margin yang untung/rugi (Controller Class).* | *UC03, UC04* |
-| *C12* | *EditProductPage* | *Antarmuka untuk meginput data harga jual baru (Boundary Class).* | *UC05* |
+| *C12* | *EditProductPage* | *Antarmuka untuk menginput data harga jual baru (Boundary Class).* | *UC05* |
 | *C13* | *PriceController* | *Memvalidasi input, baik positif maupun negatif, memproses perubahan, dan menciptakan history (Controller Class).* | *UC05* |
 | *C14* | *RiwayatHargaBahanBaku* | *Menyimpan data entitas catatan fluktuasi harga beli bahan baku beserta waktu perubahannya (Entity Class).* | *UC08* |
 | *C15* | *TrenBahanBakuPage* | *Antarmuka yang menampilkan daftar bahan baku, rentang waktu, dan memvisualisasikan grafik tren (Boundary Class).* | *UC08* |
@@ -732,7 +732,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 **Nama Use Case:** *Menelusuri Daftar Produk*
 
 <p align="center">
-<img src="assets/diagram/Diagram-Class-UC06.png" width="70%">
+<img alt="Class Diagram UC06" src="assets/diagram/Diagram-Class-UC06.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 7. Diagram Kelas Use Case UC06</i>
@@ -752,7 +752,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 **Nama Use Case:** *Melihat Perubahan Harga Jual*
 
 <p align="center">
-<img src="assets/diagram/Diagram-Class-UC07.png" width="70%">
+<img alt="Class Diagram UC07" src="assets/diagram/Diagram-Class-UC07.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 8. Diagram Kelas Use Case UC07</i>
@@ -771,7 +771,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 **Nama Use Case:** *Memantau Tren Harga Bahan Baku*
 
 <p align="center">
-<img src="assets/diagram/Diagram-Class-UC08.png" width="70%">
+<img alt="Class Diagram UC08" src="assets/diagram/Diagram-Class-UC08.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 9. Diagram Kelas Use Case UC08</i>
@@ -791,7 +791,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 **Nama Use Case:** *Menerima Notifikasi Kerugian Produk*
 
 <p align="center">
-<img src="assets/diagram/Diagram-Class-UC09.png" width="70%">
+<img alt="Class Diagram UC09" src="assets/diagram/Diagram-Class-UC09.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 10. Diagram Kelas Use Case UC09</i>
@@ -814,7 +814,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 **Nama Use Case:** *Menerima Notifikasi Perubahan Harga Bahan Baku*
 
 <p align="center">
-<img src="assets/diagram/Diagram-Class-UC10.png" width="70%">
+<img alt="Class Diagram UC10" src="assets/diagram/Diagram-Class-UC10.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 11. Diagram Kelas Use Case UC10</i>
@@ -837,7 +837,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 **Nama Use Case:** *Mengubah Data Akun*
 
 <p align="center">
-<img src="assets/diagram/Diagram-Class-UC11.png" width="70%">
+<img alt="Class Diagram UC11" src="assets/diagram/Diagram-Class-UC11.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 12. Diagram Kelas Use Case UC11</i>
@@ -857,7 +857,7 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 **Nama Use Case:** *Keluar dari Akun*
 
 <p align="center">
-<img src="assets/diagram/Diagram-Class-UC12.png" width="70%">
+<img alt="Class Diagram UC12" src="assets/diagram/Diagram-Class-UC12.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 13. Diagram Kelas Use Case UC12</i>
