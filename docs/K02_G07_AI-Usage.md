@@ -28,6 +28,7 @@
 * [Milestone 3](#milestone-3)
 * [Milestone 4](#milestone-4)
 * [Milestone 5](#milestone-5)
+* [Milestone 6](#milestone-6)
 
 ---
 
@@ -61,6 +62,12 @@
 | Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
 | :--- | :--- | :--- | :--- |
 | *Claude* | *Validasi Rancangan Diagram Class* | *"Apakah hubungan antar class yang terbentuk pada diagram ini sudah sesuai?"* | *AI memberikan penjelasan terkait bagian-bagian yang kurang tepat pada hubungan antar class.* |
+| | | | | |
+
+### Milestone 6
+| Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
+| :--- | :--- | :--- | :--- |
+| *Claude* | *Perbandingan Style Arsitektur* | *"Apa yang menjadi pembeda utama antar style arsitektur ini?"* | *AI memberikan penjelasan terkait perbedaan-perbedaan utama yang ada dari setiap style arsitektur.* |
 | | | | | |
 
 ---

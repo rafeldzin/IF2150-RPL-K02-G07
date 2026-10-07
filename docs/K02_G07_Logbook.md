@@ -28,6 +28,7 @@
 * [Milestone 3](#milestone-3)
 * [Milestone 4](#milestone-4)
 * [Milestone 5](#milestone-5)
+* [Milestone 6](#milestone-6)
 
 ---
 
@@ -93,4 +94,18 @@
 | *15-09-2026* | *Kevin Sie* | *Melengkapi M2 dan M4* | *2* | *Done* | *-* | 
 | *15-09-2026* | *Rafel Dzinun Muhammad* | *Melengkapi M2 dan M4* | *2* | *Done* | *-* | 
 | *13-09-2026* | *Muhammad Nuha Alghifari* | *Melengkapi M2 dan M4* | *2* | *Done* | *-* | 
+| | | | | | | |
+
+
+### Milestone 5
+**Periode:** [01-10-2026] - [07-10-2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+| *13-09-2026* | *Ahmad Boutros Fathir* | *Mengerjakan Bab 2 M6* | *1* | *Done* | *-* | 
+| *12-09-2026* | *Klio Lysander* | *Mengerjakan Bab 1 M6* | *1,5* | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Mengerjakan Bab 2 M6* | *1* | *Done* | *-* | 
+| *15-09-2026* | *Kevin Sie* | *Mengerjakan Bab 1 M6* | *1* | *Done* | *-* | 
+| *15-09-2026* | *Rafel Dzinun Muhammad* | *Mengerjakan Bab 3 M6* | *1* | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Nuha Alghifari* | *Mengerjakan Bab 3 M6* | *1* | *Done* | *-* | 
 | | | | | | | |
