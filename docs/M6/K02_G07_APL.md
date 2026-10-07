@@ -110,7 +110,7 @@ Logical View dipilih untuk menggambarkan struktur logis perangkat lunak Pross, y
 <img alt="Logical View pada Pross" src="./assets/diagram/Logical-View.webp" width="100%">
 </p>
 <p align="center">
-<i>Gambar 2. Contoh Logical View pada P/L E-Commerce</i>
+<i>Gambar 2. Logical View pada Pross</i>
 </p>
 
 
