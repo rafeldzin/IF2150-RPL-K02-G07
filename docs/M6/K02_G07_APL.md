@@ -113,6 +113,18 @@ Logical View dipilih untuk menggambarkan struktur logis perangkat lunak Pross, y
 <i>Gambar 2. Logical View pada Pross</i>
 </p>
 
+## 3.2 Physical View
+
+Physical View dipilih untuk memetakan bagaimana perangkat lunak Pross didistribusikan secara fisik ke dalam infrastruktur perangkat keras dan lingkungan eksekusi. View ini berfokus untuk menunjukkan di mana setiap bagian dari sistem dijalankan, sehingga mempermudah pemahaman mengenai topologi jaringan, lingkungan operasi, dan interaksi fisik antar-node penyusun sistem tanpa mengulang alur logika pemanggilan antar-komponen.
+
+<p align="center">
+<img alt="Physical View pada P/L Pross" src="./assets/diagram/physcialView.drawio.png" width="100%">
+</p>
+<p align="center">
+<i>Gambar 3. Physical View pada P/L Pross</i>
+</p>
+
+Gambar 3 merupakan diagram Physical View yang menunjukkan infrastruktur lingkungan operasi dari perangkat lunak Pross. Terdapat tiga node utama yang menyusun sistem ini. Node pertama adalah Perangkat Android bertindak sebagai Client yang menjalankan lingkungan eksekusi operasi sistem Android. Di dalam node ini, terdapat artefak Aplikasi Pross yang mewadahi pengelompokan komponen View, Controller, dan Model, serta komponen PushNotificationUI yang terpisah karena berjalan sebagai notifikasi bawaan sistem operasi. Node kedua adalah Localhost yang berperan sebagai Server untuk menangani lalu lintas data selama fase pengujian dan pengembangan. Node ketiga adalah infrastruktur Supabase yang berfungsi sebagai DBMS tempat komponen Database beroperasi secara persisten. Setiap node terhubung melalui jalur komunikasi jaringan yang diberi label sesuai dengan protokol atau aksi yang dilakukan, seperti permintaan data (API request) dan eksekusi query.
 
 ---
 
