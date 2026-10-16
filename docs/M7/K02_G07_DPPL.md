@@ -53,14 +53,12 @@ Dipersiapkan oleh:
 # BAB 1: Pendahuluan
 
 ## 1.1 Tujuan Penulisan Dokumen
-Tuliskan dengan ringkas tujuan dokumen DPPL ini dibuat dan siapa saja yang akan menggunakan dokumen ini.
+Dokumen Deskripsi Perancangan Perangkat Lunak (DPPL) ini disusun untuk mendokumentasikan perancangan teknis perangkat lunak *Pross* secara mendetail, termasuk rancangan Sequence Diagram dan Class Diagram berdasarkan spesifikasi pada SKPL dan APL. Selain itu, dokumen ini bertujuan menjadi pedoman utama bagi kelompok dalam tahap implementasi kode, sekaligus memfasilitasi asisten dalam memverifikasi kelayakan rancangan sebelum sistem mulai dikembangkan.
 
 ## 1.2 Lingkup Masalah
 Pross merupakan aplikasi berbasis mobile yang berguna untuk manajemen harga pokok penjualan yang ditujukan bagi para pedagang kuliner UMKM. Aplikasi ini membantu pemilik usaha dalam memantau profitabilitas setiap produk secara otomatis berdasarkan perubahan harga bahan baku sehingga dapat mengetahui produk yang menguntungkan ataupun merugi tanpa perlu pencatatan secara manual.
 
 ## 1.3 Definisi, Istilah, dan Singkatan
-Semua definisi dan singkatan yang digunakan dalam dokumen ini beserta penjelasannya.
-
 Tabel 1.3. Definisi Istilah dan Singkatan
 
 | Singkatan, Akronim, atau Istilah | Penjelasan |
@@ -79,7 +77,6 @@ Tabel 1.3. Definisi Istilah dan Singkatan
 Tuliskan aturan penomoran (ID) yang digunakan dalam dokumen ini. Gunakan pola ID yang **sama** dengan yang sudah dipakai pada dokumen-dokumen sebelumnya, jangan membuat pola baru di dokumen ini.
 
 Tabel 1.4. Aturan Penomoran
-
 | Hal/Bagian | Penomoran | Keterangan |
 | :--- | :--- | :--- |
 | *Kebutuhan Fungsional* | *KFXX* | |
@@ -89,10 +86,12 @@ Tabel 1.4. Aturan Penomoran
 | *Kelas* | *CXX* | |
 
 ## 1.5 Referensi
-Cantumkan dokumentasi P/L yang dirujuk oleh dokumen ini, **minimal dokumen SKPL dan APL**. Tambahkan buku, panduan, atau dokumentasi lain apabila digunakan.
+Cantumkan dokumentasi P/L yang dirujuk oleh dokumen ini, **minimal dokumen SKPL dan APL**. Tambahkan buku, panduan, atau dokumentasi lain apabila digunakan.  
+- [Spesifikasi Kebutuhan Perangkat Lunak (SKPL) *Pross*](../M5/K02_G07_SKPL.md)
+- [Arsitektur Perangkat Lunak (APL) *Pross*](../M6/K02_G07_APL.md)
 
 ## 1.6 Deskripsi Umum Dokumen (Ikhtisar)
-Tuliskan sistematika pembahasan dokumen ini secara ringkas dan runut, dengan maksimal 1 paragraf.
+Dokumen Deskripsi Perancangan Perangkat Lunak (DPPL) ini terdiri dari lima bab utama. Bab 1 berisi pendahuluan yang mencakup tujuan, lingkup masalah, definisi istilah, dan ikhtisar dokumen. Bab 2 menjabarkan perancangan arsitektur sistem yang meliputi lingkungan implementasi, pola arsitektur acuan (MVC), identifikasi komponen, serta model arsitektur perangkat lunak. Bab 3 menjelaskan realisasi untuk setiap use case secara rinci melalui identifikasi kelas perancangan, sequence diagram, dan class diagram. Bab 4 menyajikan gambaran diagram kelas perancangan (class diagram) secara keseluruhan. Terakhir, Bab 5 menampilkan matriks kerunutan (traceability matrix) yang memetakan keterkaitan antara setiap kelas perancangan dengan use case yang relevan.
 
 <br>
 
@@ -104,15 +103,25 @@ Tuliskan sistematika pembahasan dokumen ini secara ringkas dan runut, dengan mak
 
 Sebutkan *operating system*, DBMS, *development tools*, *filing system*, dan bahasa pemrograman yang digunakan.
 
+| Komponen | Spesifikasi |
+| :--- | :--- |
+| *OS* | *Android* |
+| *DBMS* | *Supabase* |
+| *Development Tools* | *VSCode, ...* |
+| *Filling System* | *GitHub* |
+| *Bahasa Pemrograman* | *...* |
+
 ## 2.2 Style/Pattern Arsitektur Acuan
 
-Tentukan *architectural style* atau *pattern* yang menjadi acuan aplikasi, misalnya *layered architecture*, *client-server*, *repository*, *pipe and filter*, atau MVC (*Model-View-Controller*).
+Pattern arsitektur yang dipilih untuk perangkat lunak Pross adalah MVC. Pada pattern ini, model bertanggung jawab dalam merepresentasikan dan mengelola data utama sistem. View bertanggung jawab menampilkan antarmuka kepada pengguna atau meneruskan aksi pengguna ke Controller. Controller berguna untuk memproses logika bisnis, memvalidasi input dan memperbarui model berdasarkan permintaan dari view. 
 
-
-Gunakan hasil **BAB 1 Style/Pattern Arsitektur Acuan pada dokumen APL**, termasuk alasan pemilihan dan gambar penerapannya pada P/L kelompok. Gunakan komponen aplikasi sendiri pada gambar, bukan hanya contoh pola umum.
+Pemilihan MVC didasarkan karena karakteristik yang akan dibuat pada perangkat lunak Pross yaitu:
+1. Satu objek pada Model yang sama akan dipakai bersama oleh beberapa View berbeda. Contoh: Pada data Produk diakses oleh AddProductPage saat sebuah produk dibuat, EditProductPage saat harga jual diubah, atau SearchProductpage saat produk suatu produk dicari
+2. Alur proses bisnis perangkat lunak Pross hampir selalu dimulai dari input, proses, dan menampilkan yang berulang dari beberapa fitur, sehingga pemisahan tanggung jawab memudahkan untuk mengembangkan tiap fitur.
+3. Perangkat lunak Pross hanya memiliki satu jenis pengguna sehingga kebutuhan antarmuka dapat relatif seragam.
 
 <p align="center">
-<img alt="Contoh Arsitektur MVC" src="./assets/diagram/contoh-arsitektur-mvc.webp" width="40%">
+<img alt="Contoh Arsitektur MVC" src="./assets/diagram/MVC-diagram.png" width="40%">
 </p>
 <p align="center">
 <i>Gambar 1. Contoh Arsitektur MVC</i>
@@ -120,17 +129,36 @@ Gunakan hasil **BAB 1 Style/Pattern Arsitektur Acuan pada dokumen APL**, termasu
 
 ## 2.3 Identifikasi Komponen / Modul / Subsistem
 
-Identifikasi komponen, modul, atau subsistem penyusun aplikasi berdasarkan *pattern* yang telah ditetapkan. Jelaskan tanggung jawab masing-masing komponen. Pengelompokan dapat mengikuti lapisan arsitektur atau fungsi/peran komponen dalam sistem.
-
-Ambil dari **Tabel 2.1 dokumen APL**, lalu kelompokkan berdasarkan lapisan (Model/View/Controller). Kolom **Jenis** diisi sesuai pattern, misalnya View, Controller, Model, Service, Repository. Satu komponen merepresentasikan saatu tanggung jawab utama yang jelas,
-
-Tabel 2.3. Identifikasi Komponen/Modul/Subsistem
-
 | Nama Komponen/Modul/Subsistem | Jenis | Penjelasan |
 | :--- | :--- | :--- |
-| *[Nama komponen/modul/subsistem]* | *[Jenis]* | *[Tanggung jawab komponen]* |
-| *[Nama komponen/modul/subsistem]* | *[Jenis]* | *[Tanggung jawab komponen]* |
-| *...* | *...* | *...* |
+| *RegistrationPage* | *View* | *Menampilkan form untuk registrasi akun yang berisi username, email, serta password, setelah input akan diteruskan menuju AuthController.* |
+| *LoginPage* | *View* | *Menampilkan form untuk memasuki aplikasi menggunakan akun yang telah dibuat lalu memverifikasinya menuju AuthController, menyediakan opsi untuk mengubah password jika melupakannya.* |
+| *ResetPasswordPage* | *View* | *Menampilkan form untuk reset password lalu diteruskan menuju ResetPasswordController.* | 
+| *HomePage* | *View* | *Menampilkan halaman utama dari aplikasi dengan menunjukan beberapa menu seperti menambahkan product dan searching.* | 
+| *AddProductPage* | *View* | *Menampilkan halaman yang berisi form untuk menambahkan product yang nanti akan diteruskan menuju MarginController untuk dihitung Margin penjualannya.* |
+| *EditProductPage* | *View* | *Menampilkan halaman yang berisi detail produk yang dapat pengguna ubah sesuai dengan keinginan lalu akan diteruskan menuju PriceController jika pengguna mengubah nilai harga jual dan disimpan pada RiwayatHargaJual.* |
+| *SearchProductPage* | *View* | *Menampilkan halaman setelah pengguna mencari sebuah barang atau mencari berdasarkan tag dan bahan baku.* |
+| *PriceHistoryPage* | *View* | *Menampilkan riwayat harga jual dari sebuah produk.* |
+| *TrenBahanBakuPage* | *View* | *Menampilkan daftar bahan baku, filter rentang waktu, dan memvisualisasikan grafik tren riwayat harga bahan baku.* |
+| *PushNotificationUI* | *View* | *Menampilkan antarmuka notifikasi bawaan sistem operasi (OS) yang muncul di perangkat pengguna sebagai peringatan kerugian.* |
+| *ProfilePage* | *View* | *Menampilkan halaman yang berisi data akun dari pengguna serta tombol "logout" untuk keluar dari akun.* |
+| *AuthController* | *Controller* | *Memproses logika verifikasi kredensial login, memvalidasi input form registrasi, dan mengelola sesi autentikasi pengguna.* |
+| *ResetPasswordController* | *Controller* | *Memvalidasi input password baru yang memenuhi standar dan memperbaruinya di dalam database.* |
+| *MarginController* | *Controller* | *Memvalidasi input produk baru, memproses kalkulasi margin awal, serta menyimpan data entitas produk dan resep ke database.* |
+| *PriceController* | *Controller* | *Memvalidasi input perubahan harga jual, memperbarui harga pada produk, dan memicu pencatatan ke dalam riwayat harga.* |
+| *ProductSearchController* | *Controller* | *Memproses kata kunci yang diinput dan melakukan pencocokan (filtering) terhadap data produk untuk menghasilkan daftar yang relevan.* |
+| *PriceHistoryController* | *Controller* | *Mengambil data riwayat harga jual dari database, menerapkan filter waktu, dan menyusunnya menjadi format grafik yang bisa ditampilkan.* |
+| *NotificationController* | *Controller* | *Mendeteksi hasil kalkulasi margin negatif setelah pembaruan harga beli, membuat objek notifikasi, dan memicu pengiriman pesan.* |
+| *TrendController* | *Controller* | *Mengambil data riwayat harga bahan baku dari database, menerapkan filter waktu, dan mengonversinya menjadi format grafik tren.* |
+| *ProfileController* | *Controller* | *Memvalidasi dan menyimpan perubahan data akun pengguna ke database, serta menangani proses pengakhiran sesi saat logout.* |
+| *PemilikUsaha* | *Model* | *Menyimpan dan merepresentasikan data atribut profil pengguna (nama usaha, email, no telepon, dan password).* |
+| *Produk* | *Model* | *Menyimpan data entitas operasional produk yang dikelola, meliputi nama, tag, harga jual, margin, dan status peringatan aktif.* |
+| *BahanBaku* | *Model* | *Menyimpan data referensi entitas bahan baku pasar beserta nominal harga belinya.* |
+| *ResepBahan* | *Model* | *Menyimpan relasi takaran spesifik dari bahan baku yang digunakan dalam komposisi resep suatu produk.* |
+| *RiwayatHargaBahanBaku* | *Model* | *Menyimpan entitas catatan historis fluktuasi harga beli bahan baku beserta stempel waktu (timestamp) perubahannya.* |
+| *RiwayatHargaJual* | *Model* | *Menyimpan entitas catatan historis perubahan harga jual suatu produk sebelum dan sesudah diperbarui beserta waktu perubahannya.* |
+| *Notifikasi* | *Model* | *Menyimpan detail entitas pesan peringatan sistem, waktu pengiriman, dan status keterbacaan (read/unread).* |
+| *Database* | *Penyimpanan Data* | *Menyimpan seluruh data model secara persisten, baik secara lokal maupun terpusat dengan menggunakan Supabase.* |
 
 ## 2.4 Model Arsitektur Perangkat Lunak
 
@@ -138,19 +166,27 @@ Buat model arsitektur dalam bentuk satu atau lebih *view* yang memperlihatkan in
 
 Gunakan hasil **BAB 3 Model Arsitektur Perangkat Lunak pada dokumen APL**. 
 
-### 2.4.1 View [Nama View]
+### 2.4.1 Logical View
 
-Tuliskan secara singkat model arsitektur yang dipilih dan alasan model tersebut cocok untuk aplikasi.
+Logical View dipilih untuk menggambarkan struktur logis perangkat lunak Pross, yaitu bagaimana komponen pada Tabel 2.1 dikelompokkan menurut pattern MVC dan saling berhubungan. Sudut pandang ini cocok untuk Pross karena aplikasi ini dirancang dengan pemisahan handling yang jelas. Ada *View* yang menampilkan antarmuka dan meneruskan aksi pengguna, ada *Controller* memproses validasi input, kalkulasi margin, pencatatan riwayat harga, dan pemicu notifikasi, lalu *Model* merepresentasikan data utama. Dengan pemisahan ini, satu *Model* seperti *Produk* dapat diakses oleh beberapa *Controller* tanpa menduplikasi logika, dan perubahan pada satu fitur tidak perlu mengubah fitur lain.
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-logical-view.webp" width="50%">
+<img alt="Logical View pada Pross" src="./assets/diagram/Logical-View.webp" width="50%">
 </p>
 <p align="center">
 <i>Gambar 2. Contoh Logical View pada P/L E-Commerce</i>
 </p>
 
-### 2.4.X View [Nama View]
-*[Lakukan hal yang sama dengan bagian sebelumnya]*
+### 2.4.2 Physical View
+Physical View dipilih untuk memetakan bagaimana perangkat lunak Pross didistribusikan secara fisik ke dalam infrastruktur perangkat keras dan lingkungan eksekusi. View ini berfokus untuk menunjukkan di mana setiap bagian dari sistem dijalankan, sehingga mempermudah pemahaman mengenai topologi jaringan, lingkungan operasi, dan interaksi fisik antar-node penyusun sistem tanpa mengulang alur logika pemanggilan antar-komponen.
+
+<p align="center">
+<img alt="Logical View pada Pross" src="./assets/diagram/physcialView.drawio.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 2. Contoh Logical View pada P/L E-Commerce</i>
+</p>
+
 
 <br>
 
@@ -159,22 +195,22 @@ Tuliskan secara singkat model arsitektur yang dipilih dan alasan model tersebut 
 
 # BAB 3: Realisasi Use Case
 
-## 3.1 Use Case [Nama Use Case 1]
+## 3.1 Use Case Mendaftarkan Akun
 
-**ID Use Case:** *[UC01 sesuai SKPL]*  
-**Nama Use Case:** *[Nama use case sesuai SKPL]*
+**ID Use Case:** *UC01*  
+**Nama Use Case:** *Mendaftarkan Akun*
 
 ### 3.1.1 Identifikasi Kelas
 
 Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
 
-Tabel 3.1. Identifikasi Kelas Use Case [UC01]
+Tabel 3.1. Identifikasi Kelas Use Case UC01
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| ... | *...* | *...* |
+| 1 | *[Nama kelas perancangan]* | *PemilikUsaha* |
+| 2 | *[Nama kelas perancangan]* | *RegistrationPage* |
+| 3 | *[Nama kelas perancangan] | *AuthController* |
 
 ### 3.1.2 Sequence Diagram
 
@@ -216,9 +252,654 @@ Pada diagram, pastikan:
 - Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
 - Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
 
-## 3.2 Use Case XX
 
-Silahkan lanjutkan untuk  *use case* berikutnya dengan content yang sama dengan 3.1
+
+## 3.2 Use Case Login dengan akun yang sudah terdaftar
+
+**ID Use Case:** *UC02*  
+**Nama Use Case:** *Login dengan akun yang sudah terdaftar*
+
+### 3.2.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.1. Identifikasi Kelas Use Case UC02
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.2.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.2.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.3 Use Case Menambahkan Data Produk Baru
+
+**ID Use Case:** *UC03*  
+**Nama Use Case:** *Menambahkan Data Produk Baru*
+
+### 3.3.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.3. Identifikasi Kelas Use Case UC03
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.3.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.3.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.4 Use Case Melihat Margin Keuntungan Produk
+
+**ID Use Case:** *UC04*  
+**Nama Use Case:** *Melihat Margin Keuntungan Produk*
+
+### 3.4.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.4. Identifikasi Kelas Use Case UC04
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.4.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.4.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.5 Use Case Mengelola Harga Jual Produk
+
+**ID Use Case:** *UC05*  
+**Nama Use Case:** *Mengelola Harga Jual Produk*
+
+### 3.5.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.5. Identifikasi Kelas Use Case UC05
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.5.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.5.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.6 Use Case Menelusuri Daftar Produk
+
+**ID Use Case:** *UC06*  
+**Nama Use Case:** *Menelusuri Daftar Produk*
+
+### 3.6.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.6. Identifikasi Kelas Use Case UC06
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.6.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.6.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.7 Use Case Melihat Perubahan Harga Jual
+
+**ID Use Case:** *UC07*  
+**Nama Use Case:** *Melihat Perubahan Harga Jual*
+
+### 3.7.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.7. Identifikasi Kelas Use Case UC07
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.7.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.7.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.8 Use Case Memantau Tren Harga Bahan Baku
+
+**ID Use Case:** *UC08*  
+**Nama Use Case:** *Memantau Tren Harga Bahan Baku*
+
+### 3.8.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.8. Identifikasi Kelas Use Case UC08
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.8.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.8.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.9 Use Case Menerima Notifikasi Kerugian Produk
+
+**ID Use Case:** *UC09*  
+**Nama Use Case:** *Menerima Notifikasi Kerugian Produk*
+
+### 3.9.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.9. Identifikasi Kelas Use Case UC09
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.9.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.9.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.10 Use Case Menerima Notifikasi Perubahan Harga Bahan Baku
+
+**ID Use Case:** *UC10*  
+**Nama Use Case:** *Menerima Notifikasi Perubahan Harga Bahan Baku*
+
+### 3.10.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.10. Identifikasi Kelas Use Case UC10
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.10.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.10.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.11 Use Case Mengubah Data Akun
+
+**ID Use Case:** *UC11*  
+**Nama Use Case:** *Mengubah Data Akun*
+
+### 3.11.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.11. Identifikasi Kelas Use Case UC11
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.11.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.11.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
+
+
+
+## 3.12 Use Case Keluar dari Akun
+
+**ID Use Case:** *UC12*  
+**Nama Use Case:** *Keluar dari Akun*
+
+### 3.12.1 Identifikasi Kelas
+
+Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
+
+Tabel 3.12. Identifikasi Kelas Use Case UC12
+
+| No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
+|:--- | :--- | :--- |
+| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
+| ... | *...* | *...* |
+
+### 3.12.2 Sequence Diagram
+
+Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
+
+- **Skenario Normal**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01]</i>
+</p>
+
+- **Skenario Alternatif [Nomor]: [Nama Skenario]**
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+</p>
+
+### 3.12.3 Diagram Kelas
+
+Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
+
+<p align="center">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+</p>
+<p align="center">
+<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+</p>
+
+Pada diagram, pastikan:
+- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
+- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
+- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
+- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
+- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
 
 <br>
 
@@ -231,20 +912,42 @@ Silahkan lanjutkan untuk  *use case* berikutnya dengan content yang sama dengan 
 **Bagian ini diisi dengan diagram kelas keseluruhan.**
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-class_diargam.png" width="35%">
+<img alt="Class Diagram Keseluruhan Pross" src="./assets/diagram/diagram-class-keseluruhan-final.png" width="35%">
 </p>
 <p align="center">
-<i>Gambar 4.1. Diagram Kelas Perancangan Keseluruhan [Nama P/L]</i>
+<i>Gambar 4.1. Diagram Kelas Perancangan Keseluruhan Pross</i>
 </p>
 
 Tabel 4.1. Daftar Kelas Perancangan Keseluruhan
 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
-| *[C01]* | *[Nama kelas]* | *[Daftar atribut]* | *[Daftar metode/operasi]* |
-| *[C02]* | *[Nama kelas]* | *[Daftar atribut]* | *[Daftar metode/operasi]* |
-| *[C03]* | *[Nama kelas]* | *[Daftar atribut]* | *[Daftar metode/operasi]* |
-| *...* | *...* | *...* | *...* |
+| *C01* | *PemilikUsaha* | *namaUsaha, email, noTelp, password, username* | *createUser(), getNamaUsaha(), setNamaUsaha(), getEmail() setEmail(), getNoTelp(), setNoTelp(), getPassword(), setPassword(), getUsername()* |
+| *C02* | *Produk* | *namaProduk, tag, hargaJual, margin* | *getNamaProduk(), setNamaProduk(), getTag(), setTag(), getHargaJual(), setHargaJual(), setMargin(), getMargin()* |
+| *C03* | *BahanBaku* | *namaBahan, hargaBeli* | *getNamaBahan(), getHargaBeli(), setHargaBeli()* |
+| *C04* | *ResepBahan* | *takaran* | *getTakaran(), setTakaran()* |
+| *C05* | *RegistrationPage* | *usernameInput, emailInput, passwordInput* | *submitForm(), displaySuccess(), displayError()* |
+| *C06* | *AuthController* | *-* | *validateData()* |
+| *C07* | *LoginPage* | *usernameInput, passwordInput* | *login(), navigateToResetPassword(), displayError()* |
+| *C08* | *ResetPasswordPage* | *emailInput, newPasswordInput, confirmNewPassword* | *submitResetRequest(), submitNewPassword(), displayError(), displaySuccess()* |
+| *C09* | *ResetPasswordController* | *-* | *validateData(), resetPassword()* |
+| *C10* | *AddProductPage* | *inputNamaProduk, inputTag, inputTakaran, inputHargaJual* | *showPage(), getInput(), showErrorMessage(), showSuccessMessage()* |
+| *C11* | *MarginController* | *currentProduk, currentResep* | *validasiNamaProduk(), validasiInput(), simpanProdukBaru(), simpanResep()* |
+| *C12* | *EditProductPage* | *hargaBaruInput* | *showPage(), getInput(), showSuccessMessage(), showErrorMessage()* |
+| *C13* | *PriceController* | *currentPemilik, currentProduk* | *validasiInput(), updateHargaProduk(), catatRiwayat()* |
+| *C14* | *RiwayatHargaBahanBaku* | *hargaBeliLama, waktuPerubahan* | *getHargaBeliLama(), getWaktuPerubahan()* |
+| *C15* | *TrenBahanBakuPage* | *bahanBakuTerpilih, rentangWaktuFilter* | *showPage(), showChart(), showErrorMessage()* |
+| *C16* | *TrenBahanBakuController* | *currentPemilik, currentBahanBaku* | *getRiwayatHarga(), filterDataByDate(), generateChartData()* |
+| *C17* | *Notifikasi* | *idNotifikasi, pesanAlert, waktuKirim, isRead* | *getPesanAlert(), markAsRead()* |
+| *C18* | *PushNotificationUI* | *notifikasiAktif* | *tampilkanNotifikasi(), onClickNotification()* |
+| *C19* | *NotificationController* | *currentPemilik, targetProduk* | *cekMarginNegatif(), buatNotifikasiKerugian(), kirimNotifikasi()* |
+| *C20* | *RiwayatHargaJual* | *hargaJualLama, hargaBaru, waktuPerubahan* |setHargaJualLama(), setWaktuPerubahan(), getHargaJualLama(), getHargaBaru(), getWaktuPerubahan()|
+| *C21* | *SearchProductPage* | *kataKunciPencarian, hasilPencarian* | showPage(), showResults(), showErrorMessage()|
+| *C22* | *ProductSearchController* | *currentPemilik, kataKunci* | searchProduk(), filterByTag()|
+| *C23* | *PriceHistoryPage* | *produkTerpilih, rentangWaktuFilter* | showPage(), showChart(), showErrorMessage()|
+| *C24* | *PriceHistoryController* | *currentPemilik, currentProduk* | getRiwayatHarga(), filterDataByDate(), generateChartData()|
+| *C25* | *ProfilePage* | *namaUsahaInput, emailInput, noTelpInput, passwordInput* | *showPage(), getProfileInput(), clickLogout(), showSuccessMessage(), showErrorMessage()* |
+| *C26* | *ProfileController* | *currentPemilik* | *validateProfileData(), updateProfileData(), processLogout(), endSession()* |
 
 <br>
 
@@ -258,6 +961,29 @@ Tabel 7.1. Matriks Kerunutan Kelas terhadap Use Case
 
 | Kelas | Use Case Terkait |
 | :--- | :--- |
-| *[ID kelas - Nama kelas]* | *[ID UC - Nama use case]* |
-| *[ID kelas - Nama kelas]* | *[ID UC - Nama use case]* |
-| *...* | *...* |
+| *C01 - PemilikUsaha* | *UC01 - Mendaftarkan Akun* <br> *UC02 - Login dengan akun yang sudah terdaftar* <br> *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* <br> *UC05 - Mengelola Harga Jual Produk* <br> *UC06 - Menelusuri Daftar Produk* <br> *UC07 - Melihat Perubahan Harga Jual* <br> *UC08 - Memantau Tren Harga Bahan Baku* <br> *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* <br> *UC11 - Mengubah Data Akun* <br> *UC12 - Keluar dari Akun* |
+| *C02 - Produk* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* <br> *UC05 - Mengelola Harga Jual Produk* <br> *UC06 - Menelusuri Daftar Produk* <br> *UC07 - Melihat Perubahan Harga Jual* <br> *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* |
+| *C03 - BahanBaku* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* <br> *UC08 - Memantau Tren Harga Bahan Baku* <br> *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* |
+| *C04 - ResepBahan* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* |
+| *C05 - RegistrationPage* | *UC01 - Mendaftarkan Akun* |
+| *C06 - AuthController* | *UC01 - Mendaftarkan Akun* <br> *UC02 - Login dengan akun yang sudah terdaftar* |
+| *C07 - LoginPage* | *UC02 - Login dengan akun yang sudah terdaftar* |
+| *C08 - ResetPasswordPage* | *UC02 - Login dengan akun yang sudah terdaftar* |
+| *C09 - ResetPasswordController* | *UC02 - Login dengan akun yang sudah terdaftar* |
+| *C10 - AddProductPage* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* |
+| *C11 - MarginController* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* |
+| *C12 - EditProductPage* | *UC05 - Mengelola Harga Jual Produk* |
+| *C13 - PriceController* | *UC05 - Mengelola Harga Jual Produk* |
+| *C14 - RiwayatHargaBahanBaku* | *UC08 - Memantau Tren Harga Bahan Baku* |
+| *C15 - TrenBahanBakuPage* | *UC08 - Memantau Tren Harga Bahan Baku* |
+| *C16 - TrenBahanBakuController* | *UC08 - Memantau Tren Harga Bahan Baku* |
+| *C17 - Notifikasi* | *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* |
+| *C18 - PushNotificationUI* | *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* |
+| *C19 - NotificationController* | *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* |
+| *C20 - RiwayatHargaJual* | *UC05 - Mengelola Harga Jual Produk* <br> *UC07 - Melihat Perubahan Harga Jual* |
+| *C21 - SearchProductPage* | *UC06 - Menelusuri Daftar Produk* |
+| *C22 - ProductSearchController* | *UC06 - Menelusuri Daftar Produk* |
+| *C23 - PriceHistoryPage* | *UC07 - Melihat Perubahan Harga Jual* |
+| *C24 - PriceHistoryController* | *UC07 - Melihat Perubahan Harga Jual* |
+| *C25 - ProfilePage* | *UC11 - Mengubah Data Akun* <br> *UC12 - Keluar dari Akun* |
+| *C26 - ProfileController* | *UC11 - Mengubah Data Akun* <br> *UC12 - Keluar dari Akun* |
