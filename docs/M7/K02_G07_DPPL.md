@@ -699,7 +699,7 @@ Tabel 3.10. Identifikasi Kelas Use Case UC10
 - **Skenario Normal dan Alternatif**
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="80%">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-sequence-uc10.png" width="80%">
 </p>
 <p align="center">
 <i>Gambar 22. Sequence Diagram [UC10]</i>
@@ -708,19 +708,11 @@ Tabel 3.10. Identifikasi Kelas Use Case UC10
 ### 3.10.3 Diagram Kelas
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-class-uc10.png" width="85%">
 </p>
 <p align="center">
-<i>Gambar 23. Diagram Kelas [Nama Uce Case]</i>
+<i>Gambar 23. Diagram Kelas Menerima Notifikasi Perubahan Harga Bahan Baku</i>
 </p>
-
-Pada diagram, pastikan:
-- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
-- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
-- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
-- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
-- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
-
 
 
 ## 3.11 Use Case Mengubah Data Akun
