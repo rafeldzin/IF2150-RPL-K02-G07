@@ -154,7 +154,7 @@ Tabel 3.1. Kebutuhan Fungsional
 | *KF16* | *R20* | *Ketika harga jual suatu produk berubah, sistem harus menyimpan perubahan tersebut sebagai data historis* |
 | *KF17* | *R21 dan R22* | *Sistem harus menampilkan grafik tren perubahan harga jual suatu produk berdasarkan data historis* |
 | *KF18* | *R23* | *Ketika harga bahan baku berubah, sistem harus menyimpan perubahan tersebut sebagai data historis* |
-| *KF19* | *R24 dan R25* | *Sistem harus menampilkan grafik tren perubahan harga jual suatu produk berdasarkan data historis* |
+| *KF19* | *R24 dan R25* | *Sistem harus menampilkan grafik tren perubahan harga bahan baku suatu produk berdasarkan data historis* |
 | *KF20* | *R26 dan R27* | *Ketika suatu produk mengalami margin negatif, sistem harus mengirimkan notifikasi kepada pengguna* |
 | *KF21* | *R28 dan R29* | *Ketika pengguna mencari produk berdasarkan nama, tag, atau bahan baku, sistem harus dapat menampilkan daftar produk terkait* |
 | *KF22* | *R30 dan R31* | *Ketika terjadi perubahan harga pada suatu bahan baku, sistem harus mengirimkan notifikasi kepada pengguna terkait produk yang relevan* | 
@@ -162,37 +162,6 @@ Tabel 3.1. Kebutuhan Fungsional
 | *KF24* | *R34 dan R35* | *Ketika pengguna memilih logout akun, sistem harus mengakhiri sesi aktif pengguna pada perangkat* |
 
 ## 3.2 Kebutuhan Non-Fungsional (KNF)
-
-Tabel 3.2. Kebutuhan Non-Fungsional
-
-| ID KNF | ID Kebutuhan | Parameter | Deskripsi Kebutuhan |
-| :--- | :--- | :--- | :--- |
-| *KF01* | *R01* | *Sistem harus menyediakan halaman registrasi akun bagi pengguna baru* |
-| *KF02* | *R02* | *Ketika pengguna berhasil melakukan registrasi, sistem harus dapat menyimpan data pengguna baru ke dalam database* |
-| *KF03* | *R04* | *Ketika pengguna akan masuk ke dalam akun, sistem harus menyediakan halaman login berupa username dan password dengan password dapat diatur visibilitynya* |
-| *KF04* | *R05* | *Ketika pengguna login, sistem harus mencocokkan username dan password sesuai dengan data yang tersimpan di database* |
-| *KF05* | *R06* | *Ketika pengguna menambahkan produk, sistem harus dapat memungkinkan pengguna menginput daftar bahan baku beserta dengan takaran yang digunakan untuk produk tertentu* |
-| *KF06* | *R07* | *Sistem harus menyediakan langkah konfirmasi sebelum data bahan baku disimpan* |
-| *KF07* | *R07* | *Ketika pengguna mengonfirmasi takaran bahan baku, sistem harus menyimpan data ke dalam database* |
-| *KF08* | *R08* | *Ketika data bahan baku dan takarannya telah tersimpan, sistem harus menghitung total modal awal produk secara otomatis * |
-| *KF09* | *R09 dan R14* | *Ketika pengguna menambahkan atau menyesuaikan produk, sistem harus dapat memungkinkan pengguna menginput harga jual suatu produk* |
-| *KF10* | *R10 dan R15* | *Ketika pengguna menambahkan atau menyesuaikan harga jual, sistem harus menyimpan data tersebut ke dalam database sesuai dengan produknya* |
-| *KF11* | *R11* | *Ketika harga modal dan harga jual tersedia, sistem harus membandingkan harga keduanya secara otomatis* |
-| *KF12* | *R12* | *Ketika terdapat perbandingan harga modal dan harga jual, sistem harus menghitung keuntungan atau kerugian dan menampilkannya kepada pengguna* |
-| *KF13* | *R16* | *Sistem memungkinkan pengguna untuk memberi nama dan tag pada suatu produk* |
-| *KF14* | *R17* | *Ketika pengguna memberikan nama atau tag, sistem harus menyimpan nama atau tag tersebut ke dalam database* |
-| *KF15* | *R18 dan R19* | *Sistem harus menampilkan daftar seluruh produk yang tersimpan di database kepada pengguna* |
-| *KF16* | *R20* | *Ketika harga jual suatu produk berubah, sistem harus menyimpan perubahan tersebut sebagai data historis* |
-| *KF17* | *R21 dan R22* | *Sistem harus menampilkan grafik tren perubahan harga jual suatu produk berdasarkan data historis* |
-| *KF18* | *R23* | *Ketika harga bahan baku berubah, sistem harus menyimpan perubahan tersebut sebagai data historis* |
-| *KF19* | *R24 dan R25* | *Sistem harus menampilkan grafik tren perubahan harga jual suatu produk berdasarkan data historis* |
-| *KF20* | *R26 dan R27* | *Ketika suatu produk mengalami margin negatif, sistem harus mengirimkan notifikasi kepada pengguna* |
-| *KF21* | *R28 dan R29* | *Ketika pengguna mencari produk berdasarkan nama, tag, atau bahan baku, sistem harus dapat menampilkan daftar produk terkait* |
-| *KF22* | *R30 dan R31* | *Ketika terjadi perubahan harga pada suatu bahan baku, sistem harus mengirimkan notifikasi kepada pengguna terkait produk yang relevan* | 
-| *KF23* | *R32 dan R33* | *Sistem harus memungkinkan pengguna melihat dan mengubah data profil akun (nama usaha, email, password, nomor telepon) serta menyimpan perubahannya ke dalam database* | 
-| *KF24* | *R34 dan R35* | *Ketika pengguna memilih logout akun, sistem harus mengakhiri sesi aktif pengguna pada perangkat* | 
-
-## 2.5 Kebutuhan Non-Fungsional (KNF)
 
 | ID KNF | ID Kebutuhan | Parameter | Deskripsi Kebutuhan |
 | :--- | :--- | :--- | :--- |
