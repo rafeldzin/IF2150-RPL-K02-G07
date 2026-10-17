@@ -641,9 +641,14 @@ Tabel 3.9. Identifikasi Kelas Use Case UC09
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| ... | *...* | *...* |
+| 1 | *PemilikUsaha* | *PemilikUsaha* |
+| 2 | *Produk* | *Produk* |
+| 3 | *BahanBaku* | *BahanBaku* |
+| 4 | *Notifikasi* | *Notifikasi* |
+| 5 | *PushNotificationUI* | *PushNotificationUI* |
+| 6 | *NotifikasiController* | *NotifikasiController* |
+
+
 
 ### 3.9.2 Sequence Diagram
 
@@ -652,10 +657,10 @@ Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario no
 - **Skenario Normal**
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-sekuens-uc09.png" width="100%">
 </p>
 <p align="center">
-<i>Gambar X. Sequence Diagram [UC01]</i>
+<i>Gambar X. Sequence Diagram [UC09]</i>
 </p>
 
 - **Skenario Alternatif [Nomor]: [Nama Skenario]**
@@ -664,7 +669,7 @@ Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario no
 <img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
 </p>
 <p align="center">
-<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+<i>Gambar X. Sequence Diagram [UC09] - [Nama skenario alternatif]</i>
 </p>
 
 ### 3.9.3 Diagram Kelas
@@ -700,9 +705,12 @@ Tabel 3.10. Identifikasi Kelas Use Case UC10
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| ... | *...* | *...* |
+| 1 | *PemilikUsaha* | *PemilikUsaha* |
+| 2 | *Produk* | *Produk* |
+| 3 | *BahanBaku* | *BahanBaku* |
+| 4 | *Notifikasi* | *Notifikasi* |
+| 5 | *PushNotificationUI* | *PushNotificationUI* |
+| 6 | *NotifikasiController* | *NotifikasiController* |
 
 ### 3.10.2 Sequence Diagram
 
@@ -714,7 +722,7 @@ Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario no
 <img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
 </p>
 <p align="center">
-<i>Gambar X. Sequence Diagram [UC01]</i>
+<i>Gambar X. Sequence Diagram [UC10]</i>
 </p>
 
 - **Skenario Alternatif [Nomor]: [Nama Skenario]**
@@ -723,7 +731,7 @@ Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario no
 <img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
 </p>
 <p align="center">
-<i>Gambar X. Sequence Diagram [UC01] - [Nama skenario alternatif]</i>
+<i>Gambar X. Sequence Diagram [UC10] - [Nama skenario alternatif]</i>
 </p>
 
 ### 3.10.3 Diagram Kelas
