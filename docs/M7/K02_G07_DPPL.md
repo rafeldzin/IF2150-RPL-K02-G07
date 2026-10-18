@@ -215,7 +215,7 @@ Tabel 3.1. Identifikasi Kelas Use Case UC01
 - **Skenario Normal dan Alternatif**
 
 <p align="center">
-<img alt="Sequence Diagram UC01 Skenario Normal" src="./assets/diagram/diagram-sequence-uc01.png" width="80%">
+<img alt="Sequence Diagram UC01 Skenario Normal" src="./assets/diagram/diagram-sequence-uc01.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 4. Sequence Diagram UC01</i>
@@ -645,50 +645,29 @@ Tabel 3.9. Identifikasi Kelas Use Case UC09
 | 4 | *Notifikasi* | *Notifikasi* |
 | 5 | *PushNotificationUI* | *PushNotificationUI* |
 | 6 | *NotifikasiController* | *NotifikasiController* |
-
+| 7 | *EditProductPage* | *EditProductPage* |
+| 8 | *-* | *HomePage* |
 
 
 ### 3.9.2 Sequence Diagram
 
-Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
-
-- **Skenario Normal**
+- **Skenario Normal dan Alternatif**
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-sekuens-uc09.png" width="100%">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-sequence-uc09.png" width="80%">
 </p>
 <p align="center">
-<i>Gambar X. Sequence Diagram [UC09]</i>
-</p>
-
-- **Skenario Alternatif [Nomor]: [Nama Skenario]**
-
-<p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
-</p>
-<p align="center">
-<i>Gambar X. Sequence Diagram [UC09] - [Nama skenario alternatif]</i>
+<i>Gambar 20. Sequence Diagram [UC09]</i>
 </p>
 
 ### 3.9.3 Diagram Kelas
 
-Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
-
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-class-uc09.png" width="80%">
 </p>
 <p align="center">
-<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+<i>Gambar 21. Diagram Kelas Menerima Notifikasi Kerugian Produk</i>
 </p>
-
-Pada diagram, pastikan:
-- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
-- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
-- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
-- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
-- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
-
-
 
 ## 3.10 Use Case Menerima Notifikasi Perubahan Harga Bahan Baku
 
@@ -703,53 +682,35 @@ Tabel 3.10. Identifikasi Kelas Use Case UC10
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
+|:--- | :--- | :--- |
 | 1 | *PemilikUsaha* | *PemilikUsaha* |
 | 2 | *Produk* | *Produk* |
 | 3 | *BahanBaku* | *BahanBaku* |
 | 4 | *Notifikasi* | *Notifikasi* |
 | 5 | *PushNotificationUI* | *PushNotificationUI* |
 | 6 | *NotifikasiController* | *NotifikasiController* |
+| 7 | *EditProductPage* | *EditProductPage* |
+| 8 | *-* | *HomePage* |
 
 ### 3.10.2 Sequence Diagram
 
-Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
-
-- **Skenario Normal**
+- **Skenario Normal dan Alternatif**
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-sequence-uc10.png" width="80%">
 </p>
 <p align="center">
-<i>Gambar X. Sequence Diagram [UC10]</i>
-</p>
-
-- **Skenario Alternatif [Nomor]: [Nama Skenario]**
-
-<p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-sequence_diagram.png" width="50%">
-</p>
-<p align="center">
-<i>Gambar X. Sequence Diagram [UC10] - [Nama skenario alternatif]</i>
+<i>Gambar 22. Sequence Diagram [UC10]</i>
 </p>
 
 ### 3.10.3 Diagram Kelas
 
-Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
-
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh_class-diagram2.jpg" width="35%">
+<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-class-uc10.png" width="85%">
 </p>
 <p align="center">
-<i>Gambar X. Diagram Kelas [Nama Uce Case]</i>
+<i>Gambar 23. Diagram Kelas Menerima Notifikasi Perubahan Harga Bahan Baku</i>
 </p>
-
-Pada diagram, pastikan:
-- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
-- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
-- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
-- Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
-- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
-
 
 
 ## 3.11 Use Case Mengubah Data Akun
