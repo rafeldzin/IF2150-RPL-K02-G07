@@ -8,7 +8,7 @@ DESKRIPSI PERANCANGAN PERANGKAT LUNAK (DPPL)
 <br>
 
 ## *Pross*
-### *[Logo Perangkat Lunak]*
+<img alt="Logo Pross" src="./assets/diagram/Logo temp Pross.jpeg" width="80%">
 
 ### Untuk: *Stefani Angeline Oroh*
 
