@@ -8,7 +8,7 @@ DESKRIPSI PERANCANGAN PERANGKAT LUNAK (DPPL)
 <br>
 
 ## *Pross*
-<img alt="Logo Pross" src="./assets/diagram/Logo temp Pross.jpeg" width="80%">
+<img alt="Logo Pross" src="./assets/diagram/Logo temp Pross.jpeg" width="70%">
 
 ### Untuk: *Stefani Angeline Oroh*
 
@@ -39,16 +39,6 @@ Dipersiapkan oleh:
 
 ---
 
-<br>
-
-> **Petunjuk pengerjaan:** *[Silahkan hapus bagian ini setelah selesai mengerjakan]*
->
-> Dokumen ini melanjutkan **Spesifikasi Kebutuhan Perangkat Lunak (SKPL)** dan **Arsitektur Perangkat Lunak (APL)**. Gunakan nama, ID, kebutuhan, dan use case yang konsisten dengan kedua dokumen tersebut. Contoh pola ID baru di bawah dapat disesuaikan dengan kesepakatan kelompok, ID yang sudah ada tetap dipertahankan.
-
-<br>
-
----
-
 
 # BAB 1: Pendahuluan
 
@@ -74,19 +64,16 @@ Tabel 1.3. Definisi Istilah dan Singkatan
 | *Tag* | *Label yang diberikan pengguna pada suatu produk untuk mempermudah dalam pencarian.* |
 
 ## 1.4 Aturan Penomoran
-Tuliskan aturan penomoran (ID) yang digunakan dalam dokumen ini. Gunakan pola ID yang **sama** dengan yang sudah dipakai pada dokumen-dokumen sebelumnya, jangan membuat pola baru di dokumen ini.
-
 Tabel 1.4. Aturan Penomoran
 | Hal/Bagian | Penomoran | Keterangan |
 | :--- | :--- | :--- |
-| *Kebutuhan Fungsional* | *KFXX* | |
-| *Kebutuhan Non-Fungsional* | *KNFXX* | |
-| *Aktor* | *AXX* | |
-| *Use Case* | *UCXX* | |
-| *Kelas* | *CXX* | |
+| *Kebutuhan Fungsional* | *KFXX* | - |
+| *Kebutuhan Non-Fungsional* | *KNFXX* | - |
+| *Aktor* | *AXX* | - |
+| *Use Case* | *UCXX* | - |
+| *Kelas* | *CXX* | - |
 
-## 1.5 Referensi
-Cantumkan dokumentasi P/L yang dirujuk oleh dokumen ini, **minimal dokumen SKPL dan APL**. Tambahkan buku, panduan, atau dokumentasi lain apabila digunakan.  
+## 1.5 Referensi 
 - [Spesifikasi Kebutuhan Perangkat Lunak (SKPL) *Pross*](../M5/K02_G07_SKPL.md)
 - [Arsitektur Perangkat Lunak (APL) *Pross*](../M6/K02_G07_APL.md)
 
@@ -100,9 +87,6 @@ Dokumen Deskripsi Perancangan Perangkat Lunak (DPPL) ini terdiri dari lima bab u
 # BAB 2: Perancangan Arsitektur
 
 ## 2.1 Rancangan Lingkungan Implementasi
-
-Sebutkan *operating system*, DBMS, *development tools*, *filing system*, dan bahasa pemrograman yang digunakan.
-
 | Komponen | Spesifikasi |
 | :--- | :--- |
 | *OS* | *Android* |
@@ -162,8 +146,6 @@ Pemilihan MVC didasarkan karena karakteristik yang akan dibuat pada perangkat lu
 
 ## 2.4 Model Arsitektur Perangkat Lunak
 
-Buat model arsitektur dalam bentuk satu atau lebih *view* yang memperlihatkan interaksi dan kolaborasi komponen, modul, serta subsistem dalam menjalankan fungsi sistem. Pilih notasi yang sesuai. Contoh *view*: *Logical View*, *Process View*, *Development View*, dan *Physical View*.
-
 ### 2.4.1 Logical View
 
 Logical View dipilih untuk menggambarkan struktur logis perangkat lunak Pross, yaitu bagaimana komponen pada Tabel 2.1 dikelompokkan menurut pattern MVC dan saling berhubungan. Sudut pandang ini cocok untuk Pross karena aplikasi ini dirancang dengan pemisahan handling yang jelas. Ada *View* yang menampilkan antarmuka dan meneruskan aksi pengguna, ada *Controller* memproses validasi input, kalkulasi margin, pencatatan riwayat harga, dan pemicu notifikasi, lalu *Model* merepresentasikan data utama. Dengan pemisahan ini, satu *Model* seperti *Produk* dapat diakses oleh beberapa *Controller* tanpa menduplikasi logika, dan perubahan pada satu fitur tidak perlu mengubah fitur lain.
@@ -199,8 +181,6 @@ Physical View dipilih untuk memetakan bagaimana perangkat lunak Pross didistribu
 **Nama Use Case:** *Mendaftarkan Akun*
 
 ### 3.1.1 Identifikasi Kelas
-
-Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
 
 Tabel 3.1. Identifikasi Kelas Use Case UC01
 
@@ -315,8 +295,6 @@ Tabel 3.3. Identifikasi Kelas Use Case UC03
 **Nama Use Case:** *Melihat Margin Keuntungan Produk*
 
 ### 3.4.1 Identifikasi Kelas
-
-Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
 
 Tabel 3.4. Identifikasi Kelas Use Case UC04
 
@@ -477,8 +455,6 @@ Pada diagram, pastikan:
 
 ### 3.7.1 Identifikasi Kelas
 
-Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
-
 Tabel 3.7. Identifikasi Kelas Use Case UC07
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
@@ -491,8 +467,6 @@ Tabel 3.7. Identifikasi Kelas Use Case UC07
 
 ### 3.7.2 Sequence Diagram
 
-Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
-
 - **Skenario Normal dan Alternatif**
 
 <p align="center">
@@ -504,22 +478,12 @@ Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario no
 
 ### 3.7.3 Diagram Kelas
 
-Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.7.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
-
 <p align="center">
 <img alt="Class Diagram UC07" src="./assets/diagram/diagram-class-uc07.png" width="50%">
 </p>
 <p align="center">
 <i>Gambar 17. Diagram Kelas Melihat Perubahan Harga Jual</i>
 </p>
-
-Pada diagram, pastikan:
-- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
-- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
-- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
-- Semua operasi yang dipanggil pada sequence diagram 3.7.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
-- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
-
 
 
 ## 3.8 Use Case Memantau Tren Harga Bahan Baku
@@ -528,8 +492,6 @@ Pada diagram, pastikan:
 **Nama Use Case:** *Memantau Tren Harga Bahan Baku*
 
 ### 3.8.1 Identifikasi Kelas
-
-Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
 
 Tabel 3.8. Identifikasi Kelas Use Case UC08
 
@@ -543,8 +505,6 @@ Tabel 3.8. Identifikasi Kelas Use Case UC08
 
 ### 3.8.2 Sequence Diagram
 
-Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
-
 - **Skenario Normal dan Alternatif**
 
 <p align="center">
@@ -557,22 +517,12 @@ Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario no
 
 ### 3.8.3 Diagram Kelas
 
-Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.8.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
-
 <p align="center">
 <img alt="Class Diagram UC08" src="./assets/diagram/diagram-class-uc08.png" width="50%">
 </p>
 <p align="center">
 <i>Gambar 19. Diagram Kelas Memantau Tren Harga Bahan Baku</i>
 </p>
-
-Pada diagram, pastikan:
-- Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya - email: String.
-- Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya + login(email: String, password: String): Boolean.
-- Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
-- Semua operasi yang dipanggil pada sequence diagram 3.8.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
-- Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
-
 
 
 ## 3.9 Use Case Menerima Notifikasi Kerugian Produk
@@ -581,8 +531,6 @@ Pada diagram, pastikan:
 **Nama Use Case:** *Menerima Notifikasi Kerugian Produk*
 
 ### 3.9.1 Identifikasi Kelas
-
-Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
 
 Tabel 3.9. Identifikasi Kelas Use Case UC09
 
@@ -625,8 +573,6 @@ Tabel 3.9. Identifikasi Kelas Use Case UC09
 
 ### 3.10.1 Identifikasi Kelas
 
-Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
-
 Tabel 3.10. Identifikasi Kelas Use Case UC10
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
@@ -668,8 +614,6 @@ Tabel 3.10. Identifikasi Kelas Use Case UC10
 **Nama Use Case:** *Mengubah Data Akun*
 
 ### 3.11.1 Identifikasi Kelas
-
-Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
 
 Tabel 3.11. Identifikasi Kelas Use Case UC11
 
@@ -741,8 +685,6 @@ Tabel 3.12. Identifikasi Kelas Use Case UC12
 
 ## 4.1 Diagram Kelas
 
-**Bagian ini diisi dengan diagram kelas keseluruhan.**
-
 <p align="center">
 <img alt="Class Diagram Keseluruhan Pross" src="./assets/diagram/diagram-class-keseluruhan-final.png" width="35%">
 </p>
@@ -787,9 +729,7 @@ Tabel 4.1. Daftar Kelas Perancangan Keseluruhan
 
 # BAB 5: Matriks Kerunutan
 
-Petakan kelas perancangan dengan use case yang terkait. Gunakan **BAB 6 Traceability pada dokumen SKPL** sebagai acuan keterkaitan kelas analisis dan use case, lalu sesuaikan dengan realisasi use case dan kelas perancangan pada BAB 3–BAB 5 DPPL.
-
-Tabel 7.1. Matriks Kerunutan Kelas terhadap Use Case
+Tabel 5.1. Matriks Kerunutan Kelas terhadap Use Case
 
 | Kelas | Use Case Terkait |
 | :--- | :--- |
