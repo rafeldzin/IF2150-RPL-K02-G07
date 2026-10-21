@@ -91,9 +91,9 @@ Dokumen Deskripsi Perancangan Perangkat Lunak (DPPL) ini terdiri dari lima bab u
 | :--- | :--- |
 | *OS* | *Android* |
 | *DBMS* | *Supabase* |
-| *Development Tools* | *VSCode, ...* |
+| *Development Tools* | *VSCode, Git, Supabase Dashboard* |
 | *Filling System* | *GitHub* |
-| *Bahasa Pemrograman* | *...* |
+| *Bahasa Pemrograman* | *Typescript* |
 
 ## 2.2 Style/Pattern Arsitektur Acuan
 

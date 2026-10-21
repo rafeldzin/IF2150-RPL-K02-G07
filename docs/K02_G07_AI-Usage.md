@@ -29,6 +29,7 @@
 * [Milestone 4](#milestone-4)
 * [Milestone 5](#milestone-5)
 * [Milestone 6](#milestone-6)
+* [Milestone 7](#milestone-7)
 
 ---
 
@@ -68,6 +69,12 @@
 | Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
 | :--- | :--- | :--- | :--- |
 | *Claude* | *Perbandingan Style Arsitektur* | *"Apa yang menjadi pembeda utama antar style arsitektur ini?"* | *AI memberikan penjelasan terkait perbedaan-perbedaan utama yang ada dari setiap style arsitektur.* |
+| | | | | |
+
+### Milestone 7
+| Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
+| :--- | :--- | :--- | :--- |
+| *Claude* | *Pengecekan traceability* | *"Apakah setiap class, arsitektur, dan komponen lainnya sudah sesuai antar dokumen?"* | *AI memberikan hasil traceability yang belum dimasukkan.* |
 | | | | | |
 
 ---

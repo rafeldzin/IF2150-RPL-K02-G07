@@ -29,6 +29,7 @@
 * [Milestone 4](#milestone-4)
 * [Milestone 5](#milestone-5)
 * [Milestone 6](#milestone-6)
+* [Milestone 7](#milestone-7)
 
 ---
 
@@ -97,7 +98,7 @@
 | | | | | | | |
 
 
-### Milestone 5
+### Milestone 6
 **Periode:** [01-10-2026] - [07-10-2026]
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
@@ -108,4 +109,17 @@
 | *15-09-2026* | *Kevin Sie* | *Mengerjakan Bab 1 M6* | *1* | *Done* | *-* | 
 | *15-09-2026* | *Rafel Dzinun Muhammad* | *Mengerjakan Bab 3 M6* | *1* | *Done* | *-* | 
 | *13-09-2026* | *Muhammad Nuha Alghifari* | *Mengerjakan Bab 3 M6* | *1* | *Done* | *-* | 
+| | | | | | | |
+
+### Milestone 7
+**Periode:** [08-10-2026] - [21-10-2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+| *13-09-2026* | *Ahmad Boutros Fathir* | *Mengerjakan diagram rekurens dan class 3.7 - 3.8* | *1* | *Done* | *-* | 
+| *12-09-2026* | *Klio Lysander* | *Mengerjakan diagram rekurens dan class 3.11 - 3.12* | *1,5* | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Fakhriyan Rizki M.* | *Mengerjakan diagram rekurens dan class 3.9 - 3.10* | *1,5* | *Done* | *-* | 
+| *15-09-2026* | *Kevin Sie* | *Mengerjakan diagram rekurens dan class 3.1 - 3.2, Merapikan dan membuat dokumen keseluruhan* | *1,5* | *Done* | *-* | 
+| *15-09-2026* | *Rafel Dzinun Muhammad* | *Mengerjakan diagram rekurens dan class 3.3 - 3.4* | *1* | *Done* | *-* | 
+| *13-09-2026* | *Muhammad Nuha Alghifari* | *Mengerjakan diagram rekurens dan class 3.5 - 3.6* | *1,5* | *Done* | *-* | 
 | | | | | | | |
