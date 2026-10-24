@@ -702,60 +702,625 @@ Tabel 5.1. Daftar Kelas Perancangan dan Kelas Analisis Terkait
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 | :--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL atau -]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL atau -]* |
-| ... | *...* | *...* |
+| 1 | *PemilikUsaha* | *PemilikUsaha* |
+| 2 | *Produk* | *Produk* |
+| 3 | *BahanBaku* | *BahanBaku* |
+| 4 | *ResepBahan* | *ResepBahan* |
+| 5 | *RegistrationPage* | *RegistrationPage* |
+| 6 | *AuthController* | *AuthController* |
+| 7 | *LoginPage* | *LoginPage* |
+| 8 | ** | ** |
 
 Untuk **setiap kelas**, identifikasi operasi berdasarkan tanggung jawab kelas beserta *visibility*-nya, serta atribut beserta *visibility* dan tipenya. Buat subbab tersendiri untuk setiap kelas.
 
-## 5.1 Kelas [Nama Kelas 1]
+## 5.1 Kelas PemilikUsaha
 
-**Nama Kelas:** *[Nama kelas]*  
-**ID Kelas:** *[ID kelas]*
+**Nama Kelas:** *PemilikUsaha*  
+**ID Kelas:** *C01*
 
-Tabel 5.1.1. Operasi Kelas [Nama Kelas 1]
+Tabel 5.1.1. Operasi Kelas PemilikUsaha
 
 | Nama Operasi | Visibility (private, public) | Keterangan |
 | :--- | :--- | :--- |
-| *[Signature operasi, termasuk parameter dan tipe kembalian]* | *[Visibility]* | *[Tanggung jawab operasi]* |
-| *...* | *...* | *...* |
-
-Tabel 5.1.2. Atribut Kelas [Nama Kelas 1]
+| *+ createUser(): void* | *public* | *Membuat akun pemilik usaha baru dengan melakukan hash terhadap password lalu menyimpan data akun ke basis data. Dipanggil AuthController setelah data registrasi lolos validasi.* |
+| *+ getNamaUsaha(): string* | *public* | *Mengambil nama usaha.* |
+| *+ setNamaUsaha(namaUsaha: string): void* | *public* | *Mengubah nama usaha dan menyimpannya ke basis data.* |
+| *+ getEmail(): string* | *public* | *Mengambil alamat email.* |
+| *+ setEmail(email: string): void* | *public* | *Mengubah email dan menyimpannya ke basis data.* |
+| *+ getNoTelp(): string* | *public* | *Mengambil nomor telepon.* |
+| *+ setNoTelp(noTelp: string): void* | *public* | *Mengubah nomor telepon dan menyimpannya ke basis data.* |
+| *+ getPassword(): string* | *public* | *Mengambil hash password untuk diverifikasi saat login.* |
+| *+ setPassword(password: string): void* | *public* | *Mengubah password: melakukan hash lalu menyimpannya ke basis data.* |
+| *+ getUsername(): string* | *public* | *Mengambil username.* |
+   
+Tabel 5.1.2. Atribut Kelas PemilikUsaha
 
 | Nama Atribut | Visibility (private, public) | Tipe |
 | :--- | :--- | :--- |
-| *[Nama atribut]* | *[Visibility]* | *[Tipe sesuai bahasa pemrograman yang digunakan]* |
-| *...* | *...* | *...* |
+| *namaUsaha* | *private* | *string* |
+| *email* | *private* | *string* |
+| *noTelp* | *private* | *string* |
+| *password* | *private* | *string* |
+| *username* | *private* | *string* |
 
 ### 5.1.1 Algoritma/Query
 
-Bagian ini diisi untuk kerangka algoritma proses yang dianggap cukup penting. Algoritma dapat dituliskan sebagai *pseudocode*. Implementasi *skeleton code* juga dapat digunakan untuk kelas yang sudah terdefinisi pada bahasa pemrograman tertentu.
-
-**Nama Kelas:** *[Nama kelas]*  
-**Nama Operasi:** *[Signature operasi]*  
-**ID Algoritma:** *[Algo-001]*
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *createUser()*  
+**ID Algoritma:** *Algo-C01-01*
 
 ```text
-[Tuliskan pseudocode algoritma operasi di sini.]
+Procedure createUser()
+    if (isEmpty(this.username) or isEmpty(this.email) or isEmpty(this.password)) then
+        raise Error("Data akun tidak lengkap")
+    hashedPassword ← HASH_FUNCTION(this.password)
+    try
+        DB_SERVICE.insertPemilikUsaha(this.username, this.email, hashedPassword,
+                                      this.namaUsaha, this.noTelp)
+        this.password ← hashedPassword
+    catch DatabaseError as e
+        raise Error("Gagal membuat akun: " + e.message)
 ```
 
-Jika operasi mengacu pada query tertentu, lengkapi tabel berikut. 
-
-Tabel 5.1.1. Query Operasi [Nama Operasi]
+Tabel 5.1.3. Query Operasi createUser()
 
 | No Query | Query | Keterangan |
 | :--- | :--- | :--- |
-| *[Q-001]* | *[Tuliskan query]* | *[Fungsi query]* |
-| *...* | *...* | *...* |
-
+| *Q-C01-01* | `INSERT INTO tbl_pemilik_usaha (username, email, password_hash, nama_usaha, no_telp) VALUES (@username, @email, @passwordHash, @namaUsaha, @noTelp);` | *Menyimpan akun pemilik usaha baru ke basis data.* |
 
 ### 5.1.2 Algoritma/Query
 
-*[Ulangi pola 5.1.1 untuk operasi penting berikutnya pada kelas yang sama, jika ada.]*
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *getNamaUsaha()*  
+**ID Algoritma:** *Algo-C01-02*
 
-## 5.2 Kelas [Nama Kelas Berikutnya]
+```text
+Function getNamaUsaha()
+    → this.namaUsaha
+```
 
-*[Ulangi pola 5.1: nama dan ID kelas, tabel operasi, tabel atribut, serta subbab algoritma/query untuk operasi penting jika diperlukan.]*
+### 5.1.3 Algoritma/Query
+
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *setNamaUsaha(namaUsaha)*  
+**ID Algoritma:** *Algo-C01-03*
+
+```text
+Procedure setNamaUsaha(namaUsaha)
+    try
+        DB_SERVICE.updateNamaUsahaByUsername(this.username, namaUsaha)
+        this.namaUsaha ← namaUsaha
+    catch DatabaseError as e
+        raise Error("Gagal memperbarui nama usaha: " + e.message)
+```
+
+Tabel 5.1.4. Query Operasi setNamaUsaha()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C01-02* | `UPDATE tbl_pemilik_usaha SET nama_usaha = @namaUsaha WHERE username = @username;` | *Memperbarui nama usaha milik pemilik usaha.* |
+
+### 5.1.4 Algoritma/Query
+
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *getEmail()*  
+**ID Algoritma:** *Algo-C01-04*
+
+```text
+Function getEmail()
+    → this.email
+```
+
+### 5.1.5 Algoritma/Query
+
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *setEmail(email)*  
+**ID Algoritma:** *Algo-C01-05*
+
+```text
+Procedure setEmail(email)
+    try
+        DB_SERVICE.updateEmailByUsername(this.username, email)
+        this.email ← email
+    catch DatabaseError as e
+        raise Error("Gagal memperbarui email: " + e.message)
+```
+
+Tabel 5.1.5. Query Operasi setEmail()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C01-03* | `UPDATE tbl_pemilik_usaha SET email = @email WHERE username = @username;` | *Memperbarui email milik pemilik usaha.* |
+
+### 5.1.6 Algoritma/Query
+
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *getNoTelp()*  
+**ID Algoritma:** *Algo-C01-06*
+
+```text
+Function getNoTelp()
+    → this.noTelp
+```
+
+### 5.1.7 Algoritma/Query
+
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *setNoTelp(noTelp)*  
+**ID Algoritma:** *Algo-C01-07*
+
+```text
+Procedure setNoTelp(noTelp)
+    try
+        DB_SERVICE.updateNoTelpByUsername(this.username, noTelp)
+        this.noTelp ← noTelp
+    catch DatabaseError as e
+        raise Error("Gagal memperbarui nomor telepon: " + e.message)
+```
+
+Tabel 5.1.6. Query Operasi setNoTelp()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C01-04* | `UPDATE tbl_pemilik_usaha SET no_telp = @noTelp WHERE username = @username;` | *Memperbarui nomor telepon milik pemilik usaha.* |
+
+### 5.1.8 Algoritma/Query
+
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *getPassword()*  
+**ID Algoritma:** *Algo-C01-08*
+
+```text
+Function getPassword()
+    → this.password
+```
+
+### 5.1.9 Algoritma/Query
+
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *setPassword(password)*  
+**ID Algoritma:** *Algo-C01-09*
+
+```text
+Procedure setPassword(password)
+    if (isEmpty(password)) then
+        raise Error("Password tidak boleh kosong")
+    hashedPassword ← HASH_FUNCTION(password)
+    try
+        DB_SERVICE.updatePasswordByUsername(this.username, hashedPassword)
+        this.password ← hashedPassword
+    catch DatabaseError as e
+        raise Error("Gagal memperbarui password: " + e.message)
+```
+
+Tabel 5.1.7. Query Operasi setPassword()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C01-05* | `UPDATE tbl_pemilik_usaha SET password_hash = @passwordHash WHERE username = @username;` | *Memperbarui hash password milik pemilik usaha.* |
+
+### 5.1.10 Algoritma/Query
+
+**Nama Kelas:** *PemilikUsaha*  
+**Nama Operasi:** *getUsername()*  
+**ID Algoritma:** *Algo-C01-10*
+
+```text
+Function getUsername()
+    → this.username
+```
+
+## 5.2 Kelas Produk
+
+**Nama Kelas:** *Produk*  
+**ID Kelas:** *C02*
+
+Tabel 5.2.1. Operasi Kelas Produk
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ getNamaProduk(): string* | *public* | *Mengambil nama produk.* |
+| *+ setNamaProduk(namaProduk: string): void* | *public* | *Mengatur nama produk; nama tidak boleh kosong.* |
+| *+ getTag(): string[]* | *public* | *Mengambil daftar tag produk.* |
+| *+ setTag(tag: string[]): void* | *public* | *Mengatur daftar tag setelah dinormalisasi (huruf kecil, tanpa spasi berlebih, tanpa duplikat).* |
+| *+ getHargaJual(): number* | *public* | *Mengambil harga jual produk.* |
+| *+ setHargaJual(hargaJual: number): void* | *public* | *Mengatur harga jual; harus bilangan positif.* |
+| *+ getMargin(): number* | *public* | *Mengambil margin keuntungan (bernilai negatif bila rugi).* |
+| *+ setMargin(margin: number): void* | *public* | *Mengatur margin hasil perhitungan MarginController.* |
+
+Tabel 5.2.2. Atribut Kelas Produk
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *namaProduk* | *private* | *string* |
+| *tag* | *private* | *string[]* |
+| *hargaJual* | *private* | *number* |
+| *margin* | *private* | *number* |
+
+### 5.2.1 Algoritma/Query
+
+**Nama Kelas:** *Produk*  
+**Nama Operasi:** *getNamaProduk()*  
+**ID Algoritma:** *Algo-C02-01*
+
+```text
+Function getNamaProduk()
+    → this.namaProduk
+```
+
+### 5.2.2 Algoritma/Query
+
+**Nama Kelas:** *Produk*  
+**Nama Operasi:** *setNamaProduk(namaProduk)*  
+**ID Algoritma:** *Algo-C02-02*
+
+```text
+Procedure setNamaProduk(namaProduk)
+    if (isEmpty(TRIM(namaProduk))) then
+        raise Error("Nama produk tidak boleh kosong")
+    this.namaProduk ← TRIM(namaProduk)
+```
+
+### 5.2.3 Algoritma/Query
+
+**Nama Kelas:** *Produk*  
+**Nama Operasi:** *getTag()*  
+**ID Algoritma:** *Algo-C02-03*
+
+```text
+Function getTag()
+    → this.tag
+```
+
+### 5.2.4 Algoritma/Query
+
+**Nama Kelas:** *Produk*  
+**Nama Operasi:** *setTag(tag)*  
+**ID Algoritma:** *Algo-C02-04*
+
+```text
+Procedure setTag(tag)
+    normalized ← new List<string>
+    for each t in tag
+        t ← LOWERCASE(TRIM(t))
+        if (not isEmpty(t) and not contains(normalized, t)) then
+            add(normalized, t)
+    this.tag ← normalized
+```
+
+### 5.2.5 Algoritma/Query
+
+**Nama Kelas:** *Produk*  
+**Nama Operasi:** *getHargaJual()*  
+**ID Algoritma:** *Algo-C02-05*
+
+```text
+Function getHargaJual()
+    → this.hargaJual
+```
+
+### 5.2.6 Algoritma/Query
+
+**Nama Kelas:** *Produk*  
+**Nama Operasi:** *setHargaJual(hargaJual)*  
+**ID Algoritma:** *Algo-C02-06*
+
+```text
+Procedure setHargaJual(hargaJual)
+    if (hargaJual = NULL or hargaJual <= 0) then
+        raise Error("Masukkan bilangan positif")
+    this.hargaJual ← hargaJual
+```
+
+### 5.2.7 Algoritma/Query
+
+**Nama Kelas:** *Produk*  
+**Nama Operasi:** *getMargin()*  
+**ID Algoritma:** *Algo-C02-07*
+
+```text
+Function getMargin()
+    → this.margin
+```
+
+### 5.2.8 Algoritma/Query
+
+**Nama Kelas:** *Produk*  
+**Nama Operasi:** *setMargin(margin)*  
+**ID Algoritma:** *Algo-C02-08*
+
+```text
+Procedure setMargin(margin)
+    this.margin ← margin
+```
+
+## 5.3 Kelas BahanBaku
+
+**Nama Kelas:** *BahanBaku*  
+**ID Kelas:** *C03*
+
+Tabel 5.3.1. Operasi Kelas BahanBaku
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ getNamaBahan(): string* | *public* | *Mengambil nama bahan baku.* |
+| *+ getHargaBeli(): number* | *public* | *Mengambil harga beli bahan baku saat ini.* |
+| *+ setHargaBeli(hargaBeli: number): void* | *public* | *Mengatur harga beli baru; harus bilangan positif. Pencatatan riwayat harga dan pemicu notifikasi dilakukan oleh kelas pemanggil (controller).* |
+
+Tabel 5.3.2. Atribut Kelas BahanBaku
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *namaBahan* | private | *string* |
+| *hargaBeli* | private | *number* |
+
+### 5.3.1 Algoritma/Query
+
+**Nama Kelas:** *BahanBaku*  
+**Nama Operasi:** *getNamaBahan()*  
+**ID Algoritma:** *Algo-C03-01*
+
+```text
+Function getNamaBahan()
+    → this.namaBahan
+```
+
+### 5.3.2 Algoritma/Query
+
+**Nama Kelas:** *BahanBaku*  
+**Nama Operasi:** *getHargaBeli()*  
+**ID Algoritma:** *Algo-C03-02*
+
+```text
+Function getHargaBeli()
+    → this.hargaBeli
+```
+
+### 5.3.3 Algoritma/Query
+
+**Nama Kelas:** *BahanBaku*  
+**Nama Operasi:** *setHargaBeli(hargaBeli)*  
+**ID Algoritma:** *Algo-C03-03*
+
+```text
+Procedure setHargaBeli(hargaBeli)
+    if (hargaBeli = NULL or hargaBeli <= 0) then
+        raise Error("Harga beli harus bilangan positif")
+    this.hargaBeli ← hargaBeli
+```
+
+## 5.4 Kelas ResepBahan
+
+**Nama Kelas:** *ResepBahan*  
+**ID Kelas:** *C04*
+
+Tabel 5.4.1. Operasi Kelas ResepBahan
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ getTakaran(): number* | *public* | *Mengambil takaran bahan baku yang dipakai dalam satu resep produk.* |
+| *+ setTakaran(takaran: number): void* | *public* | *Mengatur takaran; harus bilangan positif.* |
+
+Tabel 5.4.2. Atribut Kelas ResepBahan
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *takaran* | private | *number* |
+
+
+### 5.4.1 Algoritma/Query
+
+**Nama Kelas:** *ResepBahan*  
+**Nama Operasi:** *getTakaran()*  
+**ID Algoritma:** *Algo-C04-01*
+
+```text
+Function getTakaran()
+    → this.takaran
+```
+
+### 5.4.2 Algoritma/Query
+
+**Nama Kelas:** *ResepBahan*  
+**Nama Operasi:** *setTakaran(takaran)*  
+**ID Algoritma:** *Algo-C04-02*
+
+```text
+Procedure setTakaran(takaran)
+    if (takaran = NULL or takaran <= 0) then
+        raise Error("Input Takaran / Harga Jual Tidak Valid")
+    this.takaran ← takaran
+```
+
+## 5.5 Kelas RegistrationPage
+
+**Nama Kelas:** *RegistrationPage*  
+**ID Kelas:** *C05*
+
+Tabel 5.5.1. Operasi Kelas RegistrationPage
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ submitForm(): void* | *public* | *Mengambil isi form registrasi lalu mengirimkannya ke AuthController untuk divalidasi dan disimpan. Dipanggil saat tombol "Buat Akun" ditekan.* |
+| *+ displaySuccess(message: string): void* | *public* | *Menampilkan pesan bahwa akun berhasil dibuat.* |
+| *+ displayError(message: string): void* | *public* | *Menampilkan pesan kesalahan registrasi dan mengembalikan pengguna ke form registrasi.* |
+
+Tabel 5.5.2. Atribut Kelas RegistrationPage
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *usernameInput* | private | *string* |
+| *emailInput* | private | *string* |
+| *passwordInput* | private | *string* |
+
+### 5.5.1 Algoritma/Query
+
+**Nama Kelas:** *RegistrationPage*  
+**Nama Operasi:** *submitForm()*  
+**ID Algoritma:** *Algo-C05-01*
+
+```text
+Procedure submitForm()
+    username ← TRIM(this.usernameInput.getText())
+    email    ← TRIM(this.emailInput.getText())
+    password ← this.passwordInput.getText()
+    try
+        isValid ← AUTH_CONTROLLER.validateData(username, email, password)
+        if (isValid) then
+            displaySuccess("Akun berhasil dibuat")
+            NAVIGATOR.goTo(HomePage)
+    catch ValidationError as e
+        displayError(e.message)
+```
+
+### 5.5.2 Algoritma/Query
+
+**Nama Kelas:** *RegistrationPage*  
+**Nama Operasi:** *displaySuccess(message)*  
+**ID Algoritma:** *Algo-C05-02*
+
+```text
+Procedure displaySuccess(message)
+    this.messageLabel.setText(message)
+    this.messageLabel.setVisible(true)
+```
+
+### 5.5.3 Algoritma/Query
+
+**Nama Kelas:** *RegistrationPage*  
+**Nama Operasi:** *displayError(message)*  
+**ID Algoritma:** *Algo-C05-03*
+
+```text
+Procedure displayError(message)
+    this.errorLabel.setText(message)
+    this.errorLabel.setVisible(true)
+```
+
+## 5.6 Kelas AuthController
+
+**Nama Kelas:** *AuthController*  
+**ID Kelas:** *C06*
+
+Tabel 5.6.1. Operasi Kelas AuthController
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ validateData(username: string, email: string \| null, password: string): boolean* | *public* | *Memvalidasi data pada dua mode. Mode registrasi (email tidak NULL): memeriksa kelengkapan data, keunikan akun, dan kekuatan password, lalu membuat akun melalui PemilikUsaha.createUser(). Mode login (email = NULL): memeriksa keberadaan akun dan kecocokan password. Mengembalikan true bila berhasil; bila gagal melempar ValidationError berisi pesan untuk ditampilkan oleh page.* |
+
+Tabel 5.6.2. Atribut Kelas AuthController
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *-* | *-* | *-* |
+
+### 5.6.1 Algoritma/Query
+
+**Nama Kelas:** *AuthController*  
+**Nama Operasi:** *validateData(username, email, password)*  
+**ID Algoritma:** *Algo-C06-01*
+
+```text
+Function validateData(username, email, password)
+
+    if (email != NULL) then
+        if (isEmpty(username) or isEmpty(email) or isEmpty(password)) then
+            raise ValidationError("Data Registrasi Belum Lengkap")
+
+        count ← DB_SERVICE.countPemilikByUsernameOrEmail(username, email)
+        if (count > 0) then
+            raise ValidationError("Akun sudah dibuat")
+
+        if (LENGTH(password) < 8 or not HAS_LETTER(password) or not HAS_DIGIT(password)) then
+            raise ValidationError("Password terlalu lemah")
+
+        pemilik ← new PemilikUsaha(username, email, password)
+        pemilik.createUser()
+        → true
+
+    else
+        record ← DB_SERVICE.findPemilikByUsername(username)
+        if (record = NULL) then
+            raise ValidationError("Tidak dapat menemukan akun")
+
+        pemilik ← new PemilikUsaha(record)
+
+        if (not COMPARE_HASH(password, pemilik.getPassword())) then
+            raise ValidationError("Username atau Password Salah")
+
+        → true
+```
+
+Tabel 5.6.3. Query Operasi validateData()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C06-01* | `SELECT COUNT(1) FROM tbl_pemilik_usaha WHERE LOWER(username) = LOWER(@username) OR LOWER(email) = LOWER(@email);` | *Memeriksa apakah username atau email sudah terdaftar saat registrasi.* |
+| *Q-C06-02* | `SELECT username, email, password_hash, nama_usaha, no_telp FROM tbl_pemilik_usaha WHERE username = @username LIMIT 1;` | *Mengambil data akun berdasarkan username untuk verifikasi login.* |
+| *Q-C01-01* | `INSERT INTO tbl_pemilik_usaha (username, email, password_hash, nama_usaha, no_telp) VALUES (@username, @email, @passwordHash, @namaUsaha, @noTelp);` | *Menyimpan akun baru melalui PemilikUsaha.createUser().* |
+
+## 5.7 Kelas LoginPage
+
+**Nama Kelas:** *LoginPage*  
+**ID Kelas:** *C07*
+
+Tabel 5.7.1. Operasi Kelas LoginPage
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ login(): void* | *public* | *Mengambil username dan password dari form lalu mengirimkannya ke AuthController untuk diverifikasi. Dipanggil saat tombol "Login" ditekan.* |
+| *+ navigateToResetPassword(): void* | *public* | *Mengarahkan pengguna ke halaman reset password. Dipanggil saat tombol "Lupa Password" ditekan.* |
+| *+ displayError(pesan: string): void* | *public* | *Menampilkan pesan kesalahan login.* |
+
+Tabel 5.7.2. Atribut Kelas LoginPage
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *usernameInput* | private | *string* |
+| *passwordInput* | private | *string* |
+
+
+### 5.7.1 Algoritma/Query
+
+**Nama Kelas:** *LoginPage*  
+**Nama Operasi:** *login()*  
+**ID Algoritma:** *Algo-C07-01*
+
+```text
+Procedure login()
+    username ← TRIM(this.usernameInput.getText())
+    password ← this.passwordInput.getText()
+    try
+        isValid ← AUTH_CONTROLLER.validateData(username, NULL, password)
+        if (isValid) then
+            NAVIGATOR.goTo(HomePage)
+    catch ValidationError as e
+        displayError(e.message)
+```
+
+### 5.7.2 Algoritma/Query
+
+**Nama Kelas:** *LoginPage*  
+**Nama Operasi:** *navigateToResetPassword()*  
+**ID Algoritma:** *Algo-C07-02*
+
+```text
+Procedure navigateToResetPassword()
+    NAVIGATOR.goTo(ResetPasswordPage)
+```
+
+### 5.7.3 Algoritma/Query
+
+**Nama Kelas:** *LoginPage*  
+**Nama Operasi:** *displayError(pesan)*  
+**ID Algoritma:** *Algo-C07-03*
+
+```text
+Procedure displayError(pesan)
+    this.passwordInput.clear()
+    this.errorLabel.setText(pesan)
+    this.errorLabel.setVisible(true)
+```
 
 <br>
 
