@@ -709,7 +709,6 @@ Tabel 5.1. Daftar Kelas Perancangan dan Kelas Analisis Terkait
 | 5 | *RegistrationPage* | *RegistrationPage* |
 | 6 | *AuthController* | *AuthController* |
 | 7 | *LoginPage* | *LoginPage* |
-| 8 | ** | ** |
 
 Untuk **setiap kelas**, identifikasi operasi berdasarkan tanggung jawab kelas beserta *visibility*-nya, serta atribut beserta *visibility* dan tipenya. Buat subbab tersendiri untuk setiap kelas.
 
@@ -722,26 +721,26 @@ Tabel 5.1.1. Operasi Kelas PemilikUsaha
 
 | Nama Operasi | Visibility (private, public) | Keterangan |
 | :--- | :--- | :--- |
-| *+ createUser(): void* | *public* | *Membuat akun pemilik usaha baru dengan melakukan hash terhadap password lalu menyimpan data akun ke basis data. Dipanggil AuthController setelah data registrasi lolos validasi.* |
-| *+ getNamaUsaha(): string* | *public* | *Mengambil nama usaha.* |
-| *+ setNamaUsaha(namaUsaha: string): void* | *public* | *Mengubah nama usaha dan menyimpannya ke basis data.* |
-| *+ getEmail(): string* | *public* | *Mengambil alamat email.* |
-| *+ setEmail(email: string): void* | *public* | *Mengubah email dan menyimpannya ke basis data.* |
-| *+ getNoTelp(): string* | *public* | *Mengambil nomor telepon.* |
-| *+ setNoTelp(noTelp: string): void* | *public* | *Mengubah nomor telepon dan menyimpannya ke basis data.* |
-| *+ getPassword(): string* | *public* | *Mengambil hash password untuk diverifikasi saat login.* |
-| *+ setPassword(password: string): void* | *public* | *Mengubah password: melakukan hash lalu menyimpannya ke basis data.* |
-| *+ getUsername(): string* | *public* | *Mengambil username.* |
+| *+ createUser(): Void* | *public* | *Membuat akun pemilik usaha baru dengan melakukan hash terhadap password lalu menyimpan data akun ke basis data. Dipanggil AuthController setelah data registrasi lolos validasi.* |
+| *+ getNamaUsaha(): String* | *public* | *Mengambil nama usaha.* |
+| *+ setNamaUsaha(namaUsaha: String): Void* | *public* | *Mengubah nama usaha dan menyimpannya ke basis data.* |
+| *+ getEmail(): String* | *public* | *Mengambil alamat email.* |
+| *+ setEmail(email: String): Void* | *public* | *Mengubah email dan menyimpannya ke basis data.* |
+| *+ getNoTelp(): String* | *public* | *Mengambil nomor telepon.* |
+| *+ setNoTelp(noTelp: String): Void* | *public* | *Mengubah nomor telepon dan menyimpannya ke basis data.* |
+| *+ getPassword(): String* | *public* | *Mengambil hash password untuk diverifikasi saat login.* |
+| *+ setPassword(password: String): Void* | *public* | *Mengubah password: melakukan hash lalu menyimpannya ke basis data.* |
+| *+ getUsername(): String* | *public* | *Mengambil username.* |
    
 Tabel 5.1.2. Atribut Kelas PemilikUsaha
 
 | Nama Atribut | Visibility (private, public) | Tipe |
 | :--- | :--- | :--- |
-| *namaUsaha* | *private* | *string* |
-| *email* | *private* | *string* |
-| *noTelp* | *private* | *string* |
-| *password* | *private* | *string* |
-| *username* | *private* | *string* |
+| *namaUsaha* | *private* | *String* |
+| *email* | *private* | *String* |
+| *noTelp* | *private* | *String* |
+| *password* | *private* | *String* |
+| *username* | *private* | *String* |
 
 ### 5.1.1 Algoritma/Query
 
@@ -919,23 +918,23 @@ Tabel 5.2.1. Operasi Kelas Produk
 
 | Nama Operasi | Visibility (private, public) | Keterangan |
 | :--- | :--- | :--- |
-| *+ getNamaProduk(): string* | *public* | *Mengambil nama produk.* |
-| *+ setNamaProduk(namaProduk: string): void* | *public* | *Mengatur nama produk; nama tidak boleh kosong.* |
-| *+ getTag(): string[]* | *public* | *Mengambil daftar tag produk.* |
-| *+ setTag(tag: string[]): void* | *public* | *Mengatur daftar tag setelah dinormalisasi (huruf kecil, tanpa spasi berlebih, tanpa duplikat).* |
-| *+ getHargaJual(): number* | *public* | *Mengambil harga jual produk.* |
-| *+ setHargaJual(hargaJual: number): void* | *public* | *Mengatur harga jual; harus bilangan positif.* |
-| *+ getMargin(): number* | *public* | *Mengambil margin keuntungan (bernilai negatif bila rugi).* |
-| *+ setMargin(margin: number): void* | *public* | *Mengatur margin hasil perhitungan MarginController.* |
+| *+ getNamaProduk(): String* | *public* | *Mengambil nama produk.* |
+| *+ setNamaProduk(namaProduk: String): Void* | *public* | *Mengatur nama produk; nama tidak boleh kosong.* |
+| *+ getTag(): List Of String* | *public* | *Mengambil daftar tag produk.* |
+| *+ setTag(tag: List Of String): Void* | *public* | *Mengatur daftar tag setelah dinormalisasi (huruf kecil, tanpa spasi berlebih, tanpa duplikat).* |
+| *+ getHargaJual(): Double* | *public* | *Mengambil harga jual produk.* |
+| *+ setHargaJual(hargaJual: Double): Void* | *public* | *Mengatur harga jual; harus bilangan positif.* |
+| *+ getMargin(): Double* | *public* | *Mengambil margin keuntungan (bernilai negatif bila rugi).* |
+| *+ setMargin(margin: Double): Void* | *public* | *Mengatur margin hasil perhitungan MarginController.* |
 
 Tabel 5.2.2. Atribut Kelas Produk
 
 | Nama Atribut | Visibility (private, public) | Tipe |
 | :--- | :--- | :--- |
-| *namaProduk* | *private* | *string* |
-| *tag* | *private* | *string[]* |
-| *hargaJual* | *private* | *number* |
-| *margin* | *private* | *number* |
+| *namaProduk* | *private* | *String* |
+| *tag* | *private* | *List Of String* |
+| *hargaJual* | *private* | *Double* |
+| *margin* | *private* | *Double* |
 
 ### 5.2.1 Algoritma/Query
 
@@ -980,7 +979,7 @@ Function getTag()
 
 ```text
 Procedure setTag(tag)
-    normalized ← new List<string>
+    normalized ← new List<String>
     for each t in tag
         t ← LOWERCASE(TRIM(t))
         if (not isEmpty(t) and not contains(normalized, t)) then
@@ -1043,16 +1042,16 @@ Tabel 5.3.1. Operasi Kelas BahanBaku
 
 | Nama Operasi | Visibility (private, public) | Keterangan |
 | :--- | :--- | :--- |
-| *+ getNamaBahan(): string* | *public* | *Mengambil nama bahan baku.* |
-| *+ getHargaBeli(): number* | *public* | *Mengambil harga beli bahan baku saat ini.* |
-| *+ setHargaBeli(hargaBeli: number): void* | *public* | *Mengatur harga beli baru; harus bilangan positif. Pencatatan riwayat harga dan pemicu notifikasi dilakukan oleh kelas pemanggil (controller).* |
+| *+ getNamaBahan(): String* | *public* | *Mengambil nama bahan baku.* |
+| *+ getHargaBeli(): Double* | *public* | *Mengambil harga beli bahan baku saat ini.* |
+| *+ setHargaBeli(hargaBeli: Double): Void* | *public* | *Mengatur harga beli baru; harus bilangan positif. Pencatatan riwayat harga dan pemicu notifikasi dilakukan oleh kelas pemanggil (controller).* |
 
 Tabel 5.3.2. Atribut Kelas BahanBaku
 
 | Nama Atribut | Visibility (private, public) | Tipe |
 | :--- | :--- | :--- |
-| *namaBahan* | private | *string* |
-| *hargaBeli* | private | *number* |
+| *namaBahan* | private | *String* |
+| *hargaBeli* | private | *Double* |
 
 ### 5.3.1 Algoritma/Query
 
@@ -1098,14 +1097,14 @@ Tabel 5.4.1. Operasi Kelas ResepBahan
 
 | Nama Operasi | Visibility (private, public) | Keterangan |
 | :--- | :--- | :--- |
-| *+ getTakaran(): number* | *public* | *Mengambil takaran bahan baku yang dipakai dalam satu resep produk.* |
-| *+ setTakaran(takaran: number): void* | *public* | *Mengatur takaran; harus bilangan positif.* |
+| *+ getTakaran(): Double* | *public* | *Mengambil takaran bahan baku yang dipakai dalam satu resep produk.* |
+| *+ setTakaran(takaran: Double): Void* | *public* | *Mengatur takaran; harus bilangan positif.* |
 
 Tabel 5.4.2. Atribut Kelas ResepBahan
 
 | Nama Atribut | Visibility (private, public) | Tipe |
 | :--- | :--- | :--- |
-| *takaran* | private | *number* |
+| *takaran* | private | *Double* |
 
 
 ### 5.4.1 Algoritma/Query
@@ -1141,17 +1140,17 @@ Tabel 5.5.1. Operasi Kelas RegistrationPage
 
 | Nama Operasi | Visibility (private, public) | Keterangan |
 | :--- | :--- | :--- |
-| *+ submitForm(): void* | *public* | *Mengambil isi form registrasi lalu mengirimkannya ke AuthController untuk divalidasi dan disimpan. Dipanggil saat tombol "Buat Akun" ditekan.* |
-| *+ displaySuccess(message: string): void* | *public* | *Menampilkan pesan bahwa akun berhasil dibuat.* |
-| *+ displayError(message: string): void* | *public* | *Menampilkan pesan kesalahan registrasi dan mengembalikan pengguna ke form registrasi.* |
+| *+ submitForm(): Void* | *public* | *Mengambil isi form registrasi lalu mengirimkannya ke AuthController untuk divalidasi dan disimpan. Dipanggil saat tombol "Buat Akun" ditekan.* |
+| *+ displaySuccess(message: String): Void* | *public* | *Menampilkan pesan bahwa akun berhasil dibuat.* |
+| *+ displayError(message: String): Void* | *public* | *Menampilkan pesan kesalahan registrasi dan mengembalikan pengguna ke form registrasi.* |
 
 Tabel 5.5.2. Atribut Kelas RegistrationPage
 
 | Nama Atribut | Visibility (private, public) | Tipe |
 | :--- | :--- | :--- |
-| *usernameInput* | private | *string* |
-| *emailInput* | private | *string* |
-| *passwordInput* | private | *string* |
+| *usernameInput* | private | *String* |
+| *emailInput* | private | *String* |
+| *passwordInput* | private | *String* |
 
 ### 5.5.1 Algoritma/Query
 
@@ -1206,7 +1205,7 @@ Tabel 5.6.1. Operasi Kelas AuthController
 
 | Nama Operasi | Visibility (private, public) | Keterangan |
 | :--- | :--- | :--- |
-| *+ validateData(username: string, email: string \| null, password: string): boolean* | *public* | *Memvalidasi data pada dua mode. Mode registrasi (email tidak NULL): memeriksa kelengkapan data, keunikan akun, dan kekuatan password, lalu membuat akun melalui PemilikUsaha.createUser(). Mode login (email = NULL): memeriksa keberadaan akun dan kecocokan password. Mengembalikan true bila berhasil; bila gagal melempar ValidationError berisi pesan untuk ditampilkan oleh page.* |
+| *+ validateData(username: String, email: String, password: String): Boolean* | *public* | *Memvalidasi data pada dua mode. Mode registrasi (email tidak NULL): memeriksa kelengkapan data, keunikan akun, dan kekuatan password, lalu membuat akun melalui PemilikUsaha.createUser(). Mode login (email = NULL): memeriksa keberadaan akun dan kecocokan password. Mengembalikan true bila berhasil; bila gagal melempar ValidationError berisi pesan untuk ditampilkan oleh page.* |
 
 Tabel 5.6.2. Atribut Kelas AuthController
 
@@ -1268,16 +1267,16 @@ Tabel 5.7.1. Operasi Kelas LoginPage
 
 | Nama Operasi | Visibility (private, public) | Keterangan |
 | :--- | :--- | :--- |
-| *+ login(): void* | *public* | *Mengambil username dan password dari form lalu mengirimkannya ke AuthController untuk diverifikasi. Dipanggil saat tombol "Login" ditekan.* |
-| *+ navigateToResetPassword(): void* | *public* | *Mengarahkan pengguna ke halaman reset password. Dipanggil saat tombol "Lupa Password" ditekan.* |
-| *+ displayError(pesan: string): void* | *public* | *Menampilkan pesan kesalahan login.* |
+| *+ login(): Void* | *public* | *Mengambil username dan password dari form lalu mengirimkannya ke AuthController untuk diverifikasi. Dipanggil saat tombol "Login" ditekan.* |
+| *+ navigateToResetPassword(): Void* | *public* | *Mengarahkan pengguna ke halaman reset password. Dipanggil saat tombol "Lupa Password" ditekan.* |
+| *+ displayError(pesan: String): Void* | *public* | *Menampilkan pesan kesalahan login.* |
 
 Tabel 5.7.2. Atribut Kelas LoginPage
 
 | Nama Atribut | Visibility (private, public) | Tipe |
 | :--- | :--- | :--- |
-| *usernameInput* | private | *string* |
-| *passwordInput* | private | *string* |
+| *usernameInput* | private | *String* |
+| *passwordInput* | private | *String* |
 
 
 ### 5.7.1 Algoritma/Query
