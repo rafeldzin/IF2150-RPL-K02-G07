@@ -1321,6 +1321,586 @@ Procedure displayError(pesan)
     this.errorLabel.setVisible(true)
 ```
 
+## 5.8 Kelas ResetPasswordPage
+ 
+**Nama Kelas:** *ResetPasswordPage*  
+**ID Kelas:** *C08*
+ 
+Tabel 5.8.1. Operasi Kelas ResetPasswordPage
+ 
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ submitResetRequest(): Void* | *public* | *Mengambil email dari form lalu mengirimkannya ke ResetPasswordController untuk memastikan akun terdaftar. Bila akun ditemukan, kolom password baru ditampilkan dan dipanggil saat tombol "Kirim" ditekan.* |
+| *+ submitNewPassword(): Void* | *public* | *Mengambil password baru beserta konfirmasinya, memastikan keduanya sama, lalu mengirimkannya ke ResetPasswordController untuk divalidasi dan disimpan serta dipanggil saat tombol "Simpan Password" ditekan.* |
+| *+ displayError(pesan: String): Void* | *public* | *Menampilkan pesan kesalahan reset password.* |
+| *+ displaySuccess(pesan: String): Void* | *public* | *Menampilkan pesan bahwa password berhasil diperbarui.* |
+ 
+Tabel 5.8.2. Atribut Kelas ResetPasswordPage
+ 
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *emailInput* | private | *String* |
+| *newPasswordInput* | private | *String* |
+| *confirmNewPassword* | private | *String* |
+ 
+### 5.8.1 Algoritma/Query
+ 
+**Nama Kelas:** *ResetPasswordPage*  
+**Nama Operasi:** *submitResetRequest()*  
+**ID Algoritma:** *Algo-C08-01*
+ 
+```text
+Procedure submitResetRequest()
+    email ← TRIM(this.emailInput.getText())
+    try
+        isValid ← RESET_PASSWORD_CONTROLLER.validateData(NULL, email, NULL)
+        if (isValid) then
+            this.newPasswordInput.setVisible(true)
+            this.confirmNewPassword.setVisible(true)
+    catch ValidationError as e
+        displayError(e.message)
+```
+ 
+### 5.8.2 Algoritma/Query
+ 
+**Nama Kelas:** *ResetPasswordPage*  
+**Nama Operasi:** *submitNewPassword()*  
+**ID Algoritma:** *Algo-C08-02*
+ 
+```text
+Procedure submitNewPassword()
+    email       ← TRIM(this.emailInput.getText())
+    newPassword ← this.newPasswordInput.getText()
+    confirm     ← this.confirmNewPassword.getText()
+    if (newPassword != confirm) then
+        displayError("Konfirmasi password tidak sama")
+    else
+        try
+            isValid ← RESET_PASSWORD_CONTROLLER.validateData(NULL, email, newPassword)
+            if (isValid) then
+                displaySuccess("Password berhasil diperbarui")
+        catch ValidationError as e
+            displayError(e.message)
+```
+ 
+### 5.8.3 Algoritma/Query
+ 
+**Nama Kelas:** *ResetPasswordPage*  
+**Nama Operasi:** *displayError(pesan)*  
+**ID Algoritma:** *Algo-C08-03*
+ 
+```text
+Procedure displayError(pesan)
+    this.newPasswordInput.clear()
+    this.confirmNewPassword.clear()
+    this.errorLabel.setText(pesan)
+    this.errorLabel.setVisible(true)
+```
+ 
+### 5.8.4 Algoritma/Query
+ 
+**Nama Kelas:** *ResetPasswordPage*  
+**Nama Operasi:** *displaySuccess(pesan)*  
+**ID Algoritma:** *Algo-C08-04*
+ 
+```text
+Procedure displaySuccess(pesan)
+    this.messageLabel.setText(pesan)
+    this.messageLabel.setVisible(true)
+```
+ 
+## 5.9 Kelas ResetPasswordController
+ 
+**Nama Kelas:** *ResetPasswordController*  
+**ID Kelas:** *C09*
+ 
+Tabel 5.9.1. Operasi Kelas ResetPasswordController
+ 
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ validateData(username: String, email: String, password: String): Boolean* | *public* | *Memvalidasi permintaan reset password pada dua mode (username dan password boleh NULL). Bila password NULL: hanya memeriksa keberadaan akun berdasarkan email. Jika password tidak NULL maka memeriksa kekuatan password lalu memanggil resetPassword() dan mengembalikan true bila berhasil. Jila gagal akan melempar ValidationError berisi pesan untuk ditampilkan oleh page.* |
+| *+ resetPassword(email: String, password: String): Void* | *public* | *Mengganti password akun yang terkait dengan email tertentu melalui PemilikUsaha.setPassword()dan Dipanggil oleh validateData() setelah semua pemeriksaan lolos.* |
+ 
+Tabel 5.9.2. Atribut Kelas ResetPasswordController
+ 
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *-* | *-* | *-* |
+ 
+### 5.9.1 Algoritma/Query
+ 
+**Nama Kelas:** *ResetPasswordController*  
+**Nama Operasi:** *validateData(username, email, password)*  
+**ID Algoritma:** *Algo-C09-01*
+ 
+```text
+Function validateData(username, email, password)
+    if (isEmpty(email)) then
+        raise ValidationError("Email tidak boleh kosong")
+ 
+    record ← DB_SERVICE.findPemilikByEmail(email)
+    if (record = NULL) then
+        raise ValidationError("Tidak dapat menemukan akun")
+ 
+    if (username != NULL and LOWER(username) != LOWER(record.username)) then
+        raise ValidationError("Tidak dapat menemukan akun")
+ 
+    if (password != NULL) then
+        if (LENGTH(password) < 8 or not HAS_LETTER(password) or not HAS_DIGIT(password)) then
+            raise ValidationError("Password terlalu lemah")
+        resetPassword(email, password)
+ 
+    → true
+```
+ 
+Tabel 5.9.3. Query Operasi validateData()
+ 
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C09-01* | `SELECT username, email FROM tbl_pemilik_usaha WHERE LOWER(email) = LOWER(@email) LIMIT 1;` | *Mencari akun berdasarkan email untuk keperluan reset password.* |
+ 
+### 5.9.2 Algoritma/Query
+ 
+**Nama Kelas:** *ResetPasswordController*  
+**Nama Operasi:** *resetPassword(email, password)*  
+**ID Algoritma:** *Algo-C09-02*
+ 
+```text
+Procedure resetPassword(email, password)
+    record ← DB_SERVICE.findPemilikByEmail(email)
+    pemilik ← new PemilikUsaha(record)
+    pemilik.setPassword(password)
+```
+ 
+Tabel 5.9.4. Query Operasi resetPassword()
+ 
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C09-01* | `SELECT username, email FROM tbl_pemilik_usaha WHERE LOWER(email) = LOWER(@email) LIMIT 1;` | *Mengambil akun yang akan diganti passwordnya.* |
+| *Q-C01-05* | `UPDATE tbl_pemilik_usaha SET password_hash = @passwordHash WHERE username = @username;` | *Menyimpan hash password baru melalui PemilikUsaha.setPassword().* |
+ 
+## 5.10 Kelas AddProductPage
+ 
+**Nama Kelas:** *AddProductPage*  
+**ID Kelas:** *C10*
+ 
+Tabel 5.10.1. Operasi Kelas AddProductPage
+ 
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ showPage(): Void* | *public* | *Menampilkan form tambah produk. Pada tahap awal hanya kolom nama produk dan tag yang ditampilkan dan Dipanggil saat tombol "+" ditekan.* |
+| *+ getInput(): Void* | *public* | *Mengambil isian form lalu mengirimkannya ke MarginController memvalidasi nama produk dan tag serta bahan baku, takaran, dan harga jual divalidasi dan disimpan.* |
+| *+ showErrorMessage(pesan: String): Void* | *public* | *Menampilkan pesan kesalahan input produk.* |
+| *+ showSuccessMessage(pesan: String): Void* | *public* | *Menampilkan pesan bahwa produk berhasil ditambahkan beserta data harga dan margin produk.* |
+ 
+Tabel 5.10.2. Atribut Kelas AddProductPage
+ 
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *inputNamaProduk* | private | *String* |
+| *inputTag* | private | *String* |
+| *inputTakaran* | private | *List Of Object* |
+| *inputHargaJual* | private | *Double* |
+ 
+### 5.10.1 Algoritma/Query
+ 
+**Nama Kelas:** *AddProductPage*  
+**Nama Operasi:** *showPage()*  
+**ID Algoritma:** *Algo-C10-01*
+ 
+```text
+Procedure showPage()
+    this.tahap ← 1
+    this.inputNamaProduk.clear()
+    this.inputTag.clear()
+    this.formResep.setVisible(false)
+    NAVIGATOR.goTo(AddProductPage)
+```
+ 
+### 5.10.2 Algoritma/Query
+ 
+**Nama Kelas:** *AddProductPage*  
+**Nama Operasi:** *getInput()*  
+**ID Algoritma:** *Algo-C10-02*
+ 
+```text
+Procedure getInput()
+    if (this.tahap = 1) then
+        nama ← TRIM(this.inputNamaProduk.getText())
+        tag  ← SPLIT(this.inputTag.getText(), ",")
+        try
+            isValid ← MARGIN_CONTROLLER.validasiNamaProduk(nama, tag)
+            if (isValid) then
+                this.formResep.setVisible(true)
+                this.tahap ← 2
+        catch ValidationError as e
+            showErrorMessage(e.message)
+    else
+        daftarBahan ← this.inputTakaran.getItems()
+        hargaJual   ← PARSE_NUMBER(this.inputHargaJual.getText())
+        try
+            isValid ← MARGIN_CONTROLLER.validasiInput(daftarBahan, hargaJual)
+            if (isValid) then
+                showSuccessMessage("Berhasil ditambahkan")
+        catch ValidationError as e
+            showErrorMessage(e.message)
+```
+ 
+### 5.10.3 Algoritma/Query
+ 
+**Nama Kelas:** *AddProductPage*  
+**Nama Operasi:** *showErrorMessage(pesan)*  
+**ID Algoritma:** *Algo-C10-03*
+ 
+```text
+Procedure showErrorMessage(pesan)
+    this.errorLabel.setText(pesan)
+    this.errorLabel.setVisible(true)
+```
+ 
+### 5.10.4 Algoritma/Query
+ 
+**Nama Kelas:** *AddProductPage*  
+**Nama Operasi:** *showSuccessMessage(pesan)*  
+**ID Algoritma:** *Algo-C10-04*
+ 
+```text
+Procedure showSuccessMessage(pesan)
+    this.messageLabel.setText(pesan)
+    this.messageLabel.setVisible(true)
+    this.marginLabel.setText(FORMAT_RUPIAH(MARGIN_CONTROLLER.currentProduk.getMargin()))
+```
+ 
+## 5.11 Kelas MarginController
+ 
+**Nama Kelas:** *MarginController*  
+**ID Kelas:** *C11*
+ 
+Tabel 5.11.1. Operasi Kelas MarginController
+ 
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ validasiNamaProduk(namaProduk: String, tag: List Of String): Boolean* | *public* | *Memeriksa bahwa nama produk tidak kosong dan belum pernah dibuat oleh pemilik usaha yang sama. Jika valid, membuat objek Produk baru dan mengisi nama serta tag-nya.* |
+| *+ validasiInput(daftarBahan: List Of Object, hargaJual: Double): Boolean* | *public* | *Memvalidasi bahan baku, takaran, dan harga jual, menghitung HPP dan margin produk, lalu memanggil simpanProdukBaru() dan simpanResep(). Margin dihitung sebagai harga jual dikurangi HPP, dengan HPP = jumlah (takaran x harga beli) seluruh bahan.* |
+| *+ simpanProdukBaru(): Void* | *public* | *Menyimpan produk baru (nama, tag, harga jual, dan margin) ke basis data.* |
+| *+ simpanResep(): Void* | *public* | *Menyimpan resep produk, untuk setiap bahan, mencari bahan baku yang sudah ada (atau membuatnya bila belum ada), lalu menyimpan takarannya pada produk yang baru dibuat.* |
+ 
+Tabel 5.11.2. Atribut Kelas MarginController
+ 
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *currentProduk* | private | *Produk* |
+| *currentResep* | private | *List Of ResepBahan* |
+ 
+### 5.11.1 Algoritma/Query
+ 
+**Nama Kelas:** *MarginController*  
+**Nama Operasi:** *validasiNamaProduk(namaProduk, tag)*  
+**ID Algoritma:** *Algo-C11-01*
+ 
+```text
+Function validasiNamaProduk(namaProduk, tag)
+    if (isEmpty(TRIM(namaProduk))) then
+        raise ValidationError("Nama produk tidak boleh kosong")
+ 
+    count ← DB_SERVICE.countProdukByNama(currentPemilik.getUsername(), namaProduk)
+    if (count > 0) then
+        raise ValidationError("Nama Produk Sudah Pernah Dibuat")
+ 
+    this.currentProduk ← new Produk()
+    this.currentProduk.setNamaProduk(namaProduk)
+    this.currentProduk.setTag(tag)
+    → true
+```
+ 
+Tabel 5.11.3. Query Operasi validasiNamaProduk()
+ 
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C11-01* | `SELECT COUNT(1) FROM tbl_produk WHERE username = @username AND LOWER(nama_produk) = LOWER(@namaProduk);` | *Memeriksa apakah nama produk sudah dipakai oleh pemilik usaha yang sama.* |
+ 
+### 5.11.2 Algoritma/Query
+ 
+**Nama Kelas:** *MarginController*  
+**Nama Operasi:** *validasiInput(daftarBahan, hargaJual)*  
+**ID Algoritma:** *Algo-C11-02*
+ 
+```text
+Function validasiInput(daftarBahan, hargaJual)
+    if (isEmpty(daftarBahan)) then
+        raise ValidationError("Input Takaran / Harga Jual Tidak Valid")
+ 
+    this.currentResep ← new List<ResepBahan>
+    hpp ← 0
+    for each item in daftarBahan
+        if (isEmpty(TRIM(item.namaBahan)) or item.hargaBeli = NULL or item.hargaBeli <= 0) then
+            raise ValidationError("Input Takaran / Harga Jual Tidak Valid")
+        resep ← new ResepBahan()
+        resep.setTakaran(item.takaran)          // raise Error bila takaran <= 0
+        resep.bahanBaku ← new BahanBaku(item.namaBahan, item.hargaBeli)
+        add(this.currentResep, resep)
+        hpp ← hpp + (item.takaran * item.hargaBeli)
+ 
+    this.currentProduk.setHargaJual(hargaJual)  // raise Error bila hargaJual <= 0
+    this.currentProduk.setMargin(hargaJual - hpp)
+ 
+    simpanProdukBaru()
+    simpanResep()
+    → true
+```
+ 
+### 5.11.3 Algoritma/Query
+ 
+**Nama Kelas:** *MarginController*  
+**Nama Operasi:** *simpanProdukBaru()*  
+**ID Algoritma:** *Algo-C11-03*
+ 
+```text
+Procedure simpanProdukBaru()
+    try
+        this.currentProduk.id ← DB_SERVICE.insertProduk(currentPemilik.getUsername(),
+                                    this.currentProduk.getNamaProduk(),
+                                    this.currentProduk.getTag(),
+                                    this.currentProduk.getHargaJual(),
+                                    this.currentProduk.getMargin())
+    catch DatabaseError as e
+        raise Error("Gagal menyimpan produk: " + e.message)
+```
+ 
+Tabel 5.11.4. Query Operasi simpanProdukBaru()
+ 
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C11-02* | `INSERT INTO tbl_produk (username, nama_produk, tag, harga_jual, margin) VALUES (@username, @namaProduk, @tag, @hargaJual, @margin) RETURNING id_produk;` | *Menyimpan produk baru dan mengembalikan ID produk.* |
+ 
+### 5.11.4 Algoritma/Query
+ 
+**Nama Kelas:** *MarginController*  
+**Nama Operasi:** *simpanResep()*  
+**ID Algoritma:** *Algo-C11-04*
+ 
+```text
+Procedure simpanResep()
+    for each resep in this.currentResep
+        bahan   ← resep.bahanBaku
+        idBahan ← DB_SERVICE.findIdBahan(currentPemilik.getUsername(), bahan.getNamaBahan())
+        if (idBahan = NULL) then
+            idBahan ← DB_SERVICE.insertBahanBaku(currentPemilik.getUsername(),
+                                                 bahan.getNamaBahan(), bahan.getHargaBeli())
+        DB_SERVICE.insertResepBahan(this.currentProduk.id, idBahan, resep.getTakaran())
+```
+ 
+Tabel 5.11.5. Query Operasi simpanResep()
+ 
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C11-03* | `SELECT id_bahan FROM tbl_bahan_baku WHERE username = @username AND LOWER(nama_bahan) = LOWER(@namaBahan) LIMIT 1;` | *Mencari bahan baku yang sudah pernah dibuat.* |
+| *Q-C11-04* | `INSERT INTO tbl_bahan_baku (username, nama_bahan, harga_beli) VALUES (@username, @namaBahan, @hargaBeli) RETURNING id_bahan;` | *Menyimpan bahan baku baru.* |
+| *Q-C11-05* | `INSERT INTO tbl_resep_bahan (id_produk, id_bahan, takaran) VALUES (@idProduk, @idBahan, @takaran);` | *Menyimpan takaran bahan baku pada resep produk.* |
+ 
+## 5.12 Kelas EditProductPage
+ 
+**Nama Kelas:** *EditProductPage*  
+**ID Kelas:** *C12*
+ 
+Tabel 5.12.1. Operasi Kelas EditProductPage
+ 
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ showPage(produkTerkait: Produk): Void* | *public* | *Menampilkan halaman ubah harga jual untuk produk terpilih beserta harga jual dan margin saat ini.* |
+| *+ getInput(): Void* | *public* | *Mengambil harga jual baru dari form lalu mengirimkannya ke PriceController untuk divalidasi dan disimpan. Dipanggil saat tombol "Simpan" ditekan.* |
+| *+ showSuccessMessage(pesan: String): Void* | *public* | *Menampilkan pesan bahwa harga jual berhasil diperbarui beserta margin terbaru.* |
+| *+ showErrorMessage(pesan: String): Void* | *public* | *Menampilkan pesan kesalahan input harga jual.* |
+ 
+Tabel 5.12.2. Atribut Kelas EditProductPage
+ 
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *hargaBaruInput* | private | *Double* |
+ 
+### 5.12.1 Algoritma/Query
+ 
+**Nama Kelas:** *EditProductPage*  
+**Nama Operasi:** *showPage(produkTerkait)*  
+**ID Algoritma:** *Algo-C12-01*
+ 
+```text
+Procedure showPage(produkTerkait)
+    this.produkTerpilih ← produkTerkait
+    this.hargaBaruInput.setText(produkTerkait.getHargaJual())
+    this.marginLabel.setText(FORMAT_RUPIAH(produkTerkait.getMargin()))
+    NAVIGATOR.goTo(EditProductPage)
+```
+ 
+### 5.12.2 Algoritma/Query
+ 
+**Nama Kelas:** *EditProductPage*  
+**Nama Operasi:** *getInput()*  
+**ID Algoritma:** *Algo-C12-02*
+ 
+```text
+Procedure getInput()
+    hargaBaru ← PARSE_NUMBER(this.hargaBaruInput.getText())
+    try
+        isValid ← PRICE_CONTROLLER.validasiInput(hargaBaru)
+        if (isValid) then
+            showSuccessMessage("Harga jual berhasil diperbarui")
+    catch ValidationError as e
+        showErrorMessage(e.message)
+```
+ 
+### 5.12.3 Algoritma/Query
+ 
+**Nama Kelas:** *EditProductPage*  
+**Nama Operasi:** *showSuccessMessage(pesan)*  
+**ID Algoritma:** *Algo-C12-03*
+ 
+```text
+Procedure showSuccessMessage(pesan)
+    this.messageLabel.setText(pesan)
+    this.messageLabel.setVisible(true)
+    this.marginLabel.setText(FORMAT_RUPIAH(this.produkTerpilih.getMargin()))
+```
+ 
+### 5.12.4 Algoritma/Query
+ 
+**Nama Kelas:** *EditProductPage*  
+**Nama Operasi:** *showErrorMessage(pesan)*  
+**ID Algoritma:** *Algo-C12-04*
+ 
+```text
+Procedure showErrorMessage(pesan)
+    this.errorLabel.setText(pesan)
+    this.errorLabel.setVisible(true)
+```
+ 
+## 5.13 Kelas PriceController
+ 
+**Nama Kelas:** *PriceController*  
+**ID Kelas:** *C13*
+ 
+Tabel 5.13.1. Operasi Kelas PriceController
+ 
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ validasiInput(hargaBaru: Double): Boolean* | *public* | *Memeriksa bahwa harga jual baru berupa bilangan positif. Bila valid, memanggil updateHargaProduk().* |
+| *+ updateHargaProduk(hargaBaru: Double): Void* | *public* | *Mengubah harga jual produk, menghitung ulang margin berdasarkan HPP terkini, menyimpannya ke basis data, lalu mencatat riwayat perubahan harga jual.* |
+| *+ catatRiwayat(hargaLama: Double, hargaBaru: Double): Void* | *public* | *Mencatat perubahan harga jual (harga lama, harga baru, dan waktu perubahan) sebagai satu entri RiwayatHargaJual.* |
+ 
+Tabel 5.13.2. Atribut Kelas PriceController
+ 
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *currentPemilik* | private | *PemilikUsaha* |
+| *currentProduk* | private | *Produk* |
+ 
+### 5.13.1 Algoritma/Query
+ 
+**Nama Kelas:** *PriceController*  
+**Nama Operasi:** *validasiInput(hargaBaru)*  
+**ID Algoritma:** *Algo-C13-01*
+ 
+```text
+Function validasiInput(hargaBaru)
+    if (hargaBaru = NULL or hargaBaru <= 0) then
+        raise ValidationError("Masukkan bilangan positif")
+    updateHargaProduk(hargaBaru)
+    → true
+```
+ 
+### 5.13.2 Algoritma/Query
+ 
+**Nama Kelas:** *PriceController*  
+**Nama Operasi:** *updateHargaProduk(hargaBaru)*  
+**ID Algoritma:** *Algo-C13-02*
+ 
+```text
+Procedure updateHargaProduk(hargaBaru)
+    hargaLama ← this.currentProduk.getHargaJual()
+    hpp       ← DB_SERVICE.hitungHpp(this.currentProduk.id)
+ 
+    this.currentProduk.setHargaJual(hargaBaru)
+    this.currentProduk.setMargin(hargaBaru - hpp)
+ 
+    try
+        DB_SERVICE.updateHargaDanMargin(this.currentProduk.id, hargaBaru,
+                                        this.currentProduk.getMargin())
+    catch DatabaseError as e
+        raise Error("Gagal memperbarui harga jual: " + e.message)
+ 
+    catatRiwayat(hargaLama, hargaBaru)
+```
+ 
+Tabel 5.13.3. Query Operasi updateHargaProduk()
+ 
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C13-01* | `SELECT COALESCE(SUM(r.takaran * b.harga_beli), 0) AS hpp FROM tbl_resep_bahan r JOIN tbl_bahan_baku b ON b.id_bahan = r.id_bahan WHERE r.id_produk = @idProduk;` | *Menghitung HPP produk dari seluruh bahan pada resep dan harga beli terkini.* |
+| *Q-C13-02* | `UPDATE tbl_produk SET harga_jual = @hargaBaru, margin = @margin WHERE id_produk = @idProduk AND username = @username;` | *Memperbarui harga jual dan margin produk.* |
+ 
+### 5.13.3 Algoritma/Query
+ 
+**Nama Kelas:** *PriceController*  
+**Nama Operasi:** *catatRiwayat(hargaLama, hargaBaru)*  
+**ID Algoritma:** *Algo-C13-03*
+ 
+```text
+Procedure catatRiwayat(hargaLama, hargaBaru)
+    riwayat ← new RiwayatHargaJual(hargaBaru)
+    riwayat.setHargaJualLama(hargaLama)
+    riwayat.setWaktuPerubahan(NOW())
+    DB_SERVICE.insertRiwayatHargaJual(this.currentProduk.id,
+                                      riwayat.getHargaJualLama(),
+                                      riwayat.getHargaBaru(),
+                                      riwayat.getWaktuPerubahan())
+```
+ 
+Tabel 5.13.4. Query Operasi catatRiwayat()
+ 
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C13-03* | `INSERT INTO tbl_riwayat_harga_jual (id_produk, harga_jual_lama, harga_baru, waktu_perubahan) VALUES (@idProduk, @hargaJualLama, @hargaBaru, @waktuPerubahan);` | *Menyimpan riwayat perubahan harga jual.* |
+ 
+## 5.14 Kelas RiwayatHargaBahanBaku
+ 
+**Nama Kelas:** *RiwayatHargaBahanBaku*  
+**ID Kelas:** *C14*
+ 
+Tabel 5.14.1. Operasi Kelas RiwayatHargaBahanBaku
+ 
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ getHargaBeliLama(): Double* | *public* | *Mengambil harga beli bahan baku sebelum perubahan.* |
+| *+ getWaktuPerubahan(): Date* | *public* | *Mengambil waktu terjadinya perubahan harga beli.* |
+ 
+Tabel 5.14.2. Atribut Kelas RiwayatHargaBahanBaku
+ 
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *hargaBeliLama* | private | *Double* |
+| *waktuPerubahan* | private | *Date* |
+ 
+### 5.14.1 Algoritma/Query
+ 
+**Nama Kelas:** *RiwayatHargaBahanBaku*  
+**Nama Operasi:** *getHargaBeliLama()*  
+**ID Algoritma:** *Algo-C14-01*
+ 
+```text
+Function getHargaBeliLama()
+    → this.hargaBeliLama
+```
+ 
+### 5.14.2 Algoritma/Query
+ 
+**Nama Kelas:** *RiwayatHargaBahanBaku*  
+**Nama Operasi:** *getWaktuPerubahan()*  
+**ID Algoritma:** *Algo-C14-02*
+ 
+```text
+Function getWaktuPerubahan()
+    → this.waktuPerubahan
+```
 <br>
 
 ---
