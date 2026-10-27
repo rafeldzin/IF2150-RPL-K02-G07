@@ -1901,6 +1901,538 @@ Function getHargaBeliLama()
 Function getWaktuPerubahan()
     → this.waktuPerubahan
 ```
+
+## 5.15 Kelas TrenBahanBakuPage
+
+**Nama Kelas:** *TrenBahanBakuPage*  
+**ID Kelas:** *C15*
+
+Tabel 5.15.1. Operasi Kelas TrenBahanBakuPage
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ showPage(): Void* | *public* | *Menampilkan daftar bahan baku milik pengguna beserta pilihan filter rentang waktu. Bila bahan baku dan rentang waktu sudah dipilih, meminta data grafik ke TrenBahanBakuController lalu menampilkannya.* |
+| *+ showChart(dataGrafik: List Of Object): Void* | *public* | *Menampilkan grafik tren harga beli bahan baku terpilih berdasarkan data grafik yang dihasilkan controller.* |
+| *+ showErrorMessage(pesan: String): Void* | *public* | *Menampilkan pesan kesalahan, misalnya bila bahan baku belum memiliki riwayat perubahan harga pada rentang waktu terpilih.* |
+
+Tabel 5.15.2. Atribut Kelas TrenBahanBakuPage
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *bahanBakuTerpilih* | private | *BahanBaku* |
+| *rentangWaktuFilter* | private | *Integer (jumlah hari)* |
+
+### 5.15.1 Algoritma/Query
+
+**Nama Kelas:** *TrenBahanBakuPage*  
+**Nama Operasi:** *showPage()*  
+**ID Algoritma:** *Algo-C15-01*
+
+```text
+Procedure showPage()
+    if (this.rentangWaktuFilter = NULL) then
+        this.rentangWaktuFilter ← 30
+    this.errorLabel.setVisible(false)
+    this.listBahanBaku.setItems(DB_SERVICE.getDaftarBahanBaku(currentPemilik.getUsername()))
+    this.filterWaktu.setValue(this.rentangWaktuFilter)
+
+    if (this.bahanBakuTerpilih != NULL) then
+        try
+            TREN_CONTROLLER.currentBahanBaku ← this.bahanBakuTerpilih
+            dataGrafik ← TREN_CONTROLLER.generateChartData(this.rentangWaktuFilter)
+            showChart(dataGrafik)
+        catch ValidationError as e
+            showErrorMessage(e.message)
+```
+
+Tabel 5.15.3. Query Operasi showPage()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C15-01* | `SELECT id_bahan, nama_bahan, harga_beli FROM tbl_bahan_baku WHERE username = @username ORDER BY nama_bahan ASC;` | *Mengambil seluruh bahan baku milik pengguna untuk ditampilkan sebagai daftar pilihan.* |
+
+### 5.15.2 Algoritma/Query
+
+**Nama Kelas:** *TrenBahanBakuPage*  
+**Nama Operasi:** *showChart(dataGrafik)*  
+**ID Algoritma:** *Algo-C15-02*
+
+```text
+Procedure showChart(dataGrafik)
+    this.errorLabel.setVisible(false)
+    this.chartView.clear()
+    this.chartView.setTitle("Tren Harga " + this.bahanBakuTerpilih.getNamaBahan())
+    for each titik in dataGrafik
+        this.chartView.addPoint(FORMAT_TANGGAL(titik.waktu), titik.harga)
+    this.chartView.setVisible(true)
+```
+
+### 5.15.3 Algoritma/Query
+
+**Nama Kelas:** *TrenBahanBakuPage*  
+**Nama Operasi:** *showErrorMessage(pesan)*  
+**ID Algoritma:** *Algo-C15-03*
+
+```text
+Procedure showErrorMessage(pesan)
+    this.chartView.setVisible(false)
+    this.errorLabel.setText(pesan)
+    this.errorLabel.setVisible(true)
+```
+
+## 5.16 Kelas TrenBahanBakuController
+
+**Nama Kelas:** *TrenBahanBakuController*  
+**ID Kelas:** *C16*
+
+Tabel 5.16.1. Operasi Kelas TrenBahanBakuController
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ getRiwayatHarga(): List Of RiwayatHargaBahanBaku* | *public* | *Mengambil seluruh riwayat perubahan harga beli bahan baku terpilih dari basis data, diurutkan dari yang terlama.* |
+| *+ filterDataByDate(daftarRiwayat: List Of RiwayatHargaBahanBaku, tanggalMulai: Date, tanggalAkhir: Date): List Of RiwayatHargaBahanBaku* | *public* | *Menyaring riwayat sehingga hanya yang waktu perubahannya berada dalam rentang tanggal yang dipilih.* |
+| *+ generateChartData(rentangHari: Integer): List Of Object* | *public* | *Memanggil getRiwayatHarga() dan filterDataByDate(), lalu menyusun hasilnya menjadi titik-titik (waktu, harga) untuk grafik. Titik terakhir adalah harga beli saat ini. Melempar ValidationError bila tidak ada data pada rentang tersebut.* |
+
+Tabel 5.16.2. Atribut Kelas TrenBahanBakuController
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *currentPemilik* | private | *PemilikUsaha* |
+| *currentBahanBaku* | private | *BahanBaku* |
+
+### 5.16.1 Algoritma/Query
+
+**Nama Kelas:** *TrenBahanBakuController*  
+**Nama Operasi:** *getRiwayatHarga()*  
+**ID Algoritma:** *Algo-C16-01*
+
+```text
+Function getRiwayatHarga()
+    daftar ← new List<RiwayatHargaBahanBaku>
+    try
+        rows ← DB_SERVICE.getRiwayatHargaBahanBaku(currentPemilik.getUsername(),
+                                                   this.currentBahanBaku.id)
+    catch DatabaseError as e
+        raise Error("Gagal mengambil riwayat harga: " + e.message)
+    for each row in rows
+        riwayat ← new RiwayatHargaBahanBaku(row.harga_beli_lama, row.waktu_perubahan)
+        add(daftar, riwayat)
+    → daftar
+```
+
+Tabel 5.16.3. Query Operasi getRiwayatHarga()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C16-01* | `SELECT r.harga_beli_lama, r.waktu_perubahan FROM tbl_riwayat_harga_bahan_baku r JOIN tbl_bahan_baku b ON b.id_bahan = r.id_bahan WHERE r.id_bahan = @idBahan AND b.username = @username ORDER BY r.waktu_perubahan ASC;` | *Mengambil riwayat perubahan harga beli suatu bahan baku milik pengguna.* |
+
+### 5.16.2 Algoritma/Query
+
+**Nama Kelas:** *TrenBahanBakuController*  
+**Nama Operasi:** *filterDataByDate(daftarRiwayat, tanggalMulai, tanggalAkhir)*  
+**ID Algoritma:** *Algo-C16-02*
+
+```text
+Function filterDataByDate(daftarRiwayat, tanggalMulai, tanggalAkhir)
+    hasil ← new List<RiwayatHargaBahanBaku>
+    for each riwayat in daftarRiwayat
+        waktu ← riwayat.getWaktuPerubahan()
+        if (waktu >= tanggalMulai and waktu <= tanggalAkhir) then
+            add(hasil, riwayat)
+    → hasil
+```
+
+### 5.16.3 Algoritma/Query
+
+**Nama Kelas:** *TrenBahanBakuController*  
+**Nama Operasi:** *generateChartData(rentangHari)*  
+**ID Algoritma:** *Algo-C16-03*
+
+```text
+Function generateChartData(rentangHari)
+    tanggalAkhir ← NOW()
+    tanggalMulai ← tanggalAkhir - rentangHari hari
+
+    semuaRiwayat ← getRiwayatHarga()
+    terfilter    ← filterDataByDate(semuaRiwayat, tanggalMulai, tanggalAkhir)
+
+    if (isEmpty(terfilter)) then
+        raise ValidationError("Belum ada perubahan harga pada rentang waktu ini")
+
+    dataGrafik ← new List<Object>
+    for each riwayat in terfilter
+        add(dataGrafik, {waktu: riwayat.getWaktuPerubahan(),
+                         harga: riwayat.getHargaBeliLama()})
+
+    // titik terakhir: harga beli saat ini
+    add(dataGrafik, {waktu: tanggalAkhir,
+                     harga: this.currentBahanBaku.getHargaBeli()})
+    → dataGrafik
+```
+
+## 5.17 Kelas Notifikasi
+
+**Nama Kelas:** *Notifikasi*  
+**ID Kelas:** *C17*
+
+Tabel 5.17.1. Operasi Kelas Notifikasi
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ getPesanAlert(): String* | *public* | *Mengambil isi pesan peringatan notifikasi.* |
+| *+ markAsRead(): Void* | *public* | *Mengubah status notifikasi menjadi sudah dibaca (isRead = true) dan menyimpannya ke basis data. Dipanggil saat pengguna membuka notifikasi.* |
+
+Tabel 5.17.2. Atribut Kelas Notifikasi
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *idNotifikasi* | private | *Integer* |
+| *pesanAlert* | private | *String* |
+| *waktuKirim* | private | *Date* |
+| *isRead* | private | *Boolean* |
+
+### 5.17.1 Algoritma/Query
+
+**Nama Kelas:** *Notifikasi*  
+**Nama Operasi:** *getPesanAlert()*  
+**ID Algoritma:** *Algo-C17-01*
+
+```text
+Function getPesanAlert()
+    → this.pesanAlert
+```
+
+### 5.17.2 Algoritma/Query
+
+**Nama Kelas:** *Notifikasi*  
+**Nama Operasi:** *markAsRead()*  
+**ID Algoritma:** *Algo-C17-02*
+
+```text
+Procedure markAsRead()
+    if (this.isRead) then
+        return
+    try
+        DB_SERVICE.updateStatusBaca(this.idNotifikasi, true)
+        this.isRead ← true
+    catch DatabaseError as e
+        raise Error("Gagal memperbarui status notifikasi: " + e.message)
+```
+
+Tabel 5.17.3. Query Operasi markAsRead()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C17-01* | `UPDATE tbl_notifikasi SET is_read = TRUE WHERE id_notifikasi = @idNotifikasi;` | *Menandai notifikasi sebagai sudah dibaca.* |
+
+## 5.18 Kelas PushNotificationUI
+
+**Nama Kelas:** *PushNotificationUI*  
+**ID Kelas:** *C18*
+
+Tabel 5.18.1. Operasi Kelas PushNotificationUI
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ tampilkanNotifikasi(notifikasi: Notifikasi): Void* | *public* | *Menampilkan notifikasi bawaan sistem operasi pada perangkat pengguna berisi pesan peringatan. Dipanggil oleh NotificationController.kirimNotifikasi().* |
+| *+ onClickNotification(): Void* | *public* | *Menangani aksi pengguna menekan notifikasi: menandai notifikasi sudah dibaca, lalu mengarahkan pengguna ke halaman ubah produk terkait (atau ke HomePage bila produk tidak ditemukan).* |
+
+Tabel 5.18.2. Atribut Kelas PushNotificationUI
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *notifikasiAktif* | private | *Notifikasi* |
+
+### 5.18.1 Algoritma/Query
+
+**Nama Kelas:** *PushNotificationUI*  
+**Nama Operasi:** *tampilkanNotifikasi(notifikasi)*  
+**ID Algoritma:** *Algo-C18-01*
+
+```text
+Procedure tampilkanNotifikasi(notifikasi)
+    this.notifikasiAktif ← notifikasi
+    OS_NOTIFICATION.show(title   ← "Peringatan Kerugian Produk",
+                         body    ← notifikasi.getPesanAlert(),
+                         onClick ← onClickNotification)
+```
+
+### 5.18.2 Algoritma/Query
+
+**Nama Kelas:** *PushNotificationUI*  
+**Nama Operasi:** *onClickNotification()*  
+**ID Algoritma:** *Algo-C18-02*
+
+```text
+Procedure onClickNotification()
+    if (this.notifikasiAktif = NULL) then
+        NAVIGATOR.goTo(HomePage)
+        return
+
+    this.notifikasiAktif.markAsRead()
+
+    produk ← NOTIFICATION_CONTROLLER.targetProduk
+    if (produk != NULL) then
+        NAVIGATOR.goTo(EditProductPage, produk)
+    else
+        NAVIGATOR.goTo(HomePage)
+```
+
+## 5.19 Kelas NotificationController
+
+**Nama Kelas:** *NotificationController*  
+**ID Kelas:** *C19*
+
+Tabel 5.19.1. Operasi Kelas NotificationController
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ cekMarginNegatif(): Boolean* | *public* | *Menghitung ulang HPP dan margin produk target setelah harga beli bahan baku berubah, menyimpan margin terbaru, dan mengembalikan true bila margin bernilai negatif.* |
+| *+ buatNotifikasiKerugian(): Notifikasi* | *public* | *Membuat objek Notifikasi berisi pesan peringatan bahwa produk target mengalami kerugian, lalu menyimpannya ke basis data.* |
+| *+ kirimNotifikasi(notifikasi: Notifikasi): Void* | *public* | *Meneruskan notifikasi ke PushNotificationUI agar ditampilkan pada perangkat pengguna.* |
+
+Tabel 5.19.2. Atribut Kelas NotificationController
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *currentPemilik* | private | *PemilikUsaha* |
+| *targetProduk* | private | *Produk* |
+
+### 5.19.1 Algoritma/Query
+
+**Nama Kelas:** *NotificationController*  
+**Nama Operasi:** *cekMarginNegatif()*  
+**ID Algoritma:** *Algo-C19-01*
+
+```text
+Function cekMarginNegatif()
+    hpp         ← DB_SERVICE.hitungHpp(this.targetProduk.id)
+    marginBaru  ← this.targetProduk.getHargaJual() - hpp
+    this.targetProduk.setMargin(marginBaru)
+
+    try
+        DB_SERVICE.updateMargin(this.targetProduk.id, marginBaru)
+    catch DatabaseError as e
+        raise Error("Gagal memperbarui margin: " + e.message)
+
+    → (marginBaru < 0)
+```
+
+Tabel 5.19.3. Query Operasi cekMarginNegatif()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C13-01* | `SELECT COALESCE(SUM(r.takaran * b.harga_beli), 0) AS hpp FROM tbl_resep_bahan r JOIN tbl_bahan_baku b ON b.id_bahan = r.id_bahan WHERE r.id_produk = @idProduk;` | *Menghitung HPP produk dengan harga beli bahan baku terkini.* |
+| *Q-C19-01* | `UPDATE tbl_produk SET margin = @margin WHERE id_produk = @idProduk AND username = @username;` | *Memperbarui margin produk setelah perubahan harga beli.* |
+
+### 5.19.2 Algoritma/Query
+
+**Nama Kelas:** *NotificationController*  
+**Nama Operasi:** *buatNotifikasiKerugian()*  
+**ID Algoritma:** *Algo-C19-02*
+
+```text
+Function buatNotifikasiKerugian()
+    pesan ← "Produk " + this.targetProduk.getNamaProduk() +
+            " mengalami kerugian. Margin saat ini: " +
+            FORMAT_RUPIAH(this.targetProduk.getMargin())
+
+    notifikasi ← new Notifikasi()
+    notifikasi.pesanAlert  ← pesan
+    notifikasi.waktuKirim  ← NOW()
+    notifikasi.isRead      ← false
+
+    try
+        notifikasi.idNotifikasi ← DB_SERVICE.insertNotifikasi(
+                                      currentPemilik.getUsername(),
+                                      this.targetProduk.id,
+                                      notifikasi.getPesanAlert(),
+                                      notifikasi.waktuKirim)
+    catch DatabaseError as e
+        raise Error("Gagal menyimpan notifikasi: " + e.message)
+
+    → notifikasi
+```
+
+Tabel 5.19.4. Query Operasi buatNotifikasiKerugian()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C19-02* | `INSERT INTO tbl_notifikasi (username, id_produk, pesan_alert, waktu_kirim, is_read) VALUES (@username, @idProduk, @pesanAlert, @waktuKirim, FALSE) RETURNING id_notifikasi;` | *Menyimpan notifikasi kerugian baru dan mengembalikan ID notifikasi.* |
+
+### 5.19.3 Algoritma/Query
+
+**Nama Kelas:** *NotificationController*  
+**Nama Operasi:** *kirimNotifikasi(notifikasi)*  
+**ID Algoritma:** *Algo-C19-03*
+
+```text
+Procedure kirimNotifikasi(notifikasi)
+    try
+        PUSH_NOTIFICATION_UI.tampilkanNotifikasi(notifikasi)
+    catch NotificationError as e
+        raise Error("Gagal mengirim notifikasi: " + e.message)
+```
+
+## 5.20 Kelas RiwayatHargaJual
+
+**Nama Kelas:** *RiwayatHargaJual*  
+**ID Kelas:** *C20*
+
+Tabel 5.20.1. Operasi Kelas RiwayatHargaJual
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ setHargaJualLama(hargaJualLama: Double): Void* | *public* | *Mengatur harga jual sebelum perubahan; harus bilangan positif.* |
+| *+ setWaktuPerubahan(waktuPerubahan: Date): Void* | *public* | *Mengatur waktu terjadinya perubahan harga jual.* |
+| *+ getHargaJualLama(): Double* | *public* | *Mengambil harga jual sebelum perubahan.* |
+| *+ getHargaBaru(): Double* | *public* | *Mengambil harga jual setelah perubahan.* |
+| *+ getWaktuPerubahan(): Date* | *public* | *Mengambil waktu terjadinya perubahan harga jual.* |
+
+Tabel 5.20.2. Atribut Kelas RiwayatHargaJual
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *hargaJualLama* | private | *Double* |
+| *hargaBaru* | private | *Double* |
+| *waktuPerubahan* | private | *Date* |
+
+### 5.20.1 Algoritma/Query
+
+**Nama Kelas:** *RiwayatHargaJual*  
+**Nama Operasi:** *setHargaJualLama(hargaJualLama)*  
+**ID Algoritma:** *Algo-C20-01*
+
+```text
+Procedure setHargaJualLama(hargaJualLama)
+    if (hargaJualLama = NULL or hargaJualLama <= 0) then
+        raise Error("Harga jual lama harus bilangan positif")
+    this.hargaJualLama ← hargaJualLama
+```
+
+### 5.20.2 Algoritma/Query
+
+**Nama Kelas:** *RiwayatHargaJual*  
+**Nama Operasi:** *setWaktuPerubahan(waktuPerubahan)*  
+**ID Algoritma:** *Algo-C20-02*
+
+```text
+Procedure setWaktuPerubahan(waktuPerubahan)
+    if (waktuPerubahan = NULL) then
+        raise Error("Waktu perubahan tidak boleh kosong")
+    this.waktuPerubahan ← waktuPerubahan
+```
+
+### 5.20.3 Algoritma/Query
+
+**Nama Kelas:** *RiwayatHargaJual*  
+**Nama Operasi:** *getHargaJualLama()*  
+**ID Algoritma:** *Algo-C20-03*
+
+```text
+Function getHargaJualLama()
+    → this.hargaJualLama
+```
+
+### 5.20.4 Algoritma/Query
+
+**Nama Kelas:** *RiwayatHargaJual*  
+**Nama Operasi:** *getHargaBaru()*  
+**ID Algoritma:** *Algo-C20-04*
+
+```text
+Function getHargaBaru()
+    → this.hargaBaru
+```
+
+### 5.20.5 Algoritma/Query
+
+**Nama Kelas:** *RiwayatHargaJual*  
+**Nama Operasi:** *getWaktuPerubahan()*  
+**ID Algoritma:** *Algo-C20-05*
+
+```text
+Function getWaktuPerubahan()
+    → this.waktuPerubahan
+```
+
+## 5.21 Kelas SearchProductPage
+
+**Nama Kelas:** *SearchProductPage*  
+**ID Kelas:** *C21*
+
+Tabel 5.21.1. Operasi Kelas SearchProductPage
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ showPage(): Void* | *public* | *Menampilkan halaman pencarian produk beserta kolom kata kunci. Setiap kata kunci yang dimasukkan dikirim ke ProductSearchController (pencarian nama atau tag) dan hasilnya ditampilkan melalui showResults().* |
+| *+ showResults(hasil: List Of Produk): Void* | *public* | *Menampilkan daftar produk hasil pencarian beserta harga jual dan margin masing-masing.* |
+| *+ showErrorMessage(pesan: String): Void* | *public* | *Menampilkan pesan bahwa tidak ada produk yang cocok dengan kata kunci.* |
+
+Tabel 5.21.2. Atribut Kelas SearchProductPage
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *kataKunciPencarian* | private | *String* |
+| *hasilPencarian* | private | *List Of Produk* |
+
+### 5.21.1 Algoritma/Query
+
+**Nama Kelas:** *SearchProductPage*  
+**Nama Operasi:** *showPage()*  
+**ID Algoritma:** *Algo-C21-01*
+
+```text
+Procedure showPage()
+    this.kataKunciPencarian ← ""
+    this.hasilPencarian ← new List<Produk>
+    this.inputKataKunci.clear()
+    this.errorLabel.setVisible(false)
+    NAVIGATOR.goTo(SearchProductPage)
+
+    // dijalankan setiap pengguna selesai mengetik kata kunci
+    this.inputKataKunci.onSubmit ←
+        Procedure()
+            this.kataKunciPencarian ← TRIM(this.inputKataKunci.getText())
+            hasil ← PRODUCT_SEARCH_CONTROLLER.searchProduk(this.kataKunciPencarian)
+            if (isEmpty(hasil)) then
+                showErrorMessage("Produk tidak ditemukan")
+            else
+                showResults(hasil)
+```
+
+### 5.21.2 Algoritma/Query
+
+**Nama Kelas:** *SearchProductPage*  
+**Nama Operasi:** *showResults(hasil)*  
+**ID Algoritma:** *Algo-C21-02*
+
+```text
+Procedure showResults(hasil)
+    this.hasilPencarian ← hasil
+    this.errorLabel.setVisible(false)
+    this.listProduk.clear()
+    for each produk in hasil
+        this.listProduk.addItem(produk.getNamaProduk(),
+                                FORMAT_RUPIAH(produk.getHargaJual()),
+                                FORMAT_RUPIAH(produk.getMargin()))
+    this.listProduk.setVisible(true)
+```
+
+### 5.21.3 Algoritma/Query
+
+**Nama Kelas:** *SearchProductPage*  
+**Nama Operasi:** *showErrorMessage(pesan)*  
+**ID Algoritma:** *Algo-C21-03*
+
+```text
+Procedure showErrorMessage(pesan)
+    this.listProduk.clear()
+    this.listProduk.setVisible(false)
+    this.errorLabel.setText(pesan)
+    this.errorLabel.setVisible(true)
+```
+
 <br>
 
 ---
