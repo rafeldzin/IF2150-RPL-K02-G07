@@ -2439,49 +2439,477 @@ Procedure showErrorMessage(pesan)
 
 # BAB 6: Perancangan Antarmuka
 
-## 6.1 Rancangan Antarmuka [ID Layar 1]
+Bab ini menjelaskan rancangan antarmuka perangkat lunak Pross berdasarkan prototipe yang telah dibuat. Setiap antarmuka memiliki ID unik dan dilengkapi dengan gambar rancangan serta tabel spesifikasi objek yang menjelaskan jenis, konten, dan reaksi sistem terhadap interaksi pengguna. Rancangan mencakup kondisi normal, validasi kesalahan, pemuatan data, serta tampilan ketika data belum tersedia.
 
-Masukkan versi awal prototipe antarmuka, dimana untuk setiap antarmuka/layar, tuliskan spesifikasi rinci objek yang ditampilkan dan reaksi sistem terhadap interaksi pengguna.
+## 6.1 Rancangan Antarmuka I-01
 
-**Antarmuka:** *[ID layar]*  
-**Nama Layar:** *[Nama layar]*
+**Antarmuka:** I-01  
+**Nama Layar:** Login  
+**Kelas Perancangan:** LoginPage  
+**Use Case Terkait:** UC02
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-design.png" width="50%">
+<img alt="Rancangan Antarmuka Login" src="./assets/diagram/ui-I-01.png" width="50%">
 </p>
 <p align="center">
-<i>Gambar 6.1. Rancangan Antarmuka [ID Layar] - [Nama Layar]</i>
+<i>Gambar 6.1. Rancangan Antarmuka I-01 - Login</i>
 </p>
 
-Tabel 6.1. Spesifikasi Objek Antarmuka [ID Layar]
+Tabel 6.1. Spesifikasi Objek Antarmuka I-01
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-| *[ID objek]* | *[Jenis objek, misalnya Button, RTF Box, dll]* | *[String yang tampil pada layar]* | *[Reaksi sistem, layar tujuan, tautan, atau ID algoritma yang dijalankan]* |
-| *[ID objek]* | *[Jenis objek]* | *[Konten yang ditampilkan]* | *[Reaksi sistem atau nama file terkait beserta deskripsi ringkasnya]* |
-| *...* | *...* | *...* | *...* |
+| I-01-01 | Text Label | Masuk | Menampilkan judul halaman login. |
+| I-01-02 | Image | Logo Pross | Menampilkan identitas aplikasi Pross. |
+| I-01-03 | Text Label | Kenali biaya, jaga untung. | Menampilkan deskripsi singkat aplikasi. |
+| I-01-04 | Text Field | Username atau email | Menerima username atau email pengguna sebagai identitas autentikasi. |
+| I-01-05 | Password Field | Password | Menerima password pengguna dengan karakter yang disembunyikan. |
+| I-01-06 | Icon Button | Tampilkan/sembunyikan password | Mengubah visibilitas karakter password tanpa mengubah nilainya. |
+| I-01-07 | Text Link | Lupa password? | Mengarahkan pengguna ke antarmuka I-03 untuk melakukan pemulihan password. |
+| I-01-08 | Button | Masuk | Memvalidasi input dan meneruskan proses autentikasi kepada AuthController. Jika berhasil, sistem menampilkan konfirmasi login dan menyediakan navigasi menuju I-04. |
+| I-01-09 | Text Link | Belum punya akun? Daftar | Mengarahkan pengguna ke antarmuka I-02. |
+| I-01-10 | Alert | Username atau password salah | Menampilkan pesan kesalahan ketika autentikasi gagal. |
+| I-01-11 | Loading Indicator | Memeriksa akun... | Menunjukkan proses autentikasi sedang berlangsung dan menonaktifkan tombol Masuk sementara. |
+| I-01-12 | Success Message | Berhasil masuk | Menampilkan konfirmasi keberhasilan autentikasi. |
+| I-01-13 | Button | Ke Beranda | Mengarahkan pengguna menuju antarmuka I-04 setelah autentikasi berhasil. |
 
+## 6.2 Rancangan Antarmuka I-02
 
-## 6.X Rancangan Antarmuka [ID Layar X]
+**Antarmuka:** I-02  
+**Nama Layar:** Registrasi  
+**Kelas Perancangan:** RegistrationPage  
+**Use Case Terkait:** UC01
 
-*[Ulangi pola 6.1 untuk layar berikutnya sampai semua layar teridentifikasi]*
+<p align="center">
+<img alt="Rancangan Antarmuka Registrasi" src="./assets/diagram/ui-I-02.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.2. Rancangan Antarmuka I-02 - Registrasi</i>
+</p>
 
-## 6.Y Rancangan Antarmuka Keseluruhan
+Tabel 6.2. Spesifikasi Objek Antarmuka I-02
 
-Tuliskan daftar gambar seluruh antarmuka. Berikan ID unik untuk setiap tampilan dan gunakan ID yang sama pada subbab perancangan antarmuka masing-masing.
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-02-01 | Icon Button | Kembali | Mengarahkan pengguna kembali ke antarmuka I-01. |
+| I-02-02 | Text Label | Daftar akun | Menampilkan judul halaman registrasi. |
+| I-02-03 | Image | Logo Pross | Menampilkan identitas aplikasi. |
+| I-02-04 | Text Label | Mulai usaha lebih terukur | Menampilkan pesan pengantar registrasi. |
+| I-02-05 | Text Field | Username | Menerima username pengguna baru. |
+| I-02-06 | Text Field | Email | Menerima alamat email pengguna dan memvalidasi format email. |
+| I-02-07 | Password Field | Password | Menerima password akun baru. |
+| I-02-08 | Password Field | Konfirmasi password | Menerima pengulangan password dan memeriksa kesesuaiannya dengan password pertama. |
+| I-02-09 | Icon Button | Tampilkan/sembunyikan password | Mengubah visibilitas karakter pada field password terkait. |
+| I-02-10 | Button | Daftar | Memvalidasi seluruh isian dan meneruskan permintaan pendaftaran kepada AuthController untuk menyimpan akun baru. |
+| I-02-11 | Text Link | Sudah punya akun? Masuk | Mengarahkan pengguna ke antarmuka I-01. |
+| I-02-12 | Validation Message | Format email tidak valid; Password lemah; Konfirmasi password belum cocok | Menampilkan informasi kesalahan pada input terkait. |
+| I-02-13 | Loading Indicator | Membuat akun... | Menampilkan status proses registrasi dan menonaktifkan tombol Daftar sementara. |
+| I-02-14 | Success Message | Akun berhasil dibuat | Menampilkan konfirmasi bahwa registrasi berhasil dilakukan. |
+| I-02-15 | Button | Masuk | Mengarahkan pengguna menuju antarmuka I-01 setelah pendaftaran berhasil. |
 
-Tabel 6.Y. Rancangan Antarmuka Keseluruhan
+## 6.3 Rancangan Antarmuka I-03
+
+**Antarmuka:** I-03  
+**Nama Layar:** Reset Password  
+**Kelas Perancangan:** ResetPasswordPage  
+**Use Case Terkait:** UC02
+
+<p align="center">
+<img alt="Rancangan Antarmuka Reset Password" src="./assets/diagram/ui-I-03.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.3. Rancangan Antarmuka I-03 - Reset Password</i>
+</p>
+
+Tabel 6.3. Spesifikasi Objek Antarmuka I-03
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-03-01 | Icon Button | Kembali | Mengarahkan pengguna ke halaman sebelumnya. |
+| I-03-02 | Text Label | Reset password | Menampilkan judul halaman pemulihan password. |
+| I-03-03 | Image | Logo Pross | Menampilkan identitas aplikasi. |
+| I-03-04 | Text Label | Pulihkan akses usaha | Memberikan informasi mengenai proses pemulihan akun. |
+| I-03-05 | Text Field | Email akun | Menerima alamat email akun yang akan dipulihkan. |
+| I-03-06 | Button | Kirim tautan reset | Memvalidasi email dan meminta pengiriman tautan pemulihan password. |
+| I-03-07 | Loading Indicator | Mengirim tautan... | Menunjukkan proses pengiriman tautan pemulihan sedang berlangsung. |
+| I-03-08 | Success Message | Tautan reset terkirim | Menginformasikan bahwa permintaan pengiriman tautan berhasil diproses. |
+| I-03-09 | Button | Kirim ulang tautan | Meminta pengiriman ulang tautan reset password. |
+| I-03-10 | Password Field | Password baru | Menerima password pengganti setelah tautan pemulihan divalidasi. |
+| I-03-11 | Password Field | Konfirmasi password baru | Memvalidasi kesesuaian password baru dengan konfirmasinya. |
+| I-03-12 | Icon Button | Tampilkan/sembunyikan password | Mengubah visibilitas password pada field terkait. |
+| I-03-13 | Button | Ubah password | Memvalidasi password baru dan meneruskan perubahan kepada ResetPasswordController. |
+| I-03-14 | Validation Message | Password tidak cocok | Ditampilkan ketika password dan konfirmasinya berbeda. |
+| I-03-15 | Success Message | Password berhasil diubah | Menampilkan konfirmasi keberhasilan perubahan password. |
+| I-03-16 | Button | Kembali ke Masuk | Mengarahkan pengguna ke antarmuka I-01. |
+
+## 6.4 Rancangan Antarmuka I-04
+
+**Antarmuka:** I-04  
+**Nama Layar:** Beranda  
+**Kelas Perancangan:** HomePage  
+**Use Case Terkait:** UC04, UC06
+
+<p align="center">
+<img alt="Rancangan Antarmuka Beranda" src="./assets/diagram/ui-I-04.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.4. Rancangan Antarmuka I-04 - Beranda</i>
+</p>
+
+Tabel 6.4. Spesifikasi Objek Antarmuka I-04
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-04-01 | Text Label | Nama usaha | Menampilkan nama usaha pengguna yang sedang login. |
+| I-04-02 | Text Label | Selamat pagi | Menampilkan pesan sambutan kepada pengguna. |
+| I-04-03 | Search Field | Cari nama, tag, atau bahan | Mengarahkan pengguna menuju I-05 untuk melakukan pencarian produk. |
+| I-04-04 | Text Label | Produk Anda | Menampilkan judul bagian daftar produk. |
+| I-04-05 | Text Label | Jumlah produk | Menampilkan jumlah produk usaha yang telah tersimpan. |
+| I-04-06 | Alert | Produk bermargin negatif | Menampilkan peringatan apabila terdapat produk dengan margin negatif. |
+| I-04-07 | Product Card | Nama produk, harga jual, HPP, keuntungan/kerugian, margin | Menampilkan ringkasan informasi setiap produk. Ketika dipilih, sistem membuka I-07 untuk produk terkait. |
+| I-04-08 | Status Label | Untung / Rugi | Menampilkan status profitabilitas produk berdasarkan perbandingan HPP dan harga jual. |
+| I-04-09 | Button | + Tambah | Mengarahkan pengguna ke I-06 untuk menambahkan produk baru. |
+| I-04-10 | Bottom Navigation | Beranda | Membuka atau mempertahankan antarmuka I-04. |
+| I-04-11 | Bottom Navigation | Bahan Baku | Membuka antarmuka I-09. |
+| I-04-12 | Bottom Navigation | Notifikasi | Membuka antarmuka I-12. |
+| I-04-13 | Bottom Navigation | Profil | Membuka antarmuka I-10. |
+| I-04-14 | Loading Placeholder | Memuat produk usaha... | Ditampilkan ketika sistem mengambil daftar produk. |
+| I-04-15 | Error Message | Produk gagal dimuat | Menampilkan kegagalan pengambilan data produk. |
+| I-04-16 | Button | Coba lagi | Mengulangi permintaan pengambilan daftar produk. |
+| I-04-17 | Empty State | Belum ada produk | Ditampilkan ketika pengguna belum memiliki produk tersimpan. |
+
+## 6.5 Rancangan Antarmuka I-05
+
+**Antarmuka:** I-05  
+**Nama Layar:** Pencarian Produk  
+**Kelas Perancangan:** SearchProductPage  
+**Use Case Terkait:** UC06
+
+<p align="center">
+<img alt="Rancangan Antarmuka Pencarian Produk" src="./assets/diagram/ui-I-05.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.5. Rancangan Antarmuka I-05 - Pencarian Produk</i>
+</p>
+
+Tabel 6.5. Spesifikasi Objek Antarmuka I-05
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-05-01 | Icon Button | Kembali | Mengarahkan pengguna ke halaman sebelumnya. |
+| I-05-02 | Text Label | Cari produk | Menampilkan judul halaman pencarian. |
+| I-05-03 | Search Field | Pencarian produk | Menerima kata kunci untuk mencari produk. |
+| I-05-04 | Icon Button | Hapus pencarian | Menghapus kata kunci yang sedang dimasukkan. |
+| I-05-05 | Filter Button | Nama | Menjalankan pencarian berdasarkan nama produk. |
+| I-05-06 | Filter Button | Tag | Menjalankan pencarian berdasarkan tag produk. |
+| I-05-07 | Filter Button | Bahan | Menjalankan pencarian berdasarkan bahan baku yang digunakan. |
+| I-05-08 | Text Label | Jumlah hasil pencarian | Menampilkan jumlah produk yang cocok dengan kata kunci dan filter aktif. |
+| I-05-09 | Product Card | Nama produk, harga jual, HPP, margin | Menampilkan produk yang sesuai hasil pencarian. Jika dipilih, sistem membuka I-07 untuk produk terkait. |
+| I-05-10 | Loading Placeholder | Mencari produk... | Menunjukkan proses pencarian sedang berlangsung. |
+| I-05-11 | Error Message | Pencarian gagal | Ditampilkan ketika permintaan pencarian tidak berhasil. Kata kunci dan filter tetap dipertahankan. |
+| I-05-12 | Button | Coba lagi | Mengulangi pencarian menggunakan kata kunci dan filter sebelumnya. |
+| I-05-13 | Empty State | Produk tidak ditemukan | Ditampilkan apabila tidak ada produk yang memenuhi kriteria pencarian. |
+| I-05-14 | Button | Hapus filter | Menghapus filter aktif untuk memperluas hasil pencarian. |
+
+## 6.6 Rancangan Antarmuka I-06
+
+**Antarmuka:** I-06  
+**Nama Layar:** Tambah Produk  
+**Kelas Perancangan:** AddProductPage  
+**Use Case Terkait:** UC03, UC04
+
+<p align="center">
+<img alt="Rancangan Antarmuka Tambah Produk" src="./assets/diagram/ui-I-06.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.6. Rancangan Antarmuka I-06 - Tambah Produk</i>
+</p>
+
+Tabel 6.6. Spesifikasi Objek Antarmuka I-06
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-06-01 | Icon Button | Kembali | Mengarahkan pengguna menuju halaman sebelumnya. |
+| I-06-02 | Text Label | Tambah produk | Menampilkan judul halaman penambahan produk. |
+| I-06-03 | Text Field | Nama produk | Menerima nama produk yang akan ditambahkan. |
+| I-06-04 | Dropdown | Tag | Memungkinkan pengguna memilih tag atau kategori produk. |
+| I-06-05 | Numeric Field | Harga jual / porsi (Rp) | Menerima harga jual produk per porsi. |
+| I-06-06 | Numeric Field | Hasil resep (porsi) | Menerima jumlah porsi yang dihasilkan oleh satu resep. |
+| I-06-07 | Text Label | Bahan Baku & Takaran | Menampilkan bagian komposisi bahan baku produk. |
+| I-06-08 | Dropdown | Pilih bahan | Memungkinkan pengguna memilih bahan baku yang digunakan pada resep. |
+| I-06-09 | Numeric Field | Takaran bahan | Menerima jumlah bahan baku yang digunakan sesuai satuan bahan tersebut. |
+| I-06-10 | Text Label | Harga beli per unit; Biaya bahan | Menampilkan harga bahan dan kontribusi biayanya terhadap resep. |
+| I-06-11 | Icon Button | Hapus bahan | Menghapus baris bahan baku dari komposisi resep. |
+| I-06-12 | Button | + Tambah bahan | Menambahkan baris input bahan baku baru ke formulir. |
+| I-06-13 | Result Panel | Total biaya resep | Menampilkan total biaya seluruh bahan baku dalam satu resep. |
+| I-06-14 | Result Panel | HPP per porsi | Menampilkan hasil perhitungan biaya resep dibagi jumlah porsi. |
+| I-06-15 | Button | Preview kalkulasi margin | Memvalidasi data produk, menghitung HPP dan margin melalui MarginController, lalu membuka dialog preview. |
+| I-06-16 | Dialog | Preview kalkulasi margin | Menampilkan HPP per porsi, harga jual, nominal keuntungan atau kerugian, serta persentase margin. |
+| I-06-17 | Alert | Margin negatif | Menampilkan peringatan apabila HPP lebih besar daripada harga jual. |
+| I-06-18 | Button | Kembali edit | Menutup dialog preview dan mengembalikan pengguna ke formulir. |
+| I-06-19 | Button | Simpan produk | Menyimpan data produk, harga jual, dan komposisi bahan baku setelah dikonfirmasi pengguna. |
+| I-06-20 | Validation Message | Nama produk wajib diisi; Takaran harus lebih dari 0 | Menampilkan kesalahan input yang harus diperbaiki sebelum penyimpanan. |
+| I-06-21 | Loading Indicator | Menghitung dan menyimpan... | Menampilkan proses kalkulasi dan penyimpanan produk. |
+| I-06-22 | Success Message | Produk berhasil disimpan | Menampilkan konfirmasi keberhasilan penyimpanan produk. |
+| I-06-23 | Product Card | Nama produk, harga jual, HPP, margin | Menampilkan ringkasan produk yang berhasil disimpan. |
+| I-06-24 | Button | Kembali ke Beranda | Mengarahkan pengguna menuju I-04. |
+| I-06-25 | Button | + Tambah produk lain | Mengembalikan pengguna ke formulir penambahan produk baru. |
+
+## 6.7 Rancangan Antarmuka I-07
+
+**Antarmuka:** I-07  
+**Nama Layar:** Edit Produk  
+**Kelas Perancangan:** EditProductPage  
+**Use Case Terkait:** UC04, UC05
+
+<p align="center">
+<img alt="Rancangan Antarmuka Edit Produk" src="./assets/diagram/ui-I-07.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.7. Rancangan Antarmuka I-07 - Edit Produk</i>
+</p>
+
+Tabel 6.7. Spesifikasi Objek Antarmuka I-07
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-07-01 | Icon Button | Kembali | Mengarahkan pengguna menuju halaman sebelumnya. |
+| I-07-02 | Text Label | Edit produk | Menampilkan judul halaman pengubahan produk. |
+| I-07-03 | Text Field | Nama produk | Menampilkan dan memungkinkan perubahan nama produk. |
+| I-07-04 | Dropdown | Tag | Menampilkan dan memungkinkan perubahan tag produk. |
+| I-07-05 | Text Label | Harga jual saat ini | Menampilkan harga jual terakhir yang tersimpan. |
+| I-07-06 | Numeric Field | Harga jual baru (Rp) | Menerima nilai harga jual pengganti. |
+| I-07-07 | Numeric Field | Hasil resep (porsi) | Menampilkan dan memungkinkan perubahan jumlah porsi resep. |
+| I-07-08 | Text Link | Riwayat harga | Mengarahkan pengguna menuju I-08 untuk produk terkait. |
+| I-07-09 | Dropdown | Bahan baku | Menampilkan dan memungkinkan perubahan bahan baku dalam komposisi produk. |
+| I-07-10 | Numeric Field | Takaran bahan | Memungkinkan perubahan jumlah bahan baku yang digunakan. |
+| I-07-11 | Icon Button | Hapus bahan | Menghapus bahan dari daftar komposisi yang sedang diedit. |
+| I-07-12 | Button | + Tambah bahan | Menambahkan bahan baku baru pada komposisi resep. |
+| I-07-13 | Result Panel | Total biaya resep; HPP per porsi | Menampilkan biaya resep dan HPP hasil perhitungan berdasarkan data terbaru. |
+| I-07-14 | Button | Preview kalkulasi margin | Memvalidasi perubahan dan membuka dialog pratinjau hasil perhitungan margin. |
+| I-07-15 | Dialog | Preview kalkulasi margin | Menampilkan harga jual, HPP, keuntungan atau kerugian, dan persentase margin setelah perubahan. |
+| I-07-16 | Button | Kembali edit | Menutup dialog preview tanpa menyimpan perubahan. |
+| I-07-17 | Button | Simpan perubahan | Menyimpan data produk dan mencatat perubahan harga jual ke RiwayatHargaJual jika harga jual berubah. |
+| I-07-18 | Loading Indicator | Menyimpan perubahan... | Menunjukkan proses penyimpanan sedang berlangsung. |
+| I-07-19 | Error Message | Perubahan belum tersimpan | Ditampilkan apabila penyimpanan gagal. Input pengguna dipertahankan. |
+| I-07-20 | Success Message | Perubahan berhasil disimpan | Menampilkan konfirmasi bahwa perubahan data produk berhasil disimpan. |
+| I-07-21 | Button | Lihat Riwayat harga | Membuka antarmuka I-08 untuk produk terkait. |
+| I-07-22 | Button | Kembali ke Beranda | Membuka antarmuka I-04. |
+| I-07-23 | Empty State | Produk tidak tersedia | Ditampilkan apabila produk yang akan diedit tidak dapat ditemukan. |
+
+## 6.8 Rancangan Antarmuka I-08
+
+**Antarmuka:** I-08  
+**Nama Layar:** Riwayat Harga Jual  
+**Kelas Perancangan:** PriceHistoryPage  
+**Use Case Terkait:** UC07
+
+<p align="center">
+<img alt="Rancangan Antarmuka Riwayat Harga Jual" src="./assets/diagram/ui-I-08.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.8. Rancangan Antarmuka I-08 - Riwayat Harga Jual</i>
+</p>
+
+Tabel 6.8. Spesifikasi Objek Antarmuka I-08
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-08-01 | Icon Button | Kembali | Mengarahkan pengguna ke halaman sebelumnya. |
+| I-08-02 | Text Label | Riwayat harga | Menampilkan judul halaman. |
+| I-08-03 | Text Label | Nama produk | Menampilkan produk yang sedang diamati. |
+| I-08-04 | Result Panel | Harga jual saat ini | Menampilkan harga jual terakhir produk. |
+| I-08-05 | Filter Button | 7 hari | Menampilkan riwayat harga jual selama tujuh hari terakhir. |
+| I-08-06 | Filter Button | 30 hari | Menampilkan riwayat harga jual selama tiga puluh hari terakhir. |
+| I-08-07 | Filter Button | 90 hari | Menampilkan riwayat harga jual selama sembilan puluh hari terakhir. |
+| I-08-08 | Filter Button | Kustom | Memungkinkan pengguna memilih rentang tanggal riwayat. |
+| I-08-09 | Text Label | Rentang tanggal | Menampilkan periode historis yang sedang dipilih. |
+| I-08-10 | Line Chart | Tren harga jual | Menampilkan grafik perubahan harga jual berdasarkan data historis. |
+| I-08-11 | Chart Tooltip | Tanggal dan harga jual | Menampilkan detail titik harga saat pengguna memilih titik pada grafik. |
+| I-08-12 | Text Label | Perubahan terbaru | Menampilkan judul daftar perubahan harga jual. |
+| I-08-13 | History Card | Harga lama, harga baru, selisih, waktu perubahan | Menampilkan informasi tiap perubahan harga jual yang tercatat. |
+| I-08-14 | Loading Placeholder | Memuat riwayat harga jual... | Menunjukkan proses pengambilan data historis. |
+| I-08-15 | Error Message | Riwayat gagal dimuat | Menampilkan kesalahan pengambilan data riwayat. |
+| I-08-16 | Button | Coba lagi | Mengulangi pengambilan data pada rentang waktu yang sedang dipilih. |
+| I-08-17 | Empty State | Belum ada riwayat harga | Ditampilkan apabila belum ada perubahan harga jual produk yang tercatat. |
+| I-08-18 | Button | Edit harga jual | Mengarahkan pengguna menuju I-07 untuk memperbarui harga jual produk. |
+
+## 6.9 Rancangan Antarmuka I-09
+
+**Antarmuka:** I-09  
+**Nama Layar:** Tren Harga Bahan Baku  
+**Kelas Perancangan:** TrenBahanBakuPage  
+**Use Case Terkait:** UC08
+
+<p align="center">
+<img alt="Rancangan Antarmuka Daftar Bahan Baku" src="./assets/diagram/ui-I-09.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.9. Rancangan Antarmuka I-09 - Daftar Bahan Baku</i>
+</p>
+
+<p align="center">
+<img alt="Rancangan Antarmuka Detail Bahan Baku" src="./assets/diagram/ui-I-09-detail.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.10. Rancangan Antarmuka I-09 - Detail Tren Bahan Baku</i>
+</p>
+
+Tabel 6.9. Spesifikasi Objek Antarmuka I-09
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-09-01 | Text Label | Bahan baku | Menampilkan judul halaman daftar bahan baku. |
+| I-09-02 | Text Label | Harga beli terkini | Menampilkan bagian daftar harga bahan baku terbaru. |
+| I-09-03 | Alert | Harga bahan naik | Menampilkan peringatan apabila terdapat kenaikan harga bahan baku yang dapat memengaruhi biaya produk. |
+| I-09-04 | Ingredient Card | Nama bahan, harga beli, satuan, perubahan harga, waktu pembaruan | Menampilkan ringkasan harga bahan baku. Ketika dipilih, sistem membuka detail bahan terkait. |
+| I-09-05 | Bottom Navigation | Beranda, Bahan Baku, Notifikasi, Profil | Mengarahkan pengguna menuju I-04, I-09, I-12, atau I-10 sesuai pilihan. |
+| I-09-06 | Icon Button | Kembali | Menutup tampilan detail bahan dan kembali ke daftar bahan baku. |
+| I-09-07 | Text Label | Detail bahan | Menampilkan judul halaman detail bahan baku. |
+| I-09-08 | Result Panel | Harga beli saat ini | Menampilkan harga beli terakhir bahan baku dan persentase perubahan harganya. |
+| I-09-09 | Filter Button | 7 hari | Menampilkan tren harga beli selama tujuh hari terakhir. |
+| I-09-10 | Filter Button | 30 hari | Menampilkan tren harga beli selama tiga puluh hari terakhir. |
+| I-09-11 | Filter Button | 90 hari | Menampilkan tren harga beli selama sembilan puluh hari terakhir. |
+| I-09-12 | Filter Button | Kustom | Memungkinkan pemilihan rentang tanggal sesuai kebutuhan pengguna. |
+| I-09-13 | Line Chart | Riwayat harga beli | Menampilkan grafik historis perubahan harga beli bahan baku. |
+| I-09-14 | Chart Tooltip | Tanggal dan harga beli | Menampilkan nilai harga beli pada titik grafik yang dipilih. |
+| I-09-15 | Text Label | Produk yang terdampak | Menampilkan bagian daftar produk yang menggunakan bahan baku terkait. |
+| I-09-16 | Product Card | Nama produk, HPP, harga jual, margin | Menampilkan dampak harga bahan baku terhadap profitabilitas produk terkait. |
+| I-09-17 | Button | Tinjau harga produk | Mengarahkan pengguna menuju I-07 untuk produk yang dipilih. |
+| I-09-18 | Loading Placeholder | Memuat harga bahan baku | Menunjukkan proses pengambilan daftar atau data historis bahan baku. |
+| I-09-19 | Error Message | Harga bahan gagal dimuat | Menampilkan kesalahan apabila data bahan baku tidak dapat diambil. |
+| I-09-20 | Button | Coba lagi | Mengulangi permintaan pengambilan data yang gagal. |
+| I-09-21 | Empty State | Belum ada bahan baku | Ditampilkan ketika belum terdapat bahan baku yang digunakan oleh produk. |
+| I-09-22 | Empty State | Belum ada riwayat bahan | Ditampilkan ketika bahan baku belum memiliki catatan perubahan harga. |
+| I-09-23 | Button | Kembali ke Bahan Baku | Mengembalikan pengguna ke daftar bahan baku. |
+
+## 6.10 Rancangan Antarmuka I-10
+
+**Antarmuka:** I-10  
+**Nama Layar:** Profil Pengguna  
+**Kelas Perancangan:** ProfilePage  
+**Use Case Terkait:** UC11, UC12
+
+<p align="center">
+<img alt="Rancangan Antarmuka Profil Pengguna" src="./assets/diagram/ui-I-10.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.11. Rancangan Antarmuka I-10 - Profil Pengguna</i>
+</p>
+
+Tabel 6.10. Spesifikasi Objek Antarmuka I-10
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-10-01 | Text Label | Profil | Menampilkan judul halaman profil. |
+| I-10-02 | Profile Card | Inisial, nama usaha, username | Menampilkan ringkasan identitas pengguna dan usahanya. |
+| I-10-03 | Text Field | Username | Menampilkan username pengguna dan menyediakan input perubahan sesuai prototipe. |
+| I-10-04 | Text Field | Nama usaha | Menampilkan dan memungkinkan pengubahan nama usaha. |
+| I-10-05 | Text Field | Email | Menampilkan dan memungkinkan pengubahan alamat email. |
+| I-10-06 | Text Field | Nomor telepon | Menampilkan dan memungkinkan pengubahan nomor telepon. |
+| I-10-07 | Button | Ubah password | Membuka proses perubahan password akun. |
+| I-10-08 | Button | Simpan perubahan | Memvalidasi input dan meneruskan penyimpanan perubahan profil kepada ProfileController. |
+| I-10-09 | Button | Logout | Menampilkan dialog konfirmasi untuk keluar dari akun. |
+| I-10-10 | Validation Message | Format email tidak valid; Gunakan nomor telepon berisi angka | Menampilkan kesalahan pada input profil yang tidak sesuai ketentuan. |
+| I-10-11 | Information Message | Lengkapi profil usaha | Memberikan informasi apabila data profil opsional belum diisi. |
+| I-10-12 | Loading Indicator | Menyimpan perubahan... | Menunjukkan proses penyimpanan profil dan menonaktifkan input sementara. |
+| I-10-13 | Success Message | Profil berhasil diperbarui | Menampilkan konfirmasi bahwa perubahan profil telah tersimpan. |
+| I-10-14 | Confirmation Dialog | Keluar dari akun? | Meminta konfirmasi sebelum sistem mengakhiri sesi pengguna. |
+| I-10-15 | Button | Batal | Menutup dialog logout dan mempertahankan sesi pengguna. |
+| I-10-16 | Button | Keluar | Mengakhiri sesi melalui ProfileController dan mengarahkan pengguna ke I-01. |
+| I-10-17 | Bottom Navigation | Beranda, Bahan Baku, Notifikasi, Profil | Mengarahkan pengguna menuju halaman utama sesuai pilihan. |
+
+## 6.11 Rancangan Antarmuka I-11
+
+**Antarmuka:** I-11  
+**Nama Layar:** Push Notification  
+**Kelas Perancangan:** PushNotificationUI  
+**Use Case Terkait:** UC09, UC10
+
+<p align="center">
+<img alt="Rancangan Antarmuka Push Notification" src="./assets/diagram/ui-I-11.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.12. Rancangan Antarmuka I-11 - Push Notification</i>
+</p>
+
+Tabel 6.11. Spesifikasi Objek Antarmuka I-11
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-11-01 | System Notification | Pross | Menampilkan identitas aplikasi sebagai pengirim notifikasi melalui sistem Android. |
+| I-11-02 | Notification Title | Margin Negatif! | Menampilkan peringatan ketika suatu produk mengalami margin negatif. |
+| I-11-03 | Notification Body | Nama produk, nilai kerugian, persentase margin, dan perubahan harga bahan | Menampilkan ringkasan penyebab perubahan profitabilitas produk. |
+| I-11-04 | Notification Action | Tinjau harga | Membuka aplikasi Pross dan mengarahkan pengguna menuju I-07 untuk produk terkait. |
+| I-11-05 | Icon Button | Kembali | Mengembalikan pengguna dari halaman pengaturan izin ke halaman sebelumnya. |
+| I-11-06 | Text Label | Izin notifikasi | Menampilkan judul pengaturan izin notifikasi. |
+| I-11-07 | Warning Message | Notifikasi belum diizinkan | Menjelaskan bahwa notifikasi tidak dapat dikirim karena izin pada perangkat belum diberikan. |
+| I-11-08 | Button | Buka pengaturan Android | Membuka halaman pengaturan notifikasi aplikasi Pross pada Android. |
+| I-11-09 | Information Panel | Langkah mengaktifkan | Menampilkan petunjuk pengaktifan izin notifikasi melalui pengaturan Android. |
+| I-11-10 | Button | Periksa izin lagi | Memeriksa ulang status izin notifikasi pada perangkat. |
+| I-11-11 | Loading Indicator | Memeriksa status notifikasi... | Menunjukkan bahwa sistem sedang memeriksa status izin notifikasi. |
+| I-11-12 | System Empty State | Tidak ada notifikasi | Ditampilkan oleh panel sistem Android ketika tidak ada notifikasi aktif. |
+
+## 6.12 Rancangan Antarmuka I-12
+
+**Antarmuka:** I-12  
+**Nama Layar:** Pusat Notifikasi dalam Aplikasi  
+**Use Case Terkait:** UC09, UC10
+
+<p align="center">
+<img alt="Rancangan Antarmuka Pusat Notifikasi" src="./assets/diagram/ui-I-12.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.13. Rancangan Antarmuka I-12 - Pusat Notifikasi</i>
+</p>
+
+Tabel 6.12. Spesifikasi Objek Antarmuka I-12
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+| I-12-01 | Text Label | Notifikasi | Menampilkan judul halaman pusat notifikasi. |
+| I-12-02 | Text Label | Jumlah belum dibaca | Menampilkan jumlah notifikasi yang belum dibaca pengguna. |
+| I-12-03 | Button | Tandai semua dibaca | Mengubah status seluruh notifikasi pengguna menjadi sudah dibaca. |
+| I-12-04 | Section Label | Hari ini; Kemarin | Mengelompokkan notifikasi berdasarkan tanggal penerimaan. |
+| I-12-05 | Notification Card | Margin Negatif! | Menampilkan informasi produk yang mengalami kerugian beserta nilai margin dan perubahan harga bahan terkait. |
+| I-12-06 | Notification Card | Harga bahan naik | Menampilkan pemberitahuan perubahan harga bahan baku dan dampaknya terhadap produk. |
+| I-12-07 | Notification Card | Harga bahan diperbarui | Menampilkan informasi pembaruan harga bahan baku yang tercatat. |
+| I-12-08 | Status Label | Belum dibaca; Sudah dibaca | Menampilkan status keterbacaan dan waktu penerimaan notifikasi. |
+| I-12-09 | Text Link | Tinjau produk | Mengarahkan pengguna menuju I-07 untuk produk yang disebutkan pada notifikasi. |
+| I-12-10 | Text Link | Lihat tren bahan | Mengarahkan pengguna menuju I-09 untuk melihat detail bahan baku terkait. |
+| I-12-11 | Button | Tandai dibaca | Mengubah status notifikasi tertentu menjadi sudah dibaca. |
+| I-12-12 | Loading Placeholder | Memuat pembaruan usaha... | Menunjukkan proses pengambilan daftar notifikasi. |
+| I-12-13 | Error Message | Notifikasi gagal dimuat | Menampilkan pesan ketika daftar notifikasi tidak berhasil diambil. |
+| I-12-14 | Button | Coba lagi | Mengulangi proses pengambilan daftar notifikasi. |
+| I-12-15 | Empty State | Belum ada notifikasi | Ditampilkan apabila belum ada notifikasi yang diterima pengguna. |
+| I-12-16 | Button | Kembali ke Beranda | Mengarahkan pengguna menuju I-04. |
+| I-12-17 | Bottom Navigation | Beranda, Bahan Baku, Notifikasi, Profil | Memungkinkan perpindahan antara halaman utama aplikasi. |
+
+## 6.13 Rancangan Antarmuka Keseluruhan
+
+Rancangan antarmuka Pross terdiri atas dua belas kelompok antarmuka utama. Setiap kelompok memiliki ID unik yang digunakan secara konsisten pada subbab perancangan dan tabel spesifikasi objek. Beberapa kelompok memiliki tampilan tambahan berupa detail, kondisi kesalahan, pemuatan data, serta dialog konfirmasi.
+
+Tabel 6.13. Rancangan Antarmuka Keseluruhan
 
 | No | Tampilan Antarmuka |
 | :--- | :--- |
-| *[I-01]* | <img src="./assets/diagram/contoh-design.png" alt="Contoh Desain" width="400"> |
-| *[I-02]* | *[Sisipkan gambar antarmuka I-02]* |
-| *[I-XX]* | *[Sisipkan gambar antarmuka berikutnya]* |
+| I-01 | <img src="./assets/diagram/ui-I-01.png" alt="Login" width="250"> |
+| I-02 | <img src="./assets/diagram/ui-I-02.png" alt="Registrasi" width="250"> |
+| I-03 | <img src="./assets/diagram/ui-I-03.png" alt="Reset Password" width="250"> |
+| I-04 | <img src="./assets/diagram/ui-I-04.png" alt="Beranda" width="250"> |
+| I-05 | <img src="./assets/diagram/ui-I-05.png" alt="Pencarian Produk" width="250"> |
+| I-06 | <img src="./assets/diagram/ui-I-06.png" alt="Tambah Produk" width="250"> |
+| I-07 | <img src="./assets/diagram/ui-I-07.png" alt="Edit Produk" width="250"> |
+| I-08 | <img src="./assets/diagram/ui-I-08.png" alt="Riwayat Harga Jual" width="250"> |
+| I-09 | <img src="./assets/diagram/ui-I-09.png" alt="Daftar Bahan Baku" width="250"> |
+| I-09 (Detail) | <img src="./assets/diagram/ui-I-09-detail.png" alt="Detail Tren Bahan Baku" width="250"> |
+| I-10 | <img src="./assets/diagram/ui-I-10.png" alt="Profil Pengguna" width="250"> |
+| I-11 | <img src="./assets/diagram/ui-I-11.png" alt="Push Notification" width="250"> |
+| I-12 | <img src="./assets/diagram/ui-I-12.png" alt="Pusat Notifikasi" width="250"> |
 
 <br>
 
 ---
-
 # BAB 7: Matriks Kerunutan
 
 Tabel 7.1. Matriks Kerunutan Kelas terhadap Use Case
