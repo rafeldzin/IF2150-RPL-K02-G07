@@ -2433,6 +2433,411 @@ Procedure showErrorMessage(pesan)
     this.errorLabel.setVisible(true)
 ```
 
+## 5.22 Kelas ProductSearchController
+
+**Nama Kelas:** *ProductSearchController*  
+**ID Kelas:** *C22*
+
+Tabel 5.22.1. Operasi Kelas ProductSearchController
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ searchProduk(kataKunci: String): List Of Produk* | *public* | *Menerima kata kunci dari page, mengambil daftar produk yang namanya atau tag-nya cocok dengan kata kunci dari basis data, lalu mengembalikan hasilnya.* |
+| *+ filterByTag(daftarProduk: List Of Produk, tag: String): List Of Produk* | *public* | *Menyaring daftar produk yang sudah diambil berdasarkan tag spesifik.* |
+
+Tabel 5.22.2. Atribut Kelas ProductSearchController
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *currentPemilik* | *private* | *PemilikUsaha* |
+| *kataKunci* | *private* | *String* |
+
+### 5.22.1 Algoritma/Query
+
+**Nama Kelas:** *ProductSearchController*  
+**Nama Operasi:** *searchProduk(kataKunci)*  
+**ID Algoritma:** *Algo-C22-01*
+
+```text
+Function searchProduk(kataKunci)
+    this.kataKunci ← TRIM(kataKunci)
+    hasil ← new List<Produk>
+    
+    if (isEmpty(this.kataKunci)) then
+        return hasil
+
+    try
+        rows ← DB_SERVICE.searchProdukDB(currentPemilik.getUsername(), this.kataKunci)
+        for each row in rows
+            p ← new Produk()
+            p.id ← row.id_produk
+            p.setNamaProduk(row.nama_produk)
+            p.setHargaJual(row.harga_jual)
+            p.setMargin(row.margin)
+            add(hasil, p)
+    catch DatabaseError as e
+        raise Error("Gagal mencari produk: " + e.message)
+
+    → hasil
+```
+
+Tabel 5.22.3. Query Operasi searchProduk()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C22-01* | `SELECT id_produk, nama_produk, harga_jual, margin FROM tbl_produk WHERE username = @username AND (LOWER(nama_produk) LIKE LOWER('%'||@kataKunci||'%') OR @kataKunci = ANY(tag));` | *Mengambil produk yang cocok dengan kata kunci pada nama atau tag.* |
+
+### 5.22.2 Algoritma/Query
+
+**Nama Kelas:** *ProductSearchController*  
+**Nama Operasi:** *filterByTag(daftarProduk, tag)*  
+**ID Algoritma:** *Algo-C22-02*
+
+```text
+Function filterByTag(daftarProduk, tag)
+    hasilFilter ← new List<Produk>
+    for each p in daftarProduk
+        if (contains(p.getTag(), LOWER(tag))) then
+            add(hasilFilter, p)
+    → hasilFilter
+```
+
+## 5.23 Kelas PriceHistoryPage
+
+**Nama Kelas:** *PriceHistoryPage*  
+**ID Kelas:** *C23*
+
+Tabel 5.23.1. Operasi Kelas PriceHistoryPage
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ showPage(produkTerkait: Produk): Void* | *public* | *Menampilkan halaman riwayat harga jual untuk produk yang dipilih beserta filter rentang waktu. Meminta data grafik ke PriceHistoryController.* |
+| *+ showChart(dataGrafik: List Of Object): Void* | *public* | *Menampilkan grafik riwayat perubahan harga jual berdasarkan data yang dihasilkan controller.* |
+| *+ showErrorMessage(pesan: String): Void* | *public* | *Menampilkan pesan kesalahan apabila produk belum memiliki riwayat perubahan harga.* |
+
+Tabel 5.23.2. Atribut Kelas PriceHistoryPage
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *produkTerpilih* | *private* | *Produk* |
+| *rentangWaktuFilter* | *private* | *Integer* |
+
+### 5.23.1 Algoritma/Query
+
+**Nama Kelas:** *PriceHistoryPage*  
+**Nama Operasi:** *showPage(produkTerkait)*  
+**ID Algoritma:** *Algo-C23-01*
+
+```text
+Procedure showPage(produkTerkait)
+    this.produkTerpilih ← produkTerkait
+    if (this.rentangWaktuFilter = NULL) then
+        this.rentangWaktuFilter ← 30
+        
+    this.errorLabel.setVisible(false)
+    this.namaProdukLabel.setText(produkTerkait.getNamaProduk())
+    this.hargaSaatIniLabel.setText(FORMAT_RUPIAH(produkTerkait.getHargaJual()))
+    NAVIGATOR.goTo(PriceHistoryPage)
+
+    try
+        PRICE_HISTORY_CONTROLLER.currentProduk ← this.produkTerpilih
+        dataGrafik ← PRICE_HISTORY_CONTROLLER.generateChartData(this.rentangWaktuFilter)
+        showChart(dataGrafik)
+    catch ValidationError as e
+        showErrorMessage(e.message)
+```
+
+### 5.23.2 Algoritma/Query
+
+**Nama Kelas:** *PriceHistoryPage*  
+**Nama Operasi:** *showChart(dataGrafik)*  
+**ID Algoritma:** *Algo-C23-02*
+
+```text
+Procedure showChart(dataGrafik)
+    this.errorLabel.setVisible(false)
+    this.chartView.clear()
+    for each titik in dataGrafik
+        this.chartView.addPoint(FORMAT_TANGGAL(titik.waktu), titik.harga)
+    this.chartView.setVisible(true)
+```
+
+### 5.23.3 Algoritma/Query
+
+**Nama Kelas:** *PriceHistoryPage*  
+**Nama Operasi:** *showErrorMessage(pesan)*  
+**ID Algoritma:** *Algo-C23-03*
+
+```text
+Procedure showErrorMessage(pesan)
+    this.chartView.setVisible(false)
+    this.errorLabel.setText(pesan)
+    this.errorLabel.setVisible(true)
+```
+
+## 5.24 Kelas PriceHistoryController
+
+**Nama Kelas:** *PriceHistoryController*  
+**ID Kelas:** *C24*
+
+Tabel 5.24.1. Operasi Kelas PriceHistoryController
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ getRiwayatHarga(): List Of RiwayatHargaJual* | *public* | *Mengambil seluruh data riwayat perubahan harga jual produk dari basis data.* |
+| *+ filterDataByDate(daftarRiwayat: List Of RiwayatHargaJual, tanggalMulai: Date, tanggalAkhir: Date): List Of RiwayatHargaJual* | *public* | *Menyaring riwayat berdasarkan rentang waktu yang dipilih pengguna.* |
+| *+ generateChartData(rentangHari: Integer): List Of Object* | *public* | *Menyusun riwayat yang sudah disaring menjadi titik-titik koordinat untuk grafik.* |
+
+Tabel 5.24.2. Atribut Kelas PriceHistoryController
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *currentPemilik* | *private* | *PemilikUsaha* |
+| *currentProduk* | *private* | *Produk* |
+
+### 5.24.1 Algoritma/Query
+
+**Nama Kelas:** *PriceHistoryController*  
+**Nama Operasi:** *getRiwayatHarga()*  
+**ID Algoritma:** *Algo-C24-01*
+
+```text
+Function getRiwayatHarga()
+    daftar ← new List<RiwayatHargaJual>
+    try
+        rows ← DB_SERVICE.getRiwayatHargaJual(this.currentProduk.id)
+    catch DatabaseError as e
+        raise Error("Gagal mengambil riwayat harga jual: " + e.message)
+        
+    for each row in rows
+        riwayat ← new RiwayatHargaJual(row.harga_baru)
+        riwayat.setHargaJualLama(row.harga_jual_lama)
+        riwayat.setWaktuPerubahan(row.waktu_perubahan)
+        add(daftar, riwayat)
+    → daftar
+```
+
+Tabel 5.24.3. Query Operasi getRiwayatHarga()
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| *Q-C24-01* | `SELECT harga_jual_lama, harga_baru, waktu_perubahan FROM tbl_riwayat_harga_jual WHERE id_produk = @idProduk ORDER BY waktu_perubahan ASC;` | *Mengambil seluruh riwayat harga jual dari suatu produk.* |
+
+### 5.24.2 Algoritma/Query
+
+**Nama Kelas:** *PriceHistoryController*  
+**Nama Operasi:** *filterDataByDate(daftarRiwayat, tanggalMulai, tanggalAkhir)*  
+**ID Algoritma:** *Algo-C24-02*
+
+```text
+Function filterDataByDate(daftarRiwayat, tanggalMulai, tanggalAkhir)
+    hasil ← new List<RiwayatHargaJual>
+    for each riwayat in daftarRiwayat
+        waktu ← riwayat.getWaktuPerubahan()
+        if (waktu >= tanggalMulai and waktu <= tanggalAkhir) then
+            add(hasil, riwayat)
+    → hasil
+```
+
+### 5.24.3 Algoritma/Query
+
+**Nama Kelas:** *PriceHistoryController*  
+**Nama Operasi:** *generateChartData(rentangHari)*  
+**ID Algoritma:** *Algo-C24-03*
+
+```text
+Function generateChartData(rentangHari)
+    tanggalAkhir ← NOW()
+    tanggalMulai ← tanggalAkhir - rentangHari hari
+
+    semuaRiwayat ← getRiwayatHarga()
+    terfilter    ← filterDataByDate(semuaRiwayat, tanggalMulai, tanggalAkhir)
+
+    if (isEmpty(terfilter)) then
+        raise ValidationError("Belum ada riwayat harga pada rentang waktu ini")
+
+    dataGrafik ← new List<Object>
+    for each riwayat in terfilter
+        add(dataGrafik, {waktu: riwayat.getWaktuPerubahan(),
+                         harga: riwayat.getHargaJualLama()})
+
+    // Tambahkan titik harga saat ini di akhir grafik
+    add(dataGrafik, {waktu: tanggalAkhir,
+                     harga: this.currentProduk.getHargaJual()})
+    → dataGrafik
+```
+
+## 5.25 Kelas ProfilePage
+
+**Nama Kelas:** *ProfilePage*  
+**ID Kelas:** *C25*
+
+Tabel 5.25.1. Operasi Kelas ProfilePage
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ showPage(): Void* | *public* | *Menampilkan halaman profil yang memuat data akun terkini (nama usaha, email, no telepon).* |
+| *+ getProfileInput(): Void* | *public* | *Mengambil input dari form pembaruan profil lalu meneruskannya ke ProfileController. Dipanggil saat tombol "Simpan Perubahan" ditekan.* |
+| *+ clickLogout(): Void* | *public* | *Menampilkan dialog konfirmasi lalu memanggil ProfileController.processLogout() jika pengguna setuju untuk keluar dari akun.* |
+| *+ showSuccessMessage(pesan: String): Void* | *public* | *Menampilkan pesan bahwa profil berhasil diperbarui.* |
+| *+ showErrorMessage(pesan: String): Void* | *public* | *Menampilkan pesan kesalahan jika validasi profil gagal.* |
+
+Tabel 5.25.2. Atribut Kelas ProfilePage
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *namaUsahaInput* | *private* | *String* |
+| *emailInput* | *private* | *String* |
+| *noTelpInput* | *private* | *String* |
+| *passwordInput* | *private* | *String* |
+
+### 5.25.1 Algoritma/Query
+
+**Nama Kelas:** *ProfilePage*  
+**Nama Operasi:** *showPage()*  
+**ID Algoritma:** *Algo-C25-01*
+
+```text
+Procedure showPage()
+    pemilik ← PROFILE_CONTROLLER.currentPemilik
+    this.namaUsahaInput.setText(pemilik.getNamaUsaha())
+    this.emailInput.setText(pemilik.getEmail())
+    this.noTelpInput.setText(pemilik.getNoTelp())
+    NAVIGATOR.goTo(ProfilePage)
+```
+
+### 5.25.2 Algoritma/Query
+
+**Nama Kelas:** *ProfilePage*  
+**Nama Operasi:** *getProfileInput()*  
+**ID Algoritma:** *Algo-C25-02*
+
+```text
+Procedure getProfileInput()
+    namaUsaha ← TRIM(this.namaUsahaInput.getText())
+    email     ← TRIM(this.emailInput.getText())
+    noTelp    ← TRIM(this.noTelpInput.getText())
+    
+    try
+        isValid ← PROFILE_CONTROLLER.validateProfileData(namaUsaha, email, noTelp)
+        if (isValid) then
+            PROFILE_CONTROLLER.updateProfileData(namaUsaha, email, noTelp)
+            showSuccessMessage("Profil berhasil diperbarui")
+    catch ValidationError as e
+        showErrorMessage(e.message)
+```
+
+### 5.25.3 Algoritma/Query
+
+**Nama Kelas:** *ProfilePage*  
+**Nama Operasi:** *clickLogout()*  
+**ID Algoritma:** *Algo-C25-03*
+
+```text
+Procedure clickLogout()
+    if (SHOW_CONFIRM_DIALOG("Apakah Anda yakin ingin keluar dari akun?")) then
+        PROFILE_CONTROLLER.processLogout()
+```
+
+### 5.25.4 Algoritma/Query
+
+**Nama Kelas:** *ProfilePage*  
+**Nama Operasi:** *showSuccessMessage(pesan)*  
+**ID Algoritma:** *Algo-C25-04*
+
+```text
+Procedure showSuccessMessage(pesan)
+    this.messageLabel.setText(pesan)
+    this.messageLabel.setVisible(true)
+```
+
+### 5.25.5 Algoritma/Query
+
+**Nama Kelas:** *ProfilePage*  
+**Nama Operasi:** *showErrorMessage(pesan)*  
+**ID Algoritma:** *Algo-C25-05*
+
+```text
+Procedure showErrorMessage(pesan)
+    this.errorLabel.setText(pesan)
+    this.errorLabel.setVisible(true)
+```
+
+## 5.26 Kelas ProfileController
+
+**Nama Kelas:** *ProfileController*  
+**ID Kelas:** *C26*
+
+Tabel 5.26.1. Operasi Kelas ProfileController
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| *+ validateProfileData(namaUsaha: String, email: String, noTelp: String): Boolean* | *public* | *Memeriksa validitas format email dan nomor telepon.* |
+| *+ updateProfileData(namaUsaha: String, email: String, noTelp: String): Void* | *public* | *Menyimpan pembaruan data profil ke dalam basis data melalui metode pada objek PemilikUsaha.* |
+| *+ processLogout(): Void* | *public* | *Membersihkan state pengguna dari memori dan memanggil endSession().* |
+| *+ endSession(): Void* | *public* | *Mengakhiri sesi autentikasi dan mengembalikan pengguna ke halaman Login (I-01).* |
+
+Tabel 5.26.2. Atribut Kelas ProfileController
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| *currentPemilik* | *private* | *PemilikUsaha* |
+
+### 5.26.1 Algoritma/Query
+
+**Nama Kelas:** *ProfileController*  
+**Nama Operasi:** *validateProfileData(namaUsaha, email, noTelp)*  
+**ID Algoritma:** *Algo-C26-01*
+
+```text
+Function validateProfileData(namaUsaha, email, noTelp)
+    if (not IS_VALID_EMAIL(email)) then
+        raise ValidationError("Format email tidak valid")
+    if (not IS_NUMERIC(noTelp)) then
+        raise ValidationError("Nomor telepon harus berupa angka")
+    → true
+```
+
+### 5.26.2 Algoritma/Query
+
+**Nama Kelas:** *ProfileController*  
+**Nama Operasi:** *updateProfileData(namaUsaha, email, noTelp)*  
+**ID Algoritma:** *Algo-C26-02*
+
+```text
+Procedure updateProfileData(namaUsaha, email, noTelp)
+    this.currentPemilik.setNamaUsaha(namaUsaha)
+    this.currentPemilik.setEmail(email)
+    this.currentPemilik.setNoTelp(noTelp)
+    
+    // Pemanggilan setter di atas secara internal sudah melakukan query UPDATE
+    // ke basis data sesuai rancangan kelas PemilikUsaha (Q-C01-02, Q-C01-03, Q-C01-04)
+```
+
+### 5.26.3 Algoritma/Query
+
+**Nama Kelas:** *ProfileController*  
+**Nama Operasi:** *processLogout()*  
+**ID Algoritma:** *Algo-C26-03*
+
+```text
+Procedure processLogout()
+    this.currentPemilik ← NULL
+    endSession()
+```
+
+### 5.26.4 Algoritma/Query
+
+**Nama Kelas:** *ProfileController*  
+**Nama Operasi:** *endSession()*  
+**ID Algoritma:** *Algo-C26-04*
+
+```text
+Procedure endSession()
+    AUTH_SERVICE.clearToken()
+    NAVIGATOR.goTo(LoginPage)
+```
+
 <br>
 
 ---
