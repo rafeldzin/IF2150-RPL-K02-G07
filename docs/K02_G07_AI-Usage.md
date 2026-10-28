@@ -30,6 +30,7 @@
 * [Milestone 5](#milestone-5)
 * [Milestone 6](#milestone-6)
 * [Milestone 7](#milestone-7)
+* [Milestone 8](#milestone-8)
 
 ---
 
@@ -75,6 +76,12 @@
 | Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
 | :--- | :--- | :--- | :--- |
 | *Claude* | *Pengecekan traceability* | *"Apakah setiap class, arsitektur, dan komponen lainnya sudah sesuai antar dokumen?"* | *AI memberikan hasil traceability yang belum dimasukkan.* |
+| | | | | |
+
+### Milestone 8
+| Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
+| :--- | :--- | :--- | :--- |
+| *Claude* | *Membenarkan Algoritma* | *"Apakah algoritma pseudocode yang dibuat sudah benar?"* | *AI memberikan masukan dan pembenaran program yang dibuat.* |
 | | | | | |
 
 ---
