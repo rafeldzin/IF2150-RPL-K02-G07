@@ -35,7 +35,7 @@ Dipersiapkan oleh:
 ---
 
 **Deadline:** Rabu, 11 November 2026, 21.50 WIB
-**Asistensi akbar:** *[Hari, DD Bulan YYYY, HH.MM WIB, lokasi/link]*
+**Asistensi akbar:** *[Senin, 2 November 2026, 19.00 WIB, MSTEAMS]*
 
 ---
 
@@ -87,11 +87,11 @@ src/                              # SELURUH kode implementasi
 	README.md                     # dokumentasi utama aplikasi (lihat A.5)
 	.env.example                  # jika memakai environment variable
 	<struktur kode kalian>        # bebas, mengikuti pola arsitektur DPPL
-	tests/                        # test case (jika ada)
+	tests/                        # test case 
 docs/
 	M9/
-		KXX_GYY_Implementasi.md   # laporan ini (Bagian B)
-		KXX_GYY_Form-Asistensi.md
+		K02_G07_Implementasi.md   # laporan ini (Bagian B)
+		K02_G07_Form-Asistensi.md
 ```
 
 Catatan:
@@ -192,7 +192,15 @@ Tabel B.1. Perubahan dari DPPL
 | No | Bagian DPPL | Rancangan Awal | Implementasi Akhir | Alasan |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | *[mis. Kelas C05, layar I-03, tabel `orders`]* | *[Yang direncanakan]* | *[Yang dibuat]* | *[Alasan perubahan]* |
-| *...* | *...* | *...* | *...* | *...* |
+| *[2]* | *Kelas C02 `Produk` (Bab 5.2)* | *Atribut `namaProduk`, `tag`, `hargaJual`, `margin`* | *Ditambah atribut `hasilResep` beserta `getHasilResep()` dan `setHasilResep()` (bilangan bulat positif)* | *Rancangan antarmuka I-06 (objek I-06-06) memuat kolom "Hasil resep (porsi)" dan HPP dihitung per porsi* |
+| *[3]* | *Kelas C03 `BahanBaku` (Bab 5.3)* | *Atribut `namaBahan` dan `hargaBeli`* | *Ditambah atribut `satuan` beserta `getSatuan()` dan `setSatuan()`* | *Antarmuka I-06 (I-06-09, I-06-10) menampilkan takaran dan harga per satuan bahan agar HPP dihitung dengan satuan yang sama* |
+| *[4]* | *Kelas C04 `ResepBahan` (Bab 5.4)* | *Hanya atribut `takaran`* | *Ditambah operasi `getBahan()` yang menunjuk objek `BahanBaku`* | *Relasi asosiasi pada class diagram diwujudkan sebagai properti agar biaya tiap bahan dapat dihitung* |
+| *[5]* | *Kelas C10 `AddProductPage` (Bab 5.10)* | *Form dua tahap: nama dan tag, kemudian bahan baku dan harga jual; hasil berupa pesan* | *Satu halaman sesuai I-06 dengan dropdown tag dan bahan, kolom porsi, panel total biaya dan HPP per porsi, dialog preview, serta kartu produk hasil. `showSuccessMessage` menerima data hasil, bukan pesan string* | *Menyesuaikan implementasi dengan rancangan antarmuka I-06* |
+| *[6]* | *Kelas C11 `MarginController` (Bab 5.11)* | *`validasiInput(daftarBahan, hargaJual)` memvalidasi sekaligus menyimpan produk* | *`validasiInput(input)` hanya memvalidasi dan menghitung preview (HPP per porsi, margin, persentase). Penyimpanan dipindah ke operasi baru `simpanProduk()` yang memanggil `simpanProdukBaru()` dan `simpanResep()`. Ditambah `getDaftarBahan()` dan `getCurrentProduk()`* | *Dialog preview (I-06-15 sampai I-06-19) mengharuskan pengguna mengonfirmasi sebelum data disimpan* |
+| *[7]* | *Rumus HPP (Bab 5.11)* | *HPP = jumlah (takaran x harga beli)* | *HPP per porsi = jumlah (takaran x harga beli) dibagi hasil resep; margin = harga jual per porsi dikurangi HPP per porsi* | *Sesuai panel I-06-13 dan I-06-14. [konfirmasi bahwa tim menyetujui rumus ini]* |
+| *[8]* | *Pembuatan bahan baku* | *Bahan baku dipilih dari yang sudah ada atau dibuat bila belum ada* | *Dropdown memuat bahan yang sudah ada dan opsi "+ Bahan baru"; bahan baru wajib diisi nama, harga beli, dan satuan. Bahan dengan nama yang sudah ada ditolak dan harus dipilih dari daftar* | *Belum ada use case yang menambah bahan baku, dan harga bahan yang sudah ada tidak boleh tertimpa karena perubahannya ditangani UC10* |
+| *[9]* | *Basis data tabel `tbl_produk`, `tbl_bahan_baku`, `tbl_resep_bahan` (Bab 5)* | *Kunci kepemilikan mengacu pada `username`* | *Kolom `id_pemilik` bertipe `uuid` yang merujuk `tbl_pemilik_usaha.id`; ditambah kolom `hasil_resep` dan `satuan`; Row Level Security aktif pada ketiga tabel* | *Kunci `uuid` dari Supabase Auth lebih stabil dan diperlukan untuk kebijakan RLS* |
+| *[10]* | *Akses basis data (Bab 5.11)* | *Query melalui `DB_SERVICE`* | *Query dijalankan langsung dari controller memakai klien Supabase (`src/services/supabase.ts`)* | *Mengikuti pola yang sudah dipakai `PemilikUsaha` dan `AuthController`* |
 
 ## B.2 Bukti Penerapan Best Practices
 
@@ -207,6 +215,11 @@ Tabel B.2. Bukti Best Practices
 | Track tasks | [Issue #12](https://github.com/rafeldzin/IF2150-RPL-K02-G07/issues) | Pembagian tugas fitur Search dan Tren Harga. |
 | Pull request dan review | [PR #8 (Kuri)](https://github.com/rafeldzin/IF2150-RPL-K02-G07/pull/8) | Saya (Fathir) mereview dan approve implementasi notifikasi milik Kuri (Fakhriyan). |
 | Pengujian | `src/tests/` | Unit test pada fungsi logika filter waktu dan formatting harga rupiah. |
+| Branching | *https://github.com/rafeldzin/IF2150-RPL-K02-G07/branches* | *Feature Branch* |
+| Semantic commit | *https://github.com/rafeldzin/IF2150-RPL-K02-G07/commits/main/* | *[Ringkasan]* |
+| Track tasks | *https://github.com/rafeldzin/IF2150-RPL-K02-G07/issues* | *22 Issues* <br> *- Kevin: 4* <br> *- Klio: 3* <br> *- Kuri: 4* <br> *- Botros: 4* <br> *- Rafel: 5* <br> *- Nuha: 2*|
+| Pull request dan review | *https://github.com/rafeldzin/IF2150-RPL-K02-G07/pull/23* <br> *https://github.com/rafeldzin/IF2150-RPL-K02-G07/pull/24* | *Klio review Kevin* <br> *Kuri review Klio* |
+| Pengujian | *https://github.com/rafeldzin/IF2150-RPL-K02-G07/tree/main/src/tests* | *[Apa yang diuji, cara menjalankan] BAGIAN BUKTI PERLU TUNJUKIN HASIL PENGUJIAN JANGAN LUPA* |
 
 ### B.2.1 Profiling dan Optimasi
 
@@ -221,6 +234,12 @@ Tabel B.2. Bukti Best Practices
 ## B.3 Kendala dan Catatan Penting
 
 Tuliskan kendala yang ditemui, fitur yang belum sempurna (*known issues*), serta hal yang perlu diketahui asisten saat menjalankan atau menilai aplikasi (misalnya akun uji khusus, urutan menjalankan, atau batasan).
+- Rancangan I-06 memuat porsi dan satuan, tetapi class diagram C02 dan C03 belum memuatnya. 
+- Belum ada layar untuk mengelola bahan baku (mengubah atau menghapus). Bahan baru hanya dapat dibuat dari formulir Tambah Produk.
+- Penyimpanan produk dan resep tidak berada dalam satu transaksi basis data. Bila penyimpanan resep gagal, produk yang sudah tersimpan dihapus kembali oleh `MarginController`.
+- Margin dihitung saat produk dibuat dan diperbarui oleh `NotificationController` ketika harga bahan baku berubah.
+- Pilihan tag bersifat tetap (Makanan utama, Camilan, Minuman, Dessert, Lainnya) pada `DAFTAR_TAG` di `src/models/Produk.ts`.
+
 
 ## B.4 Kontribusi Anggota
 
@@ -228,7 +247,7 @@ Tabel B.4. Kontribusi Anggota
 
 | NIM | Nama | Modul / Fitur yang Dikerjakan | Persentase Kontribusi |
 | :--- | :--- | :--- | :--- |
-| *[NIM 1]* | *[Nama]* | *[Modul/fitur]* | *[%]* |
+| *13525020* | *Klio Lysander* | *UC03 (Menambahkan Produk) dan UC04 (Melihat Margin Produk): model `Produk`, `BahanBaku`, `ResepBahan`, `MarginController` dan fungsi perhitungan margin, layar Tambah Produk (I-06) beserta komponen pilihan, migrasi dan data contoh tabel produk, bahan baku, dan resep, unit test (36 test). Meninjau PR untuk UC01 dan UC02.* | *16,67%* |
 | *...* | *...* | *...* | *...* |
 
 ## B.5 Traceability Kelas Perancangan ke Implementasi
@@ -245,6 +264,12 @@ Tabel B.5. Traceability Kelas Perancangan ke Implementasi
 | *C16* | *TrenBahanBakuController* | *Class Singleton* | *`src/controllers/TrenBahanBakuController.ts` - `TrenBahanBakuController`* | *Operasi pengambilan riwayat dan filter dilakukan lewat query Supabase dan method `formatUntukChart()`.* |
 | *C21* | *SearchProductPage* | *Komponen React Native* | *`src/views/SearchProductPage.tsx` - `SearchProductPage`* | *Diimplementasikan dengan kustomisasi custom hook `useProductSearch` untuk menangani debounce agar tidak terjadi race condition saat mengetik.* |
 | *C22* | *ProductSearchController* | *Class Singleton* | *`src/controllers/ProductSearchController.ts` - `ProductSearchController`* | *Method `search()` mengambil kata kunci, menerapkan filter tag/nama, dan mengembalikan array `Product`.* |
+| *C02* | *Produk* | *Kelas* | *`src/models/Produk.ts` - `Produk`* | *Atribut menjadi properti private dengan getter dan setter sesuai DPPL. `setTag` menormalisasi tag; `setMargin` menerima nilai negatif. Ditambah `hasilResep` dan konstanta `DAFTAR_TAG` untuk pilihan tag.* |
+| *C03* | *BahanBaku* | *Kelas* | *`src/models/BahanBaku.ts` - `BahanBaku`* | *`namaBahan` diisi melalui konstruktor; `setHargaBeli` menolak nilai non-positif. Ditambah atribut `satuan`.* |
+| *C04* | *ResepBahan* | *Kelas* | *`src/models/ResepBahan.ts` - `ResepBahan`* | *`takaran` divalidasi pada setter; konstruktor menerima objek `BahanBaku` yang dapat diambil lewat `getBahan()`.* |
+| *C10* | *AddProductPage* | *Komponen React Native* | *`src/views/AddProductPage.tsx` - `AddProductPage`; `src/views/PilihanModal.tsx` - `PilihanModal`; rute `AddProduct` pada `src/navigation/types.ts` dan `src/App.tsx`* | *Atribut `inputNamaProduk`, `inputTag`, `inputTakaran`, dan `inputHargaJual` menjadi state komponen (ditambah `inputHasilResep`); isian disimpan sebagai teks lalu dikonversi ke angka. Operasi `showPage`, `getInput`, `showErrorMessage`, dan `showSuccessMessage` menjadi fungsi di dalam komponen dengan nama yang sama. Tombol "+ Tambah Produk" berada pada `HomePage.tsx`.* |
+| *C11* | *MarginController* | *Kelas* | *`src/controllers/MarginController.ts` - `MarginController`; `src/controllers/margin.ts` (fungsi perhitungan)* | *Atribut `currentProduk` dan `currentResep` menjadi properti private. Keempat operasi DPPL diwujudkan sebagai method; ditambah `simpanProduk`, `getDaftarBahan`, dan `getCurrentProduk`. Perhitungan (`hitungHpp`, `hitungMargin`, `hitungPersenMargin`) berupa fungsi murni di `margin.ts` agar dapat diuji dan dipakai fitur lain. Tabel pendukung: `supabase/migrations/20261103000000_produk_bahan_resep.sql` dan `20261105000001_porsi_satuan.sql`.* |
+| *...* | *...* | *...* | *...* | *...* |
 
 Catatan:
 - Satu kelas perancangan boleh diwujudkan oleh beberapa file/unit, dan satu file/unit boleh mewujudkan beberapa kelas perancangan. Tuliskan semuanya.
