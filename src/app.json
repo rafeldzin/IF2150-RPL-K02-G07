@@ -2,6 +2,7 @@
   "expo": {
     "name": "Pross",
     "slug": "pross",
+    "scheme": "pross",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
