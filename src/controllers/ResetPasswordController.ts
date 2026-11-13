@@ -71,9 +71,12 @@ export class ResetPasswordController {
   async kirimTautan(email: string): Promise<void> {
     await this.validateData(email, null);
 
+    const redirectTo = Linking.createURL(PATH_RESET_PASSWORD);
+
+
     const { error } = await supabase.auth.resetPasswordForEmail(
       email.trim().toLowerCase(),
-      { redirectTo: Linking.createURL(PATH_RESET_PASSWORD) },
+      { redirectTo },
     );
 
     if (error) {

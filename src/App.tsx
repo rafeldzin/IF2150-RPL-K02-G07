@@ -127,8 +127,10 @@ export default function App() {
         Alert.alert('Tautan tidak valid', hasil.pesan);
       }
     }
+    Linking.getInitialURL().then((url) => {
+      tanganiTautan(url);
+    });
 
-    Linking.getInitialURL().then(tanganiTautan);
     const langganan = Linking.addEventListener('url', ({ url }) => {
       tanganiTautan(url);
     });
