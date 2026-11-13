@@ -215,6 +215,8 @@ Tabel B.1. Perubahan dari DPPL
 
 ## B.2 Bukti Penerapan Best Practices
 
+## B.2 Bukti Penerapan Best Practices
+
 Tabel B.2. Bukti Best Practices
 
 | Praktik | Bukti | Keterangan |
@@ -227,17 +229,13 @@ Tabel B.2. Bukti Best Practices
 
 ### B.2.1 Profiling dan Optimasi
 
-Pilih minimal satu fitur yang diprofil.
-
 | Informasi | Keterangan |
 | :--- | :--- |
-| Fitur / proses yang diprofil | *[Nama fitur]* |
-| Alat | *[mis. Chrome DevTools, cProfile, EXPLAIN]* |
-| Temuan (sebelum) | *[Bottleneck yang ditemukan, sertakan angka/tangkapan layar]* |
-| Perbaikan | *[Yang diubah]* |
-| Hasil (sesudah) | *[Perbandingan dengan sebelumnya]* |
-
-Jika tidak ada perbaikan yang perlu dilakukan, jelaskan hasil profiling dan alasan kenapa fitur tersebut sudah memadai.
+| Fitur / proses yang diprofil | UC08 (Memantau Tren Harga Bahan Baku) |
+| Alat | Chrome DevTools (Performance & Network tab) |
+| Temuan (sebelum) | Waktu respons cukup lambat (*bottleneck*) saat menampilkan *chart* karena seluruh data historis dari *database* (ratusan baris riwayat harga) ditarik ke aplikasi (*client*), kemudian baru di-*filter* array-nya secara manual menggunakan fungsi `filter()` biasa. |
+| Perbaikan | Mengoptimasi *query* pada `TrenBahanBakuController.ts` agar pemfilteran waktu (`rentang`) langsung diproses di *database* Supabase menggunakan fungsi `.gte` (Greater Than or Equal), sehingga data yang dikirim ke aplikasi sudah bersih. Selain itu, menggunakan `Set` dan restrukturisasi *map* data *Line Chart* agar langsung sesuai dengan properti `react-native-chart-kit` secara modular. |
+| Hasil (sesudah) | Beban memori di perangkat *mobile/client* berkurang drastis dan *chart* langsung tampil tanpa ada waktu tunggu (lag) yang panjang karena data di-*filter* langsung oleh sisi *server* Supabase. |
 
 ## B.3 Kendala dan Catatan Penting
 
@@ -273,6 +271,8 @@ Tabel B.4. Kontribusi Anggota
 
 | NIM | Nama | Modul / Fitur yang Dikerjakan | Persentase Kontribusi |
 | :--- | :--- | :--- | :--- |
+| *13525002* | *Ahmad Boutros Fathir* | *UC03 (Menambahkan Produk) dan UC04 (Melihat Margin Produk): model `Produk`, `BahanBaku`, `ResepBahan`, `MarginController` dan fungsi perhitungan margin, layar Tambah Produk (I-06) beserta komponen pilihan, migrasi dan data contoh tabel produk, bahan baku, dan resep, unit test (36 test). Meninjau PR untuk UC01 dan UC02.* | *16,67%* |
+| *13525053* | *Kevin Sie* | *UC01 (Mendaftarkan Akun) dan UC02 (Login dengan Akun yang Sudah Terdaftar): model C01 `PemilikUsaha`, controller C06 `AuthController`, halaman C05 `RegistrationPage`, dan C07 `LoginPage`. Menyusun fungsi validasi dan unit test, integrasi Supabase Auth, Edge Function untuk login username, serta database `tbl_pemilik_usaha`. Menyiapkan fondasi aplikasi Expo/React Native dengan TypeScript, struktur MVC, navigasi, pengelolaan sesi, konfigurasi environment, dan dokumentasi setup pada `src/README.md`. Mengajukan implementasi melalui PR #23.* | *16,67%* |
 | *13525020* | *Klio Lysander* | *UC03 (Menambahkan Produk) dan UC04 (Melihat Margin Produk): model `Produk`, `BahanBaku`, `ResepBahan`, `MarginController` dan fungsi perhitungan margin, layar Tambah Produk (I-06) beserta komponen pilihan, migrasi dan data contoh tabel produk, bahan baku, dan resep, unit test (36 test). Meninjau PR untuk UC01 dan UC02.* | *16,67%* |
 | *13525053* | *Kevin Sie* | *UC01 (Mendaftarkan Akun) dan UC02 (Login dengan Akun yang Sudah Terdaftar): model C01 `PemilikUsaha`, controller C06 `AuthController`, halaman C05 `RegistrationPage`, dan C07 `LoginPage`. Menyusun fungsi validasi dan unit test, integrasi Supabase Auth, Edge Function untuk login username, serta database `tbl_pemilik_usaha`. Menyiapkan fondasi aplikasi Expo/React Native dengan TypeScript, struktur MVC, navigasi, pengelolaan sesi, konfigurasi environment, dan dokumentasi setup pada `src/README.md`. Mengajukan implementasi melalui PR #23.* | *16,67%* |
 | *13525047* | *Muhammad Fakhriyan Rizki Mahardhika* | *UC09 (Notifikasi Kerugian) dan UC10 (Notifikasi Perubahan Harga Bahan): model C17 `Notifikasi` dan atribut `statusPeringatan` pada `Produk`, controller C19 `NotificationController` beserta logika perhitungan pada `notification.ts`, kelas C18 `PushNotificationUI`, layar Beranda, Pusat Notifikasi, Izin Notifikasi, dan Detail Produk, migrasi `tbl_notifikasi`, `tbl_riwayat_harga_bahan`, dan kolom `status_peringatan`.* | *16,67%* |
