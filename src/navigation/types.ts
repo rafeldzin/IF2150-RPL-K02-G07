@@ -1,7 +1,7 @@
 export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
-  ResetPassword: undefined;
+  ResetPassword: { mode?: 'request' | 'recovery' | 'change' } | undefined;
   Home: undefined;
   Profile: undefined;
   AddProduct: undefined;
