@@ -1,4 +1,3 @@
-import AddProductPage from './views/AddProductPage';
 import { useEffect, useRef, useState } from 'react';
 
 import {
@@ -31,6 +30,9 @@ import NotificationPage from './views/NotificationPage';
 import IzinNotifikasiPage from './views/IzinNotifikasiPage';
 import ProductDetailPage from './views/ProductDetailPage';
 import ProfilePage from './views/ProfilePage';
+import AddProductPage from './views/AddProductPage';
+import SearchProductPage from './views/SearchProductPage';
+import TrenBahanBakuPage from './views/TrenBahanBakuPage';
 import {
   pushNotificationUI as pushUI,
   type DataNotifikasi,
@@ -170,6 +172,17 @@ export default function App() {
             name="Home"
             component={HomePage}
             options={{ title: 'Pross' }}
+          />
+          <Stack.Screen
+            name="SearchProduct"
+            component={SearchProductPage}
+            options={{ title: 'Cari Produk' }}
+          />
+
+          <Stack.Screen
+            name="TrenBahanBaku"
+            component={TrenBahanBakuPage}
+            options={{ title: 'Tren Bahan Baku' }}
           />
 
           <Stack.Screen
