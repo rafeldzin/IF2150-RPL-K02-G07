@@ -1,8 +1,9 @@
 import AddProductPage from './views/AddProductPage';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   ActivityIndicator,
+  Alert,
   View,
 } from 'react-native';
 
@@ -16,6 +17,7 @@ import {
 } from '@react-navigation/native-stack';
 
 import type { Session } from '@supabase/supabase-js';
+import * as Linking from 'expo-linking';
 
 import { supabase } from './services/supabase';
 
@@ -28,13 +30,19 @@ import HomePage from './views/HomePage';
 import NotificationPage from './views/NotificationPage';
 import IzinNotifikasiPage from './views/IzinNotifikasiPage';
 import ProductDetailPage from './views/ProductDetailPage';
+import ProfilePage from './views/ProfilePage';
 import {
   pushNotificationUI as pushUI,
   type DataNotifikasi,
 } from './services/PushNotificationUI';
+import {
+  ResetPasswordController,
+  bacaTautanReset,
+} from './controllers/ResetPasswordController';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const navigationRef = createNavigationContainerRef<RootStackParamList>();
+const resetController = new ResetPasswordController();
 
 function bukaDariNotifikasi(data: DataNotifikasi) {
   if (!navigationRef.isReady()) return;
@@ -48,6 +56,8 @@ function bukaDariNotifikasi(data: DataNotifikasi) {
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [modePemulihan, setModePemulihan] = useState(false);
+  const urlTerakhir = useRef<string | null>(null);
 
   useEffect(() => {
     let authEventReceived = false;
@@ -58,6 +68,9 @@ export default function App() {
       (_event, nextSession) => {
         authEventReceived = true;
         setSession(nextSession);
+        if (_event === 'SIGNED_OUT') {
+          setModePemulihan(false);
+        }
         setLoading(false);
       },
     );
@@ -81,7 +94,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!session) return;
+    if (!session || modePemulihan) return;
     let aktif = true;
     pushUI.inisialisasi().catch((e) => console.warn('Gagal menyiapkan notifikasi:', e));
     const berhenti = pushUI.onClickNotification(bukaDariNotifikasi);
@@ -92,8 +105,39 @@ export default function App() {
       aktif = false;
       berhenti();
     };
-  }, [session]);
+  }, [session, modePemulihan]);
 
+  useEffect(() => {
+    async function tanganiTautan(url: string | null) {
+      if (!url || url === urlTerakhir.current) return;
+
+      const tautan = bacaTautanReset(url);
+      if (tautan.tipe === 'bukan-reset') return;
+      urlTerakhir.current = url;
+
+      if (tautan.tipe === 'galat') {
+        Alert.alert('Tautan tidak valid', tautan.pesan);
+        return;
+      }
+
+      setModePemulihan(true);
+      const hasil = await resetController.terimaTautan(url);
+
+      if (hasil.tipe === 'galat') {
+        setModePemulihan(false);
+        Alert.alert('Tautan tidak valid', hasil.pesan);
+      }
+    }
+    Linking.getInitialURL().then((url) => {
+      tanganiTautan(url);
+    });
+
+    const langganan = Linking.addEventListener('url', ({ url }) => {
+      tanganiTautan(url);
+    });
+
+    return () => langganan.remove();
+  }, []);
   if (loading) {
     return (
       <View
@@ -114,7 +158,7 @@ export default function App() {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      {session ? (
+      {session && !modePemulihan ? (
         <Stack.Navigator
           screenOptions={{
             contentStyle: {
@@ -151,9 +195,16 @@ export default function App() {
             component={ProductDetailPage}
             options={{ title: 'Detail Produk' }}
           />
+          <Stack.Screen
+            name="Profile"
+            component={ProfilePage}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator
+          key={modePemulihan ? 'pemulihan' : 'auth'}
+          initialRouteName={modePemulihan ? 'ResetPassword' : 'Login'}
           screenOptions={{
             contentStyle: {
               backgroundColor: '#F4F7F5',
@@ -175,6 +226,7 @@ export default function App() {
           <Stack.Screen
             name="ResetPassword"
             component={ResetPasswordPage}
+            initialParams={{ mode: modePemulihan ? 'recovery' : 'request' }}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
