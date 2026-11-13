@@ -108,6 +108,44 @@ export default function HomePage({ navigation }: Props) {
         </Pressable>
       </View>
 
+      <View style={{ flexDirection: 'row', gap: 10 }}>
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => navigation.navigate('SearchProduct')}
+          style={{
+            flex: 1,
+            padding: 14,
+            borderRadius: 12,
+            backgroundColor: palette.white,
+            borderWidth: 1,
+            borderColor: palette.border,
+            alignItems: 'center',
+          }}
+        >
+          <Text style={{ color: palette.navy, fontWeight: '700' }}>
+            Cari Produk
+          </Text>
+        </Pressable>
+
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => navigation.navigate('TrenBahanBaku')}
+          style={{
+            flex: 1,
+            padding: 14,
+            borderRadius: 12,
+            backgroundColor: palette.white,
+            borderWidth: 1,
+            borderColor: palette.border,
+            alignItems: 'center',
+          }}
+        >
+          <Text style={{ color: palette.navy, fontWeight: '700' }}>
+            Tren Bahan Baku
+          </Text>
+        </Pressable>
+      </View>
+      
       <Text style={{ fontSize: 16, fontWeight: '800', color: palette.navy, marginTop: 8 }}>
         Produk Saya
       </Text>

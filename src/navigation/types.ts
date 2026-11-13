@@ -3,6 +3,8 @@ export type RootStackParamList = {
   Register: undefined;
   ResetPassword: { mode?: 'request' | 'recovery' | 'change' } | undefined;
   Home: undefined;
+  SearchProduct: undefined;
+  TrenBahanBaku: undefined;
   Profile: undefined;
   AddProduct: undefined;
   Notifikasi: undefined;
