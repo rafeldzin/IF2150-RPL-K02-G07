@@ -214,6 +214,8 @@ Tabel B.1. Perubahan dari DPPL
 
 ## B.2 Bukti Penerapan Best Practices
 
+## B.2 Bukti Penerapan Best Practices
+
 Tabel B.2. Bukti Best Practices
 
 | Praktik | Bukti | Keterangan |
@@ -226,17 +228,13 @@ Tabel B.2. Bukti Best Practices
 
 ### B.2.1 Profiling dan Optimasi
 
-Pilih minimal satu fitur yang diprofil.
-
 | Informasi | Keterangan |
 | :--- | :--- |
-| Fitur / proses yang diprofil | *[Nama fitur]* |
-| Alat | *[mis. Chrome DevTools, cProfile, EXPLAIN]* |
-| Temuan (sebelum) | *[Bottleneck yang ditemukan, sertakan angka/tangkapan layar]* |
-| Perbaikan | *[Yang diubah]* |
-| Hasil (sesudah) | *[Perbandingan dengan sebelumnya]* |
-
-Jika tidak ada perbaikan yang perlu dilakukan, jelaskan hasil profiling dan alasan kenapa fitur tersebut sudah memadai.
+| Fitur / proses yang diprofil | UC08 (Memantau Tren Harga Bahan Baku) |
+| Alat | Chrome DevTools (Performance & Network tab) |
+| Temuan (sebelum) | Waktu respons cukup lambat (*bottleneck*) saat menampilkan *chart* karena seluruh data historis dari *database* (ratusan baris riwayat harga) ditarik ke aplikasi (*client*), kemudian baru di-*filter* array-nya secara manual menggunakan fungsi `filter()` biasa. |
+| Perbaikan | Mengoptimasi *query* pada `TrenBahanBakuController.ts` agar pemfilteran waktu (`rentang`) langsung diproses di *database* Supabase menggunakan fungsi `.gte` (Greater Than or Equal), sehingga data yang dikirim ke aplikasi sudah bersih. Selain itu, menggunakan `Set` dan restrukturisasi *map* data *Line Chart* agar langsung sesuai dengan properti `react-native-chart-kit` secara modular. |
+| Hasil (sesudah) | Beban memori di perangkat *mobile/client* berkurang drastis dan *chart* langsung tampil tanpa ada waktu tunggu (lag) yang panjang karena data di-*filter* langsung oleh sisi *server* Supabase. |
 
 ## B.3 Kendala dan Catatan Penting
 
