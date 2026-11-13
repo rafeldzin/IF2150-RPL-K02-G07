@@ -256,6 +256,7 @@ Tuliskan kendala yang ditemui, fitur yang belum sempurna (*known issues*), serta
 - Pilihan tag bersifat tetap (Makanan utama, Camilan, Minuman, Dessert, Lainnya) pada `DAFTAR_TAG` di `src/models/Produk.ts`.
 
 
+
 ## B.4 Kontribusi Anggota
 
 Tabel B.4. Kontribusi Anggota
@@ -264,6 +265,7 @@ Tabel B.4. Kontribusi Anggota
 | :--- | :--- | :--- | :--- |
 | *13525020* | *Klio Lysander* | *UC03 (Menambahkan Produk) dan UC04 (Melihat Margin Produk): model `Produk`, `BahanBaku`, `ResepBahan`, `MarginController` dan fungsi perhitungan margin, layar Tambah Produk (I-06) beserta komponen pilihan, migrasi dan data contoh tabel produk, bahan baku, dan resep, unit test (36 test). Meninjau PR untuk UC01 dan UC02.* | *16,67%* |
 | *13525053* | *Kevin Sie* | *UC01 (Mendaftarkan Akun) dan UC02 (Login dengan Akun yang Sudah Terdaftar): model C01 `PemilikUsaha`, controller C06 `AuthController`, halaman C05 `RegistrationPage`, dan C07 `LoginPage`. Menyusun fungsi validasi dan unit test, integrasi Supabase Auth, Edge Function untuk login username, serta database `tbl_pemilik_usaha`. Menyiapkan fondasi aplikasi Expo/React Native dengan TypeScript, struktur MVC, navigasi, pengelolaan sesi, konfigurasi environment, dan dokumentasi setup pada `src/README.md`. Mengajukan implementasi melalui PR #23.* | *16,67%* |
+| *13525047* | *Muhammad Fakhriyan Rizki Mahardhika* | *UC09 (Notifikasi Kerugian) dan UC10 (Notifikasi Perubahan Harga Bahan): model C17 `Notifikasi` dan atribut `statusPeringatan` pada `Produk`, controller C19 `NotificationController` beserta logika perhitungan pada `notification.ts`, kelas C18 `PushNotificationUI`, layar Beranda, Pusat Notifikasi, Izin Notifikasi, dan Detail Produk, migrasi `tbl_notifikasi`, `tbl_riwayat_harga_bahan`, dan kolom `status_peringatan`.* | *16,67%* |
 | *...* | *...* | *...* | *...* |
 
 ## B.5 Traceability Kelas Perancangan ke Implementasi
