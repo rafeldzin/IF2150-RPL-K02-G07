@@ -31,6 +31,7 @@
 * [Milestone 6](#milestone-6)
 * [Milestone 7](#milestone-7)
 * [Milestone 8](#milestone-8)
+* [Milestone 9](#milestone-9)
 
 ---
 
@@ -82,6 +83,12 @@
 | Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
 | :--- | :--- | :--- | :--- |
 | *Claude* | *Membenarkan Algoritma* | *"Apakah algoritma pseudocode yang dibuat sudah benar?"* | *AI memberikan masukan dan pembenaran program yang dibuat.* |
+| | | | | |
+
+### Milestone 9
+| Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
+| :--- | :--- | :--- | :--- |
+| *Claude* | *Membantu membuat kode* | *"Bagaimana cara membuat kode untuk fitur ini menggunakan TypeScript?"* | *AI memberikan kode dan manusia memvalidasi hasilnya.* |
 | | | | | |
 
 ---
