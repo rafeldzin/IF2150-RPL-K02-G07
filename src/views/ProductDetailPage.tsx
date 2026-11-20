@@ -96,6 +96,24 @@ export default function ProductDetailPage({ navigation, route }: Props) {
       >
         <Text style={styles.primaryButtonText}>Edit Harga Jual</Text>
       </Pressable>
+      <Pressable
+        style={[
+          styles.primaryButton,
+          styles.primaryButtonEnabled,
+          { marginTop: 10, backgroundColor: palette.navy },
+        ]}
+        onPress={() => {
+          navigation.navigate('PriceHistoryPage', {
+            idProduk,
+            currentHargaJual: Number(detail.harga_jual),
+            namaProduk: detail.nama_produk,
+          });
+        }}
+      >
+        <Text style={[styles.primaryButtonText, { color: '#FFFFFF' }]}>
+          Lihat Riwayat Harga
+        </Text>
+      </Pressable>
     </ScrollView>
   );
 }
