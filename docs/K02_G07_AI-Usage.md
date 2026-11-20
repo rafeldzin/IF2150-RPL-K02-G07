@@ -32,6 +32,7 @@
 * [Milestone 7](#milestone-7)
 * [Milestone 8](#milestone-8)
 * [Milestone 9](#milestone-9)
+* [Milestone 10](#milestone-10)
 
 ---
 
@@ -91,6 +92,11 @@
 | *Claude* | *Membantu membuat kode* | *"Bagaimana cara membuat kode untuk fitur ini menggunakan TypeScript?"* | *AI memberikan kode dan manusia memvalidasi hasilnya.* |
 | | | | | |
 
+### Milestone 10
+| Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
+| :--- | :--- | :--- | :--- |
+| *Claude* | *Membantu membuat kode* | *"Bagaimana cara membuat kode untuk ngetest suatu UC?"* | *AI memberikan kode dan manusia memvalidasi hasilnya.* |
+| | | | | |
 ---
 ### Pernyataan Integritas dan Persetujuan
 

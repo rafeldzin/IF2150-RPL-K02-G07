@@ -31,6 +31,8 @@
 * [Milestone 6](#milestone-6)
 * [Milestone 7](#milestone-7)
 * [Milestone 8](#milestone-8)
+* [Milestone 9](#milestone-9)
+* [Milestone 10](#milestone-10)
 
 ---
 
@@ -149,4 +151,17 @@
 | *02-11-2026* | *Kevin Sie* | *Mengerjakan fitur UC01 dan UC02* | *1,5* | *Done* | *-* | 
 | *08-11-2026* | *Rafel Dzinun Muhammad* | *Mengerjakan fitur UC11 dan UC12* | *2* | *Done* | *-* | 
 | *10-11-2026* | *Muhammad Nuha Alghifari* | *Mengerjakan fitur UC05 dan UC07* | *1,5* | *Done* | *-* | 
+| | | | | | | |
+
+### Milestone 10
+**Periode:** [14-11-2026] - [20-11-2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+| *06-11-2026* | *Ahmad Boutros Fathir* | *Mengerjakan testing UC06 dan UC08* | *2* | *Done* | *-* | 
+| *04-11-2026* | *Klio Lysander* | *Mengerjakan testing UC03 dan UC04* | *1,5* | *Done* | *-* | 
+| *05-11-2026* | *Muhammad Fakhriyan Rizki M.* | *Mengerjakan fitur UC09 dna UC10* | *1,5* | *Done* | *-* | 
+| *02-11-2026* | *Kevin Sie* | *Mengerjakan testing UC01 dan UC02* | *1,5* | *Done* | *-* | 
+| *08-11-2026* | *Rafel Dzinun Muhammad* | *Mengerjakan testing UC11 dan UC12* | *2* | *Done* | *-* | 
+| *10-11-2026* | *Muhammad Nuha Alghifari* | *Mengerjakan testing UC05 dan UC07* | *1,5* | *Done* | *-* | 
 | | | | | | | |
