@@ -214,12 +214,14 @@ Tabel 3.3. Implementasi Antarmuka
 | 4 | *I-04* | *Beranda* | *`src/views/HomePage.tsx`* | *-* |
 | 5 | *I-05* | *Pencarian Produk* | *`src/views/SearchProductPage.tsx`* | *-* |
 | 6 | *I-06* | *Tambah Produk* | *`src/views/AddProductPage.tsx`, `src/views/PilihanModal.tsx`* | *-* |
-| 7 | *I-09* | *Daftar Bahan Baku dan Detail Tren Bahan Baku* | *`src/views/TrenBahanBakuPage.tsx`* | *-* |
-| 8 | *I-10* | *Profil Pengguna* | *`src/views/ProfilePage.tsx`* | *-* |
-| 9 | *I-11* | *Push Notification* | *`src/services/PushNotificationUI.ts`* | *-* |
-| 10 | *I-12* | *Pusat Notifikasi* | *`src/views/NotificationPage.tsx`* | *-* |
-| 11 | *-* | *Izin Notifikasi (tambahan, tidak ada pada DPPL)* | *`src/views/IzinNotifikasiPage.tsx`* | *-* |
-| 12 | *-* | *Detail Produk (tambahan, tidak ada pada DPPL)* | *`src/views/ProductDetailPage.tsx`* | *-* |
+| 7 | *I-07* | *Edit Produk* | *`src/views/EditProductPage.tsx`* | *-* |
+| 8 | *I-08* | *Riwayat Harga Jual* | *`src/views/PriceHistoryPage.tsx`* | *-* |
+| 9 | *I-09* | *Daftar Bahan Baku dan Detail Tren Bahan Baku* | *`src/views/TrenBahanBakuPage.tsx`* | *-* |
+| 10 | *I-10* | *Profil Pengguna* | *`src/views/ProfilePage.tsx`* | *-* |
+| 11 | *I-11* | *Push Notification* | *`src/services/PushNotificationUI.ts`* | *-* |
+| 12 | *I-12* | *Pusat Notifikasi* | *`src/views/NotificationPage.tsx`* | *-* |
+| 13 | *-* | *Izin Notifikasi (tambahan, tidak ada pada DPPL)* | *`src/views/IzinNotifikasiPage.tsx`* | *-* |
+| 14 | *-* | *Detail Produk (tambahan, tidak ada pada DPPL)* | *`src/views/ProductDetailPage.tsx`* | *-* |
 
 ## 3.4 File Lain
 
@@ -275,14 +277,14 @@ Tabel 4.1.1. Identifikasi Tingkat Pengujian Kelas
 | *C10* | *AddProductPage* | *Tidak perlu* | *Kelas antarmuka tanpa logika bisnis. Perhitungan dan penyimpanan didelegasikan ke C11.* | *-* |
 | *C11* | *MarginController* | *Mendalam* | *Memuat validasi input, perhitungan HPP dan margin, serta penyimpanan produk dan resep.* | *[isi]* |
 | *C12* | *EditProductPage* | *Tidak perlu* | *Kelas antarmuka tanpa logika bisnis, teruji lewat test case use case.* | *-* |
-| *C13* | *PriceController* | *Mendalam* | *Memuat validasi harga dan pencatatan riwayat harga jual.* | *[isi]* |
+| *C13* | *PriceController* | *Mendalam* | *Memuat validasi harga dan pencatatan riwayat harga jual.* | *C13-UT01 – C13-UT11* |
 | *C14* | *RiwayatHargaBahanBaku* | *Tidak perlu* | *Diwujudkan sebagai tabel `tbl_riwayat_harga_bahan` dan tipe data `RiwayatHarga`, tanpa logika.* | *-* |
 | *C15* | *TrenBahanBakuPage* | *Tidak perlu* | *Kelas antarmuka tanpa logika bisnis, teruji lewat test case use case.* | *-* |
 | *C16* | *TrenBahanBakuController* | *Mendalam* | *Memuat penyaringan berdasarkan rentang waktu (`filterByRentang`) dan pembentukan data grafik (`formatUntukChart`).* | *C16-UT01 – C16-UT09* |
 | *C17* | *Notifikasi* | *Sedang* | *Entitas dengan perubahan status baca (`markAsRead()`).* | *C17-UT01 – C17-UT03, INT-TC-NOTIF-02* |
 | *C18* | *PushNotificationUI* | *Sedang* | *Mendelegasikan penampilan notifikasi ke pustaka notifikasi perangkat.* | *C18-UT01 – C18-UT08, INT-TC-NOTIF-03, INT-TC-NOTIF-04* |
 | *C19* | *NotificationController* | *Mendalam* | *Memuat aturan penentuan margin negatif, pembuatan, dan pengiriman notifikasi.* | *C19-UT01 – C19-UT26, INT-TC-NOTIF-01 – INT-TC-NOTIF-03* |
-| *C20* | *RiwayatHargaJual* | *Mendalam* | *Setter memuat validasi harga dan waktu perubahan.* | *[isi]* |
+| *C20* | *RiwayatHargaJual* | *Mendalam* | *Setter memuat validasi harga dan waktu perubahan.* | *C20-UT01 – C20-UT07* |
 | *C21* | *SearchProductPage* | *Tidak perlu* | *Kelas antarmuka tanpa logika bisnis, teruji lewat test case use case.* | *-* |
 | *C22* | *ProductSearchController* | *Mendalam* | *Memuat algoritma pencarian dan penyaringan produk melalui `search()`.* | *C22-UT01 – C22-UT07* |
 | *C23* | *PriceHistoryPage* | *Tidak perlu* | *Kelas antarmuka tanpa logika bisnis, teruji lewat test case use case.* | *-* |
@@ -664,6 +666,130 @@ Tabel 4.2.11b. Ringkasan Cakupan Kelas C26
 | Jumlah test | *11 test, seluruhnya Pass.* |
 | Coverage (wajib ≥ 70%) | *Vitest 5.0.5 dengan provider V8 melaporkan 100% baris, 100% cabang, 100% pernyataan, dan 100% fungsi untuk `ProfileController.ts`. Bukti dicantumkan pada Subbab 4.6.* |
 
+### 4.2.12 Kelas PriceController
+
+**ID Kelas:** *C13*<br>
+**Nama Kelas:** *PriceController*<br>
+**Tingkat:** *Mendalam*
+
+Pengujian operasi `validasiInput()` (`Algo-C13-01`), `updateHargaProduk()` (`Algo-C13-02`), dan `catatRiwayat()` (`Algo-C13-03`) dijalankan menggunakan Vitest melalui `src/tests/priceController.test.ts`. Akses basis data Supabase disimulasikan dengan *mock* antrean query sehingga pengujian tidak bergantung pada jaringan. Data contoh yang digunakan adalah produk Nasi Goreng dengan harga jual awal Rp15.000 dan resep telur (`takaran` 2, harga Rp2.000) serta beras (`takaran` 1, harga Rp5.000) sehingga total biaya awal Rp9.000.
+
+Tabel 4.2.12. Hasil Pengujian Unit Kelas C13
+
+| ID Pengujian | Operasi yang Diuji | Jenis Kasus | Prosedur/Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *C13-UT01* | *`validasiInput()`* | *Normal* | *Kirim harga baru Rp20.000 untuk produk `p1` (harga lama Rp15.000, hasil resep 1, total biaya resep Rp9.000).* | *Harga jual produk diperbarui menjadi Rp20.000, margin menjadi Rp11.000, riwayat dicatat ke `tbl_riwayat_harga_jual`, dan operasi mengembalikan `true`.* | *Urutan query `tbl_resep_bahan` → `tbl_produk` → `tbl_riwayat_harga_jual` sesuai, `margin: 11000`, riwayat tersimpan dengan `harga_jual_lama: 15000` dan `harga_baru: 20000`, hasil `true`.* | *Pass* |
+| *C13-UT02* | *`validasiInput()`* | *Batas* | *Kirim harga baru `0` untuk produk `p1`.* | *Input ditolak dengan `ValidationError` berisi pesan “Input Takaran / Harga Jual Tidak Valid” tanpa mengakses basis data.* | *Melempar `ValidationError` dengan pesan sesuai, `supabase.from()` tidak dipanggil, dan harga produk tetap Rp15.000.* | *Pass* |
+| *C13-UT03* | *`validasiInput()`* | *Negatif* | *Kirim harga baru `-5000`, `NaN`, dan `Infinity` (tiga kasus parametrik).* | *Ketiga masukan ditolak dengan `ValidationError` berisi pesan “Input Takaran / Harga Jual Tidak Valid” sebelum menyentuh basis data.* | *Ketiga masukan menghasilkan `ValidationError` sesuai harapan dan `supabase.from()` tidak dipanggil.* | *Pass* |
+| *C13-UT04* | *`updateHargaProduk()`* | *Normal* | *Perbarui harga produk `p2` (`hasilResep = 10`, total biaya resep Rp100.000 → HPP Rp10.000) menjadi Rp8.000.* | *HPP dihitung per porsi (Rp10.000), margin negatif −Rp2.000 diterima dan disimpan ke `tbl_produk`, lalu riwayat harga dicatat.* | *`getHargaJual()` bernilai `8000`, `getMargin()` bernilai `-2000`, query update mengirim `{ harga_jual: 8000, margin: -2000 }`, dan riwayat tercatat.* | *Pass* |
+| *C13-UT05* | *`updateHargaProduk()`* | *Batas* | *Perbarui harga produk `p1` menjadi Rp9.000 (tepat sama dengan HPP Rp9.000).* | *Margin bernilai tepat `0` dan tersimpan ke `tbl_produk`.* | *`getMargin()` bernilai `0` dan query update mengirim `{ harga_jual: 9000, margin: 0 }`.* | *Pass* |
+| *C13-UT06* | *`updateHargaProduk()`* | *Batas* | *Simulasikan `resepData` bernilai `null`, lalu ulangi dengan item resep yang memiliki `tbl_bahan_baku: null` dan `{}`.* | *Data bahan kosong diperlakukan sebagai biaya `0` sehingga margin sama dengan harga jual baru tanpa error.* | *Margin bernilai `12000` (kasus `null`) dan `14000` (kasus bahan tanpa `harga_beli`), keduanya tersimpan tanpa error.* | *Pass* |
+| *C13-UT07* | *`updateHargaProduk()`* | *Negatif* | *Mock query `tbl_resep_bahan` mengembalikan error “Koneksi DB putus”.* | *Proses dibatalkan dengan pesan “Gagal mengambil data resep: Koneksi DB putus” tanpa mengubah harga produk.* | *Error diteruskan dengan pesan sesuai, harga produk tetap Rp15.000, dan hanya 1 query yang dijalankan.* | *Pass* |
+| *C13-UT08* | *`updateHargaProduk()`* | *Negatif* | *Mock query update `tbl_produk` mengembalikan error “Izin ditolak”.* | *Harga jual pada objek `Produk` dikembalikan ke harga lama (Rp15.000), error “Gagal memperbarui harga jual: Izin ditolak” dilempar, dan riwayat tidak dicatat.* | *Error sesuai, `getHargaJual()` kembali menjadi `15000`, dan hanya 2 query dijalankan (tanpa insert riwayat).* | *Pass* |
+| *C13-UT09* | *`catatRiwayat()`* | *Normal* | *Panggil `catatRiwayat(15000, 18000)` secara langsung dengan mock insert berhasil.* | *Satu baris riwayat dengan `id_produk`, `harga_jual_lama: 15000`, `harga_baru: 18000`, dan `waktu_perubahan` berformat ISO valid disimpan ke `tbl_riwayat_harga_jual`.* | *Query insert ke `tbl_riwayat_harga_jual` menerima seluruh kolom sesuai dan `Date.parse(waktu_perubahan)` valid.* | *Pass* |
+| *C13-UT10* | *`catatRiwayat()`* | *Negatif* | *Mock insert ke `tbl_riwayat_harga_jual` mengembalikan error “Constraint error”.* | *Operasi melempar error “Gagal mencatat riwayat harga: Constraint error”.* | *Error diteruskan dengan pesan yang diharapkan.* | *Pass* |
+| *C13-UT11* | *`catatRiwayat()`* | *Negatif* | *Panggil `catatRiwayat(0, 18000)` dan `catatRiwayat(15000, -1000)`.* | *Kedua panggilan ditolak oleh validasi `RiwayatHargaJual` dengan pesan “Input Takaran / Harga Jual Tidak Valid” sebelum insert ke basis data.* | *Kedua panggilan melempar error sesuai dan `supabase.from()` tidak dipanggil.* | *Pass* |
+
+Tabel 4.2.12b. Ringkasan Cakupan Kelas C13
+
+| Informasi | Keterangan |
+| :--- | :--- |
+| Daftar operasi public pada DPPL | *`validasiInput(hargaBaru)`, `updateHargaProduk(hargaBaru)`, `catatRiwayat(hargaLama, hargaBaru)`* |
+| Operasi yang diuji | *Seluruh operasi public pada DPPL (`validasiInput()`, `updateHargaProduk()`, `catatRiwayat()`) serta kelas `ValidationError`.* |
+| ID Algoritma yang tercakup | *`Algo-C13-01`, `Algo-C13-02`, `Algo-C13-03`* |
+| Coverage (wajib ≥ 70%) | *Vitest 5.0.5 dengan provider V8 melaporkan 100% baris, 100% cabang, 100% pernyataan, dan 100% fungsi untuk `PriceController.ts`. Bukti dicantumkan pada Subbab 4.6.* |
+
+### 4.2.13 Kelas RiwayatHargaJual
+
+**ID Kelas:** *C20*<br>
+**Nama Kelas:** *RiwayatHargaJual*<br>
+**Tingkat:** *Mendalam*
+
+Pengujian konstruktor dan seluruh operasi pada kelas `RiwayatHargaJual` (`Algo-C20-01` sampai `Algo-C20-05`) dijalankan menggunakan Vitest melalui `src/tests/riwayatHargaJual.test.ts`. Kelas ini tidak bergantung pada layanan eksternal sehingga pengujian tidak memerlukan *mock*.
+
+Tabel 4.2.13. Hasil Pengujian Unit Kelas C20
+
+| ID Pengujian | Operasi yang Diuji | Jenis Kasus | Prosedur/Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *C20-UT01* | *Konstruktor, `getHargaBaru()`, `getHargaJualLama()`, `getWaktuPerubahan()`* | *Normal* | *Buat objek `new RiwayatHargaJual(20000)`.* | *`getHargaBaru()` bernilai `20000`, `getHargaJualLama()` bernilai bawaan `0`, dan `getWaktuPerubahan()` berupa objek `Date` pada rentang waktu pembuatan.* | *Seluruh getter mengembalikan nilai yang diharapkan.* | *Pass* |
+| *C20-UT02* | *Konstruktor, `getHargaBaru()`* | *Batas* | *Buat objek `new RiwayatHargaJual(0.01)` (bilangan positif desimal kecil).* | *Nilai positif desimal diterima dan disimpan.* | *`getHargaBaru()` mengembalikan `0.01`.* | *Pass* |
+| *C20-UT03* | *Konstruktor* | *Batas dan negatif* | *Buat objek dengan `hargaBaru` bernilai `0`, `-15000`, `NaN`, `Infinity`, dan `-Infinity` (lima kasus parametrik).* | *Kelima masukan ditolak dengan pesan “Input Takaran / Harga Jual Tidak Valid”.* | *Seluruh kasus melempar error dengan pesan yang diharapkan.* | *Pass* |
+| *C20-UT04* | *`setHargaJualLama()`, `getHargaJualLama()`* | *Normal* | *Ubah harga jual lama menjadi `18000`, kemudian perbarui lagi menjadi `17500.5`.* | *Kedua nilai positif tersimpan dan dikembalikan sesuai urutan pembaruan.* | *`getHargaJualLama()` mengembalikan `18000` lalu `17500.5`.* | *Pass* |
+| *C20-UT05* | *`setHargaJualLama()`* | *Batas dan negatif* | *Isi harga lama valid `15000`, lalu coba ubah menjadi `0`, `-1`, `NaN`, dan `Infinity` (empat kasus parametrik).* | *Keempat masukan ditolak dengan pesan “Input Takaran / Harga Jual Tidak Valid” tanpa mengubah nilai sebelumnya.* | *Keempat kasus melempar error sesuai dan `getHargaJualLama()` tetap `15000`.* | *Pass* |
+| *C20-UT06* | *`setWaktuPerubahan()`, `getWaktuPerubahan()`* | *Normal* | *Atur waktu perubahan ke `new Date('2026-11-18T08:30:00.000Z')`.* | *Objek `Date` tersimpan dan dikembalikan dengan timestamp ISO yang sama.* | *`getWaktuPerubahan().toISOString()` mengembalikan `2026-11-18T08:30:00.000Z`.* | *Pass* |
+| *C20-UT07* | *`setWaktuPerubahan()`* | *Negatif* | *Atur waktu awal valid, lalu panggil `setWaktuPerubahan()` dengan `null` dan `undefined`.* | *Kedua panggilan ditolak dengan pesan “Waktu perubahan tidak boleh kosong” tanpa mengubah waktu awal.* | *Keduanya melempar error “Waktu perubahan tidak boleh kosong” dan waktu awal tetap dipertahankan.* | *Pass* |
+
+Tabel 4.2.13b. Ringkasan Cakupan Kelas C20
+
+| Informasi | Keterangan |
+| :--- | :--- |
+| Daftar operasi public pada DPPL | *`setHargaJualLama(hargaJualLama)`, `setWaktuPerubahan(waktuPerubahan)`, `getHargaJualLama()`, `getHargaBaru()`, `getWaktuPerubahan()`* |
+| Operasi yang diuji | *Konstruktor serta seluruh operasi public pada DPPL (`setHargaJualLama()`, `setWaktuPerubahan()`, `getHargaJualLama()`, `getHargaBaru()`, `getWaktuPerubahan()`).* |
+| ID Algoritma yang tercakup | *`Algo-C20-01`, `Algo-C20-02`, `Algo-C20-03`, `Algo-C20-04`, `Algo-C20-05`* |
+| Coverage (wajib ≥ 70%) | *Vitest 5.0.5 dengan provider V8 melaporkan 100% baris, 100% cabang, 100% pernyataan, dan 100% fungsi untuk `RiwayatHargaJual.ts`. Bukti dicantumkan pada Subbab 4.6.* |
+
+### 4.2.12 Kelas PriceController
+
+**ID Kelas:** *C13*<br>
+**Nama Kelas:** *PriceController*<br>
+**Tingkat:** *Mendalam*
+
+Pengujian operasi `validasiInput()` (`Algo-C13-01`), `updateHargaProduk()` (`Algo-C13-02`), dan `catatRiwayat()` (`Algo-C13-03`) dijalankan menggunakan Vitest melalui `src/tests/priceController.test.ts`. Akses basis data Supabase disimulasikan dengan *mock* antrean query sehingga pengujian tidak bergantung pada jaringan. Data contoh yang digunakan adalah produk Nasi Goreng dengan harga jual awal Rp15.000 dan resep telur (`takaran` 2, harga Rp2.000) serta beras (`takaran` 1, harga Rp5.000) sehingga total biaya awal Rp9.000.
+
+Tabel 4.2.12. Hasil Pengujian Unit Kelas C13
+
+| ID Pengujian | Operasi yang Diuji | Jenis Kasus | Prosedur/Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *C13-UT01* | *`validasiInput()`* | *Normal* | *Kirim harga baru Rp20.000 untuk produk `p1` (harga lama Rp15.000, hasil resep 1, total biaya resep Rp9.000).* | *Harga jual produk diperbarui menjadi Rp20.000, margin menjadi Rp11.000, riwayat dicatat ke `tbl_riwayat_harga_jual`, dan operasi mengembalikan `true`.* | *Urutan query `tbl_resep_bahan` → `tbl_produk` → `tbl_riwayat_harga_jual` sesuai, `margin: 11000`, riwayat tersimpan dengan `harga_jual_lama: 15000` dan `harga_baru: 20000`, hasil `true`.* | *Pass* |
+| *C13-UT02* | *`validasiInput()`* | *Batas* | *Kirim harga baru `0` untuk produk `p1`.* | *Input ditolak dengan `ValidationError` berisi pesan “Input Takaran / Harga Jual Tidak Valid” tanpa mengakses basis data.* | *Melempar `ValidationError` dengan pesan sesuai, `supabase.from()` tidak dipanggil, dan harga produk tetap Rp15.000.* | *Pass* |
+| *C13-UT03* | *`validasiInput()`* | *Negatif* | *Kirim harga baru `-5000`, `NaN`, dan `Infinity` (tiga kasus parametrik).* | *Ketiga masukan ditolak dengan `ValidationError` berisi pesan “Input Takaran / Harga Jual Tidak Valid” sebelum menyentuh basis data.* | *Ketiga masukan menghasilkan `ValidationError` sesuai harapan dan `supabase.from()` tidak dipanggil.* | *Pass* |
+| *C13-UT04* | *`updateHargaProduk()`* | *Normal* | *Perbarui harga produk `p2` (`hasilResep = 10`, total biaya resep Rp100.000 → HPP Rp10.000) menjadi Rp8.000.* | *HPP dihitung per porsi (Rp10.000), margin negatif −Rp2.000 diterima dan disimpan ke `tbl_produk`, lalu riwayat harga dicatat.* | *`getHargaJual()` bernilai `8000`, `getMargin()` bernilai `-2000`, query update mengirim `{ harga_jual: 8000, margin: -2000 }`, dan riwayat tercatat.* | *Pass* |
+| *C13-UT05* | *`updateHargaProduk()`* | *Batas* | *Perbarui harga produk `p1` menjadi Rp9.000 (tepat sama dengan HPP Rp9.000).* | *Margin bernilai tepat `0` dan tersimpan ke `tbl_produk`.* | *`getMargin()` bernilai `0` dan query update mengirim `{ harga_jual: 9000, margin: 0 }`.* | *Pass* |
+| *C13-UT06* | *`updateHargaProduk()`* | *Batas* | *Simulasikan `resepData` bernilai `null`, lalu ulangi dengan item resep yang memiliki `tbl_bahan_baku: null` dan `{}`.* | *Data bahan kosong diperlakukan sebagai biaya `0` sehingga margin sama dengan harga jual baru tanpa error.* | *Margin bernilai `12000` (kasus `null`) dan `14000` (kasus bahan tanpa `harga_beli`), keduanya tersimpan tanpa error.* | *Pass* |
+| *C13-UT07* | *`updateHargaProduk()`* | *Negatif* | *Mock query `tbl_resep_bahan` mengembalikan error “Koneksi DB putus”.* | *Proses dibatalkan dengan pesan “Gagal mengambil data resep: Koneksi DB putus” tanpa mengubah harga produk.* | *Error diteruskan dengan pesan sesuai, harga produk tetap Rp15.000, dan hanya 1 query yang dijalankan.* | *Pass* |
+| *C13-UT08* | *`updateHargaProduk()`* | *Negatif* | *Mock query update `tbl_produk` mengembalikan error “Izin ditolak”.* | *Harga jual pada objek `Produk` dikembalikan ke harga lama (Rp15.000), error “Gagal memperbarui harga jual: Izin ditolak” dilempar, dan riwayat tidak dicatat.* | *Error sesuai, `getHargaJual()` kembali menjadi `15000`, dan hanya 2 query dijalankan (tanpa insert riwayat).* | *Pass* |
+| *C13-UT09* | *`catatRiwayat()`* | *Normal* | *Panggil `catatRiwayat(15000, 18000)` secara langsung dengan mock insert berhasil.* | *Satu baris riwayat dengan `id_produk`, `harga_jual_lama: 15000`, `harga_baru: 18000`, dan `waktu_perubahan` berformat ISO valid disimpan ke `tbl_riwayat_harga_jual`.* | *Query insert ke `tbl_riwayat_harga_jual` menerima seluruh kolom sesuai dan `Date.parse(waktu_perubahan)` valid.* | *Pass* |
+| *C13-UT10* | *`catatRiwayat()`* | *Negatif* | *Mock insert ke `tbl_riwayat_harga_jual` mengembalikan error “Constraint error”.* | *Operasi melempar error “Gagal mencatat riwayat harga: Constraint error”.* | *Error diteruskan dengan pesan yang diharapkan.* | *Pass* |
+| *C13-UT11* | *`catatRiwayat()`* | *Negatif* | *Panggil `catatRiwayat(0, 18000)` dan `catatRiwayat(15000, -1000)`.* | *Kedua panggilan ditolak oleh validasi `RiwayatHargaJual` dengan pesan “Input Takaran / Harga Jual Tidak Valid” sebelum insert ke basis data.* | *Kedua panggilan melempar error sesuai dan `supabase.from()` tidak dipanggil.* | *Pass* |
+
+Tabel 4.2.12b. Ringkasan Cakupan Kelas C13
+
+| Informasi | Keterangan |
+| :--- | :--- |
+| Daftar operasi public pada DPPL | *`validasiInput(hargaBaru)`, `updateHargaProduk(hargaBaru)`, `catatRiwayat(hargaLama, hargaBaru)`* |
+| Operasi yang diuji | *Seluruh operasi public pada DPPL (`validasiInput()`, `updateHargaProduk()`, `catatRiwayat()`) serta kelas `ValidationError`.* |
+| ID Algoritma yang tercakup | *`Algo-C13-01`, `Algo-C13-02`, `Algo-C13-03`* |
+| Coverage (wajib ≥ 70%) | *Vitest 5.0.5 dengan provider V8 melaporkan 100% baris, 100% cabang, 100% pernyataan, dan 100% fungsi untuk `PriceController.ts`. Bukti dicantumkan pada Subbab 4.6.* |
+
+### 4.2.13 Kelas RiwayatHargaJual
+
+**ID Kelas:** *C20*<br>
+**Nama Kelas:** *RiwayatHargaJual*<br>
+**Tingkat:** *Mendalam*
+
+Pengujian konstruktor dan seluruh operasi pada kelas `RiwayatHargaJual` (`Algo-C20-01` sampai `Algo-C20-05`) dijalankan menggunakan Vitest melalui `src/tests/riwayatHargaJual.test.ts`. Kelas ini tidak bergantung pada layanan eksternal sehingga pengujian tidak memerlukan *mock*.
+
+Tabel 4.2.13. Hasil Pengujian Unit Kelas C20
+
+| ID Pengujian | Operasi yang Diuji | Jenis Kasus | Prosedur/Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *C20-UT01* | *Konstruktor, `getHargaBaru()`, `getHargaJualLama()`, `getWaktuPerubahan()`* | *Normal* | *Buat objek `new RiwayatHargaJual(20000)`.* | *`getHargaBaru()` bernilai `20000`, `getHargaJualLama()` bernilai bawaan `0`, dan `getWaktuPerubahan()` berupa objek `Date` pada rentang waktu pembuatan.* | *Seluruh getter mengembalikan nilai yang diharapkan.* | *Pass* |
+| *C20-UT02* | *Konstruktor, `getHargaBaru()`* | *Batas* | *Buat objek `new RiwayatHargaJual(0.01)` (bilangan positif desimal kecil).* | *Nilai positif desimal diterima dan disimpan.* | *`getHargaBaru()` mengembalikan `0.01`.* | *Pass* |
+| *C20-UT03* | *Konstruktor* | *Batas dan negatif* | *Buat objek dengan `hargaBaru` bernilai `0`, `-15000`, `NaN`, `Infinity`, dan `-Infinity` (lima kasus parametrik).* | *Kelima masukan ditolak dengan pesan “Input Takaran / Harga Jual Tidak Valid”.* | *Seluruh kasus melempar error dengan pesan yang diharapkan.* | *Pass* |
+| *C20-UT04* | *`setHargaJualLama()`, `getHargaJualLama()`* | *Normal* | *Ubah harga jual lama menjadi `18000`, kemudian perbarui lagi menjadi `17500.5`.* | *Kedua nilai positif tersimpan dan dikembalikan sesuai urutan pembaruan.* | *`getHargaJualLama()` mengembalikan `18000` lalu `17500.5`.* | *Pass* |
+| *C20-UT05* | *`setHargaJualLama()`* | *Batas dan negatif* | *Isi harga lama valid `15000`, lalu coba ubah menjadi `0`, `-1`, `NaN`, dan `Infinity` (empat kasus parametrik).* | *Keempat masukan ditolak dengan pesan “Input Takaran / Harga Jual Tidak Valid” tanpa mengubah nilai sebelumnya.* | *Keempat kasus melempar error sesuai dan `getHargaJualLama()` tetap `15000`.* | *Pass* |
+| *C20-UT06* | *`setWaktuPerubahan()`, `getWaktuPerubahan()`* | *Normal* | *Atur waktu perubahan ke `new Date('2026-11-18T08:30:00.000Z')`.* | *Objek `Date` tersimpan dan dikembalikan dengan timestamp ISO yang sama.* | *`getWaktuPerubahan().toISOString()` mengembalikan `2026-11-18T08:30:00.000Z`.* | *Pass* |
+| *C20-UT07* | *`setWaktuPerubahan()`* | *Negatif* | *Atur waktu awal valid, lalu panggil `setWaktuPerubahan()` dengan `null` dan `undefined`.* | *Kedua panggilan ditolak dengan pesan “Waktu perubahan tidak boleh kosong” tanpa mengubah waktu awal.* | *Keduanya melempar error “Waktu perubahan tidak boleh kosong” dan waktu awal tetap dipertahankan.* | *Pass* |
+
+Tabel 4.2.13b. Ringkasan Cakupan Kelas C20
+
+| Informasi | Keterangan |
+| :--- | :--- |
+| Daftar operasi public pada DPPL | *`setHargaJualLama(hargaJualLama)`, `setWaktuPerubahan(waktuPerubahan)`, `getHargaJualLama()`, `getHargaBaru()`, `getWaktuPerubahan()`* |
+| Operasi yang diuji | *Konstruktor serta seluruh operasi public pada DPPL (`setHargaJualLama()`, `setWaktuPerubahan()`, `getHargaJualLama()`, `getHargaBaru()`, `getWaktuPerubahan()`).* |
+| ID Algoritma yang tercakup | *`Algo-C20-01`, `Algo-C20-02`, `Algo-C20-03`, `Algo-C20-04`, `Algo-C20-05`* |
+| Coverage (wajib ≥ 70%) | *Vitest 5.0.5 dengan provider V8 melaporkan 100% baris, 100% cabang, 100% pernyataan, dan 100% fungsi untuk `RiwayatHargaJual.ts`. Bukti dicantumkan pada Subbab 4.6.* |
+
 ### 4.2.12 Kelas TrenBahanBakuController
 
 **ID Kelas:** *C16*<br>
@@ -795,6 +921,81 @@ Tabel 4.4.2. Hasil Pengujian Use Case UC02
 | *UC02-TC03* | *KF04* | *Alternatif 1 — password salah* | *Masukkan email akun uji dan password yang salah, lalu tekan Masuk.* | *Email terdaftar dan password salah.* | *Login ditolak dan aplikasi menampilkan pesan “Username atau Password Salah”.* | *Pesan “Username atau Password Salah” tampil dan aplikasi tetap di halaman Login.* | *Pass* |
 | *UC02-TC04* | *KF04* | *Alternatif 2 — akun belum terdaftar* | *Masukkan email yang belum terdaftar dan password uji, lalu tekan Masuk.* | *Email berformat valid yang belum terdaftar dan password uji.* | *Login ditolak dan aplikasi menampilkan pesan “Tidak dapat menemukan akun”.* | *Pesan “Tidak dapat menemukan akun” tampil dan aplikasi tetap di halaman Login.* | *Pass* |
 
+### 4.4.3 Use Case UC03 — Menambahkan Data Produk Baru
+
+**ID Use Case:** *UC03*<br>
+**Nama Use Case:** *Menambahkan Data Produk Baru*
+
+Tabel 4.4.3. Hasil Pengujian Use Case UC03
+
+| ID Pengujian | ID KF | Skenario | Prosedur Pengujian | Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *UC03-TC01* | *KF05, KF06, KF07, KF08, KF09, KF13, KF14* | *Normal — produk berhasil ditambahkan* | *1. Tekan “+ Tambah Produk” pada Beranda.<br>2. Isi nama, tag, harga jual, hasil resep, dan bahan beserta takaran.<br>3. Tekan “Preview kalkulasi margin”.<br>4. Tekan “Simpan produk”.<br>5. Periksa `public.tbl_produk` di Supabase.* | *Nama: Nasi Ayam Kecap. Tag: Makanan utama. Harga jual: 20.000. Hasil resep: 10. Bahan: Beras 15.000/kg takaran 1, Ayam 45.000/kg takaran 2, Kecap 40/ml takaran 250.* | *Produk, bahan, dan resep tersimpan di basis data dan sistem menghitung total modal secara otomatis.* | *Kartu “Produk berhasil disimpan” tampil dengan harga jual Rp 20.000, HPP per porsi Rp 11.500, dan margin Rp 8.500 (42,5%). Produk “Nasi Ayam Kecap” dengan tag “makanan utama” dan harga jual 20000 ditemukan di `public.tbl_produk`.* | *Pass* |
+| *UC03-TC02* | *KF13, KF14* | *Alternatif 1 — nama produk sudah pernah dibuat* | *1. Buka halaman Tambah Produk.<br>2. Isi nama yang sama dengan UC03-TC01.<br>3. Tekan “Preview kalkulasi margin”.* | *Nama: Nasi Ayam Kecap. Tag belum dipilih. Harga jual: 20.000. Hasil resep: 10. Bahan: Ayam 2 kg dan Beras 1 kg.* | *Sistem menolak dan menampilkan pesan “Nama Produk Sudah Pernah Dibuat”.* | *Aplikasi menampilkan pesan “Nama Produk Sudah Pernah Dibuat” pada halaman Tambah Produk dan data formulir tetap terisi.* | *Pass* |
+| *UC03-TC03* | *KF05, KF09* | *Alternatif 2 — takaran atau harga jual tidak valid* | *1. Buka halaman Tambah Produk.<br>2. Isi nama baru dan isi takaran salah satu bahan dengan 0.<br>3. Tekan “Preview kalkulasi margin”.* | *Nama: Nasi cumi. Harga jual: 20.000. Hasil resep: 10. Bahan: Ayam 2 kg dan Beras 0 kg.* | *Sistem menampilkan pesan “Input Takaran / Harga Jual Tidak Valid” dan pengguna tetap di halaman Tambah Produk.* | *Penolakan terjadi dan pengguna tetap di halaman Tambah Produk, tetapi pesan yang tampil adalah “Takaran harus lebih dari 0”, bukan pesan yang ditetapkan SKPL.* | *Fail terhadap SKPL. Aplikasi memakai pesan yang lebih spesifik untuk takaran (`PESAN_TAKARAN_TIDAK_VALID`), sedangkan “Input Takaran / Harga Jual Tidak Valid” hanya dipakai untuk harga jual. Penolakan input tetap berjalan sehingga KF05 terpenuhi. Solusi: samakan pesan dengan SKPL atau perbarui SKPL.* |
+
+### 4.4.4 Use Case UC04 — Melihat Margin Keuntungan Produk
+
+**ID Use Case:** *UC04*<br>
+**Nama Use Case:** *Melihat Margin Keuntungan Produk*
+
+Tabel 4.4.4. Hasil Pengujian Use Case UC04
+
+| ID Pengujian | ID KF | Skenario | Prosedur Pengujian | Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *UC04-TC01* | *KF10, KF11, KF12* | *Normal — margin bernilai positif* | *1. Isi produk seperti UC03-TC01.<br>2. Tekan “Preview kalkulasi margin” dan baca dialog.<br>3. Tekan “Simpan produk”.* | *Harga jual 20.000, hasil resep 10, total biaya resep 115.000.* | *Sistem menampilkan harga jual, HPP per porsi, keuntungan Rp 8.500, dan persentase 42,5%, lalu mengembalikan pengguna ke Beranda.* | *Dialog “Preview kalkulasi margin” menampilkan HPP per porsi Rp 11.500, harga jual Rp 20.000, keuntungan Rp 8.500, dan persentase margin 42,5%. Setelah “Simpan produk”, kartu hasil tampil dengan tombol “Kembali ke Beranda”.* | *Pass* |
+| *UC04-TC02* | *KF11, KF12* | *Alternatif 1 — harga jual yang ditetapkan rugi* | *1. Isi produk dengan harga jual 5.000.<br>2. Tekan “Preview kalkulasi margin” dan baca peringatan.<br>3. Tekan “Kembali edit”, ubah harga jual menjadi 20.000.<br>4. Tekan “Preview kalkulasi margin” lagi.* | *Nama: Ayam mentega. Tag: Makanan utama. Bahan: Ayam 2 kg, hasil resep 10. Harga jual 5.000, lalu 20.000.* | *Sistem menampilkan kerugian dan pesan “Harga Jual yang Ditetapkan Memiliki Margin Negatif”, meminta pengguna mengganti harga jual, lalu menampilkan margin positif setelah diperbaiki.* | *Dengan harga jual Rp 5.000, dialog menampilkan HPP Rp 9.000, kerugian −Rp 4.000, persentase −80,0%, dan pesan “Margin negatif: HPP lebih besar daripada harga jual.” Tombol “Simpan produk” tetap tersedia. Setelah harga jual diubah menjadi Rp 20.000, dialog menampilkan keuntungan Rp 11.000 (55,0%).* | *Fail terhadap SKPL. Perhitungan dan peringatan kerugian sudah tampil sehingga KF11 dan KF12 terpenuhi, tetapi teks pesan berbeda dari SKPL dan aplikasi tidak mewajibkan pengguna mengganti harga jual (tombol “Simpan produk” masih aktif). Solusi: samakan pesan dengan SKPL atau perbarui SKPL.* |
+
+### 4.4.5 Use Case UC05 — Mengelola Harga Jual Produk (Antarmuka I-07 `EditProductPage`)
+
+**ID Use Case:** *UC05*<br>
+**Nama Use Case:** *Mengelola Harga Jual Produk*<br>
+**Antarmuka Terkait:** *I-07 (`src/views/EditProductPage.tsx`)*
+
+Pengujian memverifikasi alur pembaruan harga jual produk pada layar **I-07 (`EditProductPage`)** melalui kelas `C13 PriceController` dan `C20 RiwayatHargaJual`. Logika skenario `UC05-TC01` dan `UC05-TC02` telah diverifikasi secara otomatis melalui `src/tests/priceController.test.ts` (semua lulus), sedangkan verifikasi tampilan layar pada perangkat dilakukan secara manual melalui Expo Go.
+
+Tabel 4.4.5. Hasil Pengujian Use Case UC05
+
+| ID Pengujian | ID KF | Skenario | Prosedur Pengujian | Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *UC05-TC01* | *KF08, KF09* | *Normal — memperbarui harga jual produk dengan bilangan positif valid* | *Buka Detail Produk, tekan tombol “Edit Harga Jual” untuk membuka layar I-07 (`EditProductPage`), masukkan harga jual baru yang positif, lalu tekan “Simpan Perubahan”.* | *Produk Ayam Geprek (harga awal Rp18.000, hasil resep 2, total biaya Rp24.000), harga jual baru `22000`.* | *Sistem memvalidasi input, menghitung ulang margin (Rp10.000), menyimpan harga baru ke `tbl_produk`, mencatat riwayat ke `tbl_riwayat_harga_jual`, dan menampilkan notifikasi sukses “Harga jual berhasil diperbarui”.* | *Uji otomatis controller (`UC05-TC01` di `priceController.test.ts`) mengembalikan `true`, memperbarui margin menjadi `10000`, dan mencatat riwayat `18000 → 22000`. Observasi layar I-07 pada Expo Go: [isi setelah pengambilan bukti manual pada Expo Go].* | *Pass (logika otomatis terverifikasi; lengkapi bukti layar Expo Go)* |
+| *UC05-TC02* | *KF09* | *Alternatif 1 — input bukan bilangan positif* | *Buka layar I-07 (`EditProductPage`), masukkan harga jual `0` atau bilangan negatif, lalu tekan “Simpan Perubahan”.* | *Harga jual baru `-5000` dan `0`.* | *Sistem menolak input, menampilkan pesan kesalahan validasi, tidak mengubah harga jual produk, dan tidak menyimpan data ke basis data.* | *Uji otomatis controller (`UC05-TC02` di `priceController.test.ts`) melempar `ValidationError` (“Input Takaran / Harga Jual Tidak Valid”), harga tetap `18000`, dan basis data tidak diakses. Observasi layar I-07 pada Expo Go: [isi setelah pengambilan bukti manual pada Expo Go].* | *Pass (logika otomatis terverifikasi; catatan: pesan error memakai konstanta “Input Takaran / Harga Jual Tidak Valid”, sedikit berbeda redaksi dari SKPL “Masukkan bilangan positif”)* |
+| *UC05-TC03* | *KF09* | *Alternatif 2 — input non-numerik pada layar I-07* | *Buka layar I-07 (`EditProductPage`), ketik karakter non-numerik pada kolom “Harga Jual Baru (Rp)”, lalu tekan “Simpan Perubahan”.* | *Teks non-numerik, misalnya `abc`.* | *Layar I-07 menolak input sebelum memanggil controller dan menampilkan pesan “Format harga tidak valid”.* | *Inspeksi implementasi `handleSimpan()` di `src/views/EditProductPage.tsx` memeriksa `isNaN(hargaBaru)` dan mengatur `errorMessage` ke “Format harga tidak valid”. Observasi layar I-07 pada Expo Go: [isi setelah pengambilan bukti manual pada Expo Go].* | *Pass (verifikasi kode layar; lengkapi bukti layar Expo Go)* |
+
+Tabel 4.4.5b. Verifikasi Antarmuka I-07 (`EditProductPage`) terhadap Rancangan DPPL Subbab 6.7
+
+| Komponen / Aspek I-07 | Implementasi pada `src/views/EditProductPage.tsx` | Kesesuaian terhadap DPPL |
+| :--- | :--- | :--- |
+| *Informasi produk (`I-07-02`, `I-07-05`)* | *Menampilkan judul “Edit Produk”, nama produk, harga jual saat ini (terformat Rupiah), dan margin saat ini dalam kartu ringkasan.* | *Sesuai untuk tampilan ringkasan harga jual saat ini.* |
+| *Input harga jual baru (`I-07-06`)* | *`TextInput` dengan `keyboardType="numeric"` yang terisi otomatis dengan harga jual saat ini.* | *Sesuai.* |
+| *Tombol simpan & loading (`I-07-17`, `I-07-18`)* | *Tombol “Simpan Perubahan” menonaktifkan tekan ulang saat `isLoading` dan menampilkan `ActivityIndicator`.* | *Sesuai.* |
+| *Pesan kesalahan & keberhasilan (`I-07-19`, `I-07-20`)* | *Menampilkan teks error merah di atas kartu saat validasi/penyimpanan gagal, serta `Alert.alert('Sukses', 'Harga jual berhasil diperbarui')` saat berhasil.* | *Sesuai secara fungsional; dialog pratinjau margin (`I-07-14` – `I-07-16`) dan pengubahan nama/tag/bahan baku (`I-07-03`, `I-07-04`, `I-07-09`) belum diimplementasikan pada layar ini.* |
+| *Navigasi ke Riwayat Harga (`I-07-08`, `I-07-21`)* | *Tombol “Lihat Riwayat Harga Jual” menavigasi ke rute `PriceHistoryPage` (I-08) dengan membawa `idProduk`, `currentHargaJual`, dan `namaProduk`.* | *Sesuai.* |
+
+### 4.4.7 Use Case UC07 — Melihat Perubahan Harga Jual (Antarmuka I-08 `PriceHistoryPage`)
+
+**ID Use Case:** *UC07*<br>
+**Nama Use Case:** *Melihat Perubahan Harga Jual*<br>
+**Antarmuka Terkait:** *I-08 (`src/views/PriceHistoryPage.tsx`)*
+
+Pengujian memverifikasi penampilan riwayat perubahan harga jual produk pada layar **I-08 (`PriceHistoryPage`)** yang memanfaatkan model `C20 RiwayatHargaJual`. Logika penyusunan kronologis dan penanganan kondisi tanpa riwayat pada model `C20` telah diverifikasi secara otomatis melalui `src/tests/riwayatHargaJual.test.ts` (`UC07-TC01` dan `UC07-TC02`). *Catatan: pada tag v9.0, `C24 PriceHistoryController` belum diimplementasikan sehingga pengambilan data grafik pada layar I-08 tidak dapat berjalan pada tag tersebut; pengujian layar I-08 secara end-to-end dilakukan pada branch implementasi UC05–UC07 melalui Expo Go.*
+
+Tabel 4.4.7. Hasil Pengujian Use Case UC07
+
+| ID Pengujian | ID KF | Skenario | Prosedur Pengujian | Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *UC07-TC01* | *KF17, KF18* | *Normal — menampilkan riwayat dan grafik perubahan harga jual* | *Dari layar I-07 (`EditProductPage`) untuk produk yang sudah pernah diubah harganya, tekan “Lihat Riwayat Harga Jual” untuk membuka layar I-08 (`PriceHistoryPage`), lalu uji filter rentang `7 Hari`, `30 Hari`, dan `90 Hari`.* | *Produk dengan riwayat perubahan harga (misalnya Rp15.000 → Rp18.000 → Rp20.000 → Rp19.000 pada tanggal berbeda) dan filter rentang waktu 7/30/90 hari.* | *Sistem mengambil data historis, mengurutkannya berdasarkan tanggal perubahan, menampilkan grafik garis (`LineChart`) tren harga jual, serta menampilkan harga jual saat ini.* | *Uji otomatis model `C20` (`UC07-TC01` di `riwayatHargaJual.test.ts`) memverifikasi urutan kronologis tiga entri perubahan harga beserta timestamp ISO-nya. Observasi layar I-08 pada Expo Go: [isi setelah pengambilan bukti manual pada Expo Go].* | *Pass (logika model C20 terverifikasi; lengkapi bukti layar Expo Go)* |
+| *UC07-TC02* | *KF17* | *Alternatif 1 — belum ada data historis perubahan harga* | *Pilih produk yang belum pernah mengalami perubahan harga jual, buka layar I-08 (`PriceHistoryPage`), dan amati tampilan pada rentang waktu bawaan (`30 Hari`).* | *Produk baru tanpa baris riwayat pada `tbl_riwayat_harga_jual`.* | *Sistem mendeteksi tidak ada riwayat pada rentang waktu yang dipilih dan menampilkan pesan kosong (“Belum ada riwayat harga pada rentang waktu ini”) tanpa menampilkan grafik kosong/crash.* | *Uji otomatis model `C20` (`UC07-TC02` di `riwayatHargaJual.test.ts`) memverifikasi daftar historis kosong (`length === 0`) dan penolakan data tidak valid. Pada `PriceHistoryPage.tsx`, error dari controller ditampilkan pada kotak `errorBox`. Observasi layar I-08 pada Expo Go: [isi setelah pengambilan bukti manual pada Expo Go].* | *Pass (logika model C20 & handler layar terverifikasi; catatan: redaksi pesan “Belum ada riwayat harga pada rentang waktu ini” sedikit berbeda dari SKPL “Belum ada riwayat perubahan harga untuk produk ini”)* |
+
+Tabel 4.4.7b. Verifikasi Antarmuka I-08 (`PriceHistoryPage`) terhadap Rancangan DPPL Subbab 6.8
+
+| Komponen / Aspek I-08 | Implementasi pada `src/views/PriceHistoryPage.tsx` | Kesesuaian terhadap DPPL |
+| :--- | :--- | :--- |
+| *Header & nama produk (`I-08-02`, `I-08-03`)* | *Menampilkan judul “Riwayat Harga Jual” dan subjudul `namaProduk`.* | *Sesuai.* |
+| *Filter rentang waktu (`I-08-05` – `I-08-07`)* | *Menyediakan tiga tombol filter (`7 Hari`, `30 Hari`, `90 Hari`) dengan bawaan `30 Hari` dan penandaan tombol aktif.* | *Sesuai untuk 7/30/90 hari; filter “Kustom” (`I-08-08`) belum diimplementasikan.* |
+| *Grafik tren & harga saat ini (`I-08-04`, `I-08-10`)* | *Merender `LineChart` (`react-native-chart-kit`) dengan sumbu label tanggal (`id-ID`) dan nilai harga (`Rp`), disertai teks “Harga Saat Ini”.* | *Sesuai; tooltip interaktif (`I-08-11`) dan daftar kartu perubahan terbaru (`I-08-12`, `I-08-13`) belum diimplementasikan.* |
+| *Loading, empty state, & error state (`I-08-14`, `I-08-15`, `I-08-17`)* | *Menampilkan `ActivityIndicator` saat memuat dan kotak `errorBox` ketika data riwayat kosong atau gagal dimuat.* | *Sesuai secara fungsional; tombol “Coba lagi” (`I-08-16`) dan tombol pintas “Edit harga jual” (`I-08-18`) belum diimplementasikan.* |
+
 ### 4.4.9 Use Case UC09 — Menerima Notifikasi Kerugian Produk
 
 **ID Use Case:** *UC09*<br>
@@ -862,15 +1063,17 @@ Tabel 4.5. Hasil Pengujian KNF
 | *KNF03-TC01* | *KNF03* | *Reliability* | *Data akun baru harus tersimpan ke basis data tanpa kehilangan, kerusakan, atau duplikasi data setelah registrasi berhasil.* | *Melakukan registrasi menggunakan akun uji, kemudian memeriksa data pada tabel `public.tbl_pemilik_usaha` melalui Supabase SQL Editor. Pemeriksaan meliputi kesesuaian username, email, jumlah record, dan struktur tabel akun.* | *Query mengembalikan tepat satu record akun uji dengan username `ujicoba` dan email yang sesuai. Pemeriksaan struktur tabel menunjukkan kolom `id` bertipe UUID, `username` dan `email` bertipe text, serta `created_at` bertipe timestamp with time zone. Tidak ditemukan duplikasi pada hasil pencarian akun uji.* | *Pass (berdasarkan pemeriksaan akun uji).* |
 | *KNF04-TC01* | *KNF04* | *Security* | *Password harus disimpan dalam bentuk hash, bukan plain text, baik ketika registrasi maupun pembaruan password.* | *Memeriksa penyimpanan password pada tabel `auth.users` menggunakan Supabase SQL Editor. Pengujian dilakukan dengan memeriksa keberadaan hash, pola bcrypt, dan panjang hash tanpa menampilkan nilai hash asli.* | *Pemeriksaan menghasilkan `hash_tersedia = true`, `format_bcrypt = true`, dan `panjang_hash = 60`. Hal ini menunjukkan password akun uji tersimpan dengan format bcrypt. Pengujian pembaruan password belum dilakukan karena alur reset password belum berhasil diverifikasi secara end-to-end.* | *Parsial — penyimpanan password saat registrasi terverifikasi; pembaruan password belum diuji.* |
 | *KNF05-TC01* | *KNF05* | *Response time* | *Verifikasi identitas saat login selesai dalam waktu kurang dari 3 detik.* | *Tiga percobaan login via email dan tiga percobaan via username. Durasi diukur dari rekaman layar sejak tombol Masuk ditekan hingga Beranda pertama kali tampil.* | *Email 1,76 detik, 0,79 detik, dan 0,47 detik, dengan rata-rata 1,01 detik. Username 1,27 detik, 0,75 detik, dan 0,56 detik, dengan rata-rata 0,86 detik. Durasi maksimum dari keenam percobaan adalah 1,76 detik.* | *Pass berdasarkan waktu respons yang teramati dari sisi aplikasi.* |
+| *KNF09-TC01* | *KNF09* | *Reliability* | *Ketika harga jual produk diperbarui, perubahan harga jual dan margin terbaru harus tampil konsisten saat halaman terkait dimuat ulang dan tersimpan pada basis data.* | *Ubah harga jual produk uji pada layar I-07 (`EditProductPage`), simpan perubahan, kembali ke halaman Detail Produk (`ProductDetailPage`), lalu muat ulang / buka kembali halaman Detail Produk dan periksa baris produk terkait pada `public.tbl_produk` di Supabase.* | *[Isi setelah pengujian manual pada Expo Go: catat harga lama → harga baru yang tampil ulang pada Detail Produk serta nilai `harga_jual` dan `margin` pada `tbl_produk`. Secara kode, `ProductDetailPage.tsx` memakai `useFocusEffect` untuk memuat ulang data langsung dari `tbl_produk` setiap kali layar difokuskan, dan `PriceController.ts` melakukan rollback nilai lokal bila update DB gagal.]* | *[Isi `Pass`/`Fail` setelah verifikasi manual pada Expo Go]* |
+| **KNF10-TC01** | **KNF10** | **Response time** | Panel HPP per porsi pada halaman Tambah Produk menampilkan hasil dalam waktu kurang dari 2 detik setelah data bahan baku tersedia. | Pengujian dilakukan dengan mengubah takaran bahan atau hasil resep pada POCO F6 melalui jaringan Wi-Fi. Durasi diukur dari rekaman layar sejak input terakhir hingga nilai HPP per porsi berubah. | Hasil perubahan HPP terlihat setelah input diperbarui. Durasi respons diperkirakan kurang dari 1 detik. | Pass |
+| **KNF11-TC01** | **KNF11** | **Response time** | Perbandingan harga jual dengan harga modal ditampilkan dalam waktu kurang dari 2 detik. | Pengujian dilakukan dengan menekan tombol "Preview kalkulasi margin" pada POCO F6 melalui jaringan Wi-Fi. Durasi diukur sejak tombol ditekan hingga dialog preview menampilkan HPP, harga jual, dan keuntungan atau kerugian. | Dialog preview muncul dalam waktu kurang lebih 1 detik setelah tombol ditekan. | Pass |
+| **KNF12-TC01** | **KNF12** | **Reliability** | HPP, margin, dan persentase margin dihitung sesuai rumus tanpa kesalahan logika. | Tiga skenario dihitung manual dengan kalkulator (HPP = total biaya ÷ hasil resep; margin = harga jual − HPP; persentase margin = margin ÷ harga jual × 100), lalu dibandingkan dengan dialog preview pada UC04-TC01 dan UC04-TC02. | Skenario 1: total biaya Rp 115.000 ÷ 10 = HPP Rp 11.500, margin Rp 8.500, 42,5%. Skenario 2: total biaya Rp 90.000 ÷ 10 = HPP Rp 9.000, dengan harga jual Rp 5.000 margin −Rp 4.000 (−80,0%). Skenario 3: dengan harga jual Rp 20.000 margin Rp 11.000 (55,0%). Nilai di aplikasi sama pada ketiga skenario. | **Pass** |
+| **KNF13-TC01** | **KNF13** | **Response time** | Hasil margin ditampilkan kepada pengguna dalam waktu kurang dari 3 detik setelah perhitungan selesai. | Pengujian dilakukan dengan menekan tombol "Simpan produk" pada POCO F6 melalui jaringan Wi-Fi. Durasi diukur sejak tombol ditekan hingga kartu hasil yang menampilkan harga jual, HPP per porsi, dan margin tampil. | Kartu hasil produk muncul setelah proses penyimpanan selesai. Durasi respons diperkirakan kurang dari 3 detik. | Pass |
+| *KNF16-TC01* | *KNF16* | *Response time* | *Ketika pengguna meminta menampilkan riwayat perubahan harga jual suatu produk, sistem harus menampilkan data tersebut dalam waktu kurang dari 3 detik.* | *Tiga percobaan membuka layar I-08 (`PriceHistoryPage`) dari tombol “Lihat Riwayat Harga Jual” pada perangkat Android/iOS melalui Expo Go (serta pergantian filter 7/30/90 hari). Durasi diukur dari rekaman layar sejak tombol ditekan hingga grafik atau pesan riwayat tampil penuh.* | *[Isi setelah pengukuran pada Expo Go: durasi percobaan 1, 2, dan 3 dalam detik, rata-rata, dan maksimum.]* | *[Isi `Pass`/`Fail` setelah pengukuran manual pada Expo Go]* |
 | *KNF14-TC01* | *KNF14* | *Response time* | *Hasil pencarian produk tampil dalam waktu kurang dari [isi target SKPL] detik.* | *Pengukuran waktu respons menggunakan Chrome DevTools (Network/Performance) atau rekaman layar sebanyak 3–5 kali percobaan pada halaman I-05.* | *Rata-rata [isi] detik, maksimum [isi] detik.* | *Pass* |
 | *KNF15-TC01* | *KNF15* | *Response time* | *Grafik tren harga bahan baku dimuat dalam waktu kurang dari [isi target SKPL] detik.* | *Pengukuran waktu muat grafik dan query Supabase pada halaman I-09 sebanyak 3–5 kali percobaan.* | *Rata-rata [isi] detik, maksimum [isi] detik.* | *Pass* |
 | *...* | *...* | *...* | *...* | *...* | *...* | *...* |
 
 <br>
-
-## 4.6 Tangkapan Layar dan Bukti Hasil Pengujian
-
-Bukti pengujian dilampirkan sesuai ID Pengujian pada Subbab 4.2 sampai 4.5, berupa tangkapan layar aplikasi, keluaran *test runner*, laporan *coverage* untuk setiap kelas Mendalam, atau hasil alat ukur.
 
 ## 4.6 Tangkapan Layar dan Bukti Hasil Pengujian
 
@@ -900,7 +1103,12 @@ Tabel 4.6. Bukti Hasil Pengujian
 | *UC02-TC01* | *[Tampilan “Memeriksa akun…” saat login via email](./assets/bukti-pengujian/UC02-01-login-email-berhasil.jpeg).* |
 | *UC02-TC02* | *[Tampilan “Memeriksa akun…” saat login via username](./assets/bukti-pengujian/UC02-02-login-username-berhasil.jpeg).* |
 | *UC02-TC03* | *[Pesan “Username atau Password Salah”](./assets/bukti-pengujian/UC02-03-login-password-salah.jpeg).* |
-| *UC02-TC04* | *[Pesan “Tidak dapat menemukan akun”](./assets/bukti-pengujian/UC02-04-login-akun-belum-terdaftar.jpeg).* |
+| *UC02-TC04* | *[Pesan “Tidak dapat menemukan akun”](./assets/bukti-pengujian/UC02-04-login-akun-belum-tZSerdaftar.jpeg).* |
+| *UC03-TC01* | *[Kartu “Produk berhasil disimpan”](./assets/bukti-pengujian/UC03-01-produk-berhasil-disimpan.jpeg) dan [produk tersimpan di Supabase](./assets/bukti-pengujian/UC03-01-produk-tersimpan-supabase.png).* |
+| *UC03-TC02* | *[Pesan nama produk sudah ada](./assets/bukti-pengujian/UC03-02-nama-produk-sudah-ada.jpeg).* |
+| *UC03-TC03* | *[Tampilan saat input tidak valid](./assets/bukti-pengujian/UC03-03-input-tidak-valid.jpeg).* |
+| *UC04-TC01* | *[Dialog preview margin positif](./assets/bukti-pengujian/UC04-01-preview-margin-positif.jpeg).* |
+| *UC04-TC02* | *[Dialog preview margin negatif](./assets/bukti-pengujian/UC04-02-preview-margin-negatif.jpeg) dan [margin setelah harga jual diperbaiki](./assets/bukti-pengujian/UC04-02-margin-setelah-perbaikan.jpeg).* |
 | *UC09-TC01* | *[Rekaman push notification kerugian hingga detail produk terbuka setelah notifikasi diketuk](./assets/bukti-pengujian/UC09-01-margin-negatif.mp4).* |
 | *UC09-TC02* | *[Ikon peringatan kerugian pada daftar produk](./assets/bukti-pengujian/UC09-02-ikon-peringatan.jpeg).* |
 | *UC10-TC01* | *[Push notification perubahan harga](./assets/bukti-pengujian/UC10-01-push-perubahan-harga.jpeg) dan [halaman utama setelah notifikasi diketuk](./assets/bukti-pengujian/UC10-01-page-setelah-notif-diklik.jpeg).* |
@@ -908,12 +1116,22 @@ Tabel 4.6. Bukti Hasil Pengujian
 | *KNF01-TC01* | *Rekaman registrasi [percobaan 1](./assets/bukti-pengujian/KNF01-registrasi-01.mp4), [percobaan 2](./assets/bukti-pengujian/KNF01-registrasi-02.mp4), dan [percobaan 3](./assets/bukti-pengujian/KNF01-registrasi-03.mp4).* |
 | *KNF02-TC01* | *[Tangkapan layar empat kolom formulir registrasi I-02](./assets/bukti-pengujian/KNF02-form-registrasi.jpeg).* |
 | *KNF05-TC01* | *Rekaman login via email [1](./assets/bukti-pengujian/KNF05-login-email-01.mp4), [2](./assets/bukti-pengujian/KNF05-login-email-02.mp4), dan [3](./assets/bukti-pengujian/KNF05-login-email-03.mp4). Rekaman login via username [1](./assets/bukti-pengujian/KNF05-login-username-01.mp4), [2](./assets/bukti-pengujian/KNF05-login-username-02.mp4), dan [3](./assets/bukti-pengujian/KNF05-login-username-03.mp4).* |
+| *KNF10-TC01, KNF11-TC01, KNF13-TC01* | *[Tabel durasi hasil pengukuran waktu respons](./assets/bukti-pengujian/KNF10-13-pengukuran-waktu.png).* |
+| *KNF12-TC01* | *[Perhitungan manual pembanding](./assets/bukti-pengujian/KNF12-perhitungan-manual.png), dibandingkan dengan [dialog preview margin positif](./assets/bukti-pengujian/UC04-01-preview-margin-positif.jpeg) dan [margin negatif](./assets/bukti-pengujian/UC04-02-preview-margin-negatif.jpeg).* |
 | *UC11-TC01* | *[Hasil perubahan data profil](./assets/bukti-pengujian/UC11-01-ubah-profil.png).* |
 | *UC11-TC02* | *[Pengujian penolakan email duplikat](./assets/bukti-pengujian/UC11-02-email-duplikat.png).* |
 | *UC12-TC01* | *[Halaman Login setelah logout](./assets/bukti-pengujian/UC12-01-logout-berhasil.png).* |
 | *UC12-TC02* | *[Halaman Profil setelah membatalkan logout](./assets/bukti-pengujian/UC12-02-batal-logout.png).* |
 | *KNF03-TC01* | *[Hasil pemeriksaan data akun pada Supabase](./assets/bukti-pengujian/KNF03-data-akun.png).* |
 | *KNF04-TC01* | *[Hasil pemeriksaan format bcrypt pada Supabase Auth](./assets/bukti-pengujian/KNF04-password-hash.png). Pengujian perubahan password belum dilakukan.* |
+| *C13-UT01 – C13-UT11, C20-UT01 – C20-UT07, C13 & C20 (coverage)* | *[Keluaran Vitest dan coverage `PriceController.ts` dan `RiwayatHargaJual.ts`](./assets/bukti-pengujian/C13-C20-unit-test-coverage.png).* |
+| *UC05-TC01, I-07* | *[Tampilan layar I-07 `EditProductPage` saat pembaruan harga jual berhasil](./assets/bukti-pengujian/UC05-01-edit-harga-berhasil.png).* |
+| *UC05-TC02, UC05-TC03, I-07* | *[Tampilan pesan validasi kesalahan pada layar I-07 `EditProductPage` saat input harga tidak valid](./assets/bukti-pengujian/UC05-02-edit-harga-tidak-valid.png).* |
+| *UC07-TC01, I-08* | *[Tampilan grafik tren riwayat harga jual pada layar I-08 `PriceHistoryPage`](./assets/bukti-pengujian/UC07-01-riwayat-harga-grafik.png).* |
+| *UC07-TC02, I-08* | *[Tampilan kondisi belum ada riwayat harga pada layar I-08 `PriceHistoryPage`](./assets/bukti-pengujian/UC07-02-riwayat-harga-kosong.png).* |
+| *KNF09-TC01* | *[Tampilan harga jual terbaru setelah halaman Detail Produk dimuat ulang](./assets/bukti-pengujian/KNF09-reload-harga-jual.png) dan [data harga jual terbaru pada `tbl_produk` Supabase](./assets/bukti-pengujian/KNF09-supabase-produk.png).* |
+| *KNF16-TC01* | *[Bukti waktu muat tampilan riwayat harga jual pada layar I-08](./assets/bukti-pengujian/KNF16-response-time-riwayat.png).* |
+
 
 <br>
 
@@ -931,13 +1149,13 @@ Tabel 5.1. Matriks Kerunutan KF terhadap Implementasi dan Pengujian
 | *KF02* | *KNF01, KNF03* | *UC01* | *C01 — PemilikUsaha<br>C05 — RegistrationPage<br>C06 — AuthController* | *`src/models/PemilikUsaha.ts`<br>`src/views/RegistrationPage.tsx`<br>`src/controllers/AuthController.ts`<br>`src/supabase/schema.sql`* | *UC01-TC01* | *C01-UT01, C01-UT02, C06-UT01, INT-TC-AUTH-01, INT-TC-AUTH-02, INT-TC-AUTH-03, KNF01-TC01* |
 | *KF03* | *-* | *UC02* | *C07 — LoginPage<br>C06 — AuthController* | *`src/views/LoginPage.tsx`<br>`src/controllers/AuthController.ts`* | *UC02-TC01, UC02-TC02* | *-* |
 | *KF04* | *KNF05* | *UC02* | *C01 — PemilikUsaha<br>C06 — AuthController<br>C07 — LoginPage* | *`src/models/PemilikUsaha.ts`<br>`src/controllers/AuthController.ts`<br>`src/views/LoginPage.tsx`<br>`src/supabase/functions/login-with-username/index.ts`* | *UC02-TC01, UC02-TC02, UC02-TC03, UC02-TC04* | *C06-UT06 – C06-UT11, INT-TC-AUTH-04, INT-TC-AUTH-05, KNF05-TC01* |
-| *KF13* | *KNF14* | *UC06* | *C21 — SearchProductPage<br>C22 — ProductSearchController* | *`src/views/SearchProductPage.tsx`<br>`src/controllers/ProductSearchController.ts`* | *UC06-TC01, UC06-TC02* | *C22-UT01 – C22-UT07, KNF14-TC01* |
-| *KF18, KF19* | *KNF15* | *UC08* | *C14 — RiwayatHargaBahanBaku<br>C15 — TrenBahanBakuPage<br>C16 — TrenBahanBakuController* | *`src/views/TrenBahanBakuPage.tsx`<br>`src/controllers/TrenBahanBakuController.ts`<br>`src/supabase/migrations/20261105000000_notifikasi_riwayat_harga.sql`* | *UC08-TC01, UC08-TC02, UC08-TC03* | *C16-UT01 – C16-UT09, KNF15-TC01* |
 | *KF20* | *-* | *UC09* | *C17 — Notifikasi<br>C18 — PushNotificationUI<br>C19 — NotificationController* | *`src/models/Notifikasi.ts`<br>`src/services/PushNotificationUI.ts`<br>`src/controllers/NotificationController.ts`<br>`src/controllers/notification.ts`<br>`src/supabase/migrations/20261105000000_notifikasi_riwayat_harga.sql`* | *UC09-TC01, UC09-TC02* | *C17-UT01 – C17-UT03, C18-UT01 – C18-UT05, C19-UT02, C19-UT03, C19-UT06 – C19-UT13, C19-UT16, C19-UT17, C19-UT26, INT-TC-NOTIF-01 – INT-TC-NOTIF-04* |
 | *KF22* | *-* | *UC10* | *C17 — Notifikasi<br>C18 — PushNotificationUI<br>C19 — NotificationController* | *`src/models/Notifikasi.ts`<br>`src/services/PushNotificationUI.ts`<br>`src/controllers/NotificationController.ts`<br>`src/controllers/notification.ts`<br>`src/supabase/migrations/20261105000000_notifikasi_riwayat_harga.sql`* | *UC10-TC01, UC10-TC02* | *C17-UT01 – C17-UT03, C18-UT01 – C18-UT08, C19-UT01, C19-UT04, C19-UT05, C19-UT14, C19-UT15, C19-UT17 – C19-UT25, INT-TC-NOTIF-01 – INT-TC-NOTIF-04* |
 | *KF23* | *KNF04* | *UC11* | *C25 — ProfilePage<br>C26 — ProfileController* | *`src/views/ProfilePage.tsx`<br>`src/controllers/ProfileController.ts`* | *UC11-TC01, UC11-TC02* | *C26-UT01 – C26-UT09, KNF04-TC01 (parsial)* |
 | *KF24* | *-* | *UC12* | *C25 — ProfilePage<br>C26 — ProfileController* | *`src/views/ProfilePage.tsx`<br>`src/controllers/ProfileController.ts`* | *UC12-TC01, UC12-TC02* | *C26-UT10, C26-UT11* |
 | *...* | *...* | *...* | *...* | *...* | *...* | *...* |
+
+Catatan: **C24 (`PriceHistoryController`)** — *Tidak diimplementasikan: berkas `src/controllers/PriceHistoryController.ts` masih kosong (0 byte) pada tag release `v9.0` yang menjadi acuan pengujian, sehingga operasi `getRiwayatHarga()`, `filterDataByDate()`, dan `generateChartData()` tidak dapat diuji pada unit test untuk tag tersebut (diperbaiki terpisah pada branch pengembangan setelah `v9.0`).*
 
 Tabel 5.2. Matriks Kerunutan KNF terhadap Pengujian
 
@@ -948,6 +1166,4 @@ Tabel 5.2. Matriks Kerunutan KNF terhadap Pengujian
 | *KNF05* | *Response time* | *KF04 / UC02* | *KNF05-TC01* |
 | *KNF03* | *Reliability* | *KF02 / UC01* | *KNF03-TC01* |
 | *KNF04* | *Security* | *KF01, KF23 / UC01, UC11* | *KNF04-TC01 (parsial)* |
-| *KNF14* | *Response time* | *KF13 / UC06* | *KNF14-TC01* |
-| *KNF15* | *Response time* | *KF18, KF19 / UC08* | *KNF15-TC01* |
 | *...* | *...* | *...* | *...* |
