@@ -28,12 +28,6 @@ Dipersiapkan oleh:
 | *13525062* | *Rafel Dzinun Muhammad* |
 ---
 
-> **Petunjuk pengerjaan:** *[Silahkan hapus bagian ini setelah selesai mengerjakan]*
->
-> Dokumen ini adalah **spesifikasi sekaligus template laporan singkat** Tugas 9. Bagian **Ketentuan Implementasi** (Bagian A) adalah aturan yang harus kalian ikuti, boleh dihapus dari laporan akhir. Bagian **Laporan Implementasi** (Bagian B) adalah yang **wajib kalian isi**. Gunakan nama, ID, kebutuhan, use case, dan kelas yang konsisten dengan SKPL, APL, dan DPPL.
-
----
-
 **Deadline:** Rabu, 11 November 2026, 21.50 WIB
 **Asistensi akbar:** *[Senin, 2 November 2026, 19.00 WIB, MSTEAMS]*
 
@@ -185,8 +179,6 @@ Ketentuan:
 
 ## B.1 Perubahan dari DPPL
 
-Catat semua perbedaan antara perancangan (DPPL) dan implementasi akhir. Jika tidak ada perubahan, tuliskan "Tidak ada perubahan".
-
 Tabel B.1. Perubahan dari DPPL
 
 | No | Bagian DPPL | Rancangan Awal | Implementasi Akhir | Alasan |
@@ -205,7 +197,7 @@ Tabel B.1. Perubahan dari DPPL
 | 12 | *Kelas C04 `ResepBahan` (Bab 5.4)* | *Hanya atribut `takaran`.* | *Ditambah operasi `getBahan()` yang menunjuk objek `BahanBaku`.* | *Relasi asosiasi pada class diagram diwujudkan sebagai properti agar biaya tiap bahan dapat dihitung.* |
 | 13 | *Kelas C10 `AddProductPage` (Bab 5.10)* | *Form dua tahap: nama dan tag, kemudian bahan baku dan harga jual; hasil berupa pesan.* | *Satu halaman sesuai I-06 dengan dropdown tag dan bahan, kolom porsi, panel total biaya dan HPP per porsi, dialog preview, serta kartu produk hasil. `showSuccessMessage` menerima data hasil, bukan pesan string.* | *Menyesuaikan implementasi dengan rancangan antarmuka I-06.* |
 | 14 | *Kelas C11 `MarginController` (Bab 5.11)* | *`validasiInput(daftarBahan, hargaJual)` memvalidasi sekaligus menyimpan produk.* | *`validasiInput(input)` hanya memvalidasi dan menghitung preview (HPP per porsi, margin, persentase). Penyimpanan dipindah ke operasi baru `simpanProduk()` yang memanggil `simpanProdukBaru()` dan `simpanResep()`. Ditambah `getDaftarBahan()` dan `getCurrentProduk()`.* | *Dialog preview (I-06-15 sampai I-06-19) mengharuskan pengguna mengonfirmasi sebelum data disimpan.* |
-| 15 | *Rumus HPP (Bab 5.11)* | *HPP = jumlah (takaran × harga beli).* | *HPP per porsi = jumlah (takaran × harga beli) dibagi hasil resep; margin = harga jual per porsi dikurangi HPP per porsi.* | *Sesuai panel I-06-13 dan I-06-14.* ***Perlu konfirmasi bahwa tim menyetujui rumus ini.*** |
+| 15 | *Rumus HPP (Bab 5.11)* | *HPP = jumlah (takaran × harga beli).* | *HPP per porsi = jumlah (takaran × harga beli) dibagi hasil resep; margin = harga jual per porsi dikurangi HPP per porsi.* | *Sesuai panel I-06-13 dan I-06-14.* |
 | 16 | *Pembuatan bahan baku* | *Bahan baku dipilih dari yang sudah ada atau dibuat bila belum ada.* | *Dropdown memuat bahan yang sudah ada dan opsi "+ Bahan baru"; bahan baru wajib diisi nama, harga beli, dan satuan. Bahan dengan nama yang sudah ada ditolak dan harus dipilih dari daftar.* | *Belum ada use case yang menambah bahan baku, dan harga bahan yang sudah ada tidak boleh tertimpa karena perubahannya ditangani UC10.* |
 | 17 | *Basis data tabel `tbl_produk`, `tbl_bahan_baku`, `tbl_resep_bahan` (Bab 5)* | *Kunci kepemilikan mengacu pada `username`.* | *Kolom `id_pemilik` bertipe `uuid` yang merujuk `tbl_pemilik_usaha.id`; ditambah kolom `hasil_resep` dan `satuan`; Row Level Security aktif pada ketiga tabel.* | *Kunci `uuid` dari Supabase Auth lebih stabil dan diperlukan untuk kebijakan RLS.* |
 | 18 | *Akses basis data (Bab 5.11)* | *Query melalui `DB_SERVICE`.* | *Query dijalankan langsung dari controller memakai klien Supabase (`src/services/supabase.ts`).* | *Mengikuti pola yang sudah dipakai `PemilikUsaha` dan `AuthController`.* |
@@ -215,16 +207,14 @@ Tabel B.1. Perubahan dari DPPL
 
 ## B.2 Bukti Penerapan Best Practices
 
-## B.2 Bukti Penerapan Best Practices
-
 Tabel B.2. Bukti Best Practices
 
 | Praktik | Bukti | Keterangan |
 | :--- | :--- | :--- |
 | Branching | *[Branch Repository](https://github.com/rafeldzin/IF2150-RPL-K02-G07/branches)* | *Kelompok menerapkan skema GitHub Flow (Feature Branch Workflow), yaitu pengembangan setiap fitur dilakukan pada branch terpisah yang dibuat dari `main`.* |
 | Semantic commit | *[Riwayat Commit](https://github.com/rafeldzin/IF2150-RPL-K02-G07/commits/main/)* | *Menggunakan pesan commit deskriptif dengan tipe seperti `feat`, `fix`, `docs`, dan `chore`. Setiap commit dipisahkan berdasarkan perubahan yang dilakukan, seperti inisialisasi proyek Expo, konfigurasi Supabase, implementasi autentikasi, UI, dan dokumentasi.* |
-| Track tasks | *[GitHub Issues](https://github.com/rafeldzin/IF2150-RPL-K02-G07/issues)* | *22 Issues* <br> *- Kevin: 4* <br> *- Klio: 3* <br> *- Kuri: 4* <br> *- Botros: 4* <br> *- Rafel: 5* <br> *- Nuha: 2*|
-| Pull request dan review | *[PR #23 - feat/auth uc01 uc02](https://github.com/rafeldzin/IF2150-RPL-K02-G07/pull/23)* <br> *[PR #24 - feat/produk margin](https://github.com/rafeldzin/IF2150-RPL-K02-G07/pull/24)* | *Klio review Kevin* <br> *Kuri review Klio* |
+| Track tasks | *[GitHub Issues](https://github.com/rafeldzin/IF2150-RPL-K02-G07/issues)* | *22 Issues* <br> *- Kevin: 4* <br> *- Klio: 3* <br> *- Fakhriyan: 4* <br> *- Fathir: 4* <br> *- Rafel: 5* <br> *- Nuha: 2*|
+| Pull request dan review | *[PR #23 - feat/auth uc01 uc02](https://github.com/rafeldzin/IF2150-RPL-K02-G07/pull/23)* <br> *[PR #24 - feat/produk margin](https://github.com/rafeldzin/IF2150-RPL-K02-G07/pull/24)* | *Klio review Kevin* <br> *Fakhriyan review Klio* |
 | Pengujian | *[src/test](https://github.com/rafeldzin/IF2150-RPL-K02-G07/tree/main/src/tests)* <br> *[Bukti Pengujian](https://github.com/rafeldzin/IF2150-RPL-K02-G07/tree/main/docs/M9/test_pengujian)* | *Pengujian otomatis menggunakan Vitest dengan menjalankan `npm test` pada direktori `src/` untuk menguji fungsi validasi email, password, dan konfirmasi password. Pengujian manual dilakukan melalui aplikasi Android yang dijalankan dengan `npx expo start`. Skenario yang diuji meliputi registrasi berhasil, validasi registrasi gagal, login menggunakan email dan username, serta penanganan login dengan password salah.* |
 
 ### B.2.1 Profiling dan Optimasi
@@ -239,7 +229,6 @@ Tabel B.2. Bukti Best Practices
 
 ## B.3 Kendala dan Catatan Penting
 
-Tuliskan kendala yang ditemui, fitur yang belum sempurna (*known issues*), serta hal yang perlu diketahui asisten saat menjalankan atau menilai aplikasi (misalnya akun uji khusus, urutan menjalankan, atau batasan).
 - Rancangan autentikasi pada DPPL menggunakan penyimpanan dan verifikasi `password_hash` secara mandiri, sedangkan implementasi menggunakan Supabase Auth. Oleh karena itu, tabel `tbl_pemilik_usaha` hanya menyimpan data profil, sementara password dikelola oleh Supabase Auth.
 - Supabase Auth tidak menyediakan login menggunakan username secara langsung. Untuk mendukung UC02, dibuat Edge Function `login-with-username` yang mencari email berdasarkan username dan melakukan autentikasi melalui Supabase Auth.
 - Login menggunakan username bergantung pada konfigurasi `PROSS_PUBLISHABLE_KEY` dan `PROSS_SECRET_KEY` di Supabase Function Secrets. Nama dan format environment variable harus sesuai dengan yang digunakan pada Edge Function.
@@ -274,11 +263,9 @@ Tabel B.4. Kontribusi Anggota
 | *13525002* | *Ahmad Boutros Fathir* | *UC06 (Cari Produk) dan UC08 (Tren Harga Bahan Baku): antarmuka `RiwayatHargaBahanBaku`, controller `TrenBahanBakuController` dan `ProductSearchController`, komponen layar `TrenBahanBakuPage` dan `SearchProductPage`, serta melakukan profiling dan optimasi query pada fitur grafik UC08. Meninjau PR untuk UC09 dan UC10.* | *16,67%* |
 | *13525053* | *Kevin Sie* | *UC01 (Mendaftarkan Akun) dan UC02 (Login dengan Akun yang Sudah Terdaftar): model C01 `PemilikUsaha`, controller C06 `AuthController`, halaman C05 `RegistrationPage`, dan C07 `LoginPage`. Menyusun fungsi validasi dan unit test, integrasi Supabase Auth, Edge Function untuk login username, serta database `tbl_pemilik_usaha`. Menyiapkan fondasi aplikasi Expo/React Native dengan TypeScript, struktur MVC, navigasi, pengelolaan sesi, konfigurasi environment, dan dokumentasi setup pada `src/README.md`. Mengajukan implementasi melalui PR #23.* | *16,67%* |
 | *13525020* | *Klio Lysander* | *UC03 (Menambahkan Produk) dan UC04 (Melihat Margin Produk): model `Produk`, `BahanBaku`, `ResepBahan`, `MarginController` dan fungsi perhitungan margin, layar Tambah Produk (I-06) beserta komponen pilihan, migrasi dan data contoh tabel produk, bahan baku, dan resep, unit test (36 test). Meninjau PR untuk UC01 dan UC02.* | *16,67%* |
-| *13525053* | *Kevin Sie* | *UC01 (Mendaftarkan Akun) dan UC02 (Login dengan Akun yang Sudah Terdaftar): model C01 `PemilikUsaha`, controller C06 `AuthController`, halaman C05 `RegistrationPage`, dan C07 `LoginPage`. Menyusun fungsi validasi dan unit test, integrasi Supabase Auth, Edge Function untuk login username, serta database `tbl_pemilik_usaha`. Menyiapkan fondasi aplikasi Expo/React Native dengan TypeScript, struktur MVC, navigasi, pengelolaan sesi, konfigurasi environment, dan dokumentasi setup pada `src/README.md`. Mengajukan implementasi melalui PR #23.* | *16,67%* |
 | *13525047* | *Muhammad Fakhriyan Rizki Mahardhika* | *UC09 (Notifikasi Kerugian) dan UC10 (Notifikasi Perubahan Harga Bahan): model C17 `Notifikasi` dan atribut `statusPeringatan` pada `Produk`, controller C19 `NotificationController` beserta logika perhitungan pada `notification.ts`, kelas C18 `PushNotificationUI`, layar Beranda, Pusat Notifikasi, Izin Notifikasi, dan Detail Produk, migrasi `tbl_notifikasi`, `tbl_riwayat_harga_bahan`, dan kolom `status_peringatan`.* | *16,67%* |
 | *13525062* | *Rafel Dzinun Muhammad* | *Implementasi UC11 (Mengubah Data Akun) dan UC12 (Keluar dari Akun) melalui `ProfilePage` dan `ProfileController`, termasuk validasi perubahan profil, integrasi Supabase Auth, dan pengelolaan sesi logout. Implementasi fitur Reset Password (C08 dan C09) melalui `ResetPasswordPage` dan `ResetPasswordController`, termasuk pengiriman email pemulihan, pengolahan token recovery, integrasi navigasi deep link, serta unit test terkait profil dan reset password. Alur reset password belum berhasil diuji secara end-to-end pada Expo Go.* | *16,67%* |
 | *13525056* | *Mochammad Nuha Al Ghifari* | *UC05 (Mengubah Harga Jual) dan UC07 (Melihat Riwayat Harga Jual): model `RiwayatHargaJual`, controller `PriceController` dan `PriceHistoryController`, layar `EditProductPage` dan `PriceHistoryPage`. Mengintegrasikan pustaka `react-native-chart-kit` untuk visualisasi grafik riwayat harga, mengonfigurasi navigasi TypeScript, serta melakukan code review pada PR UC11 & UC12.* | *16,67%* |
-| *...* | *...* | *...* | *...* |
 
 
 ## B.5 Traceability Kelas Perancangan ke Implementasi

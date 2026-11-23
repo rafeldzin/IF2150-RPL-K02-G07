@@ -394,6 +394,46 @@ Auth dibuat, serta function `account_exists`.
 schema mengalami perubahan, gunakan versi terbaru dari repository dan
 koordinasikan perubahan database dengan kelompok.
 
+#### 5.4.1 Jalankan migrasi tabel fitur
+
+`schema.sql` hanya membuat tabel akun. Tabel untuk produk, bahan baku,
+resep, notifikasi, dan riwayat harga dibuat oleh file migrasi pada folder:
+
+``` text
+src/supabase/migrations/
+```
+
+Jalankan **setelah** `schema.sql` selesai dan **berurutan** seperti tabel
+di bawah. Urutan ini penting karena beberapa file mengubah tabel yang
+dibuat file sebelumnya.
+
+| No | File | Hasil yang perlu dicek di Table Editor |
+|:--|:--|:--|
+| 1 | `20261103000000_produk_bahan_resep.sql` | Tabel `tbl_bahan_baku`, `tbl_produk`, `tbl_resep_bahan` |
+| 2 | `20261105000000_porsi_satuan.sql` | Kolom `hasil_resep` pada `tbl_produk` dan `satuan` pada `tbl_bahan_baku` |
+| 3 | `20261105000000_notifikasi_riwayat_harga.sql` | Tabel `tbl_notifikasi`, `tbl_riwayat_harga_bahan`, dan kolom `status_peringatan` pada `tbl_produk` |
+| 4 | `20261109000000_sync_email_pemilik.sql` | Tidak ada tabel baru (membuat function `sync_email_pemilik` dan trigger) |
+| 5 | `20261111000000_riwayat_harga_jual.sql` | Tabel `tbl_riwayat_harga_jual` |
+
+Cara menjalankan **setiap file**:
+
+1.  Buka Supabase Dashboard project Pross, lalu pilih **SQL Editor**.
+2.  Buat query baru.
+3.  Buka file migrasi di VS Code, salin seluruh isinya, lalu tempel ke
+    SQL Editor.
+4.  Klik **Run** dan pastikan query selesai tanpa error.
+5.  Ulangi untuk file berikutnya sesuai nomor urut pada tabel.
+
+Dua file berawalan `20261105000000` tidak saling bergantung, tetapi
+keduanya membutuhkan file nomor 1. Ikuti urutan pada tabel supaya hasilnya
+sama untuk semua orang.
+
+File migrasi memakai `if not exists` dan `drop ... if exists`, sehingga
+umumnya aman jika tidak sengaja dijalankan dua kali.
+
+Opsional: untuk mengisi data contoh, jalankan `src/supabase/seed.sql` dengan
+cara yang sama setelah akun `demo@pross.test` dibuat (lihat 9.5).
+
 ### 5.5 Siapkan Supabase CLI
 
 Edge Function disimpan di repository sehingga dapat di-deploy ulang oleh
@@ -650,23 +690,39 @@ dan pengujian manual pada Android.
 
 ## 8. Fitur dan Status Implementasi
 
-Status di bawah menggambarkan ruang lingkup implementasi awal pada
-branch autentikasi. Perbarui bagian ini ketika fitur baru sudah di-merge
-ke branch utama.
+Status di bawah mengikuti kode pada branch `main`. Perbarui bagian ini
+ketika fitur baru sudah di-merge. Semua layar didaftarkan pada `App.tsx`.
 
-| Fitur/komponen                                                        | Implementasi                                                   | Status                                                                           |
-|:----------------------------------------------------------------------|:---------------------------------------------------------------|:---------------------------------------------------------------------------------|
-| Login menggunakan email                                               | `LoginPage.tsx`, `AuthController.ts`                           | Tersedia pada implementasi awal.                                                 |
-| Login menggunakan username                                            | `LoginPage.tsx`, `AuthController.ts`, Edge Function            | Tersedia; membutuhkan Edge Function yang sudah di-deploy dan secrets yang benar. |
-| Registrasi akun                                                       | `RegistrationPage.tsx`, `PemilikUsaha.ts`, `AuthController.ts` | Tersedia pada implementasi awal.                                                 |
-| Validasi input autentikasi                                            | `validators.ts`                                                | Tersedia dan memiliki unit test.                                                 |
-| Penyimpanan session                                                   | `services/supabase.ts`, `App.tsx`                              | Menggunakan AsyncStorage dan Supabase Auth.                                      |
-| Logout                                                                | `AuthController.ts`                                            | Tersedia.                                                                        |
-| Home/dashboard                                                        | `HomePage.tsx`                                                 | Placeholder; belum menjadi dashboard operasional lengkap.                        |
-| Reset password                                                        | `ResetPasswordPage.tsx`                                        | Placeholder untuk integrasi lanjutan.                                            |
-| Tambah produk beserta resep (UC03) | `AddProductPage.tsx`, `MarginController.ts`, `Produk.ts`, `BahanBaku.ts`, `ResepBahan.ts` | Tersedia; memiliki unit test. |
-| Perhitungan HPP dan margin (UC04) | `MarginController.ts`, `margin.ts` | Tersedia; margin ditampilkan setelah produk disimpan. |
-| Fitur operasional lainnya | Modul lanjutan | Mengikuti pembagian tugas anggota dan DPPL. |
+### 8.1 Status fitur
+
+| Fitur | Implementasi | Pengujian otomatis | Status |
+|:--|:--|:--|:--|
+| UC01 Registrasi akun | `RegistrationPage.tsx`, `AuthController.ts`, `PemilikUsaha.ts` | `authController.test.ts`, `pemilikUsaha.test.ts`, `validators.test.ts` | Tersedia. |
+| UC02 Login dengan email atau username | `LoginPage.tsx`, `AuthController.ts`, Edge Function `login-with-username` | `authController.test.ts`, `validators.test.ts` | Tersedia. Login username membutuhkan Edge Function yang sudah di-deploy dan secrets yang benar (lihat 5.6 dan 5.7). |
+| Penyimpanan sesi | `services/supabase.ts`, `App.tsx` | - | Tersedia; memakai AsyncStorage dan Supabase Auth. |
+| Beranda | `HomePage.tsx` | - | Tersedia; menampilkan daftar produk, jumlah notifikasi belum dibaca, dan tombol menuju fitur lain. |
+| UC03 Menambahkan produk beserta resep | `AddProductPage.tsx`, `PilihanModal.tsx`, `MarginController.ts`, `Produk.ts`, `BahanBaku.ts`, `ResepBahan.ts` | `models.test.ts`, `marginController.test.ts` | Tersedia. Bahan baru hanya dapat dibuat dari formulir ini. |
+| UC04 Melihat margin produk | `AddProductPage.tsx` (dialog preview), `MarginController.ts`, `margin.ts` | `margin.test.ts`, `marginController.test.ts` | Tersedia; HPP per porsi, margin, dan persentase ditampilkan pada preview sebelum produk disimpan. |
+| UC05 Mengubah harga jual | `EditProductPage.tsx`, `PriceController.ts` | `priceController.test.ts` | Tersedia; dibuka dari Detail Produk. |
+| UC06 Mencari produk | `SearchProductPage.tsx`, `ProductSearchController.ts` | `ProductSearchController.test.ts` | Tersedia; dibuka dari Beranda. |
+| UC07 Melihat riwayat harga jual | `PriceHistoryPage.tsx`, `PriceHistoryController.ts`, `RiwayatHargaJual.ts` | `riwayatHargaJual.test.ts` | Tersedia; dibuka dari Detail Produk dan setelah harga jual diubah. |
+| UC08 Memantau tren harga bahan baku | `TrenBahanBakuPage.tsx`, `TrenBahanBakuController.ts` | `TrenBahanBakuController.test.ts` | Tersedia; dibuka dari Beranda. |
+| UC09 Notifikasi kerugian | `NotificationPage.tsx`, `NotificationController.ts`, `notification.ts`, `Notifikasi.ts` | `notification.test.ts`, `notificationController.test.ts` | Tersedia. Notifikasi dibuat hanya untuk produk yang margin barunya negatif. |
+| UC10 Notifikasi perubahan harga bahan baku | `NotificationController.ts`, `PushNotificationUI.ts`, `IzinNotifikasiPage.tsx` | `notificationController.test.ts`, `pushNotificationUI.test.ts` | Logika tersedia. Dari antarmuka, pemicunya hanya `SimulasiHargaBahan.tsx` pada layar Tren Bahan Baku, yang tampil hanya pada mode pengembangan dan khusus pengujian. Belum ada layar untuk mengelola atau mengubah bahan baku. |
+| UC11 Mengubah data akun | `ProfilePage.tsx`, `ProfileController.ts` | `profileController.test.ts` | Tersedia. |
+| UC12 Keluar dari akun | `ProfilePage.tsx`, `ProfileController.ts` | `profileController.test.ts` | Tersedia. |
+| Reset password | `ResetPasswordPage.tsx`, `ResetPasswordController.ts` | `resetPasswordController.test.ts` | Halaman dan controller tersedia. Alur tautan pemulihan melalui Expo Go belum berhasil diuji dari awal sampai akhir. |
+
+### 8.2 Pembagian anggota
+
+| NIM | Nama | Fitur |
+|:--|:--|:--|
+| 13525053 | Kevin Sie | UC01, UC02 |
+| 13525020 | Klio Lysander | UC03, UC04 |
+| 13525047 | Muhammad Fakhriyan Rizki M. | UC09, UC10 |
+| 13525002 | Ahmad Boutros Fathir | UC06, UC08 |
+| 13525062 | Rafel Dzinun Muhammad | UC11, UC12, reset password |
+| 13525056 | Mochammad Nuha Al Ghifari | UC05, UC07 |
 
 ------------------------------------------------------------------------
 
@@ -715,26 +771,61 @@ tersebut. RLS tetap menentukan baris mana yang boleh diakses.
 `auth.users` dikelola oleh Supabase Auth. Tabel tersebut bukan tabel
 aplikasi yang dibuat manual oleh `schema.sql`.
 
-### 9.4 Batas cakupan schema saat ini
+### 9.4 Cakupan schema dan migrasi
 
-`schema.sql` pada implementasi awal ini baru mendefinisikan tabel
-`tbl_pemilik_usaha` beserta objek database pendukungnya. Tabel untuk
-produk, bahan baku, resep, riwayat harga, notifikasi, dan modul bisnis
-lainnya perlu ditambahkan sesuai kebutuhan fitur dan dokumen DPPL.
+`schema.sql` hanya mendefinisikan tabel `tbl_pemilik_usaha` beserta objek
+database pendukungnya. Tabel untuk fitur lain didefinisikan pada folder
+`supabase/migrations/`. File dijalankan berurutan sesuai nama file, dan semua
+file bergantung pada `tbl_pemilik_usaha`, sehingga `schema.sql` harus
+dijalankan lebih dulu.
+
+| File migrasi | Isi |
+|:--|:--|
+| `20261103000000_produk_bahan_resep.sql` | Membuat `tbl_bahan_baku`, `tbl_produk`, dan `tbl_resep_bahan`, beserta indeks dan RLS. |
+| `20261105000000_porsi_satuan.sql` | Menambah `tbl_produk.hasil_resep` dan `tbl_bahan_baku.satuan`. |
+| `20261105000000_notifikasi_riwayat_harga.sql` | Menambah `tbl_produk.status_peringatan`; membuat `tbl_notifikasi` dan `tbl_riwayat_harga_bahan`, beserta RLS. |
+| `20261109000000_sync_email_pemilik.sql` | Membuat fungsi `sync_email_pemilik()` dan trigger `on_auth_user_email_changed`. |
+| `20261111000000_riwayat_harga_jual.sql` | Membuat `tbl_riwayat_harga_jual` beserta RLS. |
+
+Migrasi `porsi_satuan` dan `notifikasi_riwayat_harga` sama-sama mengubah
+`tbl_produk`, tetapi menambah kolom yang berbeda dan tidak saling bergantung.
+Keduanya membutuhkan migrasi `produk_bahan_resep` terlebih dahulu.
 
 ### 9.5 Tabel produk, bahan baku, dan resep
 
-Didefinisikan pada `supabase/migrations/20261103000000_produk_bahan_resep.sql`. Migrasi ini bergantung pada `tbl_pemilik_usaha`.
+Didefinisikan pada `supabase/migrations/20261103000000_produk_bahan_resep.sql`,
+lalu ditambah kolom oleh migrasi `porsi_satuan` dan `notifikasi_riwayat_harga`
+(lihat 9.4). Migrasi ini bergantung pada `tbl_pemilik_usaha`.
 
-| Tabel | Kolom utama | Keterangan |
+| Tabel | Kolom | Keterangan |
 |:--|:--|:--|
-| `tbl_produk` | `id_produk`, `id_pemilik`, `nama_produk`, `tag`, `harga_jual`, `margin` | Nama produk unik per pemilik tanpa membedakan huruf besar/kecil; `margin` boleh negatif. |
-| `tbl_bahan_baku` | `id_bahan`, `id_pemilik`, `nama_bahan`, `harga_beli` | Nama bahan unik per pemilik; `harga_beli` per satuan takaran. |
-| `tbl_resep_bahan` | `id_produk`, `id_bahan`, `takaran` | Primary key gabungan `(id_produk, id_bahan)`; resep ikut terhapus bila produk dihapus. |
+| `tbl_produk` | `id_produk`, `id_pemilik`, `nama_produk`, `tag`, `harga_jual`, `margin`, `hasil_resep`, `status_peringatan`, `created_at` | Nama produk unik per pemilik tanpa membedakan huruf besar/kecil. `harga_jual` dan `hasil_resep` harus lebih dari 0. `margin` boleh negatif. `hasil_resep` (porsi) bawaannya 1. `status_peringatan` bawaannya `false`. |
+| `tbl_bahan_baku` | `id_bahan`, `id_pemilik`, `nama_bahan`, `harga_beli`, `satuan`, `created_at` | Nama bahan unik per pemilik tanpa membedakan huruf besar/kecil. `harga_beli` harus lebih dari 0 dan berlaku per `satuan`. `satuan` tidak boleh kosong, bawaannya `unit`. |
+| `tbl_resep_bahan` | `id_produk`, `id_bahan`, `takaran` | Primary key gabungan `(id_produk, id_bahan)`. `takaran` harus lebih dari 0. Resep ikut terhapus bila produk dihapus, dan bahan yang masih dipakai resep tidak dapat dihapus. |
 
-RLS diaktifkan pada ketiga tabel; pemilik hanya dapat mengakses datanya sendiri. Rumus: HPP = jumlah (takaran x harga beli), margin = harga jual - HPP.
+RLS diaktifkan pada ketiga tabel; pemilik hanya dapat mengakses datanya sendiri.
+
+Rumus yang dipakai aplikasi:
+
+- HPP per porsi = jumlah (takaran × harga beli) ÷ hasil resep
+- Margin = harga jual per porsi − HPP per porsi
+- Persentase margin = margin ÷ harga jual × 100
 
 `supabase/seed.sql` membuat data contoh bila akun `demo@pross.test` sudah ada.
+Data contoh tidak mengisi `hasil_resep` dan `satuan`, sehingga memakai nilai
+bawaan (1 dan `unit`).
+
+### 9.6 Tabel notifikasi dan riwayat harga
+
+| Tabel | Didefinisikan pada | Kolom | Keterangan |
+|:--|:--|:--|:--|
+| `tbl_notifikasi` | `20261105000000_notifikasi_riwayat_harga.sql` | `id_notifikasi`, `id_pemilik`, `id_produk`, `id_bahan`, `tipe`, `judul`, `pesan_alert`, `waktu_kirim`, `is_read` | `tipe` hanya boleh `kerugian` atau `harga_bahan`. `pesan_alert` tidak boleh kosong. `is_read` bawaannya `false`. `id_produk` dan `id_bahan` boleh kosong; notifikasi ikut terhapus bila produknya dihapus, dan `id_bahan` menjadi kosong bila bahannya dihapus. |
+| `tbl_riwayat_harga_bahan` | `20261105000000_notifikasi_riwayat_harga.sql` | `id_riwayat`, `id_bahan`, `harga_beli_lama`, `harga_beli_baru`, `waktu_perubahan` | Kedua harga harus lebih dari 0. Riwayat ikut terhapus bila bahannya dihapus. |
+| `tbl_riwayat_harga_jual` | `20261111000000_riwayat_harga_jual.sql` | `id_riwayat`, `id_produk`, `harga_jual_lama`, `harga_baru`, `waktu_perubahan` | Kedua harga harus lebih dari 0. Riwayat ikut terhapus bila produknya dihapus. |
+
+RLS diaktifkan pada ketiga tabel. `tbl_notifikasi` hanya dapat diakses oleh
+pemiliknya. Kedua tabel riwayat hanya dapat diakses oleh pemilik bahan atau
+produk yang bersangkutan.
 
 ------------------------------------------------------------------------
 

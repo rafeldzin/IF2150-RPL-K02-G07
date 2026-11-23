@@ -1,7 +1,7 @@
 <h1>
 IF2150 REKAYASA PERANGKAT LUNAK
 <br>
-TUGAS 5
+TUGAS 7
 <br>
 DESKRIPSI PERANCANGAN PERANGKAT LUNAK (DPPL)
 </h1>
@@ -32,10 +32,7 @@ Dipersiapkan oleh:
 
 | Revisi | Deskripsi |
 | :--- | :--- |
-| *A* | *Deskripsikan perubahan yang dilakukan dari dokumen sebelumnya pada dokumen ini. Jika tidak terdapat perubahan, harap kosongkan tabel.* |
-| *B* |  |
-| *C* |  |
-| ... |  |
+| *A* | *Merapikan dokumen dan melengkapi bagian yang kurang jelas. *  |
 
 ---
 
@@ -154,7 +151,7 @@ Logical View dipilih untuk menggambarkan struktur logis perangkat lunak Pross, y
 <img alt="Logical View pada Pross" src="./assets/diagram/Logical-View.webp" width="50%">
 </p>
 <p align="center">
-<i>Gambar 2. Contoh Logical View pada P/L E-Commerce</i>
+<i>Gambar 2. Logical View Pross</i>
 </p>
 
 ### 2.4.2 Physical View
@@ -164,7 +161,7 @@ Physical View dipilih untuk memetakan bagaimana perangkat lunak Pross didistribu
 <img alt="Physical View pada Pross" src="./assets/diagram/physcialView.drawio.png" width="50%">
 </p>
 <p align="center">
-<i>Gambar 3. Contoh Pyhsical View pada P/L E-Commerce</i>
+<i>Gambar 3. Physical View Pross</i>
 </p>
 
 
@@ -219,7 +216,7 @@ Tabel 3.1. Identifikasi Kelas Use Case UC01
 
 ### 3.2.1 Identifikasi Kelas
 
-Tabel 3.1. Identifikasi Kelas Use Case UC02
+Tabel 3.2. Identifikasi Kelas Use Case UC02
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
@@ -257,6 +254,8 @@ Tabel 3.1. Identifikasi Kelas Use Case UC02
 **ID Use Case:** *UC03*  
 **Nama Use Case:** *Menambahkan Data Produk Baru*
 
+### 3.3.1 Identifikasi Kelas
+
 Tabel 3.3. Identifikasi Kelas Use Case UC03
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
@@ -273,7 +272,7 @@ Tabel 3.3. Identifikasi Kelas Use Case UC03
 - **Skenario Normal dan Alternatif**
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-sequence-uc03.png" width="50%">
+<img alt="Sequence Diagram UC03" src="./assets/diagram/diagram-sequence-uc03.png" width="50%">
 </p>
 <p align="center">
 <i>Gambar 8. Sequence Diagram UC03</i>
@@ -282,7 +281,7 @@ Tabel 3.3. Identifikasi Kelas Use Case UC03
 ### 3.3.3 Diagram Kelas
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-class-uc03.png" width="35%">
+<img alt="Diagram Kelas Menambahkan Data Produk Baru" src="./assets/diagram/diagram-class-uc03.png" width="35%">
 </p>
 <p align="center">
 <i>Gambar 9. Diagram Kelas Menambahkan Data Produk Baru</i>
@@ -313,7 +312,7 @@ Tabel 3.4. Identifikasi Kelas Use Case UC04
 - **Skenario Normal dan Alternatif**
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-sequence-uc04.png" width="50%">
+<img alt="Sequence Diagram UC04" src="./assets/diagram/diagram-sequence-uc04.png" width="50%">
 </p>
 <p align="center">
 <i>Gambar 10. Sequence Diagram UC04</i>
@@ -323,7 +322,7 @@ Tabel 3.4. Identifikasi Kelas Use Case UC04
 ### 3.4.3 Diagram Kelas
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-class-uc04.png" width="35%">
+<img alt="Diagram Kelas Melihat Margin Keuntungan Produk" src="./assets/diagram/diagram-class-uc04.png" width="35%">
 </p>
 <p align="center">
 <i>Gambar 11. Diagram Kelas Melihat Margin Keuntungan Produk</i>
@@ -499,7 +498,7 @@ Tabel 3.9. Identifikasi Kelas Use Case UC09
 | 3 | *BahanBaku* | *BahanBaku* |
 | 4 | *Notifikasi* | *Notifikasi* |
 | 5 | *PushNotificationUI* | *PushNotificationUI* |
-| 6 | *NotifikasiController* | *NotifikasiController* |
+| 6 | *NotificationController* | *NotifikasiController* |
 | 7 | *EditProductPage* | *EditProductPage* |
 | 8 | *-* | *HomePage* |
 
@@ -509,16 +508,16 @@ Tabel 3.9. Identifikasi Kelas Use Case UC09
 - **Skenario Normal dan Alternatif**
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-sequence-uc09.png" width="80%">
+<img alt="Sequence Diagram UC09" src="./assets/diagram/diagram-sequence-uc09.png" width="80%">
 </p>
 <p align="center">
-<i>Gambar 20. Sequence Diagram [UC09]</i>
+<i>Gambar 20. Sequence Diagram UC09</i>
 </p>
 
 ### 3.9.3 Diagram Kelas
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-class-uc09.png" width="80%">
+<img alt="Diagram Kelas Menerima Notifikasi Kerugian Produk" src="./assets/diagram/diagram-class-uc09.png" width="80%">
 </p>
 <p align="center">
 <i>Gambar 21. Diagram Kelas Menerima Notifikasi Kerugian Produk</i>
@@ -535,13 +534,12 @@ Tabel 3.10. Identifikasi Kelas Use Case UC10
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-|:--- | :--- | :--- |
 | 1 | *PemilikUsaha* | *PemilikUsaha* |
 | 2 | *Produk* | *Produk* |
 | 3 | *BahanBaku* | *BahanBaku* |
 | 4 | *Notifikasi* | *Notifikasi* |
 | 5 | *PushNotificationUI* | *PushNotificationUI* |
-| 6 | *NotifikasiController* | *NotifikasiController* |
+| 6 | *NotificationController* | *NotifikasiController* |
 | 7 | *EditProductPage* | *EditProductPage* |
 | 8 | *-* | *HomePage* |
 
@@ -550,16 +548,16 @@ Tabel 3.10. Identifikasi Kelas Use Case UC10
 - **Skenario Normal dan Alternatif**
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-sequence-uc10.png" width="80%">
+<img alt="Sequence Diagram UC10" src="./assets/diagram/diagram-sequence-uc10.png" width="80%">
 </p>
 <p align="center">
-<i>Gambar 22. Sequence Diagram [UC10]</i>
+<i>Gambar 22. Sequence Diagram UC10</i>
 </p>
 
 ### 3.10.3 Diagram Kelas
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/diagram-class-uc10.png" width="85%">
+<img alt="Diagram Kelas Menerima Notifikasi Perubahan Harga Bahan Baku" src="./assets/diagram/diagram-class-uc10.png" width="85%">
 </p>
 <p align="center">
 <i>Gambar 23. Diagram Kelas Menerima Notifikasi Perubahan Harga Bahan Baku</i>
@@ -691,7 +689,7 @@ Tabel 5.1. Matriks Kerunutan Kelas terhadap Use Case
 
 | Kelas | Use Case Terkait |
 | :--- | :--- |
-| *C01 - PemilikUsaha* | *UC01 - Mendaftarkan Akun* <br> *UC02 - Login dengan akun yang sudah terdaftar* <br> *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* <br> *UC05 - Mengelola Harga Jual Produk* <br> *UC06 - Menelusuri Daftar Produk* <br> *UC07 - Melihat Perubahan Harga Jual* <br> *UC08 - Memantau Tren Harga Bahan Baku* <br> *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* <br> *UC11 - Mengubah Data Akun* <br> *UC12 - Keluar dari Akun* |
+| *C01 - PemilikUsaha* | *UC01 - Mendaftarkan Akun* <br> *UC02 - Login dengan akun yang sudah terdaftar* <br> *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* <br> *UC05 - Mengelola Harga Jual Produk* <br> *UC06 - Menelusuri Daftar Produk* <br> *UC07 - Melihat Perubahan Harga Jual* <br> *UC08 - Memantau Tren Harga Bahan Baku* <br> *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* <br> *UC11 - Mengubah Data Akun* |
 | *C02 - Produk* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* <br> *UC05 - Mengelola Harga Jual Produk* <br> *UC06 - Menelusuri Daftar Produk* <br> *UC07 - Melihat Perubahan Harga Jual* <br> *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* |
 | *C03 - BahanBaku* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* <br> *UC08 - Memantau Tren Harga Bahan Baku* <br> *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* |
 | *C04 - ResepBahan* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* |
@@ -702,7 +700,7 @@ Tabel 5.1. Matriks Kerunutan Kelas terhadap Use Case
 | *C09 - ResetPasswordController* | *UC02 - Login dengan akun yang sudah terdaftar* |
 | *C10 - AddProductPage* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* |
 | *C11 - MarginController* | *UC03 - Menambahkan Data Produk Baru* <br> *UC04 - Melihat Margin Keuntungan Produk* |
-| *C12 - EditProductPage* | *UC05 - Mengelola Harga Jual Produk* |
+| *C12 - EditProductPage* | *UC05 - Mengelola Harga Jual Produk* <br> *UC09 - Menerima Notifikasi Kerugian Produk* <br> *UC10 - Menerima Notifikasi Perubahan Harga Bahan Baku* |
 | *C13 - PriceController* | *UC05 - Mengelola Harga Jual Produk* |
 | *C14 - RiwayatHargaBahanBaku* | *UC08 - Memantau Tren Harga Bahan Baku* |
 | *C15 - TrenBahanBakuPage* | *UC08 - Memantau Tren Harga Bahan Baku* |

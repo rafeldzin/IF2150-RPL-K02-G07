@@ -17,7 +17,7 @@
 | *13525020* | *Klio Lysander* |
 | *13525047* | *Muhammad Fakhriyan Rizki M.* |
 | *13525053* | *Kevin Sie* |
-| *13525056* | Muhammad Nuha Alghifari |
+| *13525056* | *Mochammad Nuha Al Ghifari* |
 | *13525062* | *Rafel Dzinun Muhammad* |
 
 ---
